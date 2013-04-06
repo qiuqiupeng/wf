@@ -1,0 +1,25 @@
+#MyEclipse Hibernate Properties
+#Fri Apr 05 04:41:43 CST 2013
+sessionFactoryName=person.leep.wf.hibernate.HibernateSessionFactory
+genBasicCompId=true
+profile=
+daoSFId=
+version=4.1
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=src/main/webapp/WEB-INF/lib
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=true
+reSettingsFile=
+configFile=/wf/src/main/java/hibernate.cfg.xml
+createConfigFile=false
+addLibs2Classpath=true
+baseDaoClass=person.leep.wf.hibernate.BaseHibernateDAO
