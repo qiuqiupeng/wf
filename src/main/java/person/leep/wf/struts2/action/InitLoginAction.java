@@ -4,16 +4,14 @@
 package person.leep.wf.struts2.action;
 
 import person.leep.wf.hibernate.ScmSysAccount;
-import person.leep.wf.hibernate.ScmSysAccountDAO;
 import person.leep.wf.services.InitLoginService;
 
-import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * @author lipeng
  * 
  */
-public class InitLoginAction extends ActionSupport {
+public class InitLoginAction extends BaseAction {
 	/**
 	 * 
 	 */

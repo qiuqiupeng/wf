@@ -12,8 +12,12 @@
 
 	<package name="test" extends="struts-default">
 
-		<action name="test" class="Test">
+		<action name="test" class="Test" >
 			<result>/WEB-INF/jsp/test.jsp</result>
+		</action>
+		
+		<action name="signin">
+			<result>signin.jsp</result>
 		</action>
 	</package>
 </struts>

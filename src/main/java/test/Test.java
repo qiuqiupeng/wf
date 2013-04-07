@@ -5,14 +5,13 @@ package test;
 
 import person.leep.wf.hibernate.ScmSysAccount;
 import person.leep.wf.services.InitLoginService;
-
-import com.opensymphony.xwork2.ActionSupport;
+import person.leep.wf.struts2.action.BaseAction;
 
 /**
  * @author lipeng
- *
+ * 
  */
-public class Test extends ActionSupport {
+public class Test extends BaseAction {
 	/**
 	 * 
 	 */
@@ -20,8 +19,6 @@ public class Test extends ActionSupport {
 	private ScmSysAccount sysAccount;
 	private InitLoginService service;
 	private String user;
-
-
 
 	/**
 	 * @return the sysAccount
@@ -31,7 +28,8 @@ public class Test extends ActionSupport {
 	}
 
 	/**
-	 * @param sysAccount the sysAccount to set
+	 * @param sysAccount
+	 *            the sysAccount to set
 	 */
 	public void setSysAccount(ScmSysAccount sysAccount) {
 		this.sysAccount = sysAccount;
@@ -45,7 +43,8 @@ public class Test extends ActionSupport {
 	}
 
 	/**
-	 * @param service the service to set
+	 * @param service
+	 *            the service to set
 	 */
 	public void setService(InitLoginService service) {
 		this.service = service;
@@ -69,8 +68,23 @@ public class Test extends ActionSupport {
 	public String index() throws Exception {
 		// TODO Auto-generated method stub
 
-		setUser(service.check().getAccountId());
-		setSysAccount(service.check());
+		ScmSysAccount account = service.check();
+		setUser(account.getAccountId());
+		setSysAccount(account);
+		return SUCCESS;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		ScmSysAccount account = service.check();
+		setUser(account.getAccountId());
+		setSysAccount(account);
 		return SUCCESS;
 	}
 

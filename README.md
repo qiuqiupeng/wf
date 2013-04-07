@@ -2,7 +2,7 @@
 数据库：mysql 5.1 
 库：test
 数据库表自动创建
-IDE工具：myeclipse 10.6
+IDE工具：myeclipse2013
 SSH：Struts2.3   Spring3.1   hibernate4.14
 
 ==
