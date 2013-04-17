@@ -10,14 +10,53 @@
 		</action>
 	</package>
 
+
+	<package name="admin" extends="struts-default">
+		<action name="signin">
+			<result>/signin.jsp</result>
+		</action>
+	</package>
+	
+	<package name="mainMenu" extends="struts-default">
+		<action name="mainMenu"  class="Test">
+			<result>/WEB-INF/jsp/MainMenu.jsp</result>
+		</action>
+		<action name="jsontreedata" class="person.leep.wf.struts2.action.JsonTreeData">
+			<result name="success" >/WEB-INF/jsp/MainMenu.jsp</result>
+		</action>
+	</package>
+
+
+	<package name="system" extends="struts-default" namespace="/system">
+
+		<action name="error403">
+			<result>/WEB-INF/jsp/commons/403.jsp</result>
+		</action>
+		<action name="error404">
+			<result>/WEB-INF/jsp/commons/404.jsp</result>
+		</action>
+		<action name="error500">
+			<result>/WEB-INF/jsp/commons/500.jsp</result>
+		</action>
+		<action name="header">
+			<result>/WEB-INF/jsp/commons/header.jsp</result>
+		</action>
+		<action name="footer">
+			<result>/WEB-INF/jsp/commons/footer.jsp</result>
+		</action>
+		<action name="taglibs">
+			<result>/WEB-INF/jsp/commons/taglibs.jsp</result>
+		</action>
+		<action name="metas">
+			<result>/WEB-INF/jsp/commons/metas.jsp</result>
+		</action>
+	</package>
+
+
 	<package name="test" extends="struts-default">
 
-		<action name="test" class="Test" >
+		<action name="test" class="Test">
 			<result>/WEB-INF/jsp/test.jsp</result>
-		</action>
-		
-		<action name="signin">
-			<result>signin.jsp</result>
 		</action>
 	</package>
 </struts>

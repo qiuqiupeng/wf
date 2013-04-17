@@ -14,6 +14,7 @@
 		<hibernate.version>4.2.0.Final</hibernate.version>
 		<sl4j.version>1.7.5</sl4j.version>
 		<junit.version>4.11</junit.version>
+		<sitemesh.version>3.0-alpha-2</sitemesh.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -306,11 +307,6 @@
 			<version>3.1.0.CR2</version>
 		</dependency>
 			
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${sl4j.version}</version>
-		</dependency>
 		
 		
 		<!-- **********************************************************************
@@ -338,6 +334,17 @@
 			<version>${struts.version}</version>
 		</dependency>
 		<dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-convention-plugin</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
+		<dependency>
 			<groupId>com.jgeppert.struts2.jquery</groupId>
 			<artifactId>struts2-jquery</artifactId>
 			<version>3.5.1</version>
@@ -348,9 +355,29 @@
 			<artifactId>struts2-jquery-plugin</artifactId>
 			<version>3.5.1</version>
 		</dependency>
+		<dependency>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
+        <artifactId>struts2-jquery-plugin</artifactId>
+        <version>3.5.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.jgeppert.struts2.jquery</groupId>
+        <artifactId>struts2-jquery-tree-plugin</artifactId>
+        <version>3.5.1</version>
+    </dependency>
 		
 		<!-- **********************************************************************
-		** 数据库jdbc DEPENDENCIES **
+		** sitemesh DEPENDENCIES **
+		********************************************************************** -->
+		
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>${sitemesh.version}</version>
+		</dependency>		
+		
+		<!-- **********************************************************************
+		** jdbc DEPENDENCIES **
 		********************************************************************** -->
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
@@ -376,7 +403,8 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${sl4j.version}</version>
 		</dependency>
-		
+
+
 	</dependencies>
 	
 	<build>
