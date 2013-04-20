@@ -16,16 +16,18 @@
 			<result>/signin.jsp</result>
 		</action>
 	</package>
-	
+
 	<package name="mainMenu" extends="struts-default">
-		<action name="mainMenu"  class="Test">
+		<action name="mainMenu" class="Test">
 			<result>/WEB-INF/jsp/MainMenu.jsp</result>
-		</action>
-		<action name="jsontreedata" class="person.leep.wf.struts2.action.JsonTreeData">
-			<result name="success" >/WEB-INF/jsp/MainMenu.jsp</result>
 		</action>
 	</package>
 
+	<package name="Menu" extends="json-default">
+		<action name="jsontreedata" class="person.leep.wf.struts2.action.JsonTreeData">
+			<result type="json" />
+		</action>
+	</package>
 
 	<package name="system" extends="struts-default" namespace="/system">
 

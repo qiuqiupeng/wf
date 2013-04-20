@@ -31,7 +31,7 @@ import org.apache.struts2.convention.annotation.Result;
 import com.jgeppert.struts2.jquery.tree.result.TreeNode;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Actions({ @Action(value = "/json-tree-data", results = { @Result(name = "success", type = "json", params = {
+@Actions({ @Action(value = "/jsontreedata", results = { @Result(name = "success", type = "json", params = {
 	"root", "nodes" }) }) })
 @ParentPackage("json-default")
 public class JsonTreeData extends ActionSupport {

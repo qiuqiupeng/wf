@@ -6,6 +6,8 @@ package test;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.jgeppert.struts2.jquery.tree.views.jsp.ui.TreeTag;
+
 import person.leep.wf.hibernate.ScmSysAccount;
 import person.leep.wf.services.InitLoginService;
 import person.leep.wf.struts2.action.BaseAction;
@@ -96,6 +98,8 @@ public class Test extends BaseAction {
         mylist.put("Section 3", "Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.");
         mylist.put("Section 4", "Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.");
 
+        TreeTag tree = new TreeTag();
+//        tree.setroot
 		return SUCCESS;
 	}
 	
