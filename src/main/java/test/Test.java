@@ -8,8 +8,6 @@ import java.util.Map;
 
 import com.jgeppert.struts2.jquery.tree.views.jsp.ui.TreeTag;
 
-import person.leep.wf.hibernate.ScmSysAccount;
-import person.leep.wf.services.InitLoginService;
 import person.leep.wf.struts2.action.BaseAction;
 
 /**
@@ -21,40 +19,9 @@ public class Test extends BaseAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ScmSysAccount sysAccount;
-	private InitLoginService service;
 	private String user;
 	private Map<String, String> mylist;
 
-	/**
-	 * @return the sysAccount
-	 */
-	public ScmSysAccount getSysAccount() {
-		return sysAccount;
-	}
-
-	/**
-	 * @param sysAccount
-	 *            the sysAccount to set
-	 */
-	public void setSysAccount(ScmSysAccount sysAccount) {
-		this.sysAccount = sysAccount;
-	}
-
-	/**
-	 * @return the service
-	 */
-	public InitLoginService getService() {
-		return service;
-	}
-
-	/**
-	 * @param service
-	 *            the service to set
-	 */
-	public void setService(InitLoginService service) {
-		this.service = service;
-	}
 
 	/**
 	 * @return the user
@@ -74,9 +41,10 @@ public class Test extends BaseAction {
 	public String index() throws Exception {
 		// TODO Auto-generated method stub
 
-		ScmSysAccount account = service.check();
-		setUser(account.getAccountId());
-		setSysAccount(account);
+//		ScmSysAccount account = service.check();
+//		setUser(account.getAccountId());
+//		setSysAccount(account);
+		System.out.println("-------------------");
 		return SUCCESS;
 	}
 
@@ -88,10 +56,6 @@ public class Test extends BaseAction {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		ScmSysAccount account = service.check();
-		setUser(account.getAccountId());
-		setSysAccount(account);
-		
 		mylist = new HashMap<String, String>();
         mylist.put("Section 1", "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.");
         mylist.put("Section 2", "Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.");
