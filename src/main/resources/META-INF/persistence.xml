@@ -29,7 +29,6 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 
-		<!-- 列出该应用需要访问的所有的Entity类, 也可以用 <mapping-file> 或<jar-file>元素来定义 -->
 	</persistence-unit>
 </persistence>
  
