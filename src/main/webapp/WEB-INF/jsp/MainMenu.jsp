@@ -1,4 +1,3 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 <html>
 <head>
@@ -32,13 +31,13 @@ body {
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
 
-
+<jsp:include page="/WEB-INF/jsp/commons/meta.jsp" />
 
 </head>
 
 <body>
 
-	<jsp:include page="/WEB-INF/jsp/commons/meta.jsp" />
+	
 
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">

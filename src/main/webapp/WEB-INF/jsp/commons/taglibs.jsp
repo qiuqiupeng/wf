@@ -6,3 +6,9 @@
 <%@ taglib prefix="sjt" uri="/struts-jquery-tree-tags"%>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
