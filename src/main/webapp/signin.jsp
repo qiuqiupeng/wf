@@ -1,24 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
+
 <html>
 <head>
-<base href="<%=basePath%>">
-<meta charset="utf-8">
-<title>Sign in &middot; Twitter Bootstrap</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
 
-<!-- Le styles -->
-<link href="css/bootstrap.css" rel="stylesheet">
+<title><s:text name="jsp.signin.projectName" /></title>
+<s:include value="/WEB-INF/jsp/commons/meta.jsp" />
+
 <style type="text/css">
 body {
 	padding-top: 40px;
@@ -51,46 +39,76 @@ body {
 	padding: 7px 9px;
 }
 </style>
-<link href="css/bootstrap-responsive.css" rel="stylesheet">
 
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-    <![endif]-->
 
-<!-- Fav and touch icons -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-	href="ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="ico/favicon.png">
+
 </head>
 
 <body>
 
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#"><s:text name="jsp.signin.projectName" /></a>
+				<div class="nav-collapse collapse">
+					<p class="navbar-text pull-right">
+						Logged in as <a href="#" class="navbar-link">Username</a>
+					</p>
+					<ul class="nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+	
 	<div class="container">
-
+		<br> <br> <br> <br> <br>
 		<form class="form-signin">
-			<h2 class="form-signin-heading">Please sign in</h2>
-			<input type="text" class="input-block-level"
-				placeholder="UserName"> <input type="password"
-				class="input-block-level" placeholder="Password"> <label
-				class="checkbox"> <input type="checkbox" value="remember-me">
-				Remember me
+			<h2 class="form-signin-heading">
+				<s:text name="jsp.signin.plsSignin" />
+			</h2>
+			<s:textfield name="user.userName" cssClass="input-block-level"
+				placeholder="%{getText('jsp.signin.userName')}" />
+
+			<s:password name="user.password" cssClass="input-block-level"
+				placeholder="%{getText('jsp.signin.password')}" />
+
+			<select title="帐套">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select> <label class="checkbox"> <input type="checkbox"
+				value="remember-me"> Remember me
 			</label>
-			<button class="btn btn-large btn-primary" type="submit">Sign
-				in</button>
+
+			<s:submit name="signin" cssClass="btn btn-large btn-primary"
+				value="%{getText('jsp.signin.btnSignin')}" label="Sign in" />
+
 		</form>
 
 	</div>
 	<!-- /container -->
 
-	
-	
+	<div id="footer" class="ui-layout-south">
+		<table width="100%" border="0" cellspacing="0" cellpadding="2"
+			bgcolor="#FFFFCC">
+			<tr>
+				<td align="center"><s:text name="jsp.signin.footer" /></td>
+			</tr>
+		</table>
+	</div>
+
 
 </body>
 </html>

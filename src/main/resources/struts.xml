@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.i18n.reload" value="true" />
 	<constant name="struts.devMode" value="true" />
@@ -7,9 +7,17 @@
 	<constant name="struts.custom.i18n.resources" value="globalMessages" />
 	<constant name="struts.action.extension" value="action,," />
 
+	<!-- Convention Config -->
+	<constant name="struts.convention.result.path" value="/WEB-INF/jsp" />
+	
+
+
+
+	<!-- Convention Config end -->
+
 	<constant name="struts.serve.static" value="true" />
 	<constant name="struts.serve.static.browserCache" value="false" />
 
-	<include file="struts-system.xml" /> 
+	<!-- <include file="struts-system.xml" /> -->
 
 </struts>    
