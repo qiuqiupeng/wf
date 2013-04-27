@@ -4,6 +4,7 @@
 package edu.ku.it.si.springjpaexample.action;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -32,6 +33,7 @@ public class PersonUpdater extends ActionSupport {
 	 * link get the associated Person object.
 	 * 
 	 */
+	@Action(value = "inputPersonUpdate", results = { @Result(name = "input", location = "inputpersonupdate.jsp") })
 	public String input() {
 
 		person = personService.findbyEmplid(emplid);
@@ -44,9 +46,8 @@ public class PersonUpdater extends ActionSupport {
 	 * Use the state of the Person object (which was updated by the user in the
 	 * view) to update the data repository.
 	 */
-	@Action(value = "*PersonUpdate", results = {
-			@Result(name = "success", location = "personupdated.jsp"),
-			@Result(name = "input", location = "inputpersonupdate.jsp") })
+
+	@Action(value = "executePersonUpdate", results = { @Result(name = "success", location = "personupdated.jsp") })
 	public String execute() {
 
 		personService.update(person);

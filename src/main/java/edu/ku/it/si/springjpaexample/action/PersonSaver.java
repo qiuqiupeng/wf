@@ -30,9 +30,7 @@ public class PersonSaver extends ActionSupport {
 	 * Use emplid provided in the user's request to find the Person object and
 	 * then delete that Person's record.
 	 */
-	@Actions({
-			@Action(value = "personSave", results = { @Result(name = "success", location = "personsaved.jsp") }),
-			@Action(value = "inputPersonSave", results = { @Result(name = "success", location = "inputpersonsave.jsp") }) })
+	@Action(value = "executePersonSave", results = { @Result(name = "success", location = "personsaved.jsp") })
 	public String execute() {
 
 		personService.save(person);
@@ -40,6 +38,14 @@ public class PersonSaver extends ActionSupport {
 		return SUCCESS;
 	}
 
+	@Action(value = "inputPersonSave", results = { @Result(name = "input", location = "inputpersonsave.jsp") })
+	public String input() {
+
+//		personService.save(person);
+
+		return INPUT;
+	}
+	
 	public void validate() {
 
 		if (person.getFirst_name().length() == 0) {
