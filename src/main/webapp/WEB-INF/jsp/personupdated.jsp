@@ -6,27 +6,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Enter Employee ID</title>
+<title>Person Updated</title>
 </head>
 <body>
-	<h3>Enter the employee ID of the person you want to find.</h3>
+	<h3>Below are the details of the person updated.</h3>
 
-	<s:form action="personFinder">
+	<s:if test="person != null">
 
-		<s:textfield name="emplid" label="Employee ID" />
 
-		<s:submit />
 
-	</s:form>
+		<p>
+			<s:property value="person" />
+		</p>
 
+
+
+	</s:if>
+
+	<s:else>
+
+		<p>No person was found to update.</p>
+	</s:else>
+
+	<p>
+		<a href="index.jsp">Find another employee</a>
+	</p>
 	<p>
 		<a href="<s:url action='allPersonsFinder'/>">Find all employees</a>.
-	</p>
-
-	<h3>Create new employee.</h3>
-
-	<p>
-		<a href="<s:url action='inputPersonSave'/>">Create new employee</a>.
 	</p>
 
 

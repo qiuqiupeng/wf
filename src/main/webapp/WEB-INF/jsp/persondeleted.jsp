@@ -6,27 +6,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Enter Employee ID</title>
+<title>Person Deleted</title>
 </head>
 <body>
-	<h3>Enter the employee ID of the person you want to find.</h3>
-
-	<s:form action="personFinder">
-
-		<s:textfield name="emplid" label="Employee ID" />
-
-		<s:submit />
-
-	</s:form>
+	<h3>Person was deleted successfully.</h3>
 
 	<p>
-		<a href="<s:url action='allPersonsFinder'/>">Find all employees</a>.
+		This person was deleted:
+		<s:property value="person" />
 	</p>
 
-	<h3>Create new employee.</h3>
-
 	<p>
-		<a href="<s:url action='inputPersonSave'/>">Create new employee</a>.
+		<a href="index.jsp">Find another employee</a>
+	</p>
+	<p>
+		<a href="<s:url action='allPersonsFinder'/>">Find all employees</a>.
 	</p>
 
 

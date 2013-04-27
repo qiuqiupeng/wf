@@ -51,7 +51,7 @@
 
 	<package name="test" extends="struts-default">
 
-		<action name="test" class="Test">
+		<action name="test1" class="Test">
 			<result>/WEB-INF/jsp/test.jsp</result>
 		</action>
 	</package>
@@ -115,4 +115,6 @@
 		</action>
 
 	</package>
+	
+	
 </struts>

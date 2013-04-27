@@ -3,6 +3,9 @@
  */
 package edu.ku.it.si.springjpaexample.action;
 
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.ku.it.si.springjpaexample.model.Person;
@@ -37,6 +40,7 @@ public class PersonFinder extends ActionSupport {
 	
 	
 	@Override
+	@Action(value = "personFinder", results = { @Result(name = "success", location = "personinfo.jsp") })
 	public String execute() throws Exception {
 		
 		person = personService.findbyEmplid(emplid);

@@ -371,6 +371,11 @@
 			<version>${struts.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-config-browser-plugin</artifactId>
+			<version>${struts.version}</version>
+		</dependency>
 
 		<!-- ********************************************************************** 
 			** sitemesh DEPENDENCIES ** 
@@ -496,6 +501,7 @@
 		</dependency>
 
 -->
+
 		
 	</dependencies>		
 

@@ -3,42 +3,41 @@
  */
 package edu.ku.it.si.springjpaexample.action;
 
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.ku.it.si.springjpaexample.model.Person;
 import edu.ku.it.si.springjpaexample.service.PersonService;
 
 /**
- * Acts as the controller for handling user
- * requests to delete a Person object.
+ * Acts as the controller for handling user requests to delete a Person object.
+ * 
  * @author brucephillips
- *
+ * 
  */
 public class PersonDeleter extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 
-	private  transient PersonService personService;
-	
-	private Person person ;
-	
-	private Long emplid ;
-	
-	
-	
-	
+	private transient PersonService personService;
+
+	private Person person;
+
+	private Long emplid;
+
 	/**
-	 * Use emplid provided in the user's 
-	 * request to find the Person 
-	 * object and then delete that Person's
-	 * record.
+	 * Use emplid provided in the user's request to find the Person object and
+	 * then delete that Person's record.
 	 */
+	@Action(value = "*personDelete", results = { @Result(name = "success", location = "persondeleted.jsp") })
 	public String execute() {
 
 		person = personService.findbyEmplid(emplid);
-		
-		personService.delete(person); 
-		
+
+		personService.delete(person);
+
 		return SUCCESS;
 	}
 
@@ -65,6 +64,5 @@ public class PersonDeleter extends ActionSupport {
 	public void setEmplid(Long emplid) {
 		this.emplid = emplid;
 	}
-	
 
 }
