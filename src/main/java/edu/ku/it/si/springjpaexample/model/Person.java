@@ -1,6 +1,10 @@
 package edu.ku.it.si.springjpaexample.model;
 
 import javax.persistence.*;
+import static javax.persistence.GenerationType.AUTO;
+import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.SEQUENCE;
+import static javax.persistence.GenerationType.TABLE;
 
 @Entity
 @Table(name = "T_SYS_PERSON")
@@ -12,6 +16,7 @@ public class Person {
 	private String last_name;
 
 	@Id
+	@GeneratedValue(strategy = AUTO)
 	public long getEmplid() {
 		return emplid;
 	}

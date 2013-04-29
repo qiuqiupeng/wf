@@ -71,7 +71,7 @@ public class PersonServiceImpl implements PersonService {
 	@Transactional
 	public void save(Person person) {
 	
-		person.setEmplid(new Date().getTime());
+//		person.setEmplid(new Date().getTime());
 		personDao.save(person); //Person object's emplid instance field will now have a value
 		
 		
