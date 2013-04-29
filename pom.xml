@@ -17,6 +17,8 @@
 		<poi.version>3.9</poi.version>
 		<sitemesh.version>3.0-alpha-2</sitemesh.version>
 		<jbpm.version>6.0.0.Beta1</jbpm.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<ehcache.version>2.5.2</ehcache.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -163,8 +165,7 @@
 		</dependency>
 
 		<!-- ********************************************************************** 
-			** spring DEPENDENCIES ** 
-		********************************************************************** -->
+			** spring DEPENDENCIES ** ********************************************************************** -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
@@ -262,8 +263,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- ********************************************************************** 
-			** hibernate DEPENDENCIES ** 
-		********************************************************************** -->
+			** hibernate DEPENDENCIES ** ********************************************************************** -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -307,12 +307,22 @@
 			<artifactId>jboss-logging</artifactId>
 			<version>3.1.0.CR2</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>4.1.4.Final</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- dbcp connection pool -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons-dbcp.version}</version>
+		</dependency>
 
 
 		<!-- ********************************************************************** 
-			** struts2 DEPENDENCIES ** 
-		********************************************************************** -->
+			** struts2 DEPENDENCIES ** ********************************************************************** -->
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -378,8 +388,7 @@
 		</dependency>
 
 		<!-- ********************************************************************** 
-			** sitemesh DEPENDENCIES ** 
-		********************************************************************** -->
+			** sitemesh DEPENDENCIES ** ********************************************************************** -->
 
 		<dependency>
 			<groupId>org.sitemesh</groupId>
@@ -388,8 +397,7 @@
 		</dependency>
 
 		<!-- ********************************************************************** 
-			** jdbc DEPENDENCIES **
-		********************************************************************** -->
+			** jdbc DEPENDENCIES ** ********************************************************************** -->
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
 			<artifactId>jtds</artifactId>
@@ -401,8 +409,7 @@
 			<version>5.1.24</version>
 		</dependency>
 		<!-- ********************************************************************** 
-			** poi DEPENDENCIES ** 
-		********************************************************************** -->
+			** poi DEPENDENCIES ** ********************************************************************** -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -417,8 +424,7 @@
 
 
 		<!-- ********************************************************************** 
-			** OTHER DEPENDENCIES ** 
-		********************************************************************** -->
+			** OTHER DEPENDENCIES ** ********************************************************************** -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-jcl</artifactId>
@@ -440,70 +446,29 @@
 			<artifactId>beanutils</artifactId>
 			<version>1.6.1-20070314</version>
 		</dependency>
-		
+
 		<!-- ********************************************************************** 
-			** JBPM DEPENDENCIES ** 
-		********************************************************************** 
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-bam</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-bpmn2</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-flow</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-flow-builder</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-human-task-core</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-human-task-hornetq</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-human-task-jms</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-human-task-mina</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-persistence-jpa</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-test</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-workitems</artifactId>
-			<version>${jbpm.version}</version>
-		</dependency>
+			** JBPM DEPENDENCIES ** ********************************************************************** 
+			<dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-bam</artifactId> 
+			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
+			<artifactId>jbpm-bpmn2</artifactId> <version>${jbpm.version}</version> </dependency> 
+			<dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-flow</artifactId> 
+			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
+			<artifactId>jbpm-flow-builder</artifactId> <version>${jbpm.version}</version> 
+			</dependency> <dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-human-task-core</artifactId> 
+			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
+			<artifactId>jbpm-human-task-hornetq</artifactId> <version>${jbpm.version}</version> 
+			</dependency> <dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-human-task-jms</artifactId> 
+			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
+			<artifactId>jbpm-human-task-mina</artifactId> <version>${jbpm.version}</version> 
+			</dependency> <dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-persistence-jpa</artifactId> 
+			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
+			<artifactId>jbpm-test</artifactId> <version>${jbpm.version}</version> </dependency> 
+			<dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-workitems</artifactId> 
+			<version>${jbpm.version}</version> </dependency> -->
 
--->
 
-		
-	</dependencies>		
+	</dependencies>
 
 	<build>
 		<plugins>

@@ -37,7 +37,6 @@ public class AllPersonsFinder extends ActionSupport {
 	@Override
 	@Action(value = "allPersonsFinder", results = { @Result(name = "success", location = "personsinfo.jsp") })
 	public String execute() throws Exception {
-		System.out.println("---------" + personService + "-------------");
 		persons = personService.findAllEmployees();
 
 		return SUCCESS;
