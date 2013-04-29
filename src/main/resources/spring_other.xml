@@ -18,11 +18,15 @@
 	<!-- scans the classpath for annotated components (including @Repostory 
 		and @Service that will be auto-registered as Spring beans -->
 	<context:component-scan base-package="person.leep.wf" />
-	<context:component-scan base-package="edu.ku.it.si.springjpaexample" />
+	<context:component-scan base-package="edu.ku.it.si.springjpaexample" ></context:component-scan>
 
-	<!-- methods or classes needing to run in a complete transaction will be 
-		annotated with Transactional -->
-	<tx:annotation-driven />
+	<context:property-placeholder
+		ignore-unresolvable="true" location="classpath*:/db.properties" />
+
+	<!-- use declarative transaction management -->
+	<tx:annotation-driven transaction-manager="transactionManager" ></tx:annotation-driven>
+
+
 
 	<!-- This will ensure that hibernate or jpa exceptions are automatically 
 		translated into Spring's generic DataAccessException hierarchy for those 
@@ -40,8 +44,6 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		p:entityManagerFactory-ref="entityManagerFactory" />
 
-	<!-- use declarative transaction management -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- JPA Entity Manager Factory <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" 
 		p:persistenceUnitName="wf" /> -->
@@ -59,7 +61,7 @@
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
 				</prop>
-				<prop key="net.sf.ehcache.configurationResourceName">ehcache/ehcache-hibernate-local.xml</prop>
+				<prop key="net.sf.ehcache.configurationResourceName">ehcache-hibernate-local.xml</prop>
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
 			</props>
 		</property>
@@ -69,8 +71,7 @@
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
 
-	<context:property-placeholder
-		ignore-unresolvable="true" location="classpath*:/db.properties" />
+
 
 	<!-- 数据源配置, 使用DBCP数据库连接池 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
