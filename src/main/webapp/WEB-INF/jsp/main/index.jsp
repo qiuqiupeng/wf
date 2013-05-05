@@ -1,19 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-<sj:head/>
-<%@ include file="/common/global.jsp"%>
+<sj:head jqueryui="true" jquerytheme="redmond" />
+<%@ include file="/WEB-INF/jsp/commons/meta.jsp"%>
+<%@ include file="/WEB-INF/jsp/commons/include-base-styles.jsp"%>
+<%@ include file="/WEB-INF/jsp/commons/include-custom-styles.jsp"%>
 
-<%@ include file="/common/meta.jsp"%>
-<title>演示系统</title>
-<%@ include file="/common/include-base-styles.jsp"%>
 <link rel="stylesheet" type="text/css" href="${ctx }/css/menu.css" />
-<%@ include file="/common/include-custom-styles.jsp"%>
 <link href="${ctx }/css/main.css" type="text/css" rel="stylesheet" />
+<title>演示系统</title>
 <style type="text/css">
 body {
 	margin: 0;

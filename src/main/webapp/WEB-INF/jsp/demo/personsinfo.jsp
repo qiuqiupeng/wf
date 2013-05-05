@@ -4,7 +4,7 @@
 <html>
 <head>
 <sj:head jqueryui="true" jquerytheme="redmond" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<s:include value="/WEB-INF/jsp/commons/meta.jsp"/>
 <title>Person Found</title>
 
 <script type="text/javascript">

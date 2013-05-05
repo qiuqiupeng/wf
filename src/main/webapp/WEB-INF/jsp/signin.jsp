@@ -3,13 +3,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<s:include value="/WEB-INF/jsp/common/global.jsp" />
-<s:include value="/WEB-INF/jsp/commons/meta.jsp" />
-<s:include value="/WEB-INF/jsp/common/include-base-styles.jsp" />
-<s:include value="/WEB-INF/jsp/common/include-custom-styles.jsp" />
-<s:include value="/WEB-INF/jsp/common/meta.jsp" />
-<s:include value="/WEB-INF/jsp/common/include-jquery-ui-theme.jsp" />
-<s:include value="/WEB-INF/jsp/common/include-base-styles.jsp" />
+<sj:head jqueryui="true" jquerytheme="redmond" />
+<%@ include file="/WEB-INF/jsp/commons/meta.jsp"%>
+<%@ include file="/WEB-INF/jsp/commons/include-base-styles.jsp"%>
+<%@ include file="/WEB-INF/jsp/commons/include-custom-styles.jsp"%>
+<%@ include file="/WEB-INF/jsp/commons/include-jquery-ui-theme.jsp"%>
+<%@ include file="/WEB-INF/jsp/commons/include-base-styles.jsp"%>
 
 <title>演示系统--登录</title>
 <link rel="stylesheet" type="text/css" href="${ctx }/css/menu.css" />
@@ -62,7 +61,6 @@
 }
 </style>
 
-<script src="${ctx }/js/common/jquery.js" type="text/javascript"></script>
 <script src="${ctx }/js/common/plugins/bootstrap/bootstrap.min.js"
 	type="text/javascript"></script>
 <script src="${ctx }/js/module/main/main.js" type="text/javascript"></script>

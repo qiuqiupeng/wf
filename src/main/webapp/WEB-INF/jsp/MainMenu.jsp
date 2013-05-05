@@ -1,83 +1,122 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 <html>
 <head>
-<sj:head />
+<sj:head jqueryui="true" jquerytheme="redmond" />
+<%@ include file="/WEB-INF/jsp/commons/meta.jsp"%>
+<%@ include file="/WEB-INF/jsp/commons/include-base-styles.jsp"%>
+<%@ include file="/WEB-INF/jsp/commons/include-custom-styles.jsp"%>
 <title>WF demo</title>
 
 <!-- Le styles -->
-<link href="css/bootstrap.css" rel="stylesheet">
-<style type="text/css">
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
 
-.sidebar-nav {
-	padding: 9px 0;
-}
-
-@media ( max-width : 980px) { /* Enable use of floated navbar text */
-	.navbar-text.pull-right {
-		float: none;
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-}
-</style>
-<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${ctx }/css/menu.css" />
+<link href="${ctx }/css/main.css" type="text/css" rel="stylesheet" />
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
 
-<jsp:include page="/WEB-INF/jsp/commons/meta.jsp" />
+<style type="text/css">
+/* Sticky footer styles
+      -------------------------------------------------- */
+html,body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+}
 
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,#footer {
+	height: 60px;
+}
+
+#footer {
+	background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media ( max-width : 767px) {
+	#footer {
+		margin-left: -20px;
+		margin-right: -20px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+/* Custom page CSS
+      -------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+.container {
+	width: auto;
+	max-width: 680px;
+}
+
+
+#activitiLogo {
+	height: 30px !important;
+	margin-top: -8px;
+	margin-bottom: -8px;
+}
+</style>
 </head>
 
 <body>
 
-	
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
+
+	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<button type="button" class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="brand" href="#">Project name</a>
-				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right">
-						Logged in as <a href="#" class="navbar-link">Username</a>
-					</p>
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
+				<a data-target=".nav-collapse" data-toggle="collapse"
+					class="btn btn-navbar"> </a> <a href="#" class="brand"> Demo
+					For <img id="activitiLogo" src="${ctx}/images/activiti_logo.png" />
+				</a>
+				<div class="nav-collapse">
+					<ul class="nav pull-right">
+						<li class="dropdown"><a data-toggle="dropdown"
+							class="dropdown-toggle" href="#"> <i
+								class="icon-user icon-black" style="margin-right: .3em"></i> 李 鹏<b
+								class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a id="changePwd" href="#"><i
+										class="icon-wrench icon-black"></i>修改密码</a></li>
+								<li><a id="loginOut" href="#"><i
+										class="icon-eject icon-black"></i>安全退出</a></li>
+							</ul></li>
 					</ul>
 				</div>
-				<!--/.nav-collapse -->
 			</div>
 		</div>
-	</div>
 
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="well sidebar-nav">
-					<s:set id="contextPath"
-						value="#request.get('javax.servlet.forward.context_path')" />
-					<!--
+		<!-- Part 1: Wrap all page content here -->
+		<div id="wrap">
+
+			<!-- Begin page content -->
+			<s:div cssclass="container-fluid">
+				<s:div cssclass="row-fluid">
+					<s:div cssClass="span3">
+
+						<s:div cssclass="well sidebar-nav">
+							<s:set id="contextPath"
+								value="#request.get('javax.servlet.forward.context_path')" />
+							<!--
 <sj:accordion list="mylist" cssClass="nav nav-list"/>
 -->
 
-					<sj:accordion id="accordion" heightStyle="auto" animate="true"
-						cssClass="nav nav-list" openOnMouseover="true">
-						<sj:accordionItem title="Mauris mauris ante">
 							<sjt:tree id="treeStatic" jstreetheme="default"
-								openAllOnLoad="true"
+								openAllOnLoad="false"
 								types="{
 					'valid_children' : [ 'root' ],
 					'types' : {
@@ -135,51 +174,49 @@ body {
 									</sjt:treeItem>
 								</sjt:treeItem>
 							</sjt:tree>
-						</sj:accordionItem>
-						<sj:accordionItem title="Sed non urna">
-                Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit 
-        </sj:accordionItem>
-						<sj:accordionItem title="Nam enim risus">
-                Nam enim risus, molestie et, porta ac, aliquam 
-        </sj:accordionItem>
-					</sj:accordion>
-				</div>
-				<!--/.well -->
-			</div>
-			<!--/span-->
-			<sj:div cssClass="span9">
-				<sj:tabbedpanel id="localtabs" cssClass="list" heightStyle="content">
-					<sj:tab id="tab1" target="tone" label="Local Tab One" />
-					<sj:tab id="tab2" target="ttwo" label="Local Tab Two" />
-					<sj:tab id="tab3" target="tthree" label="Local Tab Three" />
-					<sj:tab id="tab4" target="tfour" label="Local Tab Four" />
-					<div id="tone"></div>
-					<div id="ttwo">Sed non urna. Donec et ante. Phasellus eu
-						ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at
-						aliquet laoreet, mauris turpis porttitor velit, faucibus interdum
-						tellus libero ac justo. Vivamus non quam. In suscipit faucibus
-						urna.</div>
-					<div id="tthree">Nam enim risus, molestie et, porta ac,
-						aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus
-						in massa. Aenean in pede. Phasellus ac libero ac tellus
-						pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia
-						ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis
-						dui.</div>
-					<div id="tfour">Cras dictum. Pellentesque habitant morbi
-						tristique senectus et netus et malesuada fames ac turpis egestas.
-						Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-						posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse
-						eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-						Class aptent taciti sociosqu ad litora torquent per conubia
-						nostra, per inceptos himenaeos.</div>
-				</sj:tabbedpanel>
-			</sj:div>
+						</s:div>
+						<!--/.well -->
+					</s:div>
+					<!--/span-->
+					<sj:div cssClass="span9">
+						<sj:tabbedpanel id="localtabs" cssClass="list"
+							heightStyle="content">
+							<sj:tab id="tab1" target="tone" label="Local Tab One" />
+							<sj:tab id="tab2" target="ttwo" label="Local Tab Two" />
+							<sj:tab id="tab3" target="tthree" label="Local Tab Three" />
+							<sj:tab id="tab4" target="tfour" label="Local Tab Four" />
+							<div id="tone"></div>
+							<div id="ttwo">Sed non urna. Donec et ante. Phasellus eu
+								ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at
+								aliquet laoreet, mauris turpis porttitor velit, faucibus
+								interdum tellus libero ac justo. Vivamus non quam. In suscipit
+								faucibus urna.</div>
+							<div id="tthree">Nam enim risus, molestie et, porta ac,
+								aliquam ac, risus. Quisque lobortis. Phasellus pellentesque
+								purus in massa. Aenean in pede. Phasellus ac libero ac tellus
+								pellentesque semper. Sed ac felis. Sed commodo, magna quis
+								lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus
+								venenatis dui.</div>
+							<div id="tfour">Cras dictum. Pellentesque habitant morbi
+								tristique senectus et netus et malesuada fames ac turpis
+								egestas. Vestibulum ante ipsum primis in faucibus orci luctus et
+								ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
+								Suspendisse eu nisl. Nullam ut libero. Integer dignissim
+								consequat lectus. Class aptent taciti sociosqu ad litora
+								torquent per conubia nostra, per inceptos himenaeos.</div>
+						</sj:tabbedpanel>
+					</sj:div>
 
-			<!--/span-->
+					<!--/span-->
+				</s:div>
+				<!--/row-->
+
+
+				<div id="push"></div>
 		</div>
-		<!--/row-->
 
-		<footer>
+
+		<div id="footer">
 			<table width="100%" border="0" cellspacing="0" cellpadding="2"
 				bgcolor="#FFFFCC">
 				<tr>
@@ -191,10 +228,7 @@ body {
 					</td>
 				</tr>
 			</table>
-		</footer>
-	</div>
-
-	<script src="js/showcase.js"></script>
-
+		</div>
+		</s:div>
 </body>
 </html>
