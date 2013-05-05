@@ -40,7 +40,7 @@ public class PersonFinder extends ActionSupport {
 	
 	
 	@Override
-	@Action(value = "personFinder", results = { @Result(name = "success", location = "personinfo.jsp") })
+	@Action(value = "personFinder", results = { @Result(name = "success", location = "demo/personinfo.jsp") })
 	public String execute() throws Exception {
 		
 		person = personService.findbyEmplid(emplid);

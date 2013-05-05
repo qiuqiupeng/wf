@@ -20,4 +20,9 @@
 
 	<!-- <include file="struts-system.xml" /> -->
 
+
+	<package name="json" extends="struts-default,json-default"
+		namespace="/">
+	</package>
+	
 </struts>    

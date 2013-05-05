@@ -33,7 +33,7 @@ public class PersonUpdater extends ActionSupport {
 	 * link get the associated Person object.
 	 * 
 	 */
-	@Action(value = "inputPersonUpdate", results = { @Result(name = "input", location = "inputpersonupdate.jsp") })
+	@Action(value = "inputPersonUpdate", results = { @Result(name = "input", location = "demo/inputpersonupdate.jsp") })
 	public String input() {
 
 		person = personService.findbyEmplid(emplid);
@@ -47,7 +47,7 @@ public class PersonUpdater extends ActionSupport {
 	 * view) to update the data repository.
 	 */
 
-	@Action(value = "executePersonUpdate", results = { @Result(name = "success", location = "personupdated.jsp") })
+	@Action(value = "executePersonUpdate", results = { @Result(name = "success", location = "demo/personupdated.jsp") })
 	public String execute() {
 
 		personService.update(person);

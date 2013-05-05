@@ -31,7 +31,7 @@ public class PersonDeleter extends ActionSupport {
 	 * Use emplid provided in the user's request to find the Person object and
 	 * then delete that Person's record.
 	 */
-	@Action(value = "personDelete", results = { @Result(name = "success", location = "persondeleted.jsp") })
+	@Action(value = "personDelete", results = { @Result(name = "success", location = "demo/persondeleted.jsp") })
 	public String execute() {
 
 		person = personService.findbyEmplid(emplid);
