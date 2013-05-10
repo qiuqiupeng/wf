@@ -16,10 +16,11 @@
 		<junit.version>4.11</junit.version>
 		<poi.version>3.9</poi.version>
 		<sitemesh.version>3.0-alpha-2</sitemesh.version>
-		<!-- <jbpm.version>6.0.0.Beta1</jbpm.version> -->
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<ehcache.version>2.5.2</ehcache.version>
 		<activiti.version>5.12.1</activiti.version>
+		<bootstrap.version>1.6.0</bootstrap.version>
+		<jquery.version>3.5.1</jquery.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -386,22 +387,22 @@
 		<dependency>
 			<groupId>com.jgeppert.struts2.jquery</groupId>
 			<artifactId>struts2-jquery-plugin</artifactId>
-			<version>3.5.1</version>
+			<version>${jquery.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.jgeppert.struts2.jquery</groupId>
 			<artifactId>struts2-jquery-plugin</artifactId>
-			<version>3.5.1</version>
+			<version>${jquery.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.jgeppert.struts2.jquery</groupId>
 			<artifactId>struts2-jquery-tree-plugin</artifactId>
-			<version>3.5.1</version>
+			<version>${jquery.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.jgeppert.struts2.jquery</groupId>
 			<artifactId>struts2-jquery-grid-plugin</artifactId>
-			<version>3.5.1</version>
+			<version>${jquery.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -413,6 +414,11 @@
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-config-browser-plugin</artifactId>
 			<version>${struts.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jgeppert.struts2.bootstrap</groupId>
+			<artifactId>struts2-bootstrap-plugin</artifactId>
+			<version>${bootstrap.version}</version>
 		</dependency>
 
 		<!-- ********************************************************************** 
@@ -481,26 +487,6 @@
 			<artifactId>bonecp</artifactId>
 			<version>0.7.1.RELEASE</version>
 		</dependency>
-		<!-- ********************************************************************** 
-			** JBPM DEPENDENCIES ** ********************************************************************** 
-			<dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-bam</artifactId> 
-			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
-			<artifactId>jbpm-bpmn2</artifactId> <version>${jbpm.version}</version> </dependency> 
-			<dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-flow</artifactId> 
-			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
-			<artifactId>jbpm-flow-builder</artifactId> <version>${jbpm.version}</version> 
-			</dependency> <dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-human-task-core</artifactId> 
-			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
-			<artifactId>jbpm-human-task-hornetq</artifactId> <version>${jbpm.version}</version> 
-			</dependency> <dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-human-task-jms</artifactId> 
-			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
-			<artifactId>jbpm-human-task-mina</artifactId> <version>${jbpm.version}</version> 
-			</dependency> <dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-persistence-jpa</artifactId> 
-			<version>${jbpm.version}</version> </dependency> <dependency> <groupId>org.jbpm</groupId> 
-			<artifactId>jbpm-test</artifactId> <version>${jbpm.version}</version> </dependency> 
-			<dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-workitems</artifactId> 
-			<version>${jbpm.version}</version> </dependency> -->
-
 
 		<dependency>
 			<groupId>com.alibaba.tamper</groupId>
@@ -526,6 +512,7 @@
 			<version>${sl4j.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+
 
 	</dependencies>
 
