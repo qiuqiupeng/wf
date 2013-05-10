@@ -18,14 +18,14 @@
 	<!-- scans the classpath for annotated components (including @Repostory 
 		and @Service that will be auto-registered as Spring beans -->
 	<context:component-scan base-package="person.leep.wf" />
-	<context:component-scan base-package="edu.ku.it.si.springjpaexample" ></context:component-scan>
+	<context:component-scan base-package="edu.ku.it.si.springjpaexample" />
 
 	<context:property-placeholder
-		ignore-unresolvable="true" location="classpath*:/db.properties" />
+		ignore-unresolvable="true" location="classpath*:/dataBaseInfo.properties" />
 
-	<!-- use declarative transaction management -->
-	<tx:annotation-driven transaction-manager="transactionManager" ></tx:annotation-driven>
-
+	<!-- 使用annotation定义事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
 
 
 	<!-- This will ensure that hibernate or jpa exceptions are automatically 
@@ -39,14 +39,8 @@
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
-
-	<!-- Transaction Config -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-		p:entityManagerFactory-ref="entityManagerFactory" />
-
-
-	<!-- JPA Entity Manager Factory <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" 
-		p:persistenceUnitName="wf" /> -->
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -67,29 +61,60 @@
 		</property>
 	</bean>
 
-	<bean id="hibernateJpaVendorAdapter"
-		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
-
-
-
-	<!-- 数据源配置, 使用DBCP数据库连接池 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<!-- Connection Info -->
-		<property name="driverClassName" value="${jdbc.driver}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-
-		<!-- Connection Pooling Info -->
-		<property name="maxActive" value="${dbcp.maxActive}" />
-		<property name="maxIdle" value="${dbcp.maxIdle}" />
-		<property name="defaultAutoCommit" value="false" />
-		<!-- 连接Idle一个小时后超时 -->
-		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
-		<property name="minEvictableIdleTimeMillis" value="3600000" />
+	<!-- Transaction Manager Config -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="transactionManagerJdbc"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+
+
+
+	<!-- Activiti begin -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManagerJdbc" />
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="jobExecutorActivate" value="false" />
+		<property name="history" value="full" />
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<bean id="repositoryService" factory-bean="processEngine"
+		factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine"
+		factory-method="getRuntimeService" />
+	<bean id="formService" factory-bean="processEngine"
+		factory-method="getFormService" />
+	<bean id="identityService" factory-bean="processEngine"
+		factory-method="getIdentityService" />
+	<bean id="taskService" factory-bean="processEngine"
+		factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine"
+		factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine"
+		factory-method="getManagementService" />
+	<!-- Activiti end -->
+
+	<!-- BoneCP -->  
+    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"  
+        p:driverClass="${jdbc.driver}" p:jdbcUrl="${jdbc.url}" p:username="${jdbc.username}"  
+        p:password="${jdbc.password}" p:idleConnectionTestPeriodInMinutes="${bonecp.idleConnectionTestPeriodInMinutes}"  
+        p:idleMaxAgeInMinutes="${bonecp.idleMaxAgeInMinutes}"  
+        p:maxConnectionsPerPartition="${bonecp.maxConnectionsPerPartition}"  
+        p:minConnectionsPerPartition="${bonecp.minConnectionsPerPartition}"  
+        p:partitionCount="${bonecp.partitionCount}" p:acquireIncrement="${bonecp.acquireIncrement}"  
+        p:statementsCacheSize="${bonecp.statementsCacheSize}"  
+        p:disableConnectionTracking="${bonecp.disableConnectionTracking}"  
+        p:releaseHelperThreads="${bonecp.releaseHelperThreads}"  
+        destroy-method="close" />  
 
 </beans>

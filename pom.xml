@@ -16,10 +16,28 @@
 		<junit.version>4.11</junit.version>
 		<poi.version>3.9</poi.version>
 		<sitemesh.version>3.0-alpha-2</sitemesh.version>
-		<jbpm.version>6.0.0.Beta1</jbpm.version>
+		<!-- <jbpm.version>6.0.0.Beta1</jbpm.version> -->
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<ehcache.version>2.5.2</ehcache.version>
+		<activiti.version>5.12.1</activiti.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>Alfresco Maven Repository</id>
+			<url>https://maven.alfresco.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<releases>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+			<snapshots>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+			<id>Jolbox</id>
+			<name>Jolbox Repositories</name>
+			<url>http://jolbox.com/bonecp/downloads/maven</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -166,6 +184,11 @@
 
 		<!-- ********************************************************************** 
 			** spring DEPENDENCIES ** ********************************************************************** -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
@@ -376,6 +399,11 @@
 			<version>3.5.1</version>
 		</dependency>
 		<dependency>
+			<groupId>com.jgeppert.struts2.jquery</groupId>
+			<artifactId>struts2-jquery-grid-plugin</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-junit-plugin</artifactId>
 			<version>${struts.version}</version>
@@ -425,16 +453,6 @@
 
 		<!-- ********************************************************************** 
 			** OTHER DEPENDENCIES ** ********************************************************************** -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-jcl</artifactId>
-			<version>${sl4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${sl4j.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>
@@ -447,6 +465,22 @@
 			<version>1.6.1-20070314</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>0.7.1.RELEASE</version>
+		</dependency>
 		<!-- ********************************************************************** 
 			** JBPM DEPENDENCIES ** ********************************************************************** 
 			<dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-bam</artifactId> 
@@ -467,6 +501,31 @@
 			<dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm-workitems</artifactId> 
 			<version>${jbpm.version}</version> </dependency> -->
 
+
+		<dependency>
+			<groupId>com.alibaba.tamper</groupId>
+			<artifactId>tamper</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${sl4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${sl4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${sl4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
 
 	</dependencies>
 

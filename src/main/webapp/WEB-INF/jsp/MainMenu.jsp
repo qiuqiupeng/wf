@@ -3,6 +3,7 @@
 <html>
 <head>
 <sj:head jqueryui="true" jquerytheme="redmond" />
+<sb:head includeScripts="true" includeScriptsValidation="false" includeStylesResponsive="true"/>
 <%@ include file="/WEB-INF/jsp/commons/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/commons/include-base-styles.jsp"%>
 <%@ include file="/WEB-INF/jsp/commons/include-custom-styles.jsp"%>

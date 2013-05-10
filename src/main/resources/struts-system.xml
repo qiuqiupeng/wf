@@ -5,6 +5,7 @@
 
 <struts>
 
+
 	<package name="admin" extends="struts-default">
 		<action name="signin">
 			<result>/signin.jsp</result>
@@ -55,7 +56,7 @@
 			<result>/WEB-INF/jsp/test.jsp</result>
 		</action>
 	</package>
-	
+
 	<package name="springjpaexample" extends="struts-default">
 
 		<interceptors>
@@ -115,6 +116,6 @@
 		</action>
 
 	</package>
-	
-	
+
+
 </struts>
