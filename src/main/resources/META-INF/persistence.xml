@@ -7,7 +7,6 @@
 
 		<!-- 指定javax.persistence.spi.PersistenceProvider实现类 -->
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>edu.ku.it.si.springjpaexample.model.Person</class>
 
 		
 	</persistence-unit>
