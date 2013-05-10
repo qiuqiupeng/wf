@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<sj:head jqueryui="true" jquerytheme="redmond" />
+<sj:head/>
 <sb:head/>
 
 
@@ -38,12 +38,6 @@
 	padding: 7px 9px;
 }
 
-#activitiLogo {
-	height: 30px !important;
-	margin-top: -8px;
-	margin-bottom: -8px;
-}
-
 /* Set the fixed height of the footer here */
 #push,#footer {
 	height: 60px;
@@ -55,10 +49,6 @@
 	margin-bottom: 。8px;
 }
 </style>
-
-<script src="${ctx }/js/common/plugins/bootstrap/bootstrap.min.js"
-	type="text/javascript"></script>
-<script src="${ctx }/js/module/main/main.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -89,13 +79,7 @@
 						<s:password name="user.password" cssClass="input-block-level"
 							placeholder="%{getText('jsp.signin.password')}" />
 
-						<select title="帐套">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-						</select> <label class="checkbox"> <input type="checkbox"
+						<input type="checkbox"
 							value="remember-me"> Remember me
 						</label>
 
