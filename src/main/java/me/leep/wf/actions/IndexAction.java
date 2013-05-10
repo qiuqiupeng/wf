@@ -1,15 +1,20 @@
 /**
- * 
+ * IndexAction类
  */
 package me.leep.wf.actions;
 
-import com.opensymphony.xwork2.ActionSupport;
+import me.leep.wf.actions.base.EditAction;
 
 /**
  * @author lipeng
  *
  */
-public class IndexAction extends ActionSupport {
+public class IndexAction extends EditAction {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 66427915185034101L;
 
 	/* (non-Javadoc)
 	 * @see com.opensymphony.xwork2.ActionSupport#execute()

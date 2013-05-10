@@ -9,6 +9,7 @@
 
 	<!-- Convention Config -->
 	<constant name="struts.convention.result.path" value="/WEB-INF/jsp" />
+	<constant name="struts.convention.exclude.packages" value="me.leep.wf.actions.base" />
 	<!-- Convention Config end -->
 
 	<constant name="struts.serve.static" value="true" />
