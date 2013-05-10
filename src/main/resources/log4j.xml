@@ -17,9 +17,9 @@
 		<level value="debug" />
 	</logger>
 
-	<logger name="edu.ku.it.si">
+	<!-- <logger name="edu.ku.it.si">
 		<level value="debug" />
-	</logger>
+	</logger> -->
 
 	<!-- for all other loggers log only warn and above log messages -->
 	<root>

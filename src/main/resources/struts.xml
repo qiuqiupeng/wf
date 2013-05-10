@@ -9,17 +9,10 @@
 
 	<!-- Convention Config -->
 	<constant name="struts.convention.result.path" value="/WEB-INF/jsp" />
-	
-
-
-
 	<!-- Convention Config end -->
 
 	<constant name="struts.serve.static" value="true" />
 	<constant name="struts.serve.static.browserCache" value="false" />
-
-	<!-- <include file="struts-system.xml" /> -->
-
 
 	<package name="json" extends="struts-default,json-default"
 		namespace="/">
