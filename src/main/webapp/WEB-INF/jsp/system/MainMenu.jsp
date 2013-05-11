@@ -5,13 +5,26 @@
 <sj:head jqueryui="true" jquerytheme="pepper-grinder" />
 <sb:head includeScripts="true" includeScriptsValidation="false"
 	includeStylesResponsive="true" />
-
+<script type="text/javascript">
+	$.subscribe('completeDiv', function(event, data) {
+		if (event.originalEvent.status == "success") {
+		}
+	});
+	$.subscribe('errorDiv', function(event, data) {
+		$('#resulterror').html(
+				'<br/><br/><strong>Error request '
+						+ event.originalEvent.request.statusText
+						+ ' completed with ' + event.originalEvent.status
+						+ '.</strong><br/>Status: '
+						+ event.originalEvent.request.status);
+	});
+</script>
 <title>WF demo</title>
 
 </head>
 
 <body>
-	<div class="navbar navbar-fixed-top" >
+	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a data-target=".nav-collapse" data-toggle="collapse"
@@ -36,17 +49,17 @@
 		</div>
 
 		<!-- Part 1: Wrap all page content here -->
-		<div id="wrap" >
+		<div id="wrap">
 			<!-- Begin page content -->
 			<sj:tabbedpanel id="localtabs">
-				<sj:tab id="tab1" target="tone" label="主页" cssClass="list" />
+				<sj:tab id="tab1" target="tone" label="Welcome" />
 				<div id="tone" style="height:550px; overflow:auto;">
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div Class="span3">
 								<sj:menu id="menuWithItems" cssStyle="width:100%">
-									<sj:menuItem title="Struts2"
-										href="http://struts.apache.org/2.x/index.html" />
+									<sj:menuItem title="Struts2" href="/system/welcome"
+										targets="resultnormal" />
 									<sj:menuItem title="Struts2 jQuery News"
 										menuIcon="ui-icon-extlink"
 										href="http://www.jgeppert.com/category/java/struts2-jquery/" />
@@ -74,32 +87,37 @@
 
 									<sj:menuItem title="AJAX">
 										<sj:menu id="subMenuAjax" cssStyle="width:50%">
-											<s:url var="ajax1" value="/ajax1.action" />
-											<sj:menuItem title="Ajax 1" href="%{ajax1}" targets="result" />
-											<s:url var="ajax2" value="/ajax2.action" />
-											<sj:menuItem title="Ajax 2" href="%{ajax2}" targets="result"
-												effect="highlight" effectDuration="2500" />
-											<s:url var="ajax3" value="/ajax3.action" />
-											<sj:menuItem title="Ajax 3" href="%{ajax3}" targets="result"
-												onBeforeTopics="beforeLink" onCompleteTopics="completeLink" />
-											<s:url var="ajax4" value="/ajax4.action" />
+											<s:url var="ajax1" value="/system/index" />
+											<sj:menuItem title="Ajax 1" href="%{ajax1}"
+												targets="resultnormal" />
+											<s:url var="ajax2" value="/system/welcome.action" />
+											<sj:menuItem title="Ajax 2" href="%{ajax2}"
+												targets="resultnormal" effect="highlight"
+												effectDuration="2500" />
+											<s:url var="ajax3" value="/system/welcome.action" />
+											<sj:menuItem title="Ajax 3" href="%{ajax3}"
+												targets="resultnormal" onBeforeTopics="beforeLink"
+												onCompleteTopics="completeLink" />
+											<s:url var="ajax4" value="/system/welcome.action" />
 											<sj:menuItem title="Ajax 4" href="%{ajax4}"
-												menuIcon="ui-icon-gear" targets="result" effect="bounce"
-												effectDuration="1000" />
+												menuIcon="ui-icon-gear" targets="resultnormal"
+												effect="bounce" effectDuration="1000" />
 										</sj:menu>
 									</sj:menuItem>
 								</sj:menu>
 
 							</div>
 							<div Class="span9">
-								<table border="1">
-									<tr>
-										<td>tst</td>
-										<td>test</td>
-										<td>3</td>
-										<td>53</td>
-									</tr>
-								</table>
+								<s:url var="ajax" value="/system/welcome.action">
+								</s:url>
+								<sj:div id="resultnormal" href="%{ajax}" indicator="indicator"
+									onBeforeTopics="beforeDiv" onCompleteTopics="completeDiv"
+									onErrorTopics="errorDiv"
+									cssClass="result ui-widget-content ui-corner-all">
+									<img id="indicator" src="images/indicator.gif" alt="Loading..."
+										style="display:none" />
+								</sj:div>
+								<br /> <br />
 							</div>
 						</div>
 					</div>
