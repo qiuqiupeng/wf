@@ -10,6 +10,9 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+
+<s:set id="contextPath"
+	value="#request.get('javax.servlet.forward.context_path')" />
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"

@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<sj:head/>
-<sb:head/>
-
+<sj:head jqueryui="true" jquerytheme="pepper-grinder" />
+<sb:head includeScripts="true" includeScriptsValidation="false"
+	includeStylesResponsive="true" />
 
 <title>演示系统--登录</title>
 <style type="text/css">
