@@ -7,10 +7,14 @@
 
 		<!-- 指定javax.persistence.spi.PersistenceProvider实现类 -->
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>me.leep.wf.entity.system.Person</class>
-		<class>me.leep.wf.entity.system.User</class>
-		<class>me.leep.wf.entity.system.AbstractPerson</class>
-		<class>me.leep.wf.entity.system.AbstractUser</class>
+		<class>me.leep.wf.entity.system.Account</class>
+		<class>me.leep.wf.entity.system.AbstractAccount</class>
+		<class>me.leep.wf.entity.system.Codecolumn</class>
+		<class>me.leep.wf.entity.system.Code</class>
+		<class>me.leep.wf.entity.system.AbstractCodecolumn</class>
+		<class>me.leep.wf.entity.system.AbstractCode</class>
+		<class>me.leep.wf.entity.system.CodeId</class>
+		<class>me.leep.wf.entity.system.CodecolumnId</class>
 	</persistence-unit>
 </persistence>
  
