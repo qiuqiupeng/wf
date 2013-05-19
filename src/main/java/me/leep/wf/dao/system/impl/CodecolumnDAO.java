@@ -1,23 +1,25 @@
-package me.leep.wf.dao.system;
+package me.leep.wf.dao.system.impl;
 
 import java.util.List;
 import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import me.leep.wf.dao.EntityManagerHelper;
-import me.leep.wf.entity.system.Code;
-import me.leep.wf.entity.system.CodeId;
+import me.leep.wf.dao.system.aware.ICodecolumnDAO;
+import me.leep.wf.entity.system.Codecolumn;
+import me.leep.wf.entity.system.CodecolumnId;
 
 /**
- * A data access object (DAO) providing persistence and search support for Code
- * entities. Transaction control of the save(), update() and delete() operations
- * must be handled externally by senders of these methods or must be manually
- * added to each of these methods for data to be persisted to the JPA datastore.
+ * A data access object (DAO) providing persistence and search support for
+ * Codecolumn entities. Transaction control of the save(), update() and delete()
+ * operations must be handled externally by senders of these methods or must be
+ * manually added to each of these methods for data to be persisted to the JPA
+ * datastore.
  * 
- * @see me.leep.wf.entity.system.Code
+ * @see me.leep.wf.entity.system.Codecolumn
  * @author MyEclipse Persistence Tools
  */
-public class CodeDAO implements ICodeDAO {
+public class CodecolumnDAO implements ICodecolumnDAO {
 	// property constants
 
 	private EntityManager getEntityManager() {
@@ -25,7 +27,7 @@ public class CodeDAO implements ICodeDAO {
 	}
 
 	/**
-	 * Perform an initial save of a previously unsaved Code entity. All
+	 * Perform an initial save of a previously unsaved Codecolumn entity. All
 	 * subsequent persist actions of this entity should use the #update()
 	 * method. This operation must be performed within the a database
 	 * transaction context for the entity's data to be permanently saved to the
@@ -35,17 +37,17 @@ public class CodeDAO implements ICodeDAO {
 	 * 
 	 * <pre>
 	 * EntityManagerHelper.beginTransaction();
-	 * CodeDAO.save(entity);
+	 * CodecolumnDAO.save(entity);
 	 * EntityManagerHelper.commit();
 	 * </pre>
 	 * 
 	 * @param entity
-	 *            Code entity to persist
+	 *            Codecolumn entity to persist
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void save(Code entity) {
-		EntityManagerHelper.log("saving Code instance", Level.INFO, null);
+	public void save(Codecolumn entity) {
+		EntityManagerHelper.log("saving Codecolumn instance", Level.INFO, null);
 		try {
 			getEntityManager().persist(entity);
 			EntityManagerHelper.log("save successful", Level.INFO, null);
@@ -56,29 +58,30 @@ public class CodeDAO implements ICodeDAO {
 	}
 
 	/**
-	 * Delete a persistent Code entity. This operation must be performed within
-	 * the a database transaction context for the entity's data to be
+	 * Delete a persistent Codecolumn entity. This operation must be performed
+	 * within the a database transaction context for the entity's data to be
 	 * permanently deleted from the persistence store, i.e., database. This
 	 * method uses the {@link javax.persistence.EntityManager#remove(Object)
 	 * EntityManager#delete} operation.
 	 * 
 	 * <pre>
 	 * EntityManagerHelper.beginTransaction();
-	 * CodeDAO.delete(entity);
+	 * CodecolumnDAO.delete(entity);
 	 * EntityManagerHelper.commit();
 	 * entity = null;
 	 * </pre>
 	 * 
 	 * @param entity
-	 *            Code entity to delete
+	 *            Codecolumn entity to delete
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void delete(Code entity) {
-		EntityManagerHelper.log("deleting Code instance", Level.INFO, null);
+	public void delete(Codecolumn entity) {
+		EntityManagerHelper.log("deleting Codecolumn instance", Level.INFO,
+				null);
 		try {
-			entity = getEntityManager()
-					.getReference(Code.class, entity.getId());
+			entity = getEntityManager().getReference(Codecolumn.class,
+					entity.getId());
 			getEntityManager().remove(entity);
 			EntityManagerHelper.log("delete successful", Level.INFO, null);
 		} catch (RuntimeException re) {
@@ -88,10 +91,10 @@ public class CodeDAO implements ICodeDAO {
 	}
 
 	/**
-	 * Persist a previously saved Code entity and return it or a copy of it to
-	 * the sender. A copy of the Code entity parameter is returned when the JPA
-	 * persistence mechanism has not previously been tracking the updated
-	 * entity. This operation must be performed within the a database
+	 * Persist a previously saved Codecolumn entity and return it or a copy of
+	 * it to the sender. A copy of the Codecolumn entity parameter is returned
+	 * when the JPA persistence mechanism has not previously been tracking the
+	 * updated entity. This operation must be performed within the a database
 	 * transaction context for the entity's data to be permanently saved to the
 	 * persistence store, i.e., database. This method uses the
 	 * {@link javax.persistence.EntityManager#merge(Object) EntityManager#merge}
@@ -99,20 +102,22 @@ public class CodeDAO implements ICodeDAO {
 	 * 
 	 * <pre>
 	 * EntityManagerHelper.beginTransaction();
-	 * entity = CodeDAO.update(entity);
+	 * entity = CodecolumnDAO.update(entity);
 	 * EntityManagerHelper.commit();
 	 * </pre>
 	 * 
 	 * @param entity
-	 *            Code entity to update
-	 * @return Code the persisted Code entity instance, may not be the same
+	 *            Codecolumn entity to update
+	 * @return Codecolumn the persisted Codecolumn entity instance, may not be
+	 *         the same
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
-	public Code update(Code entity) {
-		EntityManagerHelper.log("updating Code instance", Level.INFO, null);
+	public Codecolumn update(Codecolumn entity) {
+		EntityManagerHelper.log("updating Codecolumn instance", Level.INFO,
+				null);
 		try {
-			Code result = getEntityManager().merge(entity);
+			Codecolumn result = getEntityManager().merge(entity);
 			EntityManagerHelper.log("update successful", Level.INFO, null);
 			return result;
 		} catch (RuntimeException re) {
@@ -121,11 +126,11 @@ public class CodeDAO implements ICodeDAO {
 		}
 	}
 
-	public Code findById(CodeId id) {
-		EntityManagerHelper.log("finding Code instance with id: " + id,
+	public Codecolumn findById(CodecolumnId id) {
+		EntityManagerHelper.log("finding Codecolumn instance with id: " + id,
 				Level.INFO, null);
 		try {
-			Code instance = getEntityManager().find(Code.class, id);
+			Codecolumn instance = getEntityManager().find(Codecolumn.class, id);
 			return instance;
 		} catch (RuntimeException re) {
 			EntityManagerHelper.log("find failed", Level.SEVERE, re);
@@ -134,10 +139,10 @@ public class CodeDAO implements ICodeDAO {
 	}
 
 	/**
-	 * Find all Code entities with a specific property value.
+	 * Find all Codecolumn entities with a specific property value.
 	 * 
 	 * @param propertyName
-	 *            the name of the Code property to query
+	 *            the name of the Codecolumn property to query
 	 * @param value
 	 *            the property value to match
 	 * @param rowStartIdxAndCount
@@ -145,15 +150,15 @@ public class CodeDAO implements ICodeDAO {
 	 *            row index in the query result-set to begin collecting the
 	 *            results. rowStartIdxAndCount[1] specifies the the maximum
 	 *            number of results to return.
-	 * @return List<Code> found by query
+	 * @return List<Codecolumn> found by query
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Code> findByProperty(String propertyName, final Object value,
-			final int... rowStartIdxAndCount) {
-		EntityManagerHelper.log("finding Code instance with property: "
+	public List<Codecolumn> findByProperty(String propertyName,
+			final Object value, final int... rowStartIdxAndCount) {
+		EntityManagerHelper.log("finding Codecolumn instance with property: "
 				+ propertyName + ", value: " + value, Level.INFO, null);
 		try {
-			final String queryString = "select model from Code model where model."
+			final String queryString = "select model from Codecolumn model where model."
 					+ propertyName + "= :propertyValue";
 			Query query = getEntityManager().createQuery(queryString);
 			query.setParameter("propertyValue", value);
@@ -179,20 +184,21 @@ public class CodeDAO implements ICodeDAO {
 	}
 
 	/**
-	 * Find all Code entities.
+	 * Find all Codecolumn entities.
 	 * 
 	 * @param rowStartIdxAndCount
 	 *            Optional int varargs. rowStartIdxAndCount[0] specifies the the
 	 *            row index in the query result-set to begin collecting the
 	 *            results. rowStartIdxAndCount[1] specifies the the maximum
 	 *            count of results to return.
-	 * @return List<Code> all Code entities
+	 * @return List<Codecolumn> all Codecolumn entities
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Code> findAll(final int... rowStartIdxAndCount) {
-		EntityManagerHelper.log("finding all Code instances", Level.INFO, null);
+	public List<Codecolumn> findAll(final int... rowStartIdxAndCount) {
+		EntityManagerHelper.log("finding all Codecolumn instances", Level.INFO,
+				null);
 		try {
-			final String queryString = "select model from Code model";
+			final String queryString = "select model from Codecolumn model";
 			Query query = getEntityManager().createQuery(queryString);
 			if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
 				int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);

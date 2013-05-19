@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.MappedSuperclass;
 
+
 /**
  * AbstractCodecolumn entity provides the base persistence definition of the
  * Codecolumn entity. @author MyEclipse Persistence Tools

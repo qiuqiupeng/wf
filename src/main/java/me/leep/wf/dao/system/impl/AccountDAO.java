@@ -1,4 +1,4 @@
-package me.leep.wf.dao.system;
+package me.leep.wf.dao.system.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import me.leep.wf.dao.EntityManagerHelper;
+import me.leep.wf.dao.system.aware.IAccountDAO;
 import me.leep.wf.entity.system.Account;
 
 /**

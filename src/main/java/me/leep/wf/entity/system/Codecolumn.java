@@ -3,6 +3,7 @@ package me.leep.wf.entity.system;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+
 /**
  * Codecolumn entity. @author MyEclipse Persistence Tools
  */

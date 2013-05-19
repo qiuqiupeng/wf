@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+
 /**
  * Account entity. @author MyEclipse Persistence Tools
  */
