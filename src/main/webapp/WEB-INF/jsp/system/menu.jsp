@@ -79,12 +79,12 @@
 		<div class="ym-wbox">
 			<section class="ym-grid linearize-level-1">
 				<aside class="ym-g25 ym-gl">
-					<s:url var="menuurl" action="system/showcase-menu-ajax" namespace="/" />
+					<s:url var="menuurl" action="showcase-menu-ajax" namespace="/system" />
 					<sj:div id="menu" href="%{menuurl}" cssClass="ym-wbox">
 					</sj:div>
 				</aside>
 				<article class="ym-g75 ym-gr content">
-					<s:url var="remotelinkurl" action="system/remote-link" namespace="/" />
+					<s:url var="remotelinkurl" action="remote-link" namespace="/system" />
 					<sj:div id="content" href="%{remotelinkurl}" cssClass="ym-wbox">
 					</sj:div>
 				</article>
