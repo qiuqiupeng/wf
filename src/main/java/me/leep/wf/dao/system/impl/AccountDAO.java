@@ -1,10 +1,12 @@
 package me.leep.wf.dao.system.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+
 import me.leep.wf.dao.EntityManagerHelper;
 import me.leep.wf.dao.system.aware.IAccountDAO;
 import me.leep.wf.entity.system.Account;
@@ -19,6 +21,7 @@ import me.leep.wf.entity.system.Account;
  * @see me.leep.wf.entity.system.Account
  * @author MyEclipse Persistence Tools
  */
+@Repository("accountDao")
 public class AccountDAO implements IAccountDAO {
 	// property constants
 	public static final String NAME = "name";

@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+
 import me.leep.wf.dao.EntityManagerHelper;
 import me.leep.wf.dao.system.aware.ICodeDAO;
 import me.leep.wf.entity.system.Code;
@@ -18,6 +21,7 @@ import me.leep.wf.entity.system.CodeId;
  * @see me.leep.wf.entity.system.Code
  * @author MyEclipse Persistence Tools
  */
+@Repository("codeDao")
 public class CodeDAO implements ICodeDAO {
 	// property constants
 

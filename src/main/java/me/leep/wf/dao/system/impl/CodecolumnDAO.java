@@ -2,12 +2,16 @@ package me.leep.wf.dao.system.impl;
 
 import java.util.List;
 import java.util.logging.Level;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
 import me.leep.wf.dao.EntityManagerHelper;
 import me.leep.wf.dao.system.aware.ICodecolumnDAO;
 import me.leep.wf.entity.system.Codecolumn;
 import me.leep.wf.entity.system.CodecolumnId;
+
+import org.springframework.stereotype.Repository;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -19,6 +23,7 @@ import me.leep.wf.entity.system.CodecolumnId;
  * @see me.leep.wf.entity.system.Codecolumn
  * @author MyEclipse Persistence Tools
  */
+@Repository("codecolumnDao")
 public class CodecolumnDAO implements ICodecolumnDAO {
 	// property constants
 

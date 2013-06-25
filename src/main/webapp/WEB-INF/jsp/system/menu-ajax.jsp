@@ -33,9 +33,9 @@
 		onBeforeTopics="beforeLink" onCompleteTopics="completeLink"
 		type="file" />
 
-	<sjt:treeItem title="Blogs" type="folder">
-		<sjt:treeItem title="Struts2 jQuery News"
-			href="http://www.jgeppert.com/category/java/struts2-jquery/"
+	<sjt:treeItem title="帐号列表" type="folder">
+		<s:url var="ajaxAccountList" value="/system/account-list" />
+		<sjt:treeItem title="Ajax 1" href="%{ajaxAccountList}" targets="content"
 			type="file" />
 	</sjt:treeItem>
 	<sjt:treeItem title="AJAX" type="folder">
