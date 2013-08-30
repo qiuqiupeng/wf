@@ -37,7 +37,7 @@
 		var result = $("#sortableresult").empty();
 		result.append("You move "
 				+ $(event.originalEvent.ui.item).find(
-						'.ui-widget-header > .title').html());
+						'.ui-widget-header > .title')());
 		result.append(' from ' + $(event.originalEvent.ui.sender).attr('id'));
 		result.append(' to '
 				+ $(event.originalEvent.ui.item).parent().attr('id'));

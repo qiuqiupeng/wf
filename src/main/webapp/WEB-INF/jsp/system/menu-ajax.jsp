@@ -26,7 +26,7 @@
 				}
 		}">
 	<sjt:treeItem title="General"
-		href="http://struts.apache.org/2.x/index.html" type="file" />
+		href="http://struts.apache.org/2.x/index" type="file" />
 
 	<s:url var="ajax3" value="/content/form.action" />
 	<sjt:treeItem title="Ajax 3" href="%{ajax3}" targets="content"
@@ -69,5 +69,5 @@
 			effect="bounce" effectDuration="1000" type="file" />
 	</sjt:treeItem>
 	<sjt:treeItem title="系统管理"
-		href="http://struts.apache.org/2.x/index.html" type="file" />
+		href="http://struts.apache.org/2.x/index" type="file" />
 </sjt:tree>
