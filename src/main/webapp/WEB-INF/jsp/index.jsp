@@ -48,12 +48,6 @@
 	type="text/css" media='print' />
 
 <script src="js/html5-trunk.js"></script>
-<meta name="author" content="Srinu Basava">
-<meta content="width=device-width, initial-scale=1.0, user-scalable=no"
-	name="viewport">
-<meta name="description" content="StartUp Admin UI">
-<meta name="keywords"
-	content="StartUp Admin UI, Admin UI, Admin Dashboard, Srinu Basava, Best admin UI, Best backend UI, Best Dashboard, Responsive admin UI, Responsive dashboard, Responsive Backend, Mobile admin, Mobile Backend, Mobile Dashboard">
 
 </head>
 <body>
@@ -367,19 +361,23 @@
 					<li><a href="index" class="selected"> <span class="fs1"
 							aria-hidden="true" data-icon="&#xe0a0;"></span> Dashboard
 					</a></li>
-					<li><a href="reports"> <span class="fs1"
-							aria-hidden="true" data-icon="&#xe097;"></span> Reports
+					<li><a href="gallery"> <span class="fs1"
+							aria-hidden="true" data-icon="&#xe00d;"></span> 基础资料
 					</a></li>
+
 					<li><a href="forms"> <span class="fs1" aria-hidden="true"
-							data-icon="&#xe0b8;"></span> Forms
+							data-icon="&#xe0b8;"></span> 单据
 					</a>
 						<ul>
 							<li><a href="forms">Basic Forms</a></li>
 							<li><a href="extended-forms">Extended Forms</a></li>
 							<li><a href="form-wizards">Form Wizards</a></li>
 						</ul></li>
+					<li><a href="reports"> <span class="fs1"
+							aria-hidden="true" data-icon="&#xe097;"></span> 报表
+					</a></li>
 					<li><a href="graphs"> <span class="fs1" aria-hidden="true"
-							data-icon="&#xe096;"></span> Graphs
+							data-icon="&#xe096;"></span> 图片
 					</a>
 						<ul>
 							<li><a href="graphs">Flot Charts</a></li>
@@ -401,17 +399,15 @@
 							<li><a href="layout">Blank Page</a></li>
 						</ul></li>
 					<li><a href="tables"> <span class="fs1" aria-hidden="true"
-							data-icon="&#xe14a;"></span> Tables
+							data-icon="&#xe14a;"></span> 表格
 					</a>
 						<ul>
 							<li><a href="tables">Static Tables</a></li>
 							<li><a href="dynamic-tables">Dynamic Tables</a></li>
 						</ul></li>
-					<li><a href="gallery"> <span class="fs1"
-							aria-hidden="true" data-icon="&#xe00d;"></span> Gallery
-					</a></li>
+
 					<li><a href="invoice"> <span class="fs1"
-							aria-hidden="true" data-icon="&#xe0aa;"></span> Extras
+							aria-hidden="true" data-icon="&#xe0aa;"></span> 其他
 					</a>
 						<ul>
 							<li><a href="invoice">Invoice</a></li>
