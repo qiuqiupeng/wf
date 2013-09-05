@@ -25,6 +25,7 @@
 <title>StartUp Admin</title>
 <sb:head includeScripts="true" includeStyles="false"
 	includeStylesResponsive="true" />
+<sj:head />
 <link rel="stylesheet" href="<s:url value="icomoon/style.css" />"
 	type="text/css" />
 <!--[if lte IE 7]>
@@ -56,12 +57,12 @@
 		<div id="mini-nav">
 			<ul class="hidden-phone">
 				<li><a href="#documentation" data-toggle="modal"
-					data-original-title=""> Documentation </a>
+					data-original-title=""> 文档 </a>
 					<div id="documentation" class="modal hide fade" tabindex="-1"
-						role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+						role="dialog" aria-labelledby="myModalLabel1" >
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">Ã</button>
+								>Ã</button>
 							<h4 id="myModalLabel1">Full html documentation is available
 								on purchase.</h4>
 						</div>
@@ -70,7 +71,7 @@
 						</div>
 					</div></li>
 				<li class="dropdown"><a data-toggle="dropdown"
-					class="dropdown-toggle" href=""> Theming <span
+					class="dropdown-toggle" href=""> 主题 <span
 						class="caret icon-white"></span>
 				</a>
 					<ul class="dropdown-menu pull-right">
@@ -82,11 +83,11 @@
 						<li><a href="#" id="whitesmoke">White Smoke</a></li>
 						<li><a href="#" id="grey">Grey</a></li>
 					</ul></li>
-				<li><a href="faq"><span class="fs1" aria-hidden="true"
+				<li><a href="faq"><span class="fs1" 
 						data-icon="&#xe03b;"></span></a></li>
-				<li><a href="profile"><span class="fs1" aria-hidden="true"
+				<li><a href="profile"><span class="fs1" 
 						data-icon="&#xe090;"></span></a></li>
-				<li><a href="login"><span class="fs1" aria-hidden="true"
+				<li><a href="login"><span class="fs1" 
 						data-icon="&#xe0b1;"></span></a></li>
 			</ul>
 			<div class="clearfix"></div>
@@ -179,31 +180,24 @@
 									<ul>
 										<li><a href="" data-lastname="Srinu Basava"
 											data-status="online"> <span>Sandy</span>
-												<div class="user-status online"></div>
 										</a></li>
 										<li><a href="" data-lastname="Srinu Basava"
 											data-status="online"> <span>Srinu Basava</span>
-												<div class="user-status online"></div>
 										</a></li>
 										<li><a href="" data-lastname="Srinu Basava"
 											data-status="online"> <span>John Doe</span>
-												<div class="user-status busy"></div>
 										</a></li>
 										<li><a href="" data-lastname="Srinu Basava"
 											data-status="online"> <span>Steve waugh</span>
-												<div class="user-status away"></div>
 										</a></li>
 										<li><a href="" data-lastname="Srinu Basava"
 											data-status="online"> <span>Robin Fleming</span>
-												<div class="user-status away"></div>
 										</a></li>
 										<li><a href="" data-lastname="Srinu Basava"
 											data-status="online"> <span>Arjun URS</span>
-												<div class="user-status"></div>
 										</a></li>
 										<li><a href="" data-lastname="Srinu Basava"
 											data-status="online"> <span>Prem Pillai</span>
-												<div class="user-status"></div>
 										</a></li>
 									</ul>
 								</div>
@@ -358,14 +352,16 @@
 		<div class="dashboard-wrapper">
 			<div id="main-nav" class="hidden-phone hidden-tablet">
 				<ul>
-					<li><a href="index" class="selected"> <span class="fs1"
-							aria-hidden="true" data-icon="&#xe0a0;"></span> Dashboard
-					</a></li>
-					<li><a href="gallery"> <span class="fs1"
-							aria-hidden="true" data-icon="&#xe00d;"></span> 基础资料
+					<li><a href="index"> <span class="fs1" 
+							data-icon="&#xe0a0;"></span>Dashboard
 					</a></li>
 
-					<li><a href="forms"> <span class="fs1" aria-hidden="true"
+
+					<li><a href="gallery"> <span class="fs1"
+							 data-icon="&#xe00d;"></span> 基础资料
+					</a></li>
+
+					<li><a href="forms"> <span class="fs1" 
 							data-icon="&#xe0b8;"></span> 单据
 					</a>
 						<ul>
@@ -374,9 +370,9 @@
 							<li><a href="form-wizards">Form Wizards</a></li>
 						</ul></li>
 					<li><a href="reports"> <span class="fs1"
-							aria-hidden="true" data-icon="&#xe097;"></span> 报表
+							 data-icon="&#xe097;"></span> 报表
 					</a></li>
-					<li><a href="graphs"> <span class="fs1" aria-hidden="true"
+					<li><a href="graphs"> <span class="fs1" 
 							data-icon="&#xe096;"></span> 图片
 					</a>
 						<ul>
@@ -385,7 +381,7 @@
 							<li><a href="animated-charts">Animated Charts</a></li>
 						</ul></li>
 					<li><a href="ui-elements"> <span class="fs1"
-							aria-hidden="true" data-icon="&#xe0a5;"></span> UI Lab
+							data-icon="&#xe0a5;"></span> UI Lab
 					</a>
 						<ul>
 							<li><a href="clients-list">Clients List</a></li>
@@ -398,7 +394,7 @@
 							<li><a href="typography">Typography</a></li>
 							<li><a href="layout">Blank Page</a></li>
 						</ul></li>
-					<li><a href="tables"> <span class="fs1" aria-hidden="true"
+					<li><a href="tables"> <span class="fs1" 
 							data-icon="&#xe14a;"></span> 表格
 					</a>
 						<ul>
@@ -406,11 +402,16 @@
 							<li><a href="dynamic-tables">Dynamic Tables</a></li>
 						</ul></li>
 
-					<li><a href="invoice"> <span class="fs1"
-							aria-hidden="true" data-icon="&#xe0aa;"></span> 其他
-					</a>
+					<li><s:url id="invoice" value="/invoice.action" /> <sj:a
+							id="link1" href="%{invoice}" targets="content">
+							<span class="fs1"  data-icon="&#xe0aa;"></span> 其他
+    </sj:a>
+
+
 						<ul>
-							<li><a href="invoice">Invoice</a></li>
+							<li><s:url id="invoice" value="/invoice.action" />
+								<sj:a id="link2" href="%{invoice}" targets="content">
+    Invoice</sj:a></li>
 							<li><a href="calendar">Calendar</a></li>
 							<li><a href="profile">Profile</a></li>
 							<li><a href="error">404 Error</a></li>
@@ -422,47 +423,6 @@
 			</div>
 
 			<div class="main-container">
-				<div class="navbar hidden-desktop">
-					<div class="navbar-inner">
-						<div class="container">
-							<a data-target=".navbar-responsive-collapse"
-								data-toggle="collapse" class="btn btn-navbar"> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-							</a>
-							<div class="nav-collapse collapse navbar-responsive-collapse">
-								<ul class="nav">
-									<li><a href="index">Dashboard</a></li>
-
-									<li><a href="reports">Reports</a></li>
-									<li><a href="forms">Basic Forms</a></li>
-									<li><a href="extended-forms">Extended Forms</a></li>
-									<li><a href="form-wizards">Form Wizard</a></li>
-									<li><a href="graphs">Flot Charts</a></li>
-									<li><a href="google-charts">Google Charts</a></li>
-									<li><a href="animated-charts">Animated Charts</a></li>
-									<li><a href="ui-elements">General Elements</a></li>
-									<li><a href="clients-list">Clients List</a></li>
-									<li><a href="messages">Messages</a></li>
-									<li><a href="timeline">Timeline</a></li>
-									<li><a href="pricing">Pricing Plans</a></li>
-									<li><a href="grid">Grid Layout</a></li>
-									<li><a href="icons">Buttons &amp; Icons</a></li>
-									<li><a href="typography">Typography</a></li>
-									<li><a href="tables">Static Tables</a></li>
-									<li><a href="dynamic-tables">Dynamic Tables</a></li>
-									<li><a href="gallery">Gallery</a></li>
-									<li><a href="invoice">Invoice</a></li>
-									<li><a href="calendar">Calendar</a></li>
-									<li><a href="profile">Profile</a></li>
-									<li><a href="error">404 Error</a></li>
-									<li><a href="faq">Faq</a></li>
-									<li><a href="login">Login</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<div class="page-header">
 					<div class="pull-left">
@@ -470,13 +430,13 @@
 					</div>
 					<div class="pull-right">
 						<ul class="stats">
-							<li class="color-first"><span class="fs1" aria-hidden="true"
+							<li class="color-first"><span class="fs1" 
 								data-icon="&#xe0b3;"></span>
 								<div class="details">
-									<span class="big">12</span> <span>New Tasks</span>
+									<span class="big">12</span> <span>未处理任务</span>
 								</div></li>
 							<li class="color-second hidden-phone"><span class="fs1"
-								aria-hidden="true" data-icon="&#xe052;"></span>
+								 data-icon="&#xe052;"></span>
 								<div class="details" id="date-time">
 									<span>Date </span> <span>Day, Time</span>
 								</div></li>
@@ -485,41 +445,10 @@
 					<div class="clearfix"></div>
 				</div>
 
-				<div class="row-fluid">
-					<!-- Row fluid start -->
-					<div class="span12">
-						<!-- Your Content -->
-					</div>
+				<div id="content" class="row-fluid">
+					<!-- 内容显示区域 -->
 				</div>
 				<!-- Row fluid end -->
-
-				<div class="row-fluid">
-					<!-- Row fluid with 2 columns start -->
-					<div class="span4">
-						<s:textfield label="左边"></s:textfield>
-					</div>
-					<div class="span4">
-						<s:textfield label="中间"></s:textfield>
-					</div>
-					<div class="span4">
-						<s:textfield label="右边"></s:textfield>
-					</div>
-				</div>
-				<!-- Row fluid with 2 columns end -->
-
-				<div class="row-fluid">
-					<!-- Row fluid with 3 columns start -->
-					<div class="span4">
-						<!-- Your Content -->
-					</div>
-					<div class="span4">
-						<!-- Your Content -->
-					</div>
-					<div class="span4">
-						<!-- Your Content -->
-					</div>
-				</div>
-				<!-- Row fluid with 3 columns end -->
 
 			</div>
 			<!-- Main dashboard wrapper end -->
@@ -528,7 +457,6 @@
 	</div>
 	<!-- Bootstrap container fluid end -->
 
-	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/moment.js"></script>
 
@@ -542,21 +470,6 @@
 	<script src="js/theming.js"></script>
 	<script src="js/custom.js"></script>
 
-	<script>
-		(function(i, s, o, g, r, a, m) {
-			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
-				(i[r].q = i[r].q || []).push(arguments)
-			}, i[r].l = 1 * new Date();
-			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})(window, document, 'script',
-				'http://www.google-analytics.com/analytics.js', 'ga');
-
-		ga('create', 'UA-41161221-1', 'srinu.me');
-		ga('send', 'pageview');
-	</script>
+	
 </body>
 </html>
