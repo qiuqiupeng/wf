@@ -20,7 +20,7 @@
 		<ehcache.version>2.5.2</ehcache.version>
 		<activiti.version>5.12.1</activiti.version>
 		<bootstrap.version>1.6.1</bootstrap.version>
-		<jquery.version>3.5.1</jquery.version>
+		<jquery.version>3.6.1</jquery.version>
 	</properties>
 	<repositories>
 		<repository>
