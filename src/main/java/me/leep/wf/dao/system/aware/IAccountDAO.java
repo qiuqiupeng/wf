@@ -1,6 +1,5 @@
 package me.leep.wf.dao.system.aware;
 
-import java.util.Date;
 import java.util.List;
 
 import me.leep.wf.entity.system.Account;
