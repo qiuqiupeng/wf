@@ -1,8 +1,0 @@
-<sitemesh>
-	<!-- <mapping path="/mainMenu.action" decorator="/WEB-INF/decorators/MainMenu.jsp" />
-
-	<mapping path="/content/*" decorator="/WEB-INF/decorators/toolbar.jsp" />
-	<mapping path="/userCheck.action" exclue="true" />
-	 -->
-	 
-</sitemesh>

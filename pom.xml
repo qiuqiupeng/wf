@@ -15,7 +15,6 @@
 		<sl4j.version>1.7.5</sl4j.version>
 		<junit.version>4.11</junit.version>
 		<poi.version>3.9</poi.version>
-		<sitemesh.version>3.0-alpha-2</sitemesh.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<ehcache.version>2.5.2</ehcache.version>
 		<activiti.version>5.12.1</activiti.version>
@@ -366,11 +365,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-sitemesh-plugin</artifactId>
-			<version>${struts.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-convention-plugin</artifactId>
 			<version>${struts.version}</version>
 		</dependency>
@@ -425,11 +419,6 @@
 		<!-- ********************************************************************** 
 			** sitemesh DEPENDENCIES ** ********************************************************************** -->
 
-		<dependency>
-			<groupId>org.sitemesh</groupId>
-			<artifactId>sitemesh</artifactId>
-			<version>${sitemesh.version}</version>
-		</dependency>
 
 		<!-- ********************************************************************** 
 			** jdbc DEPENDENCIES ** ********************************************************************** -->
@@ -531,6 +520,11 @@
 			<artifactId>shiro-spring</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
+		<dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-ehcache</artifactId>
+		  <version>${shiro.version}</version>
+		</dependency>	
 
 	</dependencies>
 

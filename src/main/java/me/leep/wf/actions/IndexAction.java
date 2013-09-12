@@ -10,6 +10,36 @@ import me.leep.wf.actions.base.EditAction;
  *
  */
 public class IndexAction extends EditAction {
+	private String email;
+	private String password;
+
+	/**
+	 * @return email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email 要设置的 email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password 要设置的 password
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	/**
 	 * 
@@ -22,6 +52,7 @@ public class IndexAction extends EditAction {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("--------------------------------" + email + ">>>>>>>>>" + password);
 		return SUCCESS;
 	}
 	
