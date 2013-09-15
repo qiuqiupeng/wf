@@ -101,7 +101,7 @@
 				</div>
 				<div class="welcome-text">
 					<span>已登录</span>
-					<p class="name">Mr. Srinu Basava</p>
+					<p class="name"><s:label name="username"></s:label></p>
 				</div>
 			</div>
 			<div class="content">

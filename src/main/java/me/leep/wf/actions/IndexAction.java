@@ -3,15 +3,36 @@
  */
 package me.leep.wf.actions;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+
 import me.leep.wf.actions.base.EditAction;
 
 /**
  * @author lipeng
  *
  */
+@Results({ @Result(name = "login", location = "/login.action", type = "redirect") })
 public class IndexAction extends EditAction {
 	private String email;
 	private String password;
+	private String username;
+
+	/**
+	 * @return username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param username 要设置的 username
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	/**
 	 * @return email
@@ -52,8 +73,15 @@ public class IndexAction extends EditAction {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("--------------------------------" + email + ">>>>>>>>>" + password);
-		return SUCCESS;
+		Subject currentUser = SecurityUtils.getSubject();
+		if (!currentUser.isAuthenticated()) {
+			return "login";
+		} else {
+			this.setUsername(currentUser.getPrincipal().toString());
+			System.out.println("--------------------------------" + currentUser.getPrincipal() + ">>>>>>>>>" + password);
+
+			return SUCCESS;
+		}
 	}
 	
 
