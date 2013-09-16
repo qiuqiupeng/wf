@@ -40,6 +40,10 @@
 <link rel="stylesheet" href="<s:url value="css/main.css" />"
 	type="text/css" />
 
+<link rel="stylesheet"
+	href="<s:url value="css/bootstrap-editable.css" />" type="text/css" />
+
+
 <!-- fullcalendar css -->
 <link rel="stylesheet"
 	href="<s:url value="css/fullcalendar/fullcalendar.css" />"
@@ -59,10 +63,9 @@
 				<li><a href="#documentation" data-toggle="modal"
 					data-original-title=""> 文档 </a>
 					<div id="documentation" class="modal hide fade" tabindex="-1"
-						role="dialog" aria-labelledby="myModalLabel1" >
+						role="dialog" aria-labelledby="myModalLabel1">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								>Ã</button>
+							<button type="button" class="close" data-dismiss="modal">Ã</button>
 							<h4 id="myModalLabel1">Full html documentation is available
 								on purchase.</h4>
 						</div>
@@ -83,12 +86,10 @@
 						<li><a href="#" id="whitesmoke">White Smoke</a></li>
 						<li><a href="#" id="grey">Grey</a></li>
 					</ul></li>
-				<li><a href="faq"><span class="fs1" 
-						data-icon="&#xe03b;"></span></a></li>
-				<li><a href="profile"><span class="fs1" 
+				<li><a href="faq"><span class="fs1" data-icon="&#xe03b;"></span></a></li>
+				<li><a href="profile"><span class="fs1"
 						data-icon="&#xe090;"></span></a></li>
-				<li><a href="login"><span class="fs1" 
-						data-icon="&#xe0b1;"></span></a></li>
+				<li><a href="login"><span class="fs1" data-icon="&#xe0b1;"></span></a></li>
 			</ul>
 			<div class="clearfix"></div>
 		</div>
@@ -101,13 +102,15 @@
 				</div>
 				<div class="welcome-text">
 					<span>已登录</span>
-					<p class="name"><s:label name="username"></s:label></p>
+					<p class="name">
+						<s:label name="username"></s:label>
+					</p>
 				</div>
 			</div>
 			<div class="content">
-			<s:url var="accordion" action="accordion-ajax" namespace="/" />
-					<sj:div id="accordion" href="%{accordion}">
-					</sj:div>
+				<s:url var="accordion" action="accordion-ajax" namespace="/" />
+				<sj:div id="accordion" href="%{accordion}">
+				</sj:div>
 			</div>
 			<div class="easy-pie-chart">
 				<div class="pie_chart_1" data-percent="69">69%</div>
@@ -117,33 +120,11 @@
 		<div class="dashboard-wrapper">
 			<div id="main-nav" class="hidden-phone hidden-tablet">
 				<s:url var="menu" action="menu-ajax" namespace="/" />
-					<sj:div id="menu" href="%{menu}">
-					</sj:div>
+				<sj:div id="menu" href="%{menu}">
+				</sj:div>
 			</div>
 
 			<div class="main-container">
-
-				<div class="page-header">
-					<div class="pull-left">
-						<h2>欢迎</h2>
-					</div>
-					<div class="pull-right">
-						<ul class="stats">
-							<li class="color-first"><span class="fs1" 
-								data-icon="&#xe0b3;"></span>
-								<div class="details">
-									<span class="big">12</span> <span>未处理任务</span>
-								</div></li>
-							<li class="color-second hidden-phone"><span class="fs1"
-								 data-icon="&#xe052;"></span>
-								<div class="details" id="date-time">
-									<span>Date </span> <span>Day, Time</span>
-								</div></li>
-						</ul>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-
 				<div id="content" class="row-fluid">
 					<!-- 内容显示区域 -->
 					<s:url var="welcome" action="welcome" namespace="/" />
@@ -172,6 +153,6 @@
 	<script src="js/theming.js"></script>
 	<script src="js/custom.js"></script>
 
-	
+
 </body>
 </html>

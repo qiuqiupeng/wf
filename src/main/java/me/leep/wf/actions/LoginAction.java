@@ -93,7 +93,7 @@ public class LoginAction extends EditAction {
 			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
 			//”Remember Me” built-in:
-			token.setRememberMe(true);
+			token.setRememberMe(rememberMe);
 			
 			Subject currentUser = SecurityUtils.getSubject();
 			

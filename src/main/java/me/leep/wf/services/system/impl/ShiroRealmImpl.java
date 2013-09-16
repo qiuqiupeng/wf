@@ -101,12 +101,12 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 		String username = usernamePasswordToke.getUsername();
 		
 		
-		System.out.println("====================doGetAuthenticationInfo begin ==========================");
+		System.out.println("====================认证  begin ==========================");
 		System.out.println("username: " + username);
 		System.out.print("password: ");
 		System.out.println(usernamePasswordToke.getPassword());
 		System.out.println("principal: " + usernamePasswordToke.getPrincipal());
-		System.out.println("======================doGetAuthenticationInfo end ========================");
+		System.out.println("======================认证  end ========================");
 		
 		
 		/**

@@ -44,7 +44,7 @@
               <div class="content">
                 <input class="input input-block-level" name="username" placeholder="username" type="text" value=""/>
                 <input class="input input-block-level" name="password" placeholder="Password" type="password"/>
-                <input type="checkbox" name="rememberMe"/><font size="2">Remember Me</font>
+                <input type="checkbox" name="rememberMe" value="true"/><font size="2">Remember Me</font>
               </div>
               <div class="actions">
                 <input class="btn btn-info pull-right" type="submit" value="Login">

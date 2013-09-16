@@ -61,7 +61,9 @@
 					id="link2" href="%{invoice}" targets="content">
     Invoice</sj:a></li>
 			<li><a href="calendar">Calendar</a></li>
-			<li><a href="profile">Profile</a></li>
+			<li><s:url id="profile" value="/profile" /> <sj:a
+					id="linkprofile" href="%{profile}" targets="content">
+    profile</sj:a></li>
 			<li><a href="error">404 Error</a></li>
 			<li><a href="faq">Faq</a></li>
 			<li><a href="login">Login</a></li>
