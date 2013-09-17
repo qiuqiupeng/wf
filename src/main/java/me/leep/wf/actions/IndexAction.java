@@ -11,7 +11,7 @@ import org.apache.struts2.convention.annotation.Results;
 import me.leep.wf.actions.base.EditAction;
 
 /**
- * @author lipeng
+ * @author 李鹏
  *
  */
 @Results({ @Result(name = "login", location = "/login.action", type = "redirect") })

@@ -16,7 +16,7 @@
 
 <!--[if gt IE 8]>
     <!-->
-<html lang="en">
+<html>
 <!--
   <![endif]-->
 
@@ -60,19 +60,18 @@
 		<a href="index" class="logo">欢迎</a>
 		<div id="mini-nav">
 			<ul class="hidden-phone">
-				<li><a href="#documentation" data-toggle="modal"
-					data-original-title=""> 文档 </a>
-					<div id="documentation" class="modal hide fade" tabindex="-1"
-						role="dialog" aria-labelledby="myModalLabel1">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">Ã</button>
-							<h4 id="myModalLabel1">Full html documentation is available
-								on purchase.</h4>
-						</div>
-						<div class="modal-body">
-							<img src="img/documentation.png" />
-						</div>
-					</div></li>
+
+				<li>
+				<s:url var="form2_url" action="layout" namespace="/" /> 
+				<sj:dialog
+						id="remoteformdialog" autoOpen="false" href="%{form2_url}"
+						modal="true" width="1024" height="600"/> 
+				<sj:a href="%{form2_url}"
+						openDialog="remoteformdialog"
+						openDialogTitle="空白演示窗口">
+    	空白窗口
+    </sj:a></li>
+
 				<li class="dropdown"><a data-toggle="dropdown"
 					class="dropdown-toggle" href=""> 主题 <span
 						class="caret icon-white"></span>

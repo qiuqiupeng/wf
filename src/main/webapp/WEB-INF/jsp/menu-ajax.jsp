@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 <ul>
-	<li><a href="index"> <span class="fs1" data-icon="&#xe0a0;"></span>欢迎
+	<li><a href="index"> <span class="fs1" data-icon="&#xe000;"></span>欢迎
 	</a></li>
 
 
@@ -52,7 +52,7 @@
 
 	<li><s:url id="invoice" value="/invoice.action" /> <sj:a
 			id="link1" href="%{invoice}" targets="content">
-			<span class="fs1" data-icon="&#xe0aa;"></span> 其他
+			<span class="fs1" data-icon="&#xe091;"></span> 系统设定
     </sj:a>
 
 
