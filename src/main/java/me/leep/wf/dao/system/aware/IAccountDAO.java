@@ -2,6 +2,7 @@ package me.leep.wf.dao.system.aware;
 
 import java.util.List;
 
+import me.leep.wf.dao.IBaseDAO;
 import me.leep.wf.entity.system.Account;
 
 /**
