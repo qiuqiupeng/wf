@@ -12,17 +12,13 @@ import me.leep.wf.dao.EntityManagerHelper;
 import me.leep.wf.entity.BaseEntiy;
 
 /**
- * A data access object (DAO) providing persistence and search support for
- * Account entities. Transaction control of the save(), update() and delete()
- * operations must be handled externally by senders of these methods or must be
- * manually added to each of these methods for data to be persisted to the JPA
- * datastore.
+ * 数据访问对象的实现基类，实现了增删改查等基本功能。
  * 
- * @see me.leep.wf.entity.system.Account
- * @author MyEclipse Persistence Tools
+ * @see me.leep.wf.entity.BaseDaoImpl
+ * @author 李鹏
  */
-@Repository("BaseDAO")
-public class BaseDAO implements IBaseDAO {
+@Repository("BaseDaoImpl")
+public class BaseDaoImpl implements IBaseDAO {
 	// property constants
 
 	private EntityManager getEntityManager() {
