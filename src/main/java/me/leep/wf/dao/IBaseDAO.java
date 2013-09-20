@@ -57,5 +57,5 @@ public interface IBaseDAO {
 	 *            count of results to return.
 	 * @return List<Account> all Account entities
 	 */
-	public List<BaseEntiy> findAll(int... rowStartIdxAndCount);
+	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz, int... rowStartIdxAndCount);
 }

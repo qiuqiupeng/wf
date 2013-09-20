@@ -1,13 +1,8 @@
-package me.leep.wf.entity;
+package me.leep.wf.dto;
 
 import java.util.Date;
 import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -15,8 +10,7 @@ import org.apache.shiro.SecurityUtils;
 /**
  * 所有entity类的超类. @author 李鹏
  */
-@MappedSuperclass
-public abstract class BaseEntiy implements java.io.Serializable {
+public abstract class BaseDto implements java.io.Serializable {
 
 	/**
 	 * 
@@ -38,7 +32,7 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	/**
 	 * 超类构造方法
 	 */
-	public BaseEntiy() {
+	public BaseDto() {
 		String user = SecurityUtils.getSubject().getPrincipal().toString();
 		if (StringUtils.isEmpty(creater))
 			creater = user;
@@ -52,8 +46,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	/**
 	 * @return id
 	 */
-	@Id
-	@Column(name = "fid", unique = true, nullable = false, length = 36)
 	public String getId() {
 		return id;
 	}
@@ -68,7 +60,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	/**
 	 * @return creater
 	 */
-	@Column(name = "fcreater", length = 50)
 	public String getCreater() {
 		return creater;
 	}
@@ -83,7 +74,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	/**
 	 * @return lastUpdater
 	 */
-	@Column(name = "flastupdater", length = 50)
 	public String getLastUpdater() {
 		return lastUpdater;
 	}
@@ -98,8 +88,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	/**
 	 * @return creteTime
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name = "fcretetime", length = 10)
 	public Date getCreteTime() {
 		return creteTime;
 	}
@@ -114,8 +102,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	/**
 	 * @return lastUpdateTime
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name = "flastupdatetime", length = 10)
 	public Date getLastUpdateTime() {
 		return lastUpdateTime;
 	}
@@ -126,7 +112,5 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	public void setLastUpdateTime(Date lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
 	}
-
-
 
 }

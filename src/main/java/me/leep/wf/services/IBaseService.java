@@ -3,7 +3,6 @@ package me.leep.wf.services;
 import java.util.List;
 
 import me.leep.wf.entity.BaseEntiy;
-import me.leep.wf.entity.system.Account;
 
 /**
  * 所有services的基类，实现基本的增删改查功能
@@ -80,7 +79,7 @@ public interface IBaseService {
 	 */
 	public BaseEntiy update(BaseEntiy entity);
 
-	public BaseEntiy findById(String id, Class<BaseEntiy> clazz);
+	public BaseEntiy findById(String id, Class clazz);
 
 	/**
 	 * Find all Account entities with a specific property value.
@@ -96,7 +95,7 @@ public interface IBaseService {
 	 *            count of results to return.
 	 * @return List<Account> found by query
 	 */
-	public List<BaseEntiy> findByProperty(String propertyName, Object value,
+	public List findByProperty(String propertyName, Object value,
 			int... rowStartIdxAndCount);
 
 	/**
@@ -109,5 +108,5 @@ public interface IBaseService {
 	 *            count of results to return.
 	 * @return List<Account> all Account entities
 	 */
-	public List<BaseEntiy> findAll(int... rowStartIdxAndCount);
+	public List findAll(Class clazz, int... rowStartIdxAndCount);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ import me.leep.wf.entity.BaseEntiy;
  * @see me.leep.wf.entity.BaseDaoImpl
  * @author 李鹏
  */
-@Repository("BaseDaoImpl")
+@Repository("dao")
 public class BaseDaoImpl implements IBaseDAO {
 	// property constants
 
@@ -48,7 +49,10 @@ public class BaseDaoImpl implements IBaseDAO {
 	public void save(BaseEntiy entity) {
 		EntityManagerHelper.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
 		try {
+			EntityTransaction et = getEntityManager().getTransaction();
+			et.begin();
 			getEntityManager().persist(entity);
+			et.commit();
 			EntityManagerHelper.log(">>>>>>保存成功>>>>>>", Level.INFO, null);
 		} catch (RuntimeException re) {
 			EntityManagerHelper.log(">>>>>>保存失败>>>>>>", Level.SEVERE, re);
@@ -190,11 +194,11 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @return List<Account> all Account entities
 	 */
 	@SuppressWarnings("unchecked")
-	public List<BaseEntiy> findAll(final int... rowStartIdxAndCount) {
+	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz, final int... rowStartIdxAndCount) {
 		EntityManagerHelper.log("finding all Account instances", Level.INFO,
 				null);
 		try {
-			final String queryString = "select model from Account model";
+			final String queryString = "select model from " + clazz.getName() + " model";
 			Query query = getEntityManager().createQuery(queryString);
 			if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
 				int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);

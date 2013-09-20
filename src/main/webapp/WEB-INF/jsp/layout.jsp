@@ -68,65 +68,36 @@
 		<button class="btn hidden-tablet" type="button">
 			<span class="fs1" data-icon="&#xe0fa;"></span> 删除
 		</button>
-		<s:url id="ajax" value="ajax1.action" />
+		<s:url id="ajax" value="/system/user-list" />
 		<sj:a id="ajaxlink" href="%{ajax}" targets="content" button="true"
-			cssClass="btn hidden-tablet">
+			cssClass="hidden-tablet">
 			<span class="fs1" data-icon="&#xe0fa;"></span> 测试
 	</sj:a>
-
 		<div class="clearfix"></div>
-
 	</div>
 	<!-- Main navigation end -->
 
 	<div class="main-container">
 		<!-- Main container start -->
-
-		<div class="page-header">
-			<!-- Page header start -->
-			<div class="clearfix"></div>
-		</div>
-		<!-- Page header end -->
-
-		<div class="row-fluid">
-			<!-- Row fluid start -->
-			<div class="span12">
-				<!-- Your Content -->
-			</div>
-		</div>
-		<!-- Row fluid end -->
-
-		<div class="row-fluid">
-			<!-- Row fluid with 2 columns start -->
-			<div class="span6">
-				<!-- Your Content -->
-			</div>
-			<div class="span6">
-				<!-- Your Content -->
-			</div>
-		</div>
-		<!-- Row fluid with 2 columns end -->
-
 		<div class="row-fluid">
 			<!-- Row fluid with 3 columns start -->
-			<div class="span4">
-				<!-- Your Content -->
-			</div>
-			<div class="span4">
-				<!-- Your Content -->
-			</div>
-			<div class="span4">
-				<!-- Your Content -->
-			</div>
+			<!-- Your Content -->
+			空白
 		</div>
-		<!-- Row fluid with 3 columns end -->
+		<div class="span4">
+			<!-- Your Content -->
+
+		</div>
+		<div class="span4">
+			<!-- Your Content -->
+		</div>
+	</div>
+	<!-- Row fluid with 3 columns end -->
 
 	</div>
 	<!-- Main dashboard wrapper end -->
 
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.js"></script>
 	<script src="js/moment.js"></script>
 
 	<!-- Easy Pie Chart JS -->

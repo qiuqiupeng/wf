@@ -10,16 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import me.leep.wf.dao.IBaseDAO;
-import me.leep.wf.dao.system.aware.IAccountDAO;
 import me.leep.wf.entity.BaseEntiy;
-import me.leep.wf.entity.system.Account;
-import me.leep.wf.services.system.aware.IAccountService;
 
 /**
- * @author lipeng
+ * @author 李鹏
  *
  */
-@Service("accountService")
+@Service("BaseServiceImpl")
 public class BaseServiceImpl implements IBaseService {
 	
 	@Autowired
@@ -33,7 +30,6 @@ public class BaseServiceImpl implements IBaseService {
 	public void save(BaseEntiy entity) {
 		// TODO Auto-generated method stub
 		dao.save(entity);
-
 	}
 
 	/* (non-Javadoc)
@@ -61,7 +57,7 @@ public class BaseServiceImpl implements IBaseService {
 	 * @see me.leep.wf.services.system.aware.IAccountService#findById(java.lang.String)
 	 */
 	@Override
-	public BaseEntiy findById(String id, Class<BaseEntiy> clazz) {
+	public BaseEntiy findById(String id, Class clazz) {
 		// TODO Auto-generated method stub
 		return dao.findById(id, clazz);
 	}
@@ -70,7 +66,7 @@ public class BaseServiceImpl implements IBaseService {
 	 * @see me.leep.wf.services.system.aware.IAccountService#findByProperty(java.lang.String, java.lang.Object, int[])
 	 */
 	@Override
-	public List<BaseEntiy> findByProperty(String propertyName, Object value,
+	public List findByProperty(String propertyName, Object value,
 			int... rowStartIdxAndCount) {
 		// TODO Auto-generated method stub
 		return dao.findByProperty(propertyName, value, rowStartIdxAndCount);
@@ -80,9 +76,9 @@ public class BaseServiceImpl implements IBaseService {
 	 * @see me.leep.wf.services.system.aware.IAccountService#findAll(int[])
 	 */
 	@Override
-	public List<BaseEntiy> findAll(int... rowStartIdxAndCount) {
+	public List findAll(Class clazz, int... rowStartIdxAndCount) {
 		// TODO Auto-generated method stub
-		return dao.findAll(rowStartIdxAndCount);
+		return dao.findAll(clazz, rowStartIdxAndCount);
 	}
 
 	/**

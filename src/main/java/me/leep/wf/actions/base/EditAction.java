@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
+
+
+
+
+import me.leep.wf.dto.BaseDto;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -15,7 +22,7 @@ import org.apache.shiro.subject.Subject;
  *
  */
 public class EditAction extends BaseAction {
-
+	
 
 	/**
 	 * 
@@ -46,9 +53,10 @@ public class EditAction extends BaseAction {
 	}
 	
 	public String save() throws Exception {
-		System.out.println(">>>>>>>>save>>>>>>>>>>>>>");
+		System.out.println(">>>>>>>>save>>>>>>>>>>>>>");	
+		
 		messages = new ArrayList<String>();
-		messages.add("测试通过");
+		messages.add("保存成功");
 		setActionMessages(messages);
 		return SUCCESS;
 	}
@@ -150,5 +158,6 @@ public class EditAction extends BaseAction {
 	public void setMessages(List<String> messages) {
 		this.messages = messages;
 	}
+
 
 }
