@@ -27,6 +27,9 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	private String lastUpdater;
 	private Date creteTime;
 	private Date lastUpdateTime;
+	private String number;
+	private String name;
+	private String description;
 
 	/**
 	 * 静态变量块
@@ -98,7 +101,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	/**
 	 * @return creteTime
 	 */
-	@Temporal(TemporalType.DATE)
 	@Column(name = "fcretetime", length = 10)
 	public Date getCreteTime() {
 		return creteTime;
@@ -114,7 +116,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	/**
 	 * @return lastUpdateTime
 	 */
-	@Temporal(TemporalType.DATE)
 	@Column(name = "flastupdatetime", length = 10)
 	public Date getLastUpdateTime() {
 		return lastUpdateTime;
@@ -125,6 +126,51 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	 */
 	public void setLastUpdateTime(Date lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
+	}
+
+	/**
+	 * @return number
+	 */
+	@Column(name = "fnumber", length = 50)
+	public String getNumber() {
+		return number;
+	}
+
+	/**
+	 * @param number 要设置的 number
+	 */
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	/**
+	 * @return name
+	 */
+	@Column(name = "fname", length = 50)
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name 要设置的 name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return description
+	 */
+	@Column(name = "fdescription")
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description 要设置的 description
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 

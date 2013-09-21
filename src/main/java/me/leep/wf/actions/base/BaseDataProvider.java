@@ -8,7 +8,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 @ParentPackage("json-default")  
-@Result(name = "success", type = "json")
+@Result(name = "success", type = "json", params={"ignoreHierarchy","false"})
 public class BaseDataProvider extends BaseAction {
 
 	/**

@@ -7,7 +7,7 @@ import org.apache.struts2.json.annotations.JSON;
 
 import net.sf.cglib.beans.BeanCopier;
 import me.leep.wf.actions.base.BaseDataProvider;
-import me.leep.wf.dto.User;
+import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.BaseEntiy;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;

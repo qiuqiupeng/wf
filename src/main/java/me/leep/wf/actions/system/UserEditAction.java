@@ -3,11 +3,15 @@ package me.leep.wf.actions.system;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.components.Password;
+
 import me.leep.wf.actions.base.EditAction;
-import me.leep.wf.dto.User;
+import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.BaseEntiy;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
+import me.leep.wf.util.CodeUtil;
 import net.sf.cglib.beans.BeanCopier;
 
 public class UserEditAction extends EditAction {
@@ -23,7 +27,6 @@ public class UserEditAction extends EditAction {
 	public String execute() throws Exception {
 		// TODO 自动生成的方法存根
 		user = new User();
-		user.setTest("test");
 		return super.execute();
 	}
 	
@@ -32,15 +35,25 @@ public class UserEditAction extends EditAction {
 	@Override
 	public String save() throws Exception {
 		System.out.println(">>>>>>>>" + user + "save2>>>>>>>>>>>>>");
-		BeanCopier copy = BeanCopier.create(User.class, UserBean.class,
-				false);
-		BaseEntiy entity = new UserBean();
-		copy.copy(user, entity, null);
-		userServices.save(entity);
+		if(StringUtils.equals(user.getPassword(), user.getRepassword())) {
+			user.setPassword(CodeUtil.getStringMD5(user.getPassword()));
+			BeanCopier copy = BeanCopier.create(User.class, UserBean.class,
+					false);
+			BaseEntiy entity = new UserBean();
+			copy.copy(user, entity, null);
+			userServices.save(entity);
+			List<String> messages = new ArrayList<String>();
+			messages.add("保存成功");
+			setActionMessages(messages);
+		} else {
+			List<String> errors = new ArrayList<String>();
+			errors.add("输入的密码不一致！");
+			setActionErrors(errors);
+		}
+		
 
-		List<String> messages = new ArrayList<String>();
-		messages.add("保存成功");
-		setActionMessages(messages);
+		
+		
 		return SUCCESS;
 	}
 	

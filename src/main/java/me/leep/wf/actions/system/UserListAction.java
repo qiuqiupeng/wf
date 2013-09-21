@@ -3,7 +3,7 @@ package me.leep.wf.actions.system;
 import java.util.List;
 
 import me.leep.wf.actions.base.ListAction;
-import me.leep.wf.dto.User;
+import me.leep.wf.dto.system.User;
 
 /**
  * @author 李鹏
