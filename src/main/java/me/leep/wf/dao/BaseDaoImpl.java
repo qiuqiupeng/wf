@@ -207,7 +207,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	@SuppressWarnings("unchecked")
 	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz,
 			final int... rowStartIdxAndCount) {
-		EntityManagerHelper.log("finding all Account instances", Level.INFO,
+		EntityManagerHelper.log("finding all instances", Level.INFO,
 				null);
 		try {
 			final String queryString = "select model from " + clazz.getName()

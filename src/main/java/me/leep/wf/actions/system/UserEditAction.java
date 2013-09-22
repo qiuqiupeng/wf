@@ -27,7 +27,7 @@ public class UserEditAction extends EditAction {
 	public String execute() throws Exception {
 		System.out.println(">>>>>>>>>>>>>>" + rowid);
 		user = new User();
-		if (rowid != null) {
+		if (StringUtils.isNotBlank(rowid)) {
 			UserBean userBean = (UserBean) userServices.findById(rowid,
 					UserBean.class);
 			BeanCopier copy = BeanCopier.create(UserBean.class, User.class,
@@ -95,7 +95,22 @@ public class UserEditAction extends EditAction {
 	@Override
 	public String delete() throws Exception {
 		System.out.println("----------------delete--------------");
-		return super.delete();
+		if (StringUtils.isBlank(rowid) && user != null) {
+			UserBean entity = (UserBean) userServices.findById(user.getId(), UserBean.class);
+			userServices.delete(entity, UserBean.class);
+			user = new User();
+			return SUCCESS;
+		} else {
+			if(StringUtils.isNotBlank(rowid)) {
+				String[] ids = rowid.split(",");
+				for (int i = 0 ; i < ids.length; i++) {
+					UserBean entity = (UserBean) userServices.findById(ids[i], UserBean.class);
+					userServices.delete(entity, UserBean.class);
+				}
+			}
+			return "user-list";
+		}
+		
 	}
 
 	/**

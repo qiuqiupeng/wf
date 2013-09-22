@@ -28,9 +28,11 @@ public class BaseServiceImpl implements IBaseService {
 		dao.save(entity);
 	}
 
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	@Transactional
-	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz) {
+	public void delete(BaseEntiy entity, Class clazz) {
 		dao.delete(entity, clazz);
 
 	}

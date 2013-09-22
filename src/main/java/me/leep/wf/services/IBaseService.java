@@ -29,7 +29,8 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz);
+	@SuppressWarnings("rawtypes")
+	public void delete(BaseEntiy entity, Class clazz);
 
 	/**
 	 * 修改实体
