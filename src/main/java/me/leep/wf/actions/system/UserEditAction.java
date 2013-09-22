@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.struts2.components.Password;
 
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.dto.system.User;
@@ -16,6 +15,7 @@ import net.sf.cglib.beans.BeanCopier;
 
 public class UserEditAction extends EditAction {
 
+	private String rowid;
 	private IUserServices userServices;
 	/**
 	 * 
@@ -25,38 +25,65 @@ public class UserEditAction extends EditAction {
 
 	@Override
 	public String execute() throws Exception {
-		// TODO 自动生成的方法存根
+		System.out.println(">>>>>>>>>>>>>>" + rowid);
 		user = new User();
+		if (rowid != null) {
+			UserBean userBean = (UserBean) userServices.findById(rowid,
+					UserBean.class);
+			BeanCopier copy = BeanCopier.create(UserBean.class, User.class,
+					false);
+			copy.copy(userBean, user, null);
+		}
+
 		return super.execute();
 	}
-	
-	
 
 	@Override
 	public String save() throws Exception {
 		System.out.println(">>>>>>>>" + user + "save2>>>>>>>>>>>>>");
-		if(StringUtils.equals(user.getPassword(), user.getRepassword())) {
-			user.setPassword(CodeUtil.getStringMD5(user.getPassword()));
-			BeanCopier copy = BeanCopier.create(User.class, UserBean.class,
-					false);
-			BaseEntiy entity = new UserBean();
-			copy.copy(user, entity, null);
-			userServices.save(entity);
-			List<String> messages = new ArrayList<String>();
-			messages.add("保存成功");
-			setActionMessages(messages);
+		if (StringUtils.isNotEmpty(user.getNumber())
+				&& StringUtils.isNotEmpty(user.getName())
+				&& StringUtils.isNotEmpty(user.getPassword())
+				&& StringUtils.isNotEmpty(user.getRepassword())
+				) {
+			if (StringUtils.equals(user.getPassword(), user.getRepassword())) {
+				UserBean bean = (UserBean) userServices.findById(user.getId(), UserBean.class);
+				if(bean == null) {
+					user.setPassword(CodeUtil.getStringMD5(user.getPassword()));
+					BeanCopier copy = BeanCopier.create(User.class, UserBean.class,
+							false);
+					BaseEntiy entity = new UserBean();
+					copy.copy(user, entity, null);
+					userServices.save(entity);
+					List<String> messages = new ArrayList<String>();
+					messages.add("保存成功");
+					setActionMessages(messages);
+				} else {
+					bean.setName(user.getName());
+					bean.setNumber(user.getNumber());
+					bean.setEmail(user.getEmail());
+					bean.setPassword(CodeUtil.getStringMD5(user.getPassword()));
+					userServices.update(bean);
+					List<String> messages = new ArrayList<String>();
+					messages.add("修改成功");
+					setActionMessages(messages);
+				}
+				
+			} else {
+				List<String> errors = new ArrayList<String>();
+				errors.add("输入的密码不一致！");
+				setActionErrors(errors);
+			}
+				
 		} else {
 			List<String> errors = new ArrayList<String>();
-			errors.add("输入的密码不一致！");
+			errors.add("数据为空");
 			setActionErrors(errors);
 		}
-		
+			
 
-		
-		
 		return SUCCESS;
 	}
-	
 
 	@Override
 	public String addNew() throws Exception {
@@ -101,5 +128,19 @@ public class UserEditAction extends EditAction {
 		this.userServices = userServices;
 	}
 
+	/**
+	 * @return rowid
+	 */
+	public String getRowid() {
+		return rowid;
+	}
+
+	/**
+	 * @param rowid
+	 *            要设置的 rowid
+	 */
+	public void setRowid(String rowid) {
+		this.rowid = rowid;
+	}
 
 }

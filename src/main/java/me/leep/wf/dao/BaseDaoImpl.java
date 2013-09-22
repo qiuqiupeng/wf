@@ -1,5 +1,6 @@
 package me.leep.wf.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -7,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Repository;
 
 import me.leep.wf.dao.EntityManagerHelper;
@@ -82,9 +84,11 @@ public class BaseDaoImpl implements IBaseDAO {
 	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz) {
 		EntityManagerHelper.log(">>>>>>删除实体>>>>>>", Level.INFO, null);
 		try {
-			entity = getEntityManager().getReference(clazz,
-					entity.getId());
+			EntityTransaction et = getEntityManager().getTransaction();
+			et.begin();
+			entity = getEntityManager().getReference(clazz, entity.getId());
 			getEntityManager().remove(entity);
+			et.commit();
 			EntityManagerHelper.log(">>>>>>删除成功>>>>>>", Level.INFO, null);
 		} catch (RuntimeException re) {
 			EntityManagerHelper.log(">>>>>>删除失败>>>>>>", Level.SEVERE, re);
@@ -93,14 +97,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	}
 
 	/**
-	 * Persist a previously saved Account entity and return it or a copy of it
-	 * to the sender. A copy of the Account entity parameter is returned when
-	 * the JPA persistence mechanism has not previously been tracking the
-	 * updated entity. This operation must be performed within the a database
-	 * transaction context for the entity's data to be permanently saved to the
-	 * persistence store, i.e., database. This method uses the
-	 * {@link javax.persistence.EntityManager#merge(Object) EntityManager#merge}
-	 * operation.
+	 * 保存或修改实体类
 	 * 
 	 * <pre>
 	 * EntityManagerHelper.beginTransaction();
@@ -109,16 +106,20 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * </pre>
 	 * 
 	 * @param entity
-	 *            Account entity to update
-	 * @return Account the persisted Account entity instance, may not be the
-	 *         same
+	 *            entity to update
+	 * @return Account the persisted entity instance, may not be the same
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
 	public BaseEntiy update(BaseEntiy entity) {
 		EntityManagerHelper.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
 		try {
+			EntityManagerHelper.beginTransaction();
+			entity.setLastUpdateTime(new Date());
+			entity.setLastUpdater(SecurityUtils.getSubject().getPrincipal()
+					.toString());
 			BaseEntiy result = getEntityManager().merge(entity);
+			EntityManagerHelper.commit();
 			EntityManagerHelper.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
 			return result;
 		} catch (RuntimeException re) {
@@ -127,9 +128,18 @@ public class BaseDaoImpl implements IBaseDAO {
 		}
 	}
 
+	/**
+	 * 通过id查找实体对象。
+	 * 
+	 * @param id
+	 *            id
+	 * @param clazz
+	 *            实体类
+	 * 
+	 * @return 实体类
+	 */
 	public BaseEntiy findById(String id, Class<BaseEntiy> clazz) {
-		EntityManagerHelper.log(">>>>>>通过ID：" + id + "查找实体",
-				Level.INFO, null);
+		EntityManagerHelper.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
 		try {
 			return getEntityManager().find(clazz, id);
 		} catch (RuntimeException re) {
@@ -153,13 +163,14 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @return List<Account> found by query
 	 */
 	@SuppressWarnings("unchecked")
-	public List<BaseEntiy> findByProperty(String propertyName,
-			final Object value, final int... rowStartIdxAndCount) {
-		EntityManagerHelper.log("finding Account instance with property: "
+	public List<BaseEntiy> findByProperty(Class<BaseEntiy> clazz,
+			String propertyName, final Object value,
+			final int... rowStartIdxAndCount) {
+		EntityManagerHelper.log("finding instance with property: "
 				+ propertyName + ", value: " + value, Level.INFO, null);
 		try {
-			final String queryString = "select model from Account model where model."
-					+ propertyName + "= :propertyValue";
+			final String queryString = "select model from " + clazz.getName()
+					+ " model where model." + propertyName + "= :propertyValue";
 			Query query = getEntityManager().createQuery(queryString);
 			query.setParameter("propertyValue", value);
 			if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
@@ -184,7 +195,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	}
 
 	/**
-	 * Find all Account entities.
+	 * Find all entities.
 	 * 
 	 * @param rowStartIdxAndCount
 	 *            Optional int varargs. rowStartIdxAndCount[0] specifies the the
@@ -194,11 +205,13 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @return List<Account> all Account entities
 	 */
 	@SuppressWarnings("unchecked")
-	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz, final int... rowStartIdxAndCount) {
+	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz,
+			final int... rowStartIdxAndCount) {
 		EntityManagerHelper.log("finding all Account instances", Level.INFO,
 				null);
 		try {
-			final String queryString = "select model from " + clazz.getName() + " model";
+			final String queryString = "select model from " + clazz.getName()
+					+ " model";
 			Query query = getEntityManager().createQuery(queryString);
 			if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
 				int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
@@ -220,7 +233,7 @@ public class BaseDaoImpl implements IBaseDAO {
 		}
 	}
 
-	/** 
+	/**
 	 * @see me.leep.wf.dao.IBaseDAO#addNew(me.leep.wf.entity.BaseEntiy)
 	 */
 	@Override

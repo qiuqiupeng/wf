@@ -25,7 +25,7 @@
 <title>StartUp管理系统</title>
 <sb:head includeScripts="true" includeStyles="false"
 	includeStylesResponsive="true" />
-<sj:head />
+<sj:head jqueryui="true" jquerytheme="redmond" />
 <link rel="stylesheet" href="<s:url value="icomoon/style.css" />"
 	type="text/css" />
 <!--[if lte IE 7]>
@@ -61,13 +61,10 @@
 		<div id="mini-nav">
 			<ul class="hidden-phone">
 
-				<li>
-				<s:url var="form2_url" action="layout" namespace="/" /> 
-				<sj:dialog
+				<li><s:url var="form2_url" action="layout" namespace="/" /> <sj:dialog
 						id="remoteformdialog" autoOpen="false" href="%{form2_url}"
-						modal="true" width="1024" height="600"/> 
-				<sj:a href="%{form2_url}"
-						openDialog="remoteformdialog"
+						modal="true" width="1024" height="600" /> <sj:a
+						href="%{form2_url}" openDialog="remoteformdialog"
 						openDialogTitle="空白演示窗口">
     	空白窗口
     </sj:a></li>

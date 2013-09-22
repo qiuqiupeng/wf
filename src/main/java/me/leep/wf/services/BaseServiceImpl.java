@@ -22,62 +22,42 @@ public class BaseServiceImpl implements IBaseService {
 	@Autowired
 	IBaseDAO dao ;
 
-	/* (non-Javadoc)
-	 * @see me.leep.wf.services.system.aware.IAccountService#save(me.leep.wf.entity.system.Account)
-	 */
 	@Override
 	@Transactional
 	public void save(BaseEntiy entity) {
-		// TODO Auto-generated method stub
 		dao.save(entity);
 	}
 
-	/* (non-Javadoc)
-	 * @see me.leep.wf.services.system.aware.IAccountService#delete(me.leep.wf.entity.system.Account)
-	 */
 	@Override
 	@Transactional
 	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz) {
-		// TODO Auto-generated method stub
 		dao.delete(entity, clazz);
 
 	}
 
-	/* (non-Javadoc)
-	 * @see me.leep.wf.services.system.aware.IAccountService#update(me.leep.wf.entity.system.Account)
-	 */
 	@Override
 	@Transactional
 	public BaseEntiy update(BaseEntiy entity) {
-		// TODO Auto-generated method stub
 		return dao.update(entity);
 	}
 
-	/* (non-Javadoc)
-	 * @see me.leep.wf.services.system.aware.IAccountService#findById(java.lang.String)
-	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public BaseEntiy findById(String id, Class clazz) {
-		// TODO Auto-generated method stub
 		return dao.findById(id, clazz);
 	}
 
-	/* (non-Javadoc)
-	 * @see me.leep.wf.services.system.aware.IAccountService#findByProperty(java.lang.String, java.lang.Object, int[])
-	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public List findByProperty(String propertyName, Object value,
+	public List<BaseEntiy> findByProperty(Class clazz, String propertyName, Object value,
 			int... rowStartIdxAndCount) {
-		// TODO Auto-generated method stub
-		return dao.findByProperty(propertyName, value, rowStartIdxAndCount);
+		return dao.findByProperty(clazz, propertyName, value, rowStartIdxAndCount);
 	}
 
-	/* (non-Javadoc)
-	 * @see me.leep.wf.services.system.aware.IAccountService#findAll(int[])
-	 */
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public List findAll(Class clazz, int... rowStartIdxAndCount) {
-		// TODO Auto-generated method stub
+	public List<BaseEntiy> findAll(Class clazz, int... rowStartIdxAndCount) {
 		return dao.findAll(clazz, rowStartIdxAndCount);
 	}
 

@@ -3,7 +3,6 @@ package me.leep.wf.dao;
 import java.util.List;
 
 import me.leep.wf.entity.BaseEntiy;
-import me.leep.wf.entity.system.Account;
 
 /**
  * 所有dao的基类接口
@@ -43,7 +42,7 @@ public interface IBaseDAO {
 	/**
 	 * 通过属性查找数据
 	 */
-	public List<BaseEntiy> findByProperty(String propertyName, Object value,
+	public List<BaseEntiy> findByProperty(Class<BaseEntiy> clazz, String propertyName, Object value,
 			int... rowStartIdxAndCount);
 
 	
