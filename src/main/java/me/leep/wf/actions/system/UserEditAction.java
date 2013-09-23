@@ -15,32 +15,25 @@ import net.sf.cglib.beans.BeanCopier;
 
 public class UserEditAction extends EditAction {
 
-	private String rowid;
-	private IUserServices userServices;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4096802666866337184L;
+
+	private String rowid;
 	private User user;
+
+	private IUserServices userServices;
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println(">>>>>>>>>>>>>>" + rowid);
-		user = new User();
-		if (StringUtils.isNotBlank(rowid)) {
-			UserBean userBean = (UserBean) userServices.findById(rowid,
-					UserBean.class);
-			BeanCopier copy = BeanCopier.create(UserBean.class, User.class,
-					false);
-			copy.copy(userBean, user, null);
-		}
-
-		return super.execute();
+		user = userServices.initUserDto(rowid);
+		return SUCCESS;
 	}
 
 	@Override
 	public String save() throws Exception {
-		System.out.println(">>>>>>>>" + user + "save2>>>>>>>>>>>>>");
+		System.out.println(">>>>>>>>" + User.class.getName() + "save2>>>>>>>>>>>>>");
 		if (StringUtils.isNotEmpty(user.getNumber())
 				&& StringUtils.isNotEmpty(user.getName())
 				&& StringUtils.isNotEmpty(user.getPassword())

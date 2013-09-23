@@ -7,9 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import org.springframework.orm.jpa.JpaTemplate;
+
 /**
  * @author 李鹏
  */
+@SuppressWarnings("deprecation")
 public class EntityManagerHelper {
 	
 	private static final EntityManagerFactory emf; 
@@ -30,6 +34,10 @@ public class EntityManagerHelper {
 			threadLocal.set(manager);
 		}
 		return manager;
+	}
+	
+	public static JpaTemplate getJpaTemplate() {
+		return new JpaTemplate(emf);
 	}
 	
 	 public static void closeEntityManager() {

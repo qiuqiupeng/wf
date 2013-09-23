@@ -57,4 +57,7 @@ public interface IBaseDAO {
 	 * @return List<Account> all Account entities
 	 */
 	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz, int... rowStartIdxAndCount);
+	
+	@SuppressWarnings("rawtypes")
+	public int countAll(Class clazz);
 }

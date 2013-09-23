@@ -38,9 +38,8 @@
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
-	<bean id="hibernateJpaVendorAdapter"
-		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
+	<!-- 定义entity管理工厂对象 -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -59,6 +58,10 @@
 			</props>
 		</property>
 	</bean>
+	
+	
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
 
 	<!-- Transaction Manager Config -->
@@ -100,17 +103,17 @@
 		factory-method="getManagementService" />
 	<!-- Activiti end -->
 
-	<!-- BoneCP -->  
-    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"  
-        p:driverClass="${jdbc.driver}" p:jdbcUrl="${jdbc.url}" p:username="${jdbc.username}"  
-        p:password="${jdbc.password}" p:idleConnectionTestPeriodInMinutes="${bonecp.idleConnectionTestPeriodInMinutes}"  
-        p:idleMaxAgeInMinutes="${bonecp.idleMaxAgeInMinutes}"  
-        p:maxConnectionsPerPartition="${bonecp.maxConnectionsPerPartition}"  
-        p:minConnectionsPerPartition="${bonecp.minConnectionsPerPartition}"  
-        p:partitionCount="${bonecp.partitionCount}" p:acquireIncrement="${bonecp.acquireIncrement}"  
-        p:statementsCacheSize="${bonecp.statementsCacheSize}"  
-        p:disableConnectionTracking="${bonecp.disableConnectionTracking}"  
-        p:releaseHelperThreads="${bonecp.releaseHelperThreads}"  
-        destroy-method="close" />  
+	<!-- BoneCP -->
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		p:driverClass="${jdbc.driver}" p:jdbcUrl="${jdbc.url}" p:username="${jdbc.username}"
+		p:password="${jdbc.password}" p:idleConnectionTestPeriodInMinutes="${bonecp.idleConnectionTestPeriodInMinutes}"
+		p:idleMaxAgeInMinutes="${bonecp.idleMaxAgeInMinutes}"
+		p:maxConnectionsPerPartition="${bonecp.maxConnectionsPerPartition}"
+		p:minConnectionsPerPartition="${bonecp.minConnectionsPerPartition}"
+		p:partitionCount="${bonecp.partitionCount}" p:acquireIncrement="${bonecp.acquireIncrement}"
+		p:statementsCacheSize="${bonecp.statementsCacheSize}"
+		p:disableConnectionTracking="${bonecp.disableConnectionTracking}"
+		p:releaseHelperThreads="${bonecp.releaseHelperThreads}"
+		destroy-method="close" />
 
 </beans>

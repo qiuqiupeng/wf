@@ -20,6 +20,7 @@ import me.leep.wf.entity.BaseEntiy;
  * @see me.leep.wf.entity.BaseDaoImpl
  * @author 李鹏
  */
+@SuppressWarnings("deprecation")
 @Repository("dao")
 public class BaseDaoImpl implements IBaseDAO {
 	// property constants
@@ -27,6 +28,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	private EntityManager getEntityManager() {
 		return EntityManagerHelper.getEntityManager();
 	}
+	
 
 	/**
 	 * Perform an initial save of a previously unsaved Account entity. All
@@ -141,7 +143,8 @@ public class BaseDaoImpl implements IBaseDAO {
 	public BaseEntiy findById(String id, Class<BaseEntiy> clazz) {
 		EntityManagerHelper.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
 		try {
-			return getEntityManager().find(clazz, id);
+//			return getEntityManager().find(clazz, id);
+			return EntityManagerHelper.getJpaTemplate().find(clazz, id);
 		} catch (RuntimeException re) {
 			EntityManagerHelper.log(">>>>>>查找失败>>>>>>", Level.SEVERE, re);
 			throw re;
@@ -239,7 +242,17 @@ public class BaseDaoImpl implements IBaseDAO {
 	@Override
 	public void addNew(BaseEntiy entity) {
 		// TODO 自动生成的方法存根
-		save(entity);
+//		save(entity);
+		EntityManagerHelper.getJpaTemplate().persist(entity);
 	}
+	
+	@SuppressWarnings({ "rawtypes"})
+	public int countAll(Class clazz) {  
+		String COUNT_ALL_JPAQL = "select count(*) from " + clazz.getName();
+        Number count =  
+           (Number) EntityManagerHelper.getJpaTemplate().find(COUNT_ALL_JPAQL).get(0);  
+        return count.intValue();  
+    }
+
 
 }
