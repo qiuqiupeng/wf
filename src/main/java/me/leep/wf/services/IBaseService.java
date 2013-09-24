@@ -10,6 +10,7 @@ import me.leep.wf.entity.BaseEntiy;
  * @author 李鹏
  */
 
+@SuppressWarnings("rawtypes")
 public interface IBaseService {
 	/**
 	 * 保存实体
@@ -29,7 +30,6 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	@SuppressWarnings("rawtypes")
 	public void delete(BaseEntiy entity, Class clazz);
 
 	/**
@@ -44,7 +44,6 @@ public interface IBaseService {
 	 */
 	public BaseEntiy update(BaseEntiy entity);
 
-	@SuppressWarnings("rawtypes")
 	public BaseEntiy findById(String id, Class clazz);
 
 	/**
@@ -61,7 +60,6 @@ public interface IBaseService {
 	 *            count of results to return.
 	 * @return List<BaseEntiy> found by query
 	 */
-	@SuppressWarnings("rawtypes")
 	public List<BaseEntiy> findByProperty(Class clazz, String propertyName, Object value,
 			int... rowStartIdxAndCount);
 
@@ -75,6 +73,7 @@ public interface IBaseService {
 	 *            count of results to return.
 	 * @return List<Account> all Account entities
 	 */
-	@SuppressWarnings("rawtypes")
 	public List<BaseEntiy> findAll(Class clazz, int... rowStartIdxAndCount);
+	
+	public void deleteList(String[] rowids, Class clazz);
 }

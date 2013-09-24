@@ -3,15 +3,14 @@ package me.leep.wf.actions.system;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.BaseEntiy;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
+import me.leep.wf.util.BeanUtil;
 import me.leep.wf.util.CodeUtil;
-import net.sf.cglib.beans.BeanCopier;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -35,7 +34,6 @@ public class UserEditAction extends EditAction {
 
 	@Override
 	public String execute() throws Exception {
-		logger.log(Level.ALL, ">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 		imageFileName = "img/profile.png";
 		user = userServices.initUserDto(rowid);
 		return SUCCESS;
@@ -53,11 +51,9 @@ public class UserEditAction extends EditAction {
 				UserBean bean = (UserBean) userServices.findById(user.getId(),
 						UserBean.class);
 				if (bean == null) {
-					user.setPassword(CodeUtil.getStringMD5(user.getPassword()));
-					BeanCopier copy = BeanCopier.create(User.class,
-							UserBean.class, false);
+					user.setPassword(CodeUtil.getStringMD5(user.getNumber() + user.getPassword()));
 					BaseEntiy entity = new UserBean();
-					copy.copy(user, entity, null);
+					BeanUtil.copyBean(user, entity);
 					userServices.save(entity);
 					List<String> messages = new ArrayList<String>();
 					messages.add("保存成功");
@@ -66,7 +62,7 @@ public class UserEditAction extends EditAction {
 					bean.setName(user.getName());
 					bean.setNumber(user.getNumber());
 					bean.setEmail(user.getEmail());
-					bean.setPassword(CodeUtil.getStringMD5(user.getPassword()));
+					bean.setPassword(CodeUtil.getStringMD5(user.getNumber() + user.getPassword()));
 					userServices.update(bean);
 					List<String> messages = new ArrayList<String>();
 					messages.add("修改成功");
@@ -84,7 +80,7 @@ public class UserEditAction extends EditAction {
 			errors.add("数据为空");
 			setActionErrors(errors);
 		}
-
+		
 		return SUCCESS;
 	}
 
