@@ -14,17 +14,17 @@ import me.leep.wf.util.BeanUtil;
 
 /**
  * @author 李鹏
- *
+ * 
  */
 @Service("userServices")
 public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 
 	@Override
-	public User initUserDto(String rowid)  {
+	public User initUserDto(String rowid) {
 		User user = new User();
-		if (StringUtils.isNotBlank(rowid)) {
-			UserBean userBean = (UserBean) findById(rowid,
-					UserBean.class);
+		if (StringUtils.isNotEmpty(rowid)) {
+			UserBean userBean = (UserBean) findById(rowid, UserBean.class);
+			if (userBean != null) 
 			BeanUtil.copyBean(userBean, user);
 		}
 		return user;

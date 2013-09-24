@@ -6,10 +6,8 @@ import java.util.List;
 
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.dto.system.User;
-import me.leep.wf.entity.BaseEntiy;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
-import me.leep.wf.util.BeanUtil;
 import me.leep.wf.util.CodeUtil;
 
 import org.apache.commons.lang3.StringUtils;
@@ -43,44 +41,30 @@ public class UserEditAction extends EditAction {
 	public String save() throws Exception {
 		System.out.println(">>>>>>>>" + User.class.getName()
 				+ "save2>>>>>>>>>>>>>");
-		if (StringUtils.isNotEmpty(user.getNumber())
-				&& StringUtils.isNotEmpty(user.getName())
-				&& StringUtils.isNotEmpty(user.getPassword())
-				&& StringUtils.isNotEmpty(user.getRepassword())) {
-			if (StringUtils.equals(user.getPassword(), user.getRepassword())) {
-				UserBean bean = (UserBean) userServices.findById(user.getId(),
-						UserBean.class);
-				if (bean == null) {
-					user.setPassword(CodeUtil.getStringMD5(user.getNumber() + user.getPassword()));
-					BaseEntiy entity = new UserBean();
-					BeanUtil.copyBean(user, entity);
-					userServices.save(entity);
-					List<String> messages = new ArrayList<String>();
-					messages.add("保存成功");
-					setActionMessages(messages);
-				} else {
-					bean.setName(user.getName());
-					bean.setNumber(user.getNumber());
-					bean.setEmail(user.getEmail());
-					bean.setPassword(CodeUtil.getStringMD5(user.getNumber() + user.getPassword()));
-					userServices.update(bean);
-					List<String> messages = new ArrayList<String>();
-					messages.add("修改成功");
-					setActionMessages(messages);
-				}
+		UserBean bean = (UserBean) userServices.findById(user.getId(),
+				UserBean.class);
+		List<String> errors = new ArrayList<String>();
+		List<String> messages = new ArrayList<String>();
 
-			} else {
-				List<String> errors = new ArrayList<String>();
-				errors.add("输入的密码不一致！");
-				setActionErrors(errors);
-			}
-
-		} else {
-			List<String> errors = new ArrayList<String>();
-			errors.add("数据为空");
+		if (StringUtils.isEmpty(user.getNumber())) {
+			errors.add("用户名为空");
 			setActionErrors(errors);
+		} else if (StringUtils.isEmpty(user.getEmail())) {
+			errors.add("Email为空");
+			setActionErrors(errors);
+		} else if (StringUtils.isEmpty(user.getName())) {
+			errors.add("姓名为空");
+			setActionErrors(errors);
+		} else {
+			if (bean != null)
+				user.setPassword(bean.getPassword());
+			else
+				user.setPassword(CodeUtil.getStringMD5(user.getPassword()));
+			userServices.save(user, UserBean.class);
+			messages.add("保存成功");
+			setActionMessages(messages);
 		}
-		
+
 		return SUCCESS;
 	}
 
@@ -94,24 +78,11 @@ public class UserEditAction extends EditAction {
 	@Override
 	public String delete() throws Exception {
 		System.out.println("----------------delete--------------");
-		if (StringUtils.isBlank(rowid) && user != null) {
-			UserBean entity = (UserBean) userServices.findById(user.getId(),
-					UserBean.class);
-			userServices.delete(entity, UserBean.class);
-			user = new User();
-			return SUCCESS;
-		} else {
-			if (StringUtils.isNotBlank(rowid)) {
-				String[] ids = rowid.split(",");
-				for (int i = 0; i < ids.length; i++) {
-					UserBean entity = (UserBean) userServices.findById(ids[i],
-							UserBean.class);
-					userServices.delete(entity, UserBean.class);
-				}
-			}
-			return "user-list";
-		}
-
+		UserBean entity = (UserBean) userServices.findById(user.getId(),
+				UserBean.class);
+		userServices.delete(entity, UserBean.class);
+		user = new User();
+		return SUCCESS;
 	}
 
 	/**

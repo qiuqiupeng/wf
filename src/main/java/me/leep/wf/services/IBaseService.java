@@ -2,6 +2,7 @@ package me.leep.wf.services;
 
 import java.util.List;
 
+import me.leep.wf.dto.BaseDto;
 import me.leep.wf.entity.BaseEntiy;
 
 /**
@@ -20,7 +21,7 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void save(BaseEntiy entity);
+	public void save(BaseDto dto, Class clazz);
 
 	/**
 	 * 删除实体
@@ -76,4 +77,7 @@ public interface IBaseService {
 	public List<BaseEntiy> findAll(Class clazz, int... rowStartIdxAndCount);
 	
 	public void deleteList(String[] rowids, Class clazz);
+	
+	public int coutAll(Class clazz);
+
 }
