@@ -57,10 +57,9 @@
 
 
 		<ul>
-			<li><s:url id="userList" value="/system/user-list.action"
-					namespace="/system" /> <sj:a id="link_userList" href="%{userList}"
-					targets="content">
-    用户列表</sj:a></li>
+			<li><s:url id="userList" action="user-list" namespace="/system" />
+				<sj:a id="link_userList" href="%{userList}" targets="content">
+   <span class="fs1" data-icon="&#xe091;"></span> 用户列表</sj:a></li>
 			<li><s:url id="userEdit" value="/system/user-edit.action"
 					namespace="/system" /> <sj:a id="link_newUser" href="%{userEdit}"
 					targets="content">
