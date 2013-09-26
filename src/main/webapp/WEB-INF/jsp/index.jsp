@@ -25,34 +25,18 @@
 <title>StartUp管理系统</title>
 <sb:head includeScripts="true" includeStyles="false"
 	includeStylesResponsive="true" />
-<sj:head jqueryui="true" jquerytheme="redmond" />
+<sj:head jqueryui="true" locale="cn"/>
 <link rel="stylesheet" href="<s:url value="icomoon/style.css" />"
 	type="text/css" />
 <!--[if lte IE 7]>
     <script src="css/icomoon-font/lte-ie7.js"></script>
     <![endif]-->
 
-<!-- NVD graphs css -->
-<link rel="stylesheet" href="<s:url value="css/nvd-charts.css" />"
-	type="text/css" />
-
 <!-- Bootstrap css -->
 <link rel="stylesheet" href="<s:url value="css/main.css" />"
 	type="text/css" />
 
-<link rel="stylesheet"
-	href="<s:url value="css/bootstrap-editable.css" />" type="text/css" />
 
-
-<!-- fullcalendar css -->
-<link rel="stylesheet"
-	href="<s:url value="css/fullcalendar/fullcalendar.css" />"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<s:url value="css/fullcalendar/fullcalendar.print.css" />"
-	type="text/css" media='print' />
-
-<script src="js/html5-trunk.js"></script>
 
 </head>
 <body>
@@ -108,10 +92,6 @@
 				<sj:div id="accordion" href="%{accordion}">
 				</sj:div>
 			</div>
-			<div class="easy-pie-chart">
-				<div class="pie_chart_1" data-percent="69">69%</div>
-				<p class="name">Animated Chart</p>
-			</div>
 		</div>
 		<div class="dashboard-wrapper">
 			<div id="main-nav" class="hidden-phone hidden-tablet">
@@ -123,6 +103,24 @@
 			<div class="main-container">
 				<div id="content" class="row-fluid">
 					<!-- 内容显示区域 -->
+					<s:url id="remoteurl" action="user-data-provider" namespace="/json" />
+					<sjg:grid id="gridtable" caption="用户列表" dataType="json"
+						href="%{remoteurl}" pager="true" gridModel="gridModel" width="800"
+						height="365" shrinkToFit="false" rowList="10,15,20" rowNum="15"
+						viewrecords="true" rownumbers="true" resizable="true">
+						<sjg:gridColumn name="id" index="id" title="ID" sortable="false"
+							hidden="true" />
+						<sjg:gridColumn name="name" index="name" title="Name"
+							sortable="true" />
+						<sjg:gridColumn name="number" index="number" title="number"
+							sortable="false" />
+						<sjg:gridColumn name="email" index="email" title="email"
+							sortable="false" />
+					</sjg:grid>
+
+
+
+
 					<s:url var="welcome" action="welcome" namespace="/" />
 					<sj:div id="welcome" href="%{welcome}">
 					</sj:div>
@@ -136,18 +134,6 @@
 	</div>
 	<!-- Bootstrap container fluid end -->
 
-	<script src="js/bootstrap.js"></script>
-	<script src="js/moment.js"></script>
-
-	<!-- Easy Pie Chart JS -->
-	<script src="js/pie-charts/jquery.easy-pie-chart.js"></script>
-
-	<!-- Tiny scrollbar js -->
-	<script src="js/tiny-scrollbar.js"></script>
-
-	<!-- Custom Js -->
-	<script src="js/theming.js"></script>
-	<script src="js/custom.js"></script>
 
 
 </body>
