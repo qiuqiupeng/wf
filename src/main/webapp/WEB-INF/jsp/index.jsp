@@ -134,7 +134,7 @@
 	</div>
 	<!-- Bootstrap container fluid end -->
 
-
+	<script src="js/bootstrap.js"></script>
 
 </body>
 </html>
