@@ -1,5 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
+<#--
+
+<#assign sj=JspTaglibs["/struts-jquery-tags "]>
+
+-->
 <ul>
 	<li><a href="index"> <span class="fs1" data-icon="&#xe000;"></span>欢迎
 	</a></li>
@@ -50,16 +53,13 @@
 			<li><a href="dynamic-tables">Dynamic Tables</a></li>
 		</ul></li>
 
-	<li><s:url id="invoice" value="/invoice.action" /> <sj:a
-			id="link1" href="%{invoice}" targets="content">
-			<span class="fs1" data-icon="&#xe091;"></span> 系统管理
-    </sj:a>
-
-
+	<li><a href="tables"> <span class="fs1" data-icon="&#xe14a;"></span>
+			系统管理
+	</a>
 		<ul>
-			<li><s:url id="userList" action="user-list" namespace="/system" />
-				<sj:a id="link_userList" href="%{userList}" targets="content">
-					<span class="fs1" data-icon="&#xe091;"></span> 用户列表</sj:a></li>
+			<li><@s.url id="userList" action="user-list" namespace="/system" />
+				<@sj.a id="link_userList" href="%{userList}" targets="content">
+					<span class="fs1" data-icon="&#xe091;"></span> 用户列表</@sj.a></li>
 
 			<li><a id="link_funcmenuList" href="javascript:void(0)"> <span
 					class="fs1" data-icon="&#xe091;"></span> 功能菜单 
