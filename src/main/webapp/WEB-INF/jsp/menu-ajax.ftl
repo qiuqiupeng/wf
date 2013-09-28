@@ -60,6 +60,7 @@
 			<li><@s.url id="userList" action="user-list" namespace="/system" />
 				<@sj.a id="link_userList" href="%{userList}" targets="content">
 					<span class="fs1" data-icon="&#xe091;"></span> 用户列表</@sj.a></li>
+			
 
 			<li><a id="link_funcmenuList" href="javascript:void(0)"> <span
 					class="fs1" data-icon="&#xe091;"></span> 功能菜单 
