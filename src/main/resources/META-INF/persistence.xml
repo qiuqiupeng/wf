@@ -9,6 +9,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>me.leep.wf.entity.BaseEntiy</class>
 		<class>me.leep.wf.entity.system.UserBean</class>
+		<class>me.leep.wf.entity.system.FuncMenuBean</class>
 	</persistence-unit>
 </persistence>
  

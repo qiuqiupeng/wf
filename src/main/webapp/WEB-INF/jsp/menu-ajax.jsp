@@ -59,7 +59,28 @@
 		<ul>
 			<li><s:url id="userList" action="user-list" namespace="/system" />
 				<sj:a id="link_userList" href="%{userList}" targets="content">
-   <span class="fs1" data-icon="&#xe091;"></span> 用户列表</sj:a></li>
+					<span class="fs1" data-icon="&#xe091;"></span> 用户列表</sj:a></li>
+
+			<li><a id="link_funcmenuList" href="javascript:void(0)"> <span
+					class="fs1" data-icon="&#xe091;"></span> 功能菜单 
+			</a> <script type='text/javascript'>
+				jQuery(document)
+						.ready(
+								function() {
+									var options_link_funcmenuList = {};
+									options_link_funcmenuList.jqueryaction = "anchor";
+									options_link_funcmenuList.id = "link_funcmenuList";
+									options_link_funcmenuList.targets = "content";
+									options_link_funcmenuList.href = "/wf/system/funcmenu-list.action";
+
+									jQuery.struts2_jquery.bind(
+											jQuery('#link_funcmenuList'),
+											options_link_funcmenuList);
+
+								});
+			</script></li>
+
+
 			<li><s:url id="userEdit" value="/system/user-edit.action"
 					namespace="/system" /> <sj:a id="link_newUser" href="%{userEdit}"
 					targets="content">

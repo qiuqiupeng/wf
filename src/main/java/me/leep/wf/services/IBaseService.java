@@ -67,14 +67,17 @@ public interface IBaseService {
 	/**
 	 * 查找全部实体
 	 * 
+	 * @param clazz 数据来源from实体对象类
+	 * @param targetClass 结果类
+	 * 
 	 * @param rowStartIdxAndCount
 	 *            Optional int varargs. rowStartIdxAndCount[0] specifies the the
 	 *            row index in the query result-set to begin collecting the
 	 *            results. rowStartIdxAndCount[1] specifies the the maximum
 	 *            count of results to return.
-	 * @return List<Account> all Account entities
+	 * @return List 返回全部结果集
 	 */
-	public List<BaseEntiy> findAll(Class clazz, int... rowStartIdxAndCount);
+	public List<BaseDto> findAll(Class clazz,Class targetClass, int... rowStartIdxAndCount);
 	
 	public void deleteList(String[] rowids, Class clazz);
 	

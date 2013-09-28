@@ -3,6 +3,7 @@
  */
 package me.leep.wf.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class BaseServiceImpl implements IBaseService {
 		if (bean != null) {
 			dto.setCreater(bean.getCreater());
 			dto.setCreteTime(bean.getCreteTime());
-		} 
+		}
 		BaseEntiy entity;
 		try {
 			entity = (BaseEntiy) Class.forName(clazz.getName()).newInstance();
@@ -77,8 +78,24 @@ public class BaseServiceImpl implements IBaseService {
 	}
 
 	@Override
-	public List<BaseEntiy> findAll(Class clazz, int... rowStartIdxAndCount) {
-		return dao.findAll(clazz, rowStartIdxAndCount);
+	public List<BaseDto> findAll(Class clazz, Class targetClass,
+			int... rowStartIdxAndCount) {
+		List<BaseEntiy> beanList = dao.findAll(clazz, rowStartIdxAndCount);
+		List<BaseDto> result = new ArrayList<BaseDto>();
+		for (int i = 0; i < beanList.size(); i++) {
+			BaseEntiy bean = (BaseEntiy) beanList.get(i);
+			BaseDto dto;
+			try {
+				dto = (BaseDto) targetClass.newInstance();
+				BeanUtil.copyBean(bean, dto);
+				result.add(dto);
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
 
 	@Override
@@ -104,14 +121,14 @@ public class BaseServiceImpl implements IBaseService {
 		this.dao = dao;
 	}
 
-	/* （非 Javadoc）
+	/*
+	 * （非 Javadoc）
+	 * 
 	 * @see me.leep.wf.services.IBaseService#coutAll(java.lang.Class)
 	 */
 	@Override
 	public int coutAll(Class clazz) {
 		return dao.countAll(clazz);
 	}
-
-
 
 }

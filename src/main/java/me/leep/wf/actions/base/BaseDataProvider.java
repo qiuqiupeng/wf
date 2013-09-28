@@ -1,7 +1,9 @@
 package me.leep.wf.actions.base;
 
+import java.util.List;
 import java.util.Map;
 
+import me.leep.wf.dto.BaseDto;
 import me.leep.wf.services.IBaseService;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -56,6 +58,8 @@ public class BaseDataProvider extends BaseAction {
 
 	private int from;
 	private int to;
+	
+	private List<BaseDto> gridModel;
 
 	/**
 	 * @return how many rows we want to have into the grid
@@ -287,6 +291,20 @@ public class BaseDataProvider extends BaseAction {
 	 */
 	public void setTo(int to) {
 		this.to = to;
+	}
+
+	/**
+	 * @return gridModel
+	 */
+	public List<BaseDto> getGridModel() {
+		return gridModel;
+	}
+
+	/**
+	 * @param gridModel 要设置的 gridModel
+	 */
+	public void setGridModel(List<BaseDto> gridModel) {
+		this.gridModel = gridModel;
 	}
 
 }

@@ -1,22 +1,17 @@
 /**
  * 
  */
-package me.leep.wf.entity.system;
+package me.leep.wf.dto.system;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.dto.BaseDto;
 
 /**
  * @author 李鹏
  * 
  *
  */
-@Entity
-@Table(name = "sys_t_funcmenuitem")
-public class FuncMenuBean extends BaseEntiy {
+public class FuncMenu extends BaseDto {
 
 	/**
 	 * 
@@ -31,7 +26,6 @@ public class FuncMenuBean extends BaseEntiy {
 	/**
 	 * @return dataicon
 	 */
-	@Column(name = "fdataicon")
 	public String getDataicon() {
 		return dataicon;
 	}
@@ -44,7 +38,6 @@ public class FuncMenuBean extends BaseEntiy {
 	/**
 	 * @return shortcode
 	 */
-	@Column(name = "fshortcode")
 	public String getShortcode() {
 		return shortcode;
 	}
@@ -57,7 +50,6 @@ public class FuncMenuBean extends BaseEntiy {
 	/**
 	 * @return herf
 	 */
-	@Column(name = "fherf")
 	public String getHerf() {
 		return herf;
 	}
@@ -70,7 +62,6 @@ public class FuncMenuBean extends BaseEntiy {
 	/**
 	 * @return target
 	 */
-	@Column(name = "ftarget")
 	public String getTarget() {
 		return target;
 	}
