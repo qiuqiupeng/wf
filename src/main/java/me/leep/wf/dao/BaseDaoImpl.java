@@ -143,8 +143,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	public BaseEntiy findById(String id, Class<BaseEntiy> clazz) {
 		EntityManagerHelper.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
 		try {
-//			return getEntityManager().find(clazz, id);
-			return EntityManagerHelper.getJpaTemplate().find(clazz, id);
+			return getEntityManager().find(clazz, id);
 		} catch (RuntimeException re) {
 			EntityManagerHelper.log(">>>>>>查找失败>>>>>>", Level.SEVERE, re);
 			throw re;
