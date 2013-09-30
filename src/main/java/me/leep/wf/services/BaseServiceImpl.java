@@ -30,7 +30,11 @@ public class BaseServiceImpl implements IBaseService {
 	@Override
 	@Transactional
 	public void save(BaseDto dto, Class clazz) {
-		BaseEntiy bean = findById(dto.getId(), clazz);
+		BaseEntiy bean;
+		if (dto.getId() != null)
+			bean = findById(dto.getId(), clazz);
+		else
+			bean = null;
 		if (bean != null) {
 			dto.setCreater(bean.getCreater());
 			dto.setCreteTime(bean.getCreteTime());
@@ -78,9 +82,9 @@ public class BaseServiceImpl implements IBaseService {
 	}
 
 	@Override
-	public List<BaseDto> findAll(Class clazz, Class targetClass,
+	public List<BaseDto> findAll(Class clazz, Class targetClass,String filterString,
 			int... rowStartIdxAndCount) {
-		List<BaseEntiy> beanList = dao.findAll(clazz, rowStartIdxAndCount);
+		List<BaseEntiy> beanList = dao.findAll(clazz, filterString, rowStartIdxAndCount);
 		List<BaseDto> result = new ArrayList<BaseDto>();
 		for (int i = 0; i < beanList.size(); i++) {
 			BaseEntiy bean = (BaseEntiy) beanList.get(i);

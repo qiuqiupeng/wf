@@ -26,21 +26,20 @@ public class FuncmenuDataProvider extends BaseDataProvider {
 
 		initGridParam(UserBean.class);
 
-		List<BaseDto> result = funcmenuServices.findAll(FuncMenuBean.class, FuncMenu.class, getFrom(), getTo());
+		List<BaseDto> result = funcmenuServices.findAll(FuncMenuBean.class,
+				FuncMenu.class, null, getFrom(), getTo());
 
 		this.setGridModel(result);
 
 		return SUCCESS;
 	}
 
-	
-
 	/**
-	 * @param funcmenuServices 要设置的 funcmenuServices
+	 * @param funcmenuServices
+	 *            要设置的 funcmenuServices
 	 */
 	public void setFuncmenuServices(IFuncmenuServices funcmenuServices) {
 		this.funcmenuServices = funcmenuServices;
 	}
-
 
 }

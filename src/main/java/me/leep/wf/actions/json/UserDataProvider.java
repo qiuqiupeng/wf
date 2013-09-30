@@ -25,7 +25,7 @@ public class UserDataProvider extends BaseDataProvider {
 
 		initGridParam(UserBean.class);
 
-		List<BaseDto> result = userServices.findAll(UserBean.class, User.class, getFrom(), getTo());
+		List<BaseDto> result = userServices.findAll(UserBean.class, User.class, null,  getFrom(), getTo());
 
 		this.setGridModel(result);
 

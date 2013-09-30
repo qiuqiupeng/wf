@@ -3,6 +3,8 @@
  */
 package me.leep.wf.services.system.impl;
 
+import java.util.UUID;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 	@Override
 	public User initUserDto(String rowid) {
 		User user = new User();
+		user.setId(UUID.randomUUID().toString());
 		if (StringUtils.isNotEmpty(rowid)) {
 			UserBean userBean = (UserBean) findById(rowid, UserBean.class);
 			if (userBean != null) 

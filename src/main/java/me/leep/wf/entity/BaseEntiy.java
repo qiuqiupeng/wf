@@ -36,19 +36,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 		
 	}
 
-	/**
-	 * 超类构造方法
-	 */
-	public BaseEntiy() {
-//		String user = SecurityUtils.getSubject().getPrincipal().toString();
-		if (StringUtils.isEmpty(creater))
-//			creater = user;
-//		lastUpdater = user;
-		if (creteTime == null)
-			creteTime = new Date();
-		lastUpdateTime = new Date();
-		id = UUID.randomUUID().toString();
-	}
 
 	/**
 	 * @return id

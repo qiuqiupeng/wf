@@ -2,12 +2,14 @@ package me.leep.wf.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +30,6 @@ public class BaseDaoImpl implements IBaseDAO {
 	private EntityManager getEntityManager() {
 		return EntityManagerHelper.getEntityManager();
 	}
-	
 
 	/**
 	 * Perform an initial save of a previously unsaved Account entity. All
@@ -55,6 +56,16 @@ public class BaseDaoImpl implements IBaseDAO {
 		try {
 			EntityTransaction et = getEntityManager().getTransaction();
 			et.begin();
+			String user = SecurityUtils.getSubject().getPrincipal().toString();
+			if (StringUtils.isEmpty(entity.getCreater()))
+				entity.setCreater(user);
+			entity.setLastUpdater(user);
+			if (entity.getCreteTime() == null) {
+				entity.setCreteTime(new Date());
+			}
+			entity.setLastUpdateTime(new Date());
+			if (StringUtils.isEmpty(entity.getId()))
+				entity.setId(UUID.randomUUID().toString());
 			getEntityManager().persist(entity);
 			et.commit();
 			EntityManagerHelper.log(">>>>>>保存成功>>>>>>", Level.INFO, null);
@@ -117,9 +128,16 @@ public class BaseDaoImpl implements IBaseDAO {
 		EntityManagerHelper.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
 		try {
 			EntityManagerHelper.beginTransaction();
+			String user = SecurityUtils.getSubject().getPrincipal().toString();
+			if (StringUtils.isEmpty(entity.getCreater()))
+				entity.setCreater(user);
+			entity.setLastUpdater(user);
+			if (entity.getCreteTime() == null) {
+				entity.setCreteTime(new Date());
+			}
 			entity.setLastUpdateTime(new Date());
-			entity.setLastUpdater(SecurityUtils.getSubject().getPrincipal()
-					.toString());
+			if (StringUtils.isEmpty(entity.getId()))
+				entity.setId(UUID.randomUUID().toString());
 			BaseEntiy result = getEntityManager().merge(entity);
 			EntityManagerHelper.commit();
 			EntityManagerHelper.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
@@ -207,13 +225,19 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @return List<Account> all Account entities
 	 */
 	@SuppressWarnings("unchecked")
-	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz,
+	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz, String filterString,
 			final int... rowStartIdxAndCount) {
-		EntityManagerHelper.log("finding all instances", Level.INFO,
-				null);
+		EntityManagerHelper.log("finding all instances", Level.INFO, null);
 		try {
-			final String queryString = "select model from " + clazz.getName()
-					+ " model";
+			String queryString = "";
+			if (StringUtils.isBlank(filterString)) {
+				queryString = "select model from " + clazz.getName()
+						+ " model";
+			} else {
+				queryString = "select model from " + clazz.getName()
+						+ " model where 1=1 " + filterString;
+			}
+			
 			Query query = getEntityManager().createQuery(queryString);
 			if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
 				int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
@@ -241,17 +265,16 @@ public class BaseDaoImpl implements IBaseDAO {
 	@Override
 	public void addNew(BaseEntiy entity) {
 		// TODO 自动生成的方法存根
-//		save(entity);
+		// save(entity);
 		EntityManagerHelper.getJpaTemplate().persist(entity);
 	}
-	
-	@SuppressWarnings({ "rawtypes"})
-	public int countAll(Class clazz) {  
-		String COUNT_ALL_JPAQL = "select count(*) from " + clazz.getName();
-        Number count =  
-           (Number) EntityManagerHelper.getJpaTemplate().find(COUNT_ALL_JPAQL).get(0);  
-        return count.intValue();  
-    }
 
+	@SuppressWarnings({ "rawtypes" })
+	public int countAll(Class clazz) {
+		String COUNT_ALL_JPAQL = "select count(*) from " + clazz.getName();
+		Number count = (Number) EntityManagerHelper.getJpaTemplate()
+				.find(COUNT_ALL_JPAQL).get(0);
+		return count.intValue();
+	}
 
 }

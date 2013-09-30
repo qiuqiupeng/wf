@@ -41,8 +41,12 @@ public class UserEditAction extends EditAction {
 	public String save() throws Exception {
 		System.out.println(">>>>>>>>" + User.class.getName()
 				+ "save2>>>>>>>>>>>>>");
-		UserBean bean = (UserBean) userServices.findById(user.getId(),
-				UserBean.class);
+		UserBean bean;
+		if (user.getId() != null)
+			bean = (UserBean) userServices.findById(user.getId(),
+					UserBean.class);
+		else
+			bean = null;
 		List<String> errors = new ArrayList<String>();
 		List<String> messages = new ArrayList<String>();
 

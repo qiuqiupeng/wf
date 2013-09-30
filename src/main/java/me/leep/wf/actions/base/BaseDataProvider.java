@@ -235,7 +235,7 @@ public class BaseDataProvider extends BaseAction {
 
 	@SuppressWarnings("rawtypes")
 	public void initGridParam(Class clazz) {
-		int records = services.coutAll(clazz);
+		records = services.coutAll(clazz);
 
 		if (totalrows != null) {
 			records = totalrows;

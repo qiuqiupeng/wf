@@ -77,7 +77,7 @@ public interface IBaseService {
 	 *            count of results to return.
 	 * @return List 返回全部结果集
 	 */
-	public List<BaseDto> findAll(Class clazz,Class targetClass, int... rowStartIdxAndCount);
+	public List<BaseDto> findAll(Class clazz,Class targetClass,String filterString, int... rowStartIdxAndCount);
 	
 	public void deleteList(String[] rowids, Class clazz);
 	
