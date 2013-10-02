@@ -21,10 +21,8 @@ package me.leep.wf.services.system.impl;
 import java.io.Serializable;
 import java.util.List;
 
-import me.leep.wf.dao.IBaseDAO;
 import me.leep.wf.dto.BaseDto;
 import me.leep.wf.dto.system.User;
-import me.leep.wf.entity.BaseEntiy;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
 import me.leep.wf.util.CodeUtil;
@@ -41,7 +39,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * 几个概念： 翻译不好,从官方上找来的原文. 如果不懂请 使用 “有道词典”。来源于：
@@ -67,7 +64,6 @@ import org.springframework.stereotype.Service;
  * @author fq1798
  * 
  */
-@SuppressWarnings({ "rawtypes", "unchecked" })
 public class ShiroRealmImpl extends AuthorizingRealm {
 
 	@Autowired

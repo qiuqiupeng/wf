@@ -10,7 +10,8 @@
 		<class>me.leep.wf.entity.BaseEntiy</class>
 		<class>me.leep.wf.entity.system.UserBean</class>
 		<class>me.leep.wf.entity.system.FuncMenuBean</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		
 	</persistence-unit>
 </persistence>
- 
  

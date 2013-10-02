@@ -11,7 +11,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<struts.version>2.3.14</struts.version>
 		<spring.version>3.2.0.RELEASE</spring.version>
-		<hibernate.version>4.2.0.Final</hibernate.version>
+		<hibernate.version>4.2.2.Final</hibernate.version>
 		<sl4j.version>1.7.5</sl4j.version>
 		<junit.version>4.11</junit.version>
 		<poi.version>3.9</poi.version>
@@ -276,17 +276,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
@@ -448,7 +438,13 @@
 		<dependency>
 			<groupId>com.jolbox</groupId>
 			<artifactId>bonecp</artifactId>
-			<version>0.7.1.RELEASE</version>
+			<version>0.8.0-alpha1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp-provider</artifactId>
+			<version>0.8.0-alpha1</version>
 		</dependency>
 
 		<dependency>

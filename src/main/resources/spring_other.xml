@@ -20,7 +20,7 @@
 	<context:component-scan base-package="me.leep.wf" />
 
 	<context:property-placeholder
-		ignore-unresolvable="true" location="classpath*:/dataBaseInfo.properties" />
+		ignore-unresolvable="true" location="classpath*:/hibernate.properties" />
 
 	<!-- 使用annotation定义事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager"
@@ -41,43 +41,24 @@
 
 	<!-- 定义entity管理工厂对象 -->
 	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="wf" />
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
-		<property name="jpaProperties">
-			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
-				</prop>
-				<prop key="net.sf.ehcache.configurationResourceName">${net.sf.ehcache.configurationResourceName}</prop>
-				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
-			</props>
-		</property>
 	</bean>
-	
-	
+
+
 	<bean id="hibernateJpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
-
-	<!-- Transaction Manager Config -->
+	<!-- 配置事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<bean id="transactionManagerJdbc"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<!-- Activiti begin -->
 	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
 		<property name="dataSource" ref="dataSource" />
-		<property name="transactionManager" ref="transactionManagerJdbc" />
+		<property name="transactionManager" ref="transactionManager" />
 		<property name="databaseSchemaUpdate" value="true" />
 		<property name="jobExecutorActivate" value="false" />
 		<property name="history" value="full" />
@@ -105,8 +86,8 @@
 
 	<!-- BoneCP -->
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
-		p:driverClass="${jdbc.driver}" p:jdbcUrl="${jdbc.url}" p:username="${jdbc.username}"
-		p:password="${jdbc.password}" p:idleConnectionTestPeriodInMinutes="${bonecp.idleConnectionTestPeriodInMinutes}"
+		p:driverClass="${hibernate.connection.driver}" p:jdbcUrl="${hibernate.connection.url}" p:username="${hibernate.connection.username}"
+		p:password="${hibernate.connection.password}" p:idleConnectionTestPeriodInMinutes="${bonecp.idleConnectionTestPeriodInMinutes}"
 		p:idleMaxAgeInMinutes="${bonecp.idleMaxAgeInMinutes}"
 		p:maxConnectionsPerPartition="${bonecp.maxConnectionsPerPartition}"
 		p:minConnectionsPerPartition="${bonecp.minConnectionsPerPartition}"
