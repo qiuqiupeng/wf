@@ -1,14 +1,11 @@
 package me.leep.wf.entity;
 
 import java.util.Date;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 
 /**
  * 所有entity类的超类. @author 李鹏
