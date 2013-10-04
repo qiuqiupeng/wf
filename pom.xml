@@ -17,7 +17,7 @@
 		<poi.version>3.9</poi.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<ehcache.version>2.5.2</ehcache.version>
-		<activiti.version>5.12.1</activiti.version>
+		<activiti.version>5.13</activiti.version>
 		<bootstrap.version>1.6.1</bootstrap.version>
 		<jquery.version>3.6.1</jquery.version>
 		<shiro.version>1.2.2</shiro.version>
