@@ -6,15 +6,20 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
 
-import me.leep.wf.dao.EntityManagerHelper;
+
+
 import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.util.LogUtil;
 
 /**
  * 数据访问对象的实现基类，实现了增删改查等基本功能。
@@ -26,9 +31,12 @@ import me.leep.wf.entity.BaseEntiy;
 @Repository("dao")
 public class BaseDaoImpl implements IBaseDAO {
 	// property constants
-
-	private EntityManager getEntityManager() {
-		return EntityManagerHelper.getEntityManager();
+	private EntityManagerFactory entityManagerFactory;
+	@PersistenceContext(unitName="wf")
+	private EntityManager entityManager;
+	
+	public JpaTemplate getJpaTemplate() {
+		return new JpaTemplate(getEntityManager());
 	}
 
 	/**
@@ -41,9 +49,9 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * EntityManager#persist} operation.
 	 * 
 	 * <pre>
-	 * EntityManagerHelper.beginTransaction();
+	 * LogUtil.beginTransaction();
 	 * AccountDAO.save(entity);
-	 * EntityManagerHelper.commit();
+	 * LogUtil.commit();
 	 * </pre>
 	 * 
 	 * @param entity
@@ -52,7 +60,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	 *             when the operation fails
 	 */
 	public void save(BaseEntiy entity) {
-		EntityManagerHelper.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
+		LogUtil.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
 		try {
 			EntityTransaction et = getEntityManager().getTransaction();
 			et.begin();
@@ -68,9 +76,9 @@ public class BaseDaoImpl implements IBaseDAO {
 				entity.setId(UUID.randomUUID().toString());
 			getEntityManager().persist(entity);
 			et.commit();
-			EntityManagerHelper.log(">>>>>>保存成功>>>>>>", Level.INFO, null);
+			LogUtil.log(">>>>>>保存成功>>>>>>", Level.INFO, null);
 		} catch (RuntimeException re) {
-			EntityManagerHelper.log(">>>>>>保存失败>>>>>>", Level.SEVERE, re);
+			LogUtil.log(">>>>>>保存失败>>>>>>", Level.SEVERE, re);
 			throw re;
 		}
 	}
@@ -83,9 +91,9 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * EntityManager#delete} operation.
 	 * 
 	 * <pre>
-	 * EntityManagerHelper.beginTransaction();
+	 * LogUtil.beginTransaction();
 	 * AccountDAO.delete(entity);
-	 * EntityManagerHelper.commit();
+	 * LogUtil.commit();
 	 * entity = null;
 	 * </pre>
 	 * 
@@ -95,16 +103,16 @@ public class BaseDaoImpl implements IBaseDAO {
 	 *             when the operation fails
 	 */
 	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz) {
-		EntityManagerHelper.log(">>>>>>删除实体>>>>>>", Level.INFO, null);
+		LogUtil.log(">>>>>>删除实体>>>>>>", Level.INFO, null);
 		try {
 			EntityTransaction et = getEntityManager().getTransaction();
 			et.begin();
 			entity = getEntityManager().getReference(clazz, entity.getId());
 			getEntityManager().remove(entity);
 			et.commit();
-			EntityManagerHelper.log(">>>>>>删除成功>>>>>>", Level.INFO, null);
+			LogUtil.log(">>>>>>删除成功>>>>>>", Level.INFO, null);
 		} catch (RuntimeException re) {
-			EntityManagerHelper.log(">>>>>>删除失败>>>>>>", Level.SEVERE, re);
+			LogUtil.log(">>>>>>删除失败>>>>>>", Level.SEVERE, re);
 			throw re;
 		}
 	}
@@ -113,9 +121,9 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * 保存或修改实体类
 	 * 
 	 * <pre>
-	 * EntityManagerHelper.beginTransaction();
+	 * LogUtil.beginTransaction();
 	 * entity = AccountDAO.update(entity);
-	 * EntityManagerHelper.commit();
+	 * LogUtil.commit();
 	 * </pre>
 	 * 
 	 * @param entity
@@ -125,9 +133,9 @@ public class BaseDaoImpl implements IBaseDAO {
 	 *             if the operation fails
 	 */
 	public BaseEntiy update(BaseEntiy entity) {
-		EntityManagerHelper.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
+		LogUtil.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
 		try {
-			EntityManagerHelper.beginTransaction();
+			getEntityManager().getTransaction().begin();//.beginTransaction();
 			String user = SecurityUtils.getSubject().getPrincipal().toString();
 			if (StringUtils.isEmpty(entity.getCreater()))
 				entity.setCreater(user);
@@ -139,11 +147,11 @@ public class BaseDaoImpl implements IBaseDAO {
 			if (StringUtils.isEmpty(entity.getId()))
 				entity.setId(UUID.randomUUID().toString());
 			BaseEntiy result = getEntityManager().merge(entity);
-			EntityManagerHelper.commit();
-			EntityManagerHelper.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
+			getEntityManager().getTransaction().commit();
+			LogUtil.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
 			return result;
 		} catch (RuntimeException re) {
-			EntityManagerHelper.log(">>>>>>修改失败>>>>>>", Level.SEVERE, re);
+			LogUtil.log(">>>>>>修改失败>>>>>>", Level.SEVERE, re);
 			throw re;
 		}
 	}
@@ -159,11 +167,11 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @return 实体类
 	 */
 	public BaseEntiy findById(String id, Class<BaseEntiy> clazz) {
-		EntityManagerHelper.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
+		LogUtil.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
 		try {
 			return getEntityManager().find(clazz, id);
 		} catch (RuntimeException re) {
-			EntityManagerHelper.log(">>>>>>查找失败>>>>>>", Level.SEVERE, re);
+			LogUtil.log(">>>>>>查找失败>>>>>>", Level.SEVERE, re);
 			throw re;
 		}
 	}
@@ -186,7 +194,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	public List<BaseEntiy> findByProperty(Class<BaseEntiy> clazz,
 			String propertyName, final Object value,
 			final int... rowStartIdxAndCount) {
-		EntityManagerHelper.log("finding instance with property: "
+		LogUtil.log("finding instance with property: "
 				+ propertyName + ", value: " + value, Level.INFO, null);
 		try {
 			final String queryString = "select model from " + clazz.getName()
@@ -208,7 +216,7 @@ public class BaseDaoImpl implements IBaseDAO {
 			}
 			return query.getResultList();
 		} catch (RuntimeException re) {
-			EntityManagerHelper.log("find by property name failed",
+			LogUtil.log("find by property name failed",
 					Level.SEVERE, re);
 			throw re;
 		}
@@ -227,7 +235,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	@SuppressWarnings("unchecked")
 	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz, String filterString,
 			final int... rowStartIdxAndCount) {
-		EntityManagerHelper.log("finding all instances", Level.INFO, null);
+		LogUtil.log("查找全部实体", Level.INFO, null);
 		try {
 			String queryString = "";
 			if (StringUtils.isBlank(filterString)) {
@@ -254,7 +262,7 @@ public class BaseDaoImpl implements IBaseDAO {
 			}
 			return query.getResultList();
 		} catch (RuntimeException re) {
-			EntityManagerHelper.log("find all failed", Level.SEVERE, re);
+			LogUtil.log("查找全部实体失败", Level.SEVERE, re);
 			throw re;
 		}
 	}
@@ -265,16 +273,44 @@ public class BaseDaoImpl implements IBaseDAO {
 	@Override
 	public void addNew(BaseEntiy entity) {
 		// TODO 自动生成的方法存根
-		// save(entity);
-		EntityManagerHelper.getJpaTemplate().persist(entity);
+		getJpaTemplate().persist(entity);
 	}
 
 	@SuppressWarnings({ "rawtypes" })
 	public int countAll(Class clazz) {
+		LogUtil.log("获取总记录条数", Level.INFO, null);
 		String COUNT_ALL_JPAQL = "select count(*) from " + clazz.getName();
-		Number count = (Number) EntityManagerHelper.getJpaTemplate()
+		Number count = (Number) getJpaTemplate()
 				.find(COUNT_ALL_JPAQL).get(0);
 		return count.intValue();
+	}
+
+	/**
+	 * @return entityManagerFactory
+	 */
+	public EntityManagerFactory getEntityManagerFactory() {
+		return entityManagerFactory;
+	}
+
+	/**
+	 * @param entityManagerFactory 要设置的 entityManagerFactory
+	 */
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+		this.entityManagerFactory = entityManagerFactory;
+	}
+
+	/**
+	 * @return entityManager
+	 */
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	/**
+	 * @param entityManager 要设置的 entityManager
+	 */
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 }
