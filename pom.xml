@@ -21,7 +21,6 @@
 		<bootstrap.version>1.6.1</bootstrap.version>
 		<jquery.version>3.6.1</jquery.version>
 		<shiro.version>1.2.2</shiro.version>
-		<javax.jstl.version>1.2.1</javax.jstl.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -159,17 +158,12 @@
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.servlet.jsp.jstl</artifactId>
-			<version>${javax.jstl.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servlet-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jsp-api</artifactId>
-					<groupId>javax.servlet.jsp</groupId>
-				</exclusion>
-			</exclusions>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+			<version>1.2.1</version>
 		</dependency>
 
 		<!-- ********************************************************************** 
@@ -286,7 +280,7 @@
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>4.0.1.Final</version>
+			<version>4.0.2.Final</version>
 			<classifier>tests</classifier>
 		</dependency>
 		<dependency>
@@ -306,21 +300,10 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-			<version>3.1.0.CR2</version>
-		</dependency>
-		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>4.1.4.Final</version>
 			<scope>compile</scope>
-		</dependency>
-		<!-- dbcp connection pool -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>${commons-dbcp.version}</version>
 		</dependency>
 
 
@@ -389,10 +372,6 @@
 			<artifactId>struts2-bootstrap-plugin</artifactId>
 			<version>${bootstrap.version}</version>
 		</dependency>
-
-		<!-- ********************************************************************** 
-			** sitemesh DEPENDENCIES ** ********************************************************************** -->
-
 
 		<!-- ********************************************************************** 
 			** jdbc DEPENDENCIES ** ********************************************************************** -->
