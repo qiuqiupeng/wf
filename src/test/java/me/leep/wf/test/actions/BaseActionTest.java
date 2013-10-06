@@ -14,7 +14,7 @@ public class BaseActionTest extends StrutsSpringTestCase {
 	@Override
 	public String[] getContextLocations() {
 		
-		return new String[]{"spring_other_test.xml"};
+		return new String[]{"spring_*_test.xml"};
 		
 	}
 	

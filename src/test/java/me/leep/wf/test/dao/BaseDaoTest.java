@@ -1,6 +1,8 @@
 package me.leep.wf.test.dao;
 
 import static org.junit.Assert.*;
+
+
 import me.leep.wf.dao.IBaseDAO;
 import me.leep.wf.entity.system.UserBean;
 
@@ -14,12 +16,12 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@ContextConfiguration(locations={"classpath:spring_other_test.xml"})
+@ContextConfiguration(locations={"classpath:spring_*_test.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
 public class BaseDaoTest {
-	 
+	
 	@Autowired
 	IBaseDAO dao;
 	
@@ -30,7 +32,7 @@ public class BaseDaoTest {
 		
 		int count = dao.countAll(UserBean.class);
 		
-//		assertEquals(34, count);
+		assertEquals(34, count);
 		
 		logger.info("人数 " + count);
 		
