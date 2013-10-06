@@ -11,15 +11,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.util.LogUtil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
-
-
-
-import me.leep.wf.entity.BaseEntiy;
-import me.leep.wf.util.LogUtil;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 数据访问对象的实现基类，实现了增删改查等基本功能。
@@ -132,10 +131,10 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
+	@Transactional
 	public BaseEntiy update(BaseEntiy entity) {
 		LogUtil.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
 		try {
-			getEntityManager().getTransaction().begin();//.beginTransaction();
 			String user = SecurityUtils.getSubject().getPrincipal().toString();
 			if (StringUtils.isEmpty(entity.getCreater()))
 				entity.setCreater(user);
@@ -147,7 +146,6 @@ public class BaseDaoImpl implements IBaseDAO {
 			if (StringUtils.isEmpty(entity.getId()))
 				entity.setId(UUID.randomUUID().toString());
 			BaseEntiy result = getEntityManager().merge(entity);
-			getEntityManager().getTransaction().commit();
 			LogUtil.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
 			return result;
 		} catch (RuntimeException re) {
