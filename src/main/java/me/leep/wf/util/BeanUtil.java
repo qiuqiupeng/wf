@@ -3,7 +3,8 @@
  */
 package me.leep.wf.util;
 
-import net.sf.cglib.beans.BeanCopier;
+import com.alibaba.tamper.BeanCopy;
+
 
 /**
  * @author 李鹏
@@ -11,12 +12,12 @@ import net.sf.cglib.beans.BeanCopier;
  *
  */
 public class BeanUtil {
-	private static BeanCopier copy;
+	private static BeanCopy copy;
 	
 	public static void copyBean(Object source, Object targer) {
-		copy = BeanCopier.create(source.getClass(), targer.getClass(),
-				false);
-		copy.copy(source, targer, null);
+		copy = BeanCopy.create(source.getClass(), targer.getClass()
+				);
+		copy.copy(source, targer);
 		copy = null;
 	}
 
