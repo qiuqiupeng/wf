@@ -21,6 +21,7 @@
 		<bootstrap.version>1.6.1</bootstrap.version>
 		<jquery.version>3.6.1</jquery.version>
 		<shiro.version>1.2.2</shiro.version>
+		<javax.jstl.version>1.2.1</javax.jstl.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -158,12 +159,17 @@
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.servlet.jsp.jstl</artifactId>
-			<version>1.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp.jstl</groupId>
-			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>1.2.1</version>
+			<version>${javax.jstl.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jsp-api</artifactId>
+					<groupId>javax.servlet.jsp</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- ********************************************************************** 
@@ -276,7 +282,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
@@ -440,7 +446,7 @@
 			<artifactId>bonecp</artifactId>
 			<version>0.8.0-alpha1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.jolbox</groupId>
 			<artifactId>bonecp-provider</artifactId>
