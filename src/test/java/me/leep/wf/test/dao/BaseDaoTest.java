@@ -1,8 +1,6 @@
 package me.leep.wf.test.dao;
 
 import static org.junit.Assert.*;
-
-
 import me.leep.wf.dao.IBaseDAO;
 import me.leep.wf.entity.system.UserBean;
 
@@ -21,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
 public class BaseDaoTest {
-	
+	 
 	@Autowired
 	IBaseDAO dao;
 	
