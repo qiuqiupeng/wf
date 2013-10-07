@@ -3,12 +3,14 @@ package me.leep.wf.actions.system;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
 import me.leep.wf.util.CodeUtil;
+import me.leep.wf.util.LogUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -39,8 +41,8 @@ public class UserEditAction extends EditAction {
 
 	@Override
 	public String save() throws Exception {
-		System.out.println(">>>>>>>>" + User.class.getName()
-				+ "save2>>>>>>>>>>>>>");
+		LogUtil.log(">>>>>>>>" + User.class.getName() + "save2>>>>>>>>>>>>>",
+				Level.INFO, null);
 		UserBean bean;
 		if (user.getId() != null)
 			bean = (UserBean) userServices.findById(user.getId(),
@@ -64,7 +66,7 @@ public class UserEditAction extends EditAction {
 				user.setPassword(bean.getPassword());
 			else
 				user.setPassword(CodeUtil.getStringMD5(user.getPassword()));
-			userServices.save(user, UserBean.class);
+			userServices.save(user);
 			messages.add("保存成功");
 			setActionMessages(messages);
 		}

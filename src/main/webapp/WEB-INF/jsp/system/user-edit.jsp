@@ -5,6 +5,7 @@
 <s:form id="form" action="" theme="simple"
 	cssClass="form-horizontal no-margin">
 	<s:hidden name="rowid" />
+	<s:hidden name="user.id" />
 	<div class="page-header">
 		<div class="span2 pull-left">
 			<h2>用户配置</h2>

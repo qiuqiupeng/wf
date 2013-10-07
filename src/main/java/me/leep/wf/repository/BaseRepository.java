@@ -23,12 +23,6 @@ public interface BaseRepository<T, ID extends Serializable> extends
 	 */
 	T findById(String id);
 
-	/**
-	 * 通过ID删除实体
-	 * 
-	 * @param id
-	 *            ID
-	 */
-	void deleteById(String id);
+
 
 }

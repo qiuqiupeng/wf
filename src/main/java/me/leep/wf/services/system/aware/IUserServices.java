@@ -4,6 +4,7 @@
 package me.leep.wf.services.system.aware;
 
 
+import me.leep.wf.dto.BaseDto;
 import me.leep.wf.dto.system.User;
 import me.leep.wf.services.IBaseService;
 
@@ -14,5 +15,7 @@ import me.leep.wf.services.IBaseService;
 public interface IUserServices extends IBaseService {
 	
 	public User initUserDto(String rowid);
+
+	void save(BaseDto dto);
 
 }

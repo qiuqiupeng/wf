@@ -5,10 +5,7 @@ package me.leep.wf.services.system.impl;
 
 import java.util.UUID;
 
-import javax.persistence.EntityManagerFactory;
-
 import org.activiti.engine.IdentityService;
-import org.activiti.engine.ProcessEngine;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +18,7 @@ import me.leep.wf.repository.system.UserRepository;
 import me.leep.wf.services.BaseServiceImpl;
 import me.leep.wf.services.system.aware.IUserServices;
 import me.leep.wf.util.BeanUtil;
+import me.leep.wf.util.EntityUtil;
 
 /**
  * @author 李鹏
@@ -29,10 +27,7 @@ import me.leep.wf.util.BeanUtil;
 @Service("userServices")
 public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 	@Autowired
-	private ProcessEngine processEngine;
-	@Autowired
 	private IdentityService identityService;
-
 	@Autowired
 	private UserRepository userRepository;// 注入UserRepository
 
@@ -55,8 +50,7 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 	 * java.lang.Class)
 	 */
 	@Override
-	public void save(BaseDto dto, Class clazz) {
-		// super.save(dto, clazz);
+	public void save(BaseDto dto) {
 
 		BaseEntiy bean;
 		if (dto.getId() != null)
@@ -67,42 +61,23 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 			dto.setCreater(bean.getCreater());
 			dto.setCreteTime(bean.getCreteTime());
 		}
-		UserBean entity;
-		try {
-			entity = (UserBean) Class.forName(clazz.getName()).newInstance();
-			BeanUtil.copyBean(dto, entity);
-			entity.setId(UUID.randomUUID().toString());
-			userRepository.save(entity);
-			
-			identityService.saveUser(identityService.newUser(UUID.randomUUID().toString()));
-			
-		} catch (InstantiationException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (IllegalStateException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+		UserBean entity = new UserBean();
+		entity = new UserBean();
+		BeanUtil.copyBean(dto, entity);
+		EntityUtil.checkEntity(entity);
 		
-		
+		userRepository.save(entity);
+
+		org.activiti.engine.identity.User user = identityService.newUser(entity.getId());
+		user.setEmail(entity.getEmail());
+		user.setFirstName(entity.getName());
+		user.setPassword("");
+		identityService.saveUser(user);
+		BeanUtil.copyBean(entity, dto);
 
 	}
 
-	/**
-	 * @param identityService
-	 *            要设置的 identityService
-	 */
-	public void setIdentityService(IdentityService identityService) {
-		this.identityService = identityService;
-	}
+
+
 
 }
