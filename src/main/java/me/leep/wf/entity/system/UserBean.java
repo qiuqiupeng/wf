@@ -1,7 +1,14 @@
 package me.leep.wf.entity.system;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import me.leep.wf.entity.BaseEntiy;
@@ -15,7 +22,6 @@ public class UserBean extends BaseEntiy {
 	 */
 	private static final long serialVersionUID = -2774777982417824244L;
 	private String password;
-	private String removeFlag;
 	private Boolean islocked;
 	private String type;
 	private Boolean isRegister;
@@ -26,6 +32,8 @@ public class UserBean extends BaseEntiy {
 	private String homePhone;
 	private String officePhone;
 	private String cellPhone;
+	
+	private List<RoleBean> roles = new ArrayList<RoleBean>();
 
 	/**
 	 * @return password
@@ -42,20 +50,7 @@ public class UserBean extends BaseEntiy {
 		this.password = password;
 	}
 
-	/**
-	 * @return removeFlag
-	 */
-	@Column(name = "fremoveflag")
-	public String getRemoveFlag() {
-		return removeFlag;
-	}
 
-	/**
-	 * @param removeFlag 要设置的 removeFlag
-	 */
-	public void setRemoveFlag(String removeFlag) {
-		this.removeFlag = removeFlag;
-	}
 
 	/**
 	 * @return islocked
@@ -205,6 +200,22 @@ public class UserBean extends BaseEntiy {
 	 */
 	public void setCellPhone(String cellPhone) {
 		this.cellPhone = cellPhone;
+	}
+
+	/**
+	 * @return roles
+	 */
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="sys_mm_user_role",joinColumns={@JoinColumn(name="fuserid")},inverseJoinColumns={@JoinColumn(name="froleid")})
+	public List<RoleBean> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles 要设置的 roles
+	 */
+	public void setRoles(List<RoleBean> roles) {
+		this.roles = roles;
 	}
 
 }

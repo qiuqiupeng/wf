@@ -26,6 +26,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	private String name;
 	private String description;
 
+	private String removeFlag;
+
 	/**
 	 * 静态变量块
 	 */
@@ -155,6 +157,19 @@ public abstract class BaseEntiy implements java.io.Serializable {
 		this.description = description;
 	}
 
+	/**
+	 * @return removeFlag
+	 */
+	@Column(name = "fremoveflag")
+	public String getRemoveFlag() {
+		return removeFlag;
+	}
 
+	/**
+	 * @param removeFlag 要设置的 removeFlag
+	 */
+	public void setRemoveFlag(String removeFlag) {
+		this.removeFlag = removeFlag;
+	}
 
 }
