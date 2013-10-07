@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.util.EntityUtil;
 import me.leep.wf.util.LogUtil;
 
 import org.apache.commons.lang3.StringUtils;
@@ -58,23 +59,12 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
+	@Transactional
 	public void save(BaseEntiy entity) {
 		LogUtil.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
 		try {
-			EntityTransaction et = getEntityManager().getTransaction();
-			et.begin();
-			String user = SecurityUtils.getSubject().getPrincipal().toString();
-			if (StringUtils.isEmpty(entity.getCreater()))
-				entity.setCreater(user);
-			entity.setLastUpdater(user);
-			if (entity.getCreteTime() == null) {
-				entity.setCreteTime(new Date());
-			}
-			entity.setLastUpdateTime(new Date());
-			if (StringUtils.isEmpty(entity.getId()))
-				entity.setId(UUID.randomUUID().toString());
+			EntityUtil.checkEntity(entity);
 			getEntityManager().persist(entity);
-			et.commit();
 			LogUtil.log(">>>>>>保存成功>>>>>>", Level.INFO, null);
 		} catch (RuntimeException re) {
 			LogUtil.log(">>>>>>保存失败>>>>>>", Level.SEVERE, re);
