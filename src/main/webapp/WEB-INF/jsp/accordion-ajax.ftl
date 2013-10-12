@@ -1,4 +1,8 @@
+<#--
 
+<#assign sj=JspTaglibs["/struts-jquery-tags "]>
+
+-->
 	
 <div class="content">
 	<div id="accordion1" class="accordion no-margin">
