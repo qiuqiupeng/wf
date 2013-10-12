@@ -1,16 +1,20 @@
-<#--
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 
-<#assign sj=JspTaglibs["/struts-jquery-tags "]>
 
--->
 <ul>
 	<li><a href="index"> <span class="fs1" data-icon="&#xe000;"></span>欢迎
 	</a></li>
+	
+	<li><s:a href="index"> <span class="fs1" data-icon="&#xe000;"></span>欢迎
+	</s:a></li>
 
 
 	<li><a href="gallery"> <span class="fs1" data-icon="&#xe00d;"></span>
 			基础资料
 	</a></li>
+
+
 
 	<li><a href="forms"> <span class="fs1" data-icon="&#xe0b8;"></span>
 			单据
@@ -57,13 +61,13 @@
 			系统管理
 	</a>
 		<ul>
-			<li><@s.url id="userList" action="user-list" namespace="/system" />
-				<@sj.a id="link_userList" href="%{userList}" targets="content">
-					<span class="fs1" data-icon="&#xe091;"></span> 用户列表</@sj.a></li>
-			
+			<li><s:url id="userList" action="user-list" namespace="/system" />
+				<sj:a id="link_userList" href="%{userList}" targets="content">
+					<span class="fs1" data-icon="&#xe091;"></span> 用户列表</sj:a></li>
+
 
 			<li><a id="link_funcmenuList" href="javascript:void(0)"> <span
-					class="fs1" data-icon="&#xe091;"></span> 功能菜单 
+					class="fs1" data-icon="&#xe091;"></span> 功能菜单
 			</a> <script type='text/javascript'>
 				jQuery(document)
 						.ready(
