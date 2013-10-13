@@ -335,11 +335,7 @@
 			<artifactId>struts2-config-browser-plugin</artifactId>
 			<version>${struts.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.bootstrap</groupId>
-			<artifactId>struts2-bootstrap-plugin</artifactId>
-			<version>${bootstrap.version}</version>
-		</dependency>
+
 
 		<!-- ********************************************************************** 
 			** jdbc DEPENDENCIES ** ********************************************************************** -->

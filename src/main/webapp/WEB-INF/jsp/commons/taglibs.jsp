@@ -7,7 +7,6 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib prefix="sjt" uri="/struts-jquery-tree-tags"%>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 

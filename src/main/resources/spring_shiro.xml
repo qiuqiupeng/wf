@@ -25,8 +25,8 @@
 		<property name="filterChainDefinitions">
 			<!-- , roles[admin], perms[document:read] -->
 			<value> 
-				/login = anon
 				<!--
+				/login = anon
 				/user/** = authc
 				/role/edit/* = perms[role:edit]
 				/role/save = perms [role:edit]
