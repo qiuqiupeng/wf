@@ -34,19 +34,13 @@ public class EchoAction extends EditAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		// System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
-		// ActionContext context=ActionContext.getContext();
-		// Map parameterMap=context.getParameters();
-		// System.out.println(">>>>>>>>>>>>>>>>>>>>" +
-		// parameterMap.get("echo"));
-		// HttpServletRequest request =
-		// (HttpServletRequest)context.get(ServletActionContext.HTTP_REQUEST);
 		String url = ServletActionContext.getRequest().getParameter("echo");
 		System.out.println(">>>>>>>>>>>>>>>>>>>>" + url);
 		if (StringUtils.isBlank(url))
 			this.nextAction = "system/user-list";
 		else
-			this.nextAction = url;
+			this.nextAction = "system/user-list";
+//			this.nextAction = url;
 		return "result";
 	}
 

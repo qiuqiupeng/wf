@@ -35,12 +35,12 @@
 	type="text/css" />
 <link rel="stylesheet" href="<s:url value="css/main.css" />"
 	type="text/css" />
-
+	
 
 
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<nav class="navbar navbar-inverse navbar-static-top bs-docs-nav" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -132,9 +132,8 @@
 					<s:url var="menu" action="menu-ajax" namespace="/" />
 					<sj:div id="menu" href="%{menu}">
 					</sj:div>
-					<div id="content" class="row">
+					<div id="content" class="panel panel-primary">
 						<!-- 内容显示区域 -->
-						content
 					</div>
 
 				</div>

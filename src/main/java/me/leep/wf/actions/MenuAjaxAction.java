@@ -3,7 +3,13 @@
  */
 package me.leep.wf.actions;
 
+import java.util.Map;
+
+
 import me.leep.wf.actions.base.EditAction;
+
+
+import com.opensymphony.xwork2.ActionContext;
 
 /**
  * @author lipeng
@@ -21,7 +27,9 @@ public class MenuAjaxAction extends EditAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+		ActionContext context = ActionContext.getContext();   
+	    Map<String, Object> session = context.getSession();  
+	    System.out.println("@@@@@@@" + session);
 		return SUCCESS;
 	}
 	 

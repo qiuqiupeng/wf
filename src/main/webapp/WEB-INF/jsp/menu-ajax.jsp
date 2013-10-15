@@ -21,28 +21,19 @@
 
 	<ul class="nav nav-pills">
 		<li class="dropdown active"><a href="forms"
-			class="dropdown-toggle" data-toggle="dropdown"> <span class="fs1"
+			class="dropdown-toggle btn-xs" data-toggle="dropdown"> <span class="fs1"
 				data-icon="&#xe0b8;"></span> 欢迎
 		</a>
 
 			<ul class="dropdown-menu">
-				<li><a href="forms">Basic Forms</a></li>
-				<li><a href="extended-forms">Extended Forms</a></li>
-				<li><s:url id="echo1" value="echo">
-					</s:url> <sj:a id="echotest" href="%{echo1}">Form Wizards</sj:a></li>
 
 
 				<li><sj:a onClickTopics="openURL" id="profile1">
-						<span class="fs1" data-icon="&#xe0b8;"></span>test</sj:a></li>
-
-
-
-
-
+						<span class="fs1" data-icon="&#xe0b8;"></span>用户列表</sj:a></li>
 
 			</ul></li>
 		<li class="dropdown active"><a href="forms"
-			class="dropdown-toggle" data-toggle="dropdown"> <span class="fs1"
+			class="dropdown-toggle btn-xs" data-toggle="dropdown"> <span class="fs1"
 				data-icon="&#xe0b8;"></span> 消息中心
 		</a>
 
@@ -52,7 +43,7 @@
 				<li><a href="form-wizards">Form Wizards</a></li>
 			</ul></li>
 		<li class="dropdown active"><a href="forms"
-			class="dropdown-toggle" data-toggle="dropdown"> <span class="fs1"
+			class="dropdown-toggle btn-xs" data-toggle="dropdown"> <span class="fs1"
 				data-icon="&#xe0b8;"></span> 单据3
 		</a>
 
@@ -67,7 +58,17 @@
 </s:form>
 
 
-
+<button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  </ul>
 
 
 <div class="clearfix"></div>
