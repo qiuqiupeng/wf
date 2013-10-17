@@ -131,7 +131,57 @@
 	padding: 10px 15px;
 }
 
+.signin {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 380px;
+	height: 300px;
+	margin-left: -190px;
+	margin-top: 150px;
+}
 
+.signin h2 {
+	line-height: 32px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	color: #e6e6e6;
+	text-align: center
+}
+
+.signin .signin-wrapper {
+	background: white;
+	border: 5px solid rgba(0, 0, 0, 0.1);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.signin .signin-wrapper .content {
+	padding: 10px;
+}
+
+.signin .signin-wrapper .content .input {
+	margin-top: 5px;
+	font-weight: 400;
+	background: #fafafa;
+	border: 1px solid #d9d9d9;
+}
+
+.signin .signin-wrapper .content .input:hover,.signin .signin-wrapper .content select:hover
+	{
+	background: whitesmoke;
+	color: #333333;
+}
+
+.signin .signin-wrapper .actions {
+	padding: 5px 10px;
+}
+
+.signin .signin-wrapper .actions a {
+	color: #b3b3b3;
+}
 
 
 
