@@ -2,152 +2,610 @@
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="lt-ie9 lt-ie8 lt-ie7" >
-<![endif]-->
-
-<!--[if IE 7]>
-<html class="lt-ie9 lt-ie8" >
-<![endif]-->
-
-<!--[if IE 8]>
-<html class="lt-ie9" >
-<![endif]-->
-
-<!--[if gt IE 8]>
-<!-->
-<html>
-<!--
-<![endif]-->
-
+<html lang="cn">
 <head>
 <meta charset="utf-8">
-<title>StartUp管理系统</title>
-<sj:head jqueryui="true" locale="cn" />
-<link rel="stylesheet" href="<s:url value="icomoon/style.css" />"
-	type="text/css" />
-<!--[if lte IE 7]>
-<script src="css/icomoon-font/lte-ie7.js"></script>
-<![endif]-->
+<title>Dashboard - Ace Admin</title>
 
-<!-- Bootstrap css -->
-<link rel="stylesheet" href="<s:url value="css/bootstrap.css" />"
-	type="text/css" />
-<link rel="stylesheet" href="<s:url value="css/main.css" />"
-	type="text/css" />
-	
+<meta name="description" content="overview &amp; stats">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- basic styles -->
+<link rel="stylesheet" href="<s:url value="css/bootstrap.min.css" />"
+	type="text/css" />
+<link rel="stylesheet" href="<s:url value="css/font-awesome.min.css" />"
+	type="text/css" />
+<!--[if IE 7]>
+		  <link rel="stylesheet" href="css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+<!-- page specific plugin styles -->
+
+
+<!-- ace styles -->
+<link rel="stylesheet" href="<s:url value="css/ace.min.css" />"
+	type="text/css" />
+<link rel="stylesheet" href="<s:url value="css/ace-rtl.min.css" />"
+	type="text/css" />
+<link rel="stylesheet" href="<s:url value="css/ace-skins.min.css" />"
+	type="text/css" />
+
+<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="css/ace-ie.min.css" />
+		<![endif]-->
+
+<!-- inline styles related to this page -->
+
+<!-- ace settings handler -->
+
+<script src="js/ace-extra.min.js"></script>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+
+<style type="text/css">
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Open Sans Light'), local('OpenSans-Light'),
+		url(font/google-dl.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url(font/google-cj.woff)
+		format('woff');
+}
+</style>
 
 </head>
+
 <body>
-	<nav class="navbar navbar-inverse navbar-static-top bs-docs-nav" role="navigation">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index">Brand系统</a>
-		</div>
+	<div class="navbar navbar-default" id="navbar">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('navbar', 'fixed')
+			} catch (e) {
+			}
+		</script>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-			</ul>
-			<form class="navbar-form navbar-left" role="search">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
-				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-				<li><s:url var="form2_url" action="layout" namespace="/" /> <sj:dialog
-						id="remoteformdialog" autoOpen="false" href="%{form2_url}"
-						modal="true" width="1024" height="600" /> <sj:a
-						href="%{form2_url}" openDialog="remoteformdialog"
-						openDialogTitle="空白演示窗口">
-     空白窗口
-    </sj:a></li>
-
-				<li class="dropdown"><a data-toggle="dropdown"
-					class="dropdown-toggle" href=""> 主题 <span
-						class="caret icon-white"></span>
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand"> <small> <i
+						class="icon-leaf"></i> Ace Admin
+				</small>
 				</a>
-					<ul class="dropdown-menu pull-right">
-						<li><a href="#" id="default">Default</a></li>
-						<li><a href="#" id="facebook">Facebook</a></li>
-						<li><a href="#" id="foursquare">Foursquare</a></li>
-						<li><a href="#" id="google-plus">Google+</a></li>
-						<li><a href="#" id="instagram">Instagram</a></li>
-						<li><a href="#" id="whitesmoke">White Smoke</a></li>
-						<li><a href="#" id="grey">Grey</a></li>
-					</ul></li>
-				<li><a href="faq"><span class="fs1" data-icon="&#xe03b;"></span></a></li>
-				<li><a href="profile"><span class="fs1"
-						data-icon="&#xe090;"></span></a></li>
-				<li><a href="login"><span class="fs1" data-icon="&#xe0b1;"></span></a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</nav>
+				<!-- /.brand -->
+			</div>
+			<!-- /.navbar-header -->
 
-	<div class="container">
-		<div class="left-sidebar hidden-tablet hidden-phone">
-			<div class="user-details">
-				<div class="user-img">
-					<img src="img/user-avatar.png" class="avatar" alt="Avatar">
-				</div>
-				<div class="welcome-text">
-					<span>已登录</span>
-					<p class="name">
-						<s:label name="username"></s:label>
-					</p>
-				</div>
+			<div class="navbar-header pull-right" role="navigation">
+				<ul class="nav ace-nav">
+					<li class="grey"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <i class="icon-tasks"></i> <span
+							class="badge badge-grey">4</span>
+					</a>
+
+						<ul
+							class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<li class="dropdown-header"><i class="icon-ok"></i> 有 4
+								个任务需要处理</li>
+
+							<li><a href="#">
+									<div class="clearfix">
+										<span class="pull-left">Software Update</span> <span
+											class="pull-right">65%</span>
+									</div>
+
+									<div class="progress progress-mini ">
+										<div style="width: 65%" class="progress-bar "></div>
+									</div>
+							</a></li>
+
+							<li><a href="#">
+									<div class="clearfix">
+										<span class="pull-left">Hardware Upgrade</span> <span
+											class="pull-right">35%</span>
+									</div>
+
+									<div class="progress progress-mini ">
+										<div style="width: 35%"
+											class="progress-bar progress-bar-danger"></div>
+									</div>
+							</a></li>
+
+							<li><a href="#">
+									<div class="clearfix">
+										<span class="pull-left">Unit Testing</span> <span
+											class="pull-right">15%</span>
+									</div>
+
+									<div class="progress progress-mini ">
+										<div style="width: 15%"
+											class="progress-bar progress-bar-warning"></div>
+									</div>
+							</a></li>
+
+							<li><a href="#">
+									<div class="clearfix">
+										<span class="pull-left">Bug Fixes</span> <span
+											class="pull-right">90%</span>
+									</div>
+
+									<div class="progress progress-mini progress-striped active">
+										<div style="width: 90%"
+											class="progress-bar progress-bar-success"></div>
+									</div>
+							</a></li>
+
+							<li><a href="#"> 查看更多的任务 <i class="icon-arrow-right"></i>
+							</a></li>
+						</ul></li>
+
+
+
+					<li class="green"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <i
+							class="icon-envelope icon-animated-vertical"></i> <span
+							class="badge badge-success">5</span>
+					</a>
+
+						<ul
+							class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<li class="dropdown-header"><i class="icon-envelope-alt"></i>
+								有 5 条消息</li>
+
+							<li><a href="#"> <img src="avatars/avatar.png"
+									class="msg-photo" alt="Alex's Avatar"> <span
+									class="msg-body"> <span class="msg-title"> <span
+											class="blue">Alex:</span> Ciao sociis natoque penatibus et
+											auctor ...
+									</span> <span class="msg-time"> <i class="icon-time"></i> <span>1分钟前</span>
+									</span>
+								</span>
+							</a></li>
+
+							<li><a href="#"> <img src="avatars/avatar3.png"
+									class="msg-photo" alt="Susan's Avatar"> <span
+									class="msg-body"> <span class="msg-title"> <span
+											class="blue">Susan:</span> Vestibulum id ligula porta felis
+											euismod ...
+									</span> <span class="msg-time"> <i class="icon-time"></i> <span>20
+												分钟前</span>
+									</span>
+								</span>
+							</a></li>
+
+							<li><a href="#"> <img src="avatars/avatar4.png"
+									class="msg-photo" alt="Bob's Avatar"> <span
+									class="msg-body"> <span class="msg-title"> <span
+											class="blue">Bob:</span> Nullam quis risus eget urna mollis
+											ornare ...
+									</span> <span class="msg-time"> <i class="icon-time"></i> <span>3:15
+												下午</span>
+									</span>
+								</span>
+							</a></li>
+
+							<li><a href="inbox.html"> 查看更多消息 <i
+									class="icon-arrow-right"></i>
+							</a></li>
+						</ul></li>
+
+					<li class="light-blue"><a data-toggle="dropdown" href="#"
+						class="dropdown-toggle"> <img class="nav-user-photo"
+							src="avatars/user.jpg" alt="Jason's Photo"> <span
+							class="user-info"> <small>欢迎,</small> <s:label
+									name="username" />
+						</span> <i class="icon-caret-down"></i>
+					</a>
+
+						<ul
+							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+							<li><a href="#"> <i class="icon-cog"></i> 设定
+							</a></li>
+
+							<li><a href="#"> <i class="icon-user"></i> 配置
+							</a></li>
+
+							<li class="divider"></li>
+
+							<li><a href="#"> <i class="icon-off"></i> 注销
+							</a></li>
+						</ul></li>
+				</ul>
+				<!-- /.ace-nav -->
 			</div>
-			<div class="content">
-				<s:url var="accordion" action="accordion-ajax" namespace="/" />
-				<sj:div id="accordion" href="%{accordion}">
-				</sj:div>
-			</div>
+			<!-- /.navbar-header -->
 		</div>
-		<div class="dashboard-wrapper">
-			<div class="main-container">
-				<div class="hidden-phone hidden-tablet">
-					<s:url var="menu" action="menu-ajax" namespace="/" />
-					<sj:div id="menu" href="%{menu}">
-					</sj:div>
-					<div id="content" class="panel panel-primary">
-						<!-- 内容显示区域 -->
+		<!-- /.container -->
+	</div>
+
+	<div class="main-container" id="main-container">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('main-container', 'fixed')
+			} catch (e) {
+			}
+		</script>
+
+		<div class="main-container-inner">
+			<a class="menu-toggler" id="menu-toggler" href="#"> <span
+				class="menu-text"></span>
+			</a>
+
+			<div class="sidebar" id="sidebar">
+				<script type="text/javascript">
+					try {
+						ace.settings.check('sidebar', 'fixed')
+					} catch (e) {
+					}
+				</script>
+
+				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+						<button class="btn btn-success">
+							<i class="icon-signal"></i>
+						</button>
+
+						<button class="btn btn-info">
+							<i class="icon-pencil"></i>
+						</button>
+
+						<button class="btn btn-warning">
+							<i class="icon-group"></i>
+						</button>
+
+						<button class="btn btn-danger">
+							<i class="icon-cogs"></i>
+						</button>
 					</div>
 
+					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+						<span class="btn btn-success"></span> <span class="btn btn-info"></span>
+
+						<span class="btn btn-warning"></span> <span class="btn btn-danger"></span>
+					</div>
+				</div>
+				<!-- #sidebar-shortcuts -->
+
+				<ul class="nav nav-list">
+					<li class="active"><a href="index.html"> <i
+							class="icon-dashboard"></i> <span class="menu-text"> 欢迎 </span>
+					</a></li>
+
+					<li><a href="typography.html"> <i class="icon-text-width"></i>
+							<span class="menu-text"> 基础资料 </span>
+					</a></li>
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text"> 单据 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="elements.html"> <i
+									class="icon-double-angle-right"></i> Elements
+							</a></li>
+
+							<li><a href="buttons.html"> <i
+									class="icon-double-angle-right"></i> Buttons &amp; Icons
+							</a></li>
+
+							<li><a href="treeview.html"> <i
+									class="icon-double-angle-right"></i> Treeview
+							</a></li>
+
+							<li><a href="jquery-ui.html"> <i
+									class="icon-double-angle-right"></i> jQuery UI
+							</a></li>
+
+							<li><a href="nestable-list.html"> <i
+									class="icon-double-angle-right"></i> Nestable Lists
+							</a></li>
+
+							<li><a href="#" class="dropdown-toggle"> <i
+									class="icon-double-angle-right"></i> Three Level Menu <b
+									class="arrow icon-angle-down"></b>
+							</a>
+
+								<ul class="submenu">
+									<li><a href="#"> <i class="icon-leaf"></i> Item #1
+									</a></li>
+
+									<li><a href="#" class="dropdown-toggle"> <i
+											class="icon-pencil"></i> 4th level <b
+											class="arrow icon-angle-down"></b>
+									</a>
+
+										<ul class="submenu">
+											<li><a href="#"> <i class="icon-plus"></i> Add
+													Product
+											</a></li>
+
+											<li><a href="#"> <i class="icon-eye-open"></i> View
+													Products
+											</a></li>
+										</ul></li>
+								</ul></li>
+						</ul></li>
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-list"></i> <span class="menu-text"> Tables </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="tables.html"> <i
+									class="icon-double-angle-right"></i> Simple &amp; Dynamic
+							</a></li>
+
+							<li><a href="jqgrid.html"> <i
+									class="icon-double-angle-right"></i> jqGrid plugin
+							</a></li>
+						</ul></li>
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-edit"></i> <span class="menu-text"> Forms </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="form-elements.html"> <i
+									class="icon-double-angle-right"></i> Form Elements
+							</a></li>
+
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> Wizard &amp; Validation
+							</a></li>
+
+							<li><a href="wysiwyg.html"> <i
+									class="icon-double-angle-right"></i> Wysiwyg &amp; Markdown
+							</a></li>
+
+							<li><a href="dropzone.html"> <i
+									class="icon-double-angle-right"></i> Dropzone File Upload
+							</a></li>
+						</ul></li>
+
+					<li><a href="widgets.html"> <i class="icon-list-alt"></i>
+							<span class="menu-text"> Widgets </span>
+					</a></li>
+
+					<li><a href="calendar.html"> <i class="icon-calendar"></i>
+
+							<span class="menu-text"> Calendar <span
+								class="badge badge-transparent tooltip-error"
+								title="2&nbsp;Important&nbsp;Events"> <i
+									class="icon-warning-sign red bigger-130"></i>
+							</span>
+						</span>
+					</a></li>
+
+					<li><a href="gallery.html"> <i class="icon-picture"></i> <span
+							class="menu-text"> Gallery </span>
+					</a></li>
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-tag"></i> <span class="menu-text"> More Pages
+						</span> <b class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="profile.html"> <i
+									class="icon-double-angle-right"></i> User Profile
+							</a></li>
+
+							<li><a href="inbox.html"> <i
+									class="icon-double-angle-right"></i> Inbox
+							</a></li>
+
+							<li><a href="pricing.html"> <i
+									class="icon-double-angle-right"></i> Pricing Tables
+							</a></li>
+
+							<li><a href="invoice.html"> <i
+									class="icon-double-angle-right"></i> Invoice
+							</a></li>
+
+							<li><a href="timeline.html"> <i
+									class="icon-double-angle-right"></i> Timeline
+							</a></li>
+
+							<li><a href="login.html"> <i
+									class="icon-double-angle-right"></i> Login &amp; Register
+							</a></li>
+						</ul></li>
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-file-alt"></i> <span class="menu-text"> Other
+								Pages <span class="badge badge-primary ">5</span>
+						</span> <b class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="faq.html"> <i
+									class="icon-double-angle-right"></i> FAQ
+							</a></li>
+
+							<li><a href="error-404.html"> <i
+									class="icon-double-angle-right"></i> Error 404
+							</a></li>
+
+							<li><a href="error-500.html"> <i
+									class="icon-double-angle-right"></i> Error 500
+							</a></li>
+
+							<li><a href="grid.html"> <i
+									class="icon-double-angle-right"></i> Grid
+							</a></li>
+
+							<li><a href="blank.html"> <i
+									class="icon-double-angle-right"></i> Blank Page
+							</a></li>
+						</ul></li>
+				</ul>
+				<!-- /.nav-list -->
+
+				<div class="sidebar-collapse" id="sidebar-collapse">
+					<i class="icon-double-angle-left"
+						data-icon1="icon-double-angle-left"
+						data-icon2="icon-double-angle-right"></i>
 				</div>
 
-				<!-- Row fluid end -->
-
+				<script type="text/javascript">
+					try {
+						ace.settings.check('sidebar', 'collapsed')
+					} catch (e) {
+					}
+				</script>
 			</div>
-			<!-- Main dashboard wrapper end -->
+
+			<div class="main-content">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<script type="text/javascript">
+						try {
+							ace.settings.check('breadcrumbs', 'fixed')
+						} catch (e) {
+						}
+					</script>
+
+					<ul class="breadcrumb">
+						<li><i class="icon-home home-icon"></i> <a href="#">主页</a></li>
+						<li class="active">欢迎</li>
+					</ul>
+					<!-- .breadcrumb -->
+				</div>
+
+				<div id="content" class="page-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+
+							<!-- PAGE CONTENT ENDS -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.page-content -->
+				<!-- /.page-content -->
+			</div>
+			<!-- /.main-content -->
+
+			<div class="ace-settings-container" id="ace-settings-container">
+				<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
+					id="ace-settings-btn">
+					<i class="icon-cog bigger-150"></i>
+				</div>
+
+				<div class="ace-settings-box" id="ace-settings-box">
+					<div>
+						<div class="pull-left">
+							<select id="skin-colorpicker" class="hide">
+								<option data-skin="default" value="#438EB9">#438EB9
+								<option data-skin="skin-1" value="#222A2D">#222A2D
+								<option data-skin="skin-2" value="#C6487E">#C6487E
+								<option data-skin="skin-3" value="#D0D0D0">#D0D0D0
+							</select>
+						</div>
+						<span>&nbsp; 选择皮肤</span>
+					</div>
+
+					<div>
+						<input type="checkbox" class="ace ace-checkbox-2"
+							id="ace-settings-navbar"> <label class="lbl"
+							for="ace-settings-navbar"> 改变导航条</label>
+					</div>
+
+					<div>
+						<input type="checkbox" class="ace ace-checkbox-2"
+							id="ace-settings-sidebar"> <label class="lbl"
+							for="ace-settings-sidebar"> 改变 左边框</label>
+					</div>
+
+					<div>
+						<input type="checkbox" class="ace ace-checkbox-2"
+							id="ace-settings-breadcrumbs"> <label class="lbl"
+							for="ace-settings-breadcrumbs"> 改变面包条</label>
+					</div>
+
+					<div>
+						<input type="checkbox" class="ace ace-checkbox-2"
+							id="ace-settings-rtl"> <label class="lbl"
+							for="ace-settings-rtl"> 左右互换</label>
+					</div>
+
+					<div>
+						<input type="checkbox" class="ace ace-checkbox-2"
+							id="ace-settings-add-container"> <label class="lbl"
+							for="ace-settings-add-container"> 紧缩内容</b>
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- /#ace-settings-container -->
 		</div>
-		<!-- Main dashboard container end -->
+		<!-- /.main-container-inner -->
+
+		<a href="#" id="btn-scroll-up"
+			class="btn-scroll-up btn btn-sm btn-inverse"> <i
+			class="icon-double-angle-up icon-only bigger-110"></i>
+		</a>
 	</div>
-	<!-- Bootstrap container fluid end -->
+	<!-- /.main-container -->
 
-	<script src="js/bootstrap.js"></script>
+	<!-- basic scripts -->
 
+	<!--[if !IE]> -->
+
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+	<!-- <![endif]-->
+
+	<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+
+	<!--[if !IE]> -->
+
+	<script type="text/javascript">
+		window.jQuery
+				|| document.write("<script src='js/jquery-2.0.3.min.js'>"
+						+ "<"+"/script>");
+	</script>
+
+	<!-- <![endif]-->
+
+	<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+	<script type="text/javascript">
+		if ("ontouchend" in document)
+			document.write("<script src='js/jquery.mobile.custom.min.js'>"
+					+ "<"+"/script>");
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/typeahead-bs2.min.js"></script>
+
+	<!-- page specific plugin scripts -->
+
+	<!-- ace scripts -->
+
+	<script src="js/ace-elements.min.js"></script>
+	<script src="js/ace.min.js"></script>
+
+	<!-- inline scripts related to this page -->
 </body>
 </html>
