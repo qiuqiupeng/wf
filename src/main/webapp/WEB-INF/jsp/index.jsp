@@ -195,7 +195,7 @@
 								</span>
 							</a></li>
 
-							<li><a href="inbox.html"> 查看更多消息 <i
+							<li><a href="inbox"> 查看更多消息 <i
 									class="icon-arrow-right"></i>
 							</a></li>
 						</ul></li>
