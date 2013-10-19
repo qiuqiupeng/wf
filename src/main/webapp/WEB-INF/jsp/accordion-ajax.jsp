@@ -12,7 +12,7 @@
 //-->
 </script>
 
-<s:form id="form" action="echo" theme="simple" cssClass="yform">
+<s:form action="echo" theme="simple" cssClass="yform">
 	<s:url id="echoAction" action="echo" />
 	<s:hidden id="echo" name="echo" />
 	<sj:submit id="formSubmit" href="%{echoAction}" targets="content"

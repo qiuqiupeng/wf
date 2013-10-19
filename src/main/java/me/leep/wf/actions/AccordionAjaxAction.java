@@ -9,7 +9,7 @@ import java.util.Map;
 import me.leep.wf.actions.base.EditAction;
 
 /**
- * @author lipeng
+ * @author 李鹏
  *
  */
 public class AccordionAjaxAction extends EditAction {
