@@ -59,13 +59,15 @@
 			</a></li>
 
 			<s:iterator value="items">
-				<s:if test="isleaf"><!-- 菜单页节点 -->
+				<s:if test="isleaf">
+					<!-- 菜单页节点 -->
 					<li><sj:a onClickTopics="openURL" id="%{getText(id)}" href="#">
 							<i class="<s:property value="icon" />"></i>
 							<s:property value="name" />
 						</sj:a></li>
 				</s:if>
-				<s:else><!-- 非菜单页节点 -->
+				<s:else>
+					<!-- 非菜单页节点 -->
 					<li><a href="#" Class="dropdown-toggle"> <i
 							class="<s:property value="icon" />"> </i> <span class="menu-text"><s:property
 									value="name" /></span> <b class="arrow icon-angle-down"></b>
@@ -73,11 +75,30 @@
 
 						<ul class="submenu">
 							<s:iterator value="subMenu">
-								<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
-										href="#">
-										<i class="<s:property value="icon" />"></i>
-										<s:property value="name" />
-									</sj:a></li>
+								<s:if test="isleaf">
+									<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
+											href="#">
+											<i class="icon-double-angle-right"></i>
+											<s:property value="name" />
+										</sj:a></li>
+								</s:if>
+								<s:else>
+									<li><a href="#" class="dropdown-toggle"> <i
+											class="icon-double-angle-right"></i> <s:property value="name" />
+											<b class="arrow icon-angle-down"></b>
+									</a>
+
+										<ul class="submenu">
+											<s:iterator value="subMenu">
+												<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
+														href="#">
+														<i class="<s:property value="icon" />"></i>
+														<s:property value="name" />
+													</sj:a></li>
+											</s:iterator>
+										</ul></li>
+								</s:else>
+
 							</s:iterator>
 						</ul></li>
 				</s:else>

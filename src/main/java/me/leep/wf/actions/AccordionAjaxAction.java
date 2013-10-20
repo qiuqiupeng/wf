@@ -6,12 +6,10 @@ package me.leep.wf.actions;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.bean.AcordionItemBean;
 import me.leep.wf.util.BeanUtil;
 import me.leep.wf.util.CodeUtil;
-
 
 /**
  * @author 李鹏
@@ -41,8 +39,17 @@ public class AccordionAjaxAction extends EditAction {
 		List<AcordionItemBean> submenu = new ArrayList<AcordionItemBean>();
 		submenu.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表71"),
 				"用户列表71", "icon-cogs"));
+
+		List<AcordionItemBean> submenu1 = new ArrayList<AcordionItemBean>();
+		submenu1.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表71"),
+				"用户列表721", "icon-cogs"));
+		submenu1.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表71"),
+				"用户列表722", "icon-cogs"));
+		submenu1.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表71"),
+				"用户列表723", "icon-cogs"));
 		submenu.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表72"),
-				"用户列表72", "icon-cogs"));
+				CodeUtil.getShortCode("用户列表72"), "用户列表72", "icon-cogs", false,
+				submenu1));
 
 		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表7"), CodeUtil
 				.getShortCode("用户列表7"), "用户列表7", "icon-cogs", false, submenu));
@@ -52,8 +59,6 @@ public class AccordionAjaxAction extends EditAction {
 
 		return SUCCESS;
 	}
-
-
 
 	/**
 	 * @return items
