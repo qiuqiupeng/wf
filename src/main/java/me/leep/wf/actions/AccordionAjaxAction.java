@@ -45,7 +45,7 @@ public class AccordionAjaxAction extends EditAction {
 				"用户列表72", "icon-cogs"));
 
 		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表7"), CodeUtil
-				.getShortCode("用户列表7"), "用户列表7", "icon-cogs", true, submenu));
+				.getShortCode("用户列表7"), "用户列表7", "icon-cogs", false, submenu));
 
 		String xml = BeanUtil.bean2XML(items);
 		System.out.println(xml);

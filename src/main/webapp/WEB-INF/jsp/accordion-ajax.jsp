@@ -16,7 +16,7 @@
 	<s:url id="echoAction" action="echo" />
 	<s:hidden id="echo" name="echo" />
 	<sj:submit id="formSubmit" href="%{echoAction}" targets="content"
-		cssStyle="display:none;" formIds="form_echo"/>
+		cssStyle="display:none;" formIds="form_echo" />
 
 
 	<div class="sidebar" id="sidebar">
@@ -57,190 +57,32 @@
 			<li class="active"><a href="index"> <i
 					class="icon-dashboard"></i> <span class="menu-text"> 欢迎 </span>
 			</a></li>
-			<li><sj:a onClickTopics="openURL" id="%{getText(iconStr)}"
-					href="#">
-					<i class="icon-cogs"></i>
-					<s:property value="iconStr" />
-				</sj:a></li>
-
-			<li><a href="typography"> <i class="icon-text-width"></i> <span
-					class="menu-text"> 基础资料 </span>
-			</a></li>
-
 
 			<s:iterator value="items">
-			
-			<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
-					href="#">
-					<i class="<s:property value="icon" />"></i>
-					<s:property value="name" />
-				</sj:a></li>
-			</s:iterator>
-
-			<li><a href="#" class="dropdown-toggle"> <i
-					class="icon-desktop"></i> <span class="menu-text"> 单据 </span> <b
-					class="arrow icon-angle-down"></b>
-			</a>
-
-				<ul class="submenu">
-					<li><a href="elements"> <i class="icon-double-angle-right"></i>
-							Elements
-					</a></li>
-					<li><sj:a onClickTopics="openURL" id="profile2" href="#">用户列表</sj:a></li>
-					<li><a href="buttons"> <i class="icon-double-angle-right"></i>
-							Buttons &amp; Icons
-					</a></li>
-
-					<li><a href="treeview"> <i class="icon-double-angle-right"></i>
-							Treeview
-					</a></li>
-
-					<li><a href="jquery-ui"> <i
-							class="icon-double-angle-right"></i> jQuery UI
-					</a></li>
-
-					<li><a href="nestable-list"> <i
-							class="icon-double-angle-right"></i> Nestable Lists
-					</a></li>
-
-					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-double-angle-right"></i> Three Level Menu <b
-							class="arrow icon-angle-down"></b>
+				<s:if test="isleaf"><!-- 菜单页节点 -->
+					<li><sj:a onClickTopics="openURL" id="%{getText(id)}" href="#">
+							<i class="<s:property value="icon" />"></i>
+							<s:property value="name" />
+						</sj:a></li>
+				</s:if>
+				<s:else><!-- 非菜单页节点 -->
+					<li><a href="#" Class="dropdown-toggle"> <i
+							class="<s:property value="icon" />"> </i> <span class="menu-text"><s:property
+									value="name" /></span> <b class="arrow icon-angle-down"></b>
 					</a>
 
 						<ul class="submenu">
-							<li><a href="#"> <i class="icon-leaf"></i> Item #1
-							</a></li>
-
-							<li><a href="#" class="dropdown-toggle"> <i
-									class="icon-pencil"></i> 4th level <b
-									class="arrow icon-angle-down"></b>
-							</a>
-
-								<ul class="submenu">
-									<li><a href="#"> <i class="icon-plus"></i> Add Product
-									</a></li>
-
-									<li><a href="#"> <i class="icon-eye-open"></i> View
-											Products
-									</a></li>
-								</ul></li>
+							<s:iterator value="subMenu">
+								<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
+										href="#">
+										<i class="<s:property value="icon" />"></i>
+										<s:property value="name" />
+									</sj:a></li>
+							</s:iterator>
 						</ul></li>
-				</ul></li>
+				</s:else>
+			</s:iterator>
 
-			<li><a href="#" class="dropdown-toggle"> <i
-					class="icon-list"></i> <span class="menu-text"> Tables </span> <b
-					class="arrow icon-angle-down"></b>
-			</a>
-
-				<ul class="submenu">
-					<li><a href="tables"> <i class="icon-double-angle-right"></i>
-							Simple &amp; Dynamic
-					</a></li>
-
-					<li><a href="jqgrid"> <i class="icon-double-angle-right"></i>
-							jqGrid plugin
-					</a></li>
-				</ul></li>
-
-			<li><a href="#" class="dropdown-toggle"> <i
-					class="icon-edit"></i> <span class="menu-text"> Forms </span> <b
-					class="arrow icon-angle-down"></b>
-			</a>
-
-				<ul class="submenu">
-					<li><a href="form-elements"> <i
-							class="icon-double-angle-right"></i> Form Elements
-					</a></li>
-
-					<li><a href="form-wizard"> <i
-							class="icon-double-angle-right"></i> Wizard &amp; Validation
-					</a></li>
-
-					<li><a href="wysiwyg"> <i class="icon-double-angle-right"></i>
-							Wysiwyg &amp; Markdown
-					</a></li>
-
-					<li><a href="dropzone"> <i class="icon-double-angle-right"></i>
-							Dropzone File Upload
-					</a></li>
-				</ul></li>
-
-			<li><a href="widgets"> <i class="icon-list-alt"></i> <span
-					class="menu-text"> Widgets </span>
-			</a></li>
-
-			<li><a href="calendar"> <i class="icon-calendar"></i> <span
-					class="menu-text"> Calendar <span
-						class="badge badge-transparent tooltip-error"
-						title="2&nbsp;Important&nbsp;Events"> <i
-							class="icon-warning-sign red bigger-130"></i>
-					</span>
-				</span>
-			</a></li>
-
-			<li><a href="gallery"> <i class="icon-picture"></i> <span
-					class="menu-text"> Gallery </span>
-			</a></li>
-
-			<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
-					<span class="menu-text"> More Pages </span> <b
-					class="arrow icon-angle-down"></b>
-			</a>
-
-				<ul class="submenu">
-					<li><a href="profile"> <i class="icon-double-angle-right"></i>
-							User Profile
-					</a></li>
-
-					<li><a href="inbox"> <i class="icon-double-angle-right"></i>
-							Inbox
-					</a></li>
-
-					<li><a href="pricing"> <i class="icon-double-angle-right"></i>
-							Pricing Tables
-					</a></li>
-
-					<li><a href="invoice"> <i class="icon-double-angle-right"></i>
-							Invoice
-					</a></li>
-
-					<li><a href="timeline"> <i class="icon-double-angle-right"></i>
-							Timeline
-					</a></li>
-
-					<li><a href="login"> <i class="icon-double-angle-right"></i>
-							Login &amp; Register
-					</a></li>
-				</ul></li>
-
-			<li><a href="#" class="dropdown-toggle"> <i
-					class="icon-file-alt"></i> <span class="menu-text"> Other
-						Pages <span class="badge badge-primary ">5</span>
-				</span> <b class="arrow icon-angle-down"></b>
-			</a>
-
-				<ul class="submenu">
-					<li><a href="faq"> <i class="icon-double-angle-right"></i>
-							FAQ
-					</a></li>
-
-					<li><a href="error-404"> <i
-							class="icon-double-angle-right"></i> Error 404
-					</a></li>
-
-					<li><a href="error-500"> <i
-							class="icon-double-angle-right"></i> Error 500
-					</a></li>
-
-					<li><a href="grid"> <i class="icon-double-angle-right"></i>
-							Grid
-					</a></li>
-
-					<li><a href="blank"> <i class="icon-double-angle-right"></i>
-							Blank Page
-					</a></li>
-				</ul></li>
 		</ul>
 		<!-- /.nav-list -->
 
