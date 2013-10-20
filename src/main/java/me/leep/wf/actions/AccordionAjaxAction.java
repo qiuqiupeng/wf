@@ -3,39 +3,71 @@
  */
 package me.leep.wf.actions;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import me.leep.wf.actions.base.EditAction;
+import me.leep.wf.bean.AcordionItemBean;
+import me.leep.wf.util.BeanUtil;
+import me.leep.wf.util.CodeUtil;
+
 
 /**
  * @author 李鹏
- *
+ * 
  */
 public class AccordionAjaxAction extends EditAction {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/* （非 Javadoc）
-	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	private List<AcordionItemBean> items;
+
+	public String execute() throws Exception {
+
+		items = new ArrayList<AcordionItemBean>();
+		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表1"), "用户列表1",
+				"icon-cogs"));
+		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表2"), "用户列表2",
+				"icon-cogs"));
+		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表3"), "用户列表3",
+				"icon-cogs"));
+		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表4"), "用户列表4",
+				"icon-cogs"));
+		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表5"), "用户列表5",
+				"icon-cogs"));
+		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表6"), "用户列表6",
+				"icon-cogs"));
+		List<AcordionItemBean> submenu = new ArrayList<AcordionItemBean>();
+		submenu.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表71"),
+				"用户列表71", "icon-cogs"));
+		submenu.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表72"),
+				"用户列表72", "icon-cogs"));
+
+		items.add(new AcordionItemBean(CodeUtil.getShortCode("用户列表7"), CodeUtil
+				.getShortCode("用户列表7"), "用户列表7", "icon-cogs", true, submenu));
+
+		String xml = BeanUtil.bean2XML(items);
+		System.out.println(xml);
+
+		return SUCCESS;
+	}
+
+
+
+	/**
+	 * @return items
 	 */
-	private Map<String, String> accordion;
+	public List<AcordionItemBean> getItems() {
+		return items;
+	}
 
-    public String execute() throws Exception {
-        accordion = new HashMap<String, String>();
-        accordion.put("Section 1", "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.");
-        accordion.put("Section 2", "Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.");
-        accordion.put("Section 3", "Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.");
-        accordion.put("Section 4", "Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.");
-        return SUCCESS;
-    }
-
-    public Map<String, String> getAccordion() {
-        return accordion;
-    }
-	 
+	/**
+	 * @param items
+	 *            要设置的 items
+	 */
+	public void setItems(List<AcordionItemBean> items) {
+		this.items = items;
+	}
 
 }

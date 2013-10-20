@@ -20,6 +20,17 @@ public class CodeUtil {
 			System.out.println("[" + i + "]:::" + aResult[i]);
 		}
 	}
+	
+	/**
+	 * 产生短编码，利用时间空间来产生短编码。
+	 * 
+	 * @param text 输入字符串
+	 * @return 输出字符串数组。
+	 */
+	public static final String getShortCode(String text) {
+		String[] s = shortCode(text);
+		return s[0];
+	}
 
 	/**
 	 * 产生短编码，利用时间空间来产生短编码。
@@ -27,7 +38,7 @@ public class CodeUtil {
 	 * @param text 输入字符串
 	 * @return 输出字符串数组。
 	 */
-	public static final String[] shortCode(String text) {
+	private static final String[] shortCode(String text) {
 		// 可以自定义生成 MD5 加密字符传前的混合 KEY，利用时间产生KEY
 		String key = new Date().toString();
 		// 要使用生成 URL 的字符

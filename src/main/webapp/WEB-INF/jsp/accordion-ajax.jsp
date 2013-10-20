@@ -12,11 +12,11 @@
 //-->
 </script>
 
-<s:form action="echo" theme="simple" cssClass="yform">
+<s:form id="form_echo" action="echo" theme="simple" cssClass="yform">
 	<s:url id="echoAction" action="echo" />
 	<s:hidden id="echo" name="echo" />
 	<sj:submit id="formSubmit" href="%{echoAction}" targets="content"
-		cssStyle="display:none;" />
+		cssStyle="display:none;" formIds="form_echo"/>
 
 
 	<div class="sidebar" id="sidebar">
@@ -57,12 +57,25 @@
 			<li class="active"><a href="index"> <i
 					class="icon-dashboard"></i> <span class="menu-text"> 欢迎 </span>
 			</a></li>
-			<li><sj:a onClickTopics="openURL" id="profile1" href="#">
-					<i class="icon-cogs"></i>用户列表</sj:a></li>
+			<li><sj:a onClickTopics="openURL" id="%{getText(iconStr)}"
+					href="#">
+					<i class="icon-cogs"></i>
+					<s:property value="iconStr" />
+				</sj:a></li>
 
 			<li><a href="typography"> <i class="icon-text-width"></i> <span
 					class="menu-text"> 基础资料 </span>
 			</a></li>
+
+
+			<s:iterator value="items">
+			
+			<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
+					href="#">
+					<i class="<s:property value="icon" />"></i>
+					<s:property value="name" />
+				</sj:a></li>
+			</s:iterator>
 
 			<li><a href="#" class="dropdown-toggle"> <i
 					class="icon-desktop"></i> <span class="menu-text"> 单据 </span> <b
