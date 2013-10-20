@@ -63,7 +63,7 @@
 					<!-- 菜单页节点 -->
 					<li><sj:a onClickTopics="openURL" id="%{getText(id)}" href="#">
 							<i class="<s:property value="icon" />"></i>
-							<s:property value="name" />
+							<span class="menu-text"><s:property value="name" /></span>
 						</sj:a></li>
 				</s:if>
 				<s:else>
