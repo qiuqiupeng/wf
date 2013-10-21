@@ -90,7 +90,7 @@
 
 										<ul class="submenu">
 											<s:iterator value="subMenu">
-												<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
+												<li><sj:a onClickTopics="openURL" id="%{getText(subMenu.id)}"
 														href="#">
 														<i class="<s:property value="icon" />"></i>
 														<s:property value="name" />

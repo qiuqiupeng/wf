@@ -144,7 +144,7 @@
 
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="avatars/user.jpg" alt="Jason's Photo"> <span
+							src="img/avatar-1.png" alt="Jason's Photo"> <span
 							class="user-info"> <small>欢迎,</small> <s:label
 									name="username" />
 						</span> <i class="icon-caret-down"></i>
