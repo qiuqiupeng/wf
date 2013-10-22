@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 
 <html>
@@ -67,23 +68,23 @@
 						</div>
 
 						<div class="widget-body">
-								<s:url id="remoteurl" action="user-data-provider"
-									namespace="/json" />
-								<sjg:grid id="gridtable" caption="用户列表" dataType="json"
-									href="%{remoteurl}" pager="true" gridModel="gridModel"
-									height="320" shrinkToFit="false" rowList="10,15,20" rowNum="15"
-									viewrecords="true" rownumbers="true" resizable="true"
-									multiselect="true" onDblClickRowTopics="openrowselect"
-									autowidth="true" loadingText="数据载入中">
-									<sjg:gridColumn name="id" index="id" title="ID"
-										sortable="false" hidden="true" />
-									<sjg:gridColumn name="name" index="name" title="Name"
-										sortable="true" />
-									<sjg:gridColumn name="number" index="number" title="number"
-										sortable="false" />
-									<sjg:gridColumn name="email" index="email" title="email"
-										sortable="false" />
-								</sjg:grid>
+							<s:url id="remoteurl" action="user-data-provider"
+								namespace="/json" />
+							<sjg:grid id="gridtable" caption="用户列表" dataType="json"
+								href="%{remoteurl}" pager="true" gridModel="gridModel"
+								height="320" shrinkToFit="false" rowList="10,15,20" rowNum="15"
+								viewrecords="true" rownumbers="true" resizable="true"
+								multiselect="true" onDblClickRowTopics="openrowselect"
+								autowidth="true" loadingText="数据载入中">
+								<sjg:gridColumn name="id" index="id" title="ID" sortable="false"
+									hidden="true" />
+								<sjg:gridColumn name="name" index="name" title="Name"
+									sortable="true" />
+								<sjg:gridColumn name="number" index="number" title="number"
+									sortable="false" />
+								<sjg:gridColumn name="email" index="email" title="email"
+									sortable="false" />
+							</sjg:grid>
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %> 
+<%@ page import="java.util.*,org.apache.commons.lang.StringUtils"%>
     
     
 <meta name="description" content="overview &amp; stats">
