@@ -73,11 +73,11 @@ public class ActivitiUserServiceTest {
 	      user.setEmail(email);
 	      identityService.saveUser(user);
 	      
-//	      if (groups != null) {
-//	        for (String group : groups) {
-//	          identityService.createMembership(userId, group);
-//	        }
-//	      }
+	      if (groups != null) {
+	        for (String group : groups) {
+	          identityService.createMembership(userId, group);
+	        }
+	      }
 	    }
 	    
 	    // Following data is not set by demo setup script
