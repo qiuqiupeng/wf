@@ -2,152 +2,223 @@
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="lt-ie9 lt-ie8 lt-ie7" >
-<![endif]-->
-
-<!--[if IE 7]>
-<html class="lt-ie9 lt-ie8" >
-<![endif]-->
-
-<!--[if IE 8]>
-<html class="lt-ie9" >
-<![endif]-->
-
-<!--[if gt IE 8]>
-<!-->
-<html>
-<!--
-<![endif]-->
-
+<html lang="cn">
 <head>
 <meta charset="utf-8">
-<title>StartUp管理系统</title>
+<title>Dashboard - Ace Admin</title>
 <sj:head jqueryui="true" locale="cn" />
-<link rel="stylesheet" href="<s:url value="icomoon/style.css" />"
-	type="text/css" />
-<!--[if lte IE 7]>
-<script src="css/icomoon-font/lte-ie7.js"></script>
-<![endif]-->
-
-<!-- Bootstrap css -->
-<link rel="stylesheet" href="<s:url value="css/bootstrap.css" />"
-	type="text/css" />
-<link rel="stylesheet" href="<s:url value="css/main.css" />"
-	type="text/css" />
-	
-
+<%@ include file="/WEB-INF/jsp/commons/csslibs.jsp"%>
 
 </head>
+
 <body>
-	<nav class="navbar navbar-inverse navbar-static-top bs-docs-nav" role="navigation">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index">Brand系统</a>
-		</div>
+	<div class="navbar navbar-default" id="navbar">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('navbar', 'fixed')
+			} catch (e) {
+			}
+		</script>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-			</ul>
-			<form class="navbar-form navbar-left" role="search">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
-				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-				<li><s:url var="form2_url" action="layout" namespace="/" /> <sj:dialog
-						id="remoteformdialog" autoOpen="false" href="%{form2_url}"
-						modal="true" width="1024" height="600" /> <sj:a
-						href="%{form2_url}" openDialog="remoteformdialog"
-						openDialogTitle="空白演示窗口">
-     空白窗口
-    </sj:a></li>
-
-				<li class="dropdown"><a data-toggle="dropdown"
-					class="dropdown-toggle" href=""> 主题 <span
-						class="caret icon-white"></span>
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand"> <small> <i
+						class="icon-leaf"></i> Ace Admin
+				</small>
 				</a>
-					<ul class="dropdown-menu pull-right">
-						<li><a href="#" id="default">Default</a></li>
-						<li><a href="#" id="facebook">Facebook</a></li>
-						<li><a href="#" id="foursquare">Foursquare</a></li>
-						<li><a href="#" id="google-plus">Google+</a></li>
-						<li><a href="#" id="instagram">Instagram</a></li>
-						<li><a href="#" id="whitesmoke">White Smoke</a></li>
-						<li><a href="#" id="grey">Grey</a></li>
-					</ul></li>
-				<li><a href="faq"><span class="fs1" data-icon="&#xe03b;"></span></a></li>
-				<li><a href="profile"><span class="fs1"
-						data-icon="&#xe090;"></span></a></li>
-				<li><a href="login"><span class="fs1" data-icon="&#xe0b1;"></span></a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</nav>
-
-	<div class="container">
-		<div class="left-sidebar hidden-tablet hidden-phone">
-			<div class="user-details">
-				<div class="user-img">
-					<img src="img/user-avatar.png" class="avatar" alt="Avatar">
-				</div>
-				<div class="welcome-text">
-					<span>已登录</span>
-					<p class="name">
-						<s:label name="username"></s:label>
-					</p>
-				</div>
+				<!-- /.brand -->
 			</div>
-			<div class="content">
-				<s:url var="accordion" action="accordion-ajax" namespace="/" />
-				<sj:div id="accordion" href="%{accordion}">
-				</sj:div>
+			<!-- /.navbar-header -->
+
+			<div class="navbar-header pull-right" role="navigation">
+				<ul class="nav ace-nav">
+					<li class="grey"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <i class="icon-tasks"></i> <span
+							class="badge badge-grey">4</span>
+					</a>
+
+						<ul
+							class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<li class="dropdown-header"><i class="icon-ok"></i> 有 4
+								个任务需要处理</li>
+
+							<li><a href="#">
+									<div class="clearfix">
+										<span class="pull-left">Software Update</span> <span
+											class="pull-right">65%</span>
+									</div>
+
+									<div class="progress progress-mini ">
+										<div style="width: 65%" class="progress-bar "></div>
+									</div>
+							</a></li>
+
+							<li><a href="#">
+									<div class="clearfix">
+										<span class="pull-left">Hardware Upgrade</span> <span
+											class="pull-right">35%</span>
+									</div>
+
+									<div class="progress progress-mini ">
+										<div style="width: 35%"
+											class="progress-bar progress-bar-danger"></div>
+									</div>
+							</a></li>
+
+							<li><a href="#">
+									<div class="clearfix">
+										<span class="pull-left">Unit Testing</span> <span
+											class="pull-right">15%</span>
+									</div>
+
+									<div class="progress progress-mini ">
+										<div style="width: 15%"
+											class="progress-bar progress-bar-warning"></div>
+									</div>
+							</a></li>
+
+							<li><a href="#">
+									<div class="clearfix">
+										<span class="pull-left">Bug Fixes</span> <span
+											class="pull-right">90%</span>
+									</div>
+
+									<div class="progress progress-mini progress-striped active">
+										<div style="width: 90%"
+											class="progress-bar progress-bar-success"></div>
+									</div>
+							</a></li>
+
+							<li><a href="#"> 查看更多的任务 <i class="icon-arrow-right"></i>
+							</a></li>
+						</ul></li>
+
+
+
+					<li class="green"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <i
+							class="icon-envelope icon-animated-vertical"></i> <span
+							class="badge badge-success">5</span>
+					</a>
+
+						<ul
+							class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<li class="dropdown-header"><i class="icon-envelope-alt"></i>
+								有 5 条消息</li>
+
+							<li><a href="#"> <img src="avatars/avatar.png"
+									class="msg-photo" alt="Alex's Avatar"> <span
+									class="msg-body"> <span class="msg-title"> <span
+											class="blue">Alex:</span> Ciao sociis natoque penatibus et
+											auctor ...
+									</span> <span class="msg-time"> <i class="icon-time"></i> <span>1分钟前</span>
+									</span>
+								</span>
+							</a></li>
+
+							<li><a href="#"> <img src="avatars/avatar3.png"
+									class="msg-photo" alt="Susan's Avatar"> <span
+									class="msg-body"> <span class="msg-title"> <span
+											class="blue">Susan:</span> Vestibulum id ligula porta felis
+											euismod ...
+									</span> <span class="msg-time"> <i class="icon-time"></i> <span>20
+												分钟前</span>
+									</span>
+								</span>
+							</a></li>
+
+							<li><a href="#"> <img src="avatars/avatar4.png"
+									class="msg-photo" alt="Bob's Avatar"> <span
+									class="msg-body"> <span class="msg-title"> <span
+											class="blue">Bob:</span> Nullam quis risus eget urna mollis
+											ornare ...
+									</span> <span class="msg-time"> <i class="icon-time"></i> <span>3:15
+												下午</span>
+									</span>
+								</span>
+							</a></li>
+
+							<li><a href="inbox"> 查看更多消息 <i class="icon-arrow-right"></i>
+							</a></li>
+						</ul></li>
+
+					<li class="light-blue"><a data-toggle="dropdown" href="#"
+						class="dropdown-toggle"> <img class="nav-user-photo"
+							src="img/avatar-1.png" alt="Jason's Photo"> <span
+							class="user-info"> <small>欢迎,</small> <s:label
+									name="username" />
+						</span> <i class="icon-caret-down"></i>
+					</a>
+
+						<ul
+							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+							<li><a href="#"> <i class="icon-cog"></i> 设定
+							</a></li>
+
+							<li><a href="#"> <i class="icon-user"></i> 配置
+							</a></li>
+
+							<li class="divider"></li>
+
+							<li><a href="#"> <i class="icon-off"></i> 注销
+							</a></li>
+						</ul></li>
+				</ul>
+				<!-- /.ace-nav -->
 			</div>
+			<!-- /.navbar-header -->
 		</div>
-		<div class="dashboard-wrapper">
-			<div class="main-container">
-				<div class="hidden-phone hidden-tablet">
-					<s:url var="menu" action="menu-ajax" namespace="/" />
-					<sj:div id="menu" href="%{menu}">
-					</sj:div>
-					<div id="content" class="panel panel-primary">
-						<!-- 内容显示区域 -->
-					</div>
-
-				</div>
-
-				<!-- Row fluid end -->
-
-			</div>
-			<!-- Main dashboard wrapper end -->
-		</div>
-		<!-- Main dashboard container end -->
+		<!-- /.container -->
 	</div>
-	<!-- Bootstrap container fluid end -->
 
-	<script src="js/bootstrap.js"></script>
+	<div class="main-container" id="main-container">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('main-container', 'fixed')
+			} catch (e) {
+			}
+		</script>
+
+		<div class="main-container-inner">
+			<a class="menu-toggler" id="menu-toggler" href="#"> <span
+				class="menu-text"></span>
+			</a>
+
+			<s:url var="accordion" action="accordion-ajax" namespace="/" />
+			<sj:div id="accordion" href="%{accordion}">
+			</sj:div>
+
+			<div id="content" class="main-content">
+
+
+				<div class="page-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+
+							<!-- PAGE CONTENT ENDS -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.page-content -->
+				<!-- /.page-content -->
+			</div>
+			<!-- /.main-content -->
+
+
+		</div>
+		<!-- /.main-container-inner -->
+
+		<a href="#" id="btn-scroll-up"
+			class="btn-scroll-up btn btn-sm btn-inverse"> <i
+			class="icon-double-angle-up icon-only bigger-110"></i>
+		</a>
+	</div>
+	<!-- /.main-container -->
+
+	<%@ include file="/WEB-INF/jsp/commons/basicscripts.jsp"%>
 
 </body>
 </html>

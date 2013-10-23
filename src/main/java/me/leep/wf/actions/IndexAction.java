@@ -3,22 +3,31 @@
  */
 package me.leep.wf.actions;
 
+import java.io.InputStream;
+import java.util.List;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
 import me.leep.wf.actions.base.EditAction;
+import me.leep.wf.bean.AcordionItemBean;
+import me.leep.wf.util.BeanUtil;
+import me.leep.wf.util.FileUtil;
 
 /**
  * @author 李鹏
  *
  */
-@Results({ @Result(name = "login", location = "/login.action", type = "redirect") })
+@Results({ @Result(name = "login", location = "/login", type = "redirect") })
 public class IndexAction extends EditAction {
 	private String email;
 	private String password;
 	private String username;
+	
+
+	private List<AcordionItemBean> items;
 
 	/**
 	 * @return username
@@ -70,18 +79,35 @@ public class IndexAction extends EditAction {
 	/* (non-Javadoc)
 	 * @see com.opensymphony.xwork2.ActionSupport#execute()
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+		InputStream is = FileUtil.getFile("resources/menuall.xml");
+		items = (List<AcordionItemBean>) BeanUtil.xml2Bean(is);
+		
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
 			return "login";
 		} else {
 			this.setUsername(currentUser.getPrincipal().toString());
-			System.out.println("--------------------------------" + currentUser.getPrincipal() + ">>>>>>>>>" + password);
-
+			
 			return SUCCESS;
 		}
+	}
+
+	/**
+	 * @return items
+	 */
+	public List<AcordionItemBean> getItems() {
+		return items;
+	}
+
+	/**
+	 * @param items 要设置的 items
+	 */
+	public void setItems(List<AcordionItemBean> items) {
+		this.items = items;
 	}
 	
 

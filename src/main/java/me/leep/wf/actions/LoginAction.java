@@ -19,7 +19,7 @@ import org.apache.struts2.convention.annotation.Results;
  * @author lipeng
  * 
  */
-@Results({ @Result(name = "INDEX", location = "/index.action", type = "redirect") })
+@Results({ @Result(name = "INDEX", location = "/index", type = "redirect") })
 public class LoginAction extends EditAction {
 	private String username;
 	private String password;

@@ -1,33 +1,40 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%@ page contentType="text/html;charset=UTF-8" %> 
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="java.util.*,org.apache.commons.lang.StringUtils"%>
-    
-    
-<meta name="description" content="overview &amp; stats">
+
+<meta charset="utf-8">
+<meta name="description"
+	content="Dynamic tables and grids using jqGrid plugin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- basic styles -->
-<link rel="stylesheet" href="<s:url value="css/bootstrap.min.css" />"
-	type="text/css" />
-<link rel="stylesheet" href="<s:url value="css/font-awesome.min.css" />"
-	type="text/css" />
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
 <!--[if IE 7]>
-		  <link rel="stylesheet" href="css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 <!-- page specific plugin styles -->
 
+<link rel="stylesheet" href="css/jquery-ui-1.10.3.full.min.css">
+<link rel="stylesheet" href="css/datepicker.css">
+<link rel="stylesheet" href="css/ui.jqgrid.css">
+
+<!-- fonts -->
+
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300">
 
 <!-- ace styles -->
-<link rel="stylesheet" href="<s:url value="css/ace.min.css" />"
-	type="text/css" />
-<link rel="stylesheet" href="<s:url value="css/ace-rtl.min.css" />"
-	type="text/css" />
-<link rel="stylesheet" href="<s:url value="css/ace-skins.min.css" />"
-	type="text/css" />
+
+<link rel="stylesheet" href="css/ace.min.css">
+<link rel="stylesheet" href="css/ace-rtl.min.css">
+<link rel="stylesheet" href="css/ace-skins.min.css">
 
 <!--[if lte IE 8]>
-		  <link rel="stylesheet" href="css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 <!-- inline styles related to this page -->
@@ -39,8 +46,8 @@
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 <!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 
 <style type="text/css">

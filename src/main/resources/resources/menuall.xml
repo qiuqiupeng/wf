@@ -63,22 +63,22 @@
         <isleaf>false</isleaf>
         <subMenu>
           <me.leep.wf.bean.AcordionItemBean>
-            <id>MfIRb2</id>
-            <number>MfIRb2</number>
+            <id>MfIRb3</id>
+            <number>MfIRb3</number>
             <name>用户列表721</name>
             <icon>icon-cogs</icon>
             <isleaf>true</isleaf>
           </me.leep.wf.bean.AcordionItemBean>
           <me.leep.wf.bean.AcordionItemBean>
-            <id>MfIRb2</id>
-            <number>MfIRb2</number>
+            <id>MfIRb4</id>
+            <number>MfIRb4</number>
             <name>用户列表722</name>
             <icon>icon-cogs</icon>
             <isleaf>true</isleaf>
           </me.leep.wf.bean.AcordionItemBean>
           <me.leep.wf.bean.AcordionItemBean>
-            <id>MfIRb2</id>
-            <number>MfIRb2</number>
+            <id>MfIRb5</id>
+            <number>MfIRb5</number>
             <name>用户列表723</name>
             <icon>icon-cogs</icon>
             <isleaf>true</isleaf>

@@ -18,6 +18,7 @@
 	<sj:submit id="formSubmit" href="%{echoAction}" targets="content"
 		cssStyle="display:none;" formIds="form_echo" />
 
+</s:form>
 
 	<div class="sidebar" id="sidebar">
 		<script type="text/javascript">
@@ -120,7 +121,6 @@
 		</script>
 	</div>
 
-</s:form>
 
 
 

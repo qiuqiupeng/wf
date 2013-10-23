@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="java.util.*,org.apache.commons.lang.StringUtils"%>
 
 
@@ -13,6 +13,16 @@
 <script src="js/typeahead-bs2.min.js"></script>
 
 <!-- page specific plugin scripts -->
+
+<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
+<script src="js/jquery.easy-pie-chart.min.js"></script>
+<script src="js/jquery.sparkline.min.js"></script>
+<script src="js/flot/jquery.flot.min.js"></script>
+<script src="js/flot/jquery.flot.pie.min.js"></script>
+<script src="js/flot/jquery.flot.resize.min.js"></script>
+
 
 <!-- ace scripts -->
 
