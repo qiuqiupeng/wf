@@ -83,8 +83,8 @@ public class LoginAction extends EditAction {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("--------" + username
-				+ ">>>>>>>>>" + password + "<<<<<<<<<<<" + rememberMe);
+//		System.out.println("--------" + username
+//				+ ">>>>>>>>>" + password + "<<<<<<<<<<<" + rememberMe);
 		
 		if (username == null)
 			return INPUT;
