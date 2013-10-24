@@ -3,7 +3,7 @@
  */
 package me.leep.wf.actions;
 
-import java.io.InputStream;
+import java.io.Reader;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
@@ -83,8 +83,8 @@ public class IndexAction extends EditAction {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		InputStream is = FileUtil.getFile("resources/menuall.xml");
-		items = (List<AcordionItemBean>) BeanUtil.xml2Bean(is);
+		Reader reader = FileUtil.getFile("resources/menuall.xml", "UTF-8");
+		items = (List<AcordionItemBean>) BeanUtil.xml2Bean(reader);
 		
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
