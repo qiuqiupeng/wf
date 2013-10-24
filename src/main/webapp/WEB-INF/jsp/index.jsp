@@ -8,25 +8,13 @@
 <title>OA 办公自动化系统</title>
 <sj:head jqueryui="true" locale="cn" />
 <%@ include file="/WEB-INF/jsp/commons/csslibs.jsp"%>
-
-<script type="text/javascript">
-<!--
-	$.subscribe('openURL', function(event, data) {
-		var s;
-		s = $(data).attr("id");
-		$("#echo").val(s);
-		$("#formSubmit").click();
-	});
-//-->
-</script>
-
 </head>
 
 <body>
 	<div class="navbar navbar-default" id="navbar">
 		<script type="text/javascript">
 			try {
-				ace.settings.check('navbar', 'fixed')
+				ace.settings.check('navbar', 'fixed');
 			} catch (e) {
 			}
 		</script>
@@ -40,8 +28,9 @@
 			</div>
 			<!-- /.navbar-header -->
 
-			<div class="navbar-header pull-right" role="navigation">
+			<div class="navbar-header pull-right">
 				<ul class="nav ace-nav">
+					<!-- 任务预览 -->
 					<li class="grey"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <i class="icon-tasks"></i> <span
 							class="badge badge-grey">4</span>
@@ -52,58 +41,55 @@
 							<li class="dropdown-header"><i class="icon-ok"></i> 4 Tasks
 								to complete</li>
 
-							<li><a href="#">
-									<div class="clearfix">
-										<span class="pull-left">Software Update</span> <span
-											class="pull-right">65%</span>
-									</div>
+							<li><s:a href="#">
+									<span class="clearfix"> <span class="pull-left">Software
+											Update</span> <span class="pull-right">65%</span>
+									</span>
 
 									<div class="progress progress-mini ">
 										<div style="width: 65%" class="progress-bar "></div>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#">
-									<div class="clearfix">
-										<span class="pull-left">Hardware Upgrade</span> <span
-											class="pull-right">35%</span>
-									</div>
+							<li><s:a href="#">
+									<span class="clearfix"> <span class="pull-left">Hardware
+											Upgrade</span> <span class="pull-right">35%</span>
+									</span>
 
 									<div class="progress progress-mini ">
 										<div style="width: 35%"
 											class="progress-bar progress-bar-danger"></div>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#">
-									<div class="clearfix">
-										<span class="pull-left">Unit Testing</span> <span
-											class="pull-right">15%</span>
-									</div>
+							<li><s:a href="#">
+									<span class="clearfix"> <span class="pull-left">Unit
+											Testing</span> <span class="pull-right">15%</span>
+									</span>
 
 									<div class="progress progress-mini ">
 										<div style="width: 15%"
 											class="progress-bar progress-bar-warning"></div>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#">
-									<div class="clearfix">
-										<span class="pull-left">Bug Fixes</span> <span
-											class="pull-right">90%</span>
-									</div>
+							<li><s:a href="#">
+									<span class="clearfix"> <span class="pull-left">Bug
+											Fixes</span> <span class="pull-right">90%</span>
+									</span>
 
 									<div class="progress progress-mini progress-striped active">
 										<div style="width: 90%"
 											class="progress-bar progress-bar-success"></div>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#"> See tasks with details <i
-									class="icon-arrow-right"></i>
-							</a></li>
+							<li><s:a href="#"> See tasks with details <i
+										class="icon-arrow-right"></i>
+								</s:a></li>
 						</ul></li>
 
+					<!-- 警告预览 -->
 					<li class="purple"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <i
 							class="icon-bell-alt icon-animated-bell"></i> <span
@@ -115,43 +101,40 @@
 							<li class="dropdown-header"><i class="icon-warning-sign"></i>
 								8 Notifications</li>
 
-							<li><a href="#">
-									<div class="clearfix">
-										<span class="pull-left"> <i
-											class="btn btn-xs no-hover btn-pink icon-comment"></i> New
+							<li><s:a href="#">
+									<span class="clearfix"> <span class="pull-left">
+											<i class="btn btn-xs no-hover btn-pink icon-comment"></i> New
 											Comments
-										</span> <span class="pull-right badge badge-info">+12</span>
-									</div>
-							</a></li>
+									</span> <span class="pull-right badge badge-info">+12</span>
+									</span>
+								</s:a></li>
 
-							<li><a href="#"> <i
-									class="btn btn-xs btn-primary icon-user"></i> Bob just signed
+							<li><s:a href="#">
+									<i class="btn btn-xs btn-primary icon-user"></i> Bob just signed
 									up as an editor ...
-							</a></li>
+							</s:a></li>
 
-							<li><a href="#">
-									<div class="clearfix">
-										<span class="pull-left"> <i
-											class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
+							<li><s:a href="#">
+									<span class="clearfix"> <span class="pull-left">
+											<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
 											New Orders
-										</span> <span class="pull-right badge badge-success">+8</span>
-									</div>
-							</a></li>
+									</span> <span class="pull-right badge badge-success">+8</span>
+									</span>
+								</s:a></li>
 
-							<li><a href="#">
-									<div class="clearfix">
-										<span class="pull-left"> <i
-											class="btn btn-xs no-hover btn-info icon-twitter"></i>
+							<li><s:a href="#">
+									<span class="clearfix"> <span class="pull-left">
+											<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
 											Followers
-										</span> <span class="pull-right badge badge-info">+11</span>
-									</div>
-							</a></li>
+									</span> <span class="pull-right badge badge-info">+11</span>
+									</span>
+								</s:a></li>
 
-							<li><a href="#"> See all notifications <i
-									class="icon-arrow-right"></i>
-							</a></li>
+							<li><s:a href="#"> See all notifications <i
+										class="icon-arrow-right"></i>
+								</s:a></li>
 						</ul></li>
-
+					<!-- 消息中心预览 -->
 					<li class="green"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <i
 							class="icon-envelope icon-animated-vertical"></i> <span
@@ -161,44 +144,47 @@
 						<ul
 							class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 							<li class="dropdown-header"><i class="icon-envelope-alt"></i>
-								5 Messages</li>
+								5 条新消息</li>
 
-							<li><a href="#"> <img src="avatars/avatar.png"
-									class="msg-photo" alt="Alex's Avatar"> <span
-									class="msg-body"> <span class="msg-title"> <span
-											class="blue">Alex:</span> Ciao sociis natoque penatibus et
-											auctor ...
+							<li><s:a href="#">
+									<img src="avatars/avatar.png" class="msg-photo"
+										alt="Alex's Avatar">
+									<span class="msg-body"> <span class="msg-title">
+											<span class="blue">Alex:</span> Ciao sociis natoque penatibus
+											et auctor ...
 									</span> <span class="msg-time"> <i class="icon-time"></i> <span>a
 												moment ago</span>
 									</span>
-								</span>
-							</a></li>
+									</span>
+								</s:a></li>
 
-							<li><a href="#"> <img src="avatars/avatar3.png"
-									class="msg-photo" alt="Susan's Avatar"> <span
-									class="msg-body"> <span class="msg-title"> <span
-											class="blue">Susan:</span> Vestibulum id ligula porta felis
-											euismod ...
+							<li><s:a href="#">
+									<img src="avatars/avatar3.png" class="msg-photo"
+										alt="Susan's Avatar">
+									<span class="msg-body"> <span class="msg-title">
+											<span class="blue">Susan:</span> Vestibulum id ligula porta
+											felis euismod ...
 									</span> <span class="msg-time"> <i class="icon-time"></i> <span>20
 												minutes ago</span>
 									</span>
-								</span>
-							</a></li>
+									</span>
+								</s:a></li>
 
-							<li><a href="#"> <img src="avatars/avatar4.png"
-									class="msg-photo" alt="Bob's Avatar"> <span
-									class="msg-body"> <span class="msg-title"> <span
-											class="blue">Bob:</span> Nullam quis risus eget urna mollis
-											ornare ...
+							<li><s:a href="#">
+									<img src="avatars/avatar4.png" class="msg-photo"
+										alt="Bob's Avatar">
+									<span class="msg-body"> <span class="msg-title">
+											<span class="blue">Bob:</span> Nullam quis risus eget urna
+											mollis ornare ...
 									</span> <span class="msg-time"> <i class="icon-time"></i> <span>3:15
 												pm</span>
 									</span>
-								</span>
-							</a></li>
+									</span>
+								</s:a></li>
 
-							<li><a href="inbox"> See all messages <i
-									class="icon-arrow-right"></i>
-							</a></li>
+							<li><s:a href="inbox"> 查看全部消息 <i
+										class="icon-arrow-right"></i>
+								</s:a></li>
 						</ul></li>
 
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
@@ -219,7 +205,7 @@
 
 							<li class="divider"></li>
 
-							<li><a href="#"> <i class="icon-off"></i> 注销
+							<li><a href="login"> <i class="icon-off"></i> 注销
 							</a></li>
 						</ul></li>
 				</ul>
@@ -233,7 +219,7 @@
 	<div class="main-container" id="main-container">
 		<script type="text/javascript">
 			try {
-				ace.settings.check('main-container', 'fixed')
+				ace.settings.check('main-container', 'fixed');
 			} catch (e) {
 			}
 		</script>
@@ -260,19 +246,23 @@
 
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<button class="btn btn-success">
+						<button class="btn btn-success tooltip-info"
+									data-rel="tooltip" data-placement="bottom" title="并发数： 1">
 							<i class="icon-signal"></i>
 						</button>
 
-						<button class="btn btn-info">
+						<button class="btn btn-info tooltip-info"
+									data-rel="tooltip" data-placement="bottom" title="处理公文">
 							<i class="icon-pencil"></i>
 						</button>
 
-						<button class="btn btn-warning">
+						<button class="btn btn-warning tooltip-info"
+									data-rel="tooltip" data-placement="bottom" title="发消息">
 							<i class="icon-group"></i>
 						</button>
 
-						<button class="btn btn-danger">
+						<button class="btn btn-danger tooltip-info"
+									data-rel="tooltip" data-placement="bottom" title="配置<s:property value="username" />">
 							<i class="icon-cogs"></i>
 						</button>
 					</div>
@@ -285,8 +275,9 @@
 				</div>
 
 				<ul class="nav nav-list">
-					<li class="active"><a href="index"> <i
-							class="icon-dashboard"></i> <span class="menu-text"> 我的驾驶舱 </span>
+					<li><a href="index"> <i
+							class="icon-dashboard"></i> <span class="menu-text"> 我的驾驶舱
+						</span>
 					</a></li>
 
 					<s:iterator value="items">
@@ -323,8 +314,8 @@
 
 												<ul class="submenu">
 													<s:iterator value="subMenu">
-														<li><sj:a onClickTopics="openURL"
-																id="%{getText(id)}" href="#">
+														<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
+																href="#">
 																<i class="<s:property value="icon" />"></i>
 																<s:property value="name" />
 															</sj:a></li>
@@ -359,7 +350,7 @@
 				<div class="breadcrumbs" id="breadcrumbs">
 					<script type="text/javascript">
 						try {
-							ace.settings.check('breadcrumbs', 'fixed')
+							ace.settings.check('breadcrumbs', 'fixed');
 						} catch (e) {
 						}
 					</script>
@@ -648,8 +639,7 @@
 														<tr>
 															<td>internet.com</td>
 
-															<td><small> <s class="red">$29.99</s>
-															</small> <b class="green">$19.99</b></td>
+															<td><b class="green">$19.99</b></td>
 
 															<td class="hidden-480"><span
 																class="label label-info arrowed-right arrowed-in">on
@@ -659,8 +649,7 @@
 														<tr>
 															<td>online.com</td>
 
-															<td><small> <s class="red"></s>
-															</small> <b class="green">$16.45</b></td>
+															<td><b class="green">$16.45</b></td>
 
 															<td class="hidden-480"><span
 																class="label label-success arrowed-in arrowed-in-right">approved</span>
@@ -670,8 +659,7 @@
 														<tr>
 															<td>newnet.com</td>
 
-															<td><small> <s class="red"></s>
-															</small> <b class="green">$15.00</b></td>
+															<td><b class="green">$15.00</b></td>
 
 															<td class="hidden-480"><span
 																class="label label-danger arrowed">pending</span></td>
@@ -680,19 +668,16 @@
 														<tr>
 															<td>web.com</td>
 
-															<td><small> <s class="red">$24.99</s>
-															</small> <b class="green">$19.95</b></td>
+															<td><b class="green">$19.95</b></td>
 
 															<td class="hidden-480"><span class="label arrowed">
-																	<s>out of stock</s>
-															</span></td>
+																	out of stock </span></td>
 														</tr>
 
 														<tr>
 															<td>domain.com</td>
 
-															<td><small> <s class="red"></s>
-															</small> <b class="green">$12.00</b></td>
+															<td><b class="green">$12.00</b></td>
 
 															<td class="hidden-480"><span
 																class="label label-warning arrowed arrowed-right">SOLD</span>
@@ -1540,6 +1525,19 @@
 
 
 	<%@ include file="/WEB-INF/jsp/commons/basicscripts.jsp"%>
+
+	<script type="text/javascript">
+	<!--
+		$.subscribe('openURL', function(event, data) {
+			var s;
+			s = $(data).attr("id");
+			$("#echo").val(s);
+			$("#formSubmit").click();
+		});
+	//-->
+	</script>
+
+
 	<script type="text/javascript">
 		jQuery(function($) {
 			$('.easy-pie-chart.percentage')
@@ -1567,7 +1565,7 @@
 															: 1000,
 													size : size
 												});
-							})
+							});
 
 			$('.sparkline').each(
 					function() {
@@ -1606,7 +1604,7 @@
 				label : "other",
 				data : 10,
 				color : "#FEE074"
-			} ]
+			} ];
 			function drawPieChart(placeholder, data, position) {
 				$.plot(placeholder, data, {
 					series : {
@@ -1633,7 +1631,7 @@
 						hoverable : true,
 						clickable : true
 					}
-				})
+				});
 			}
 			drawPieChart(placeholder, data);
 
@@ -1730,7 +1728,7 @@
 			});
 			function tooltip_placement(context, source) {
 				var $source = $(source);
-				var $parent = $source.closest('.tab-content')
+				var $parent = $source.closest('.tab-content');
 				var off1 = $parent.offset();
 				var w1 = $parent.width();
 
@@ -1781,7 +1779,7 @@
 							$(this).closest('li').removeClass('selected');
 					});
 
-		})
+		});
 	</script>
 </body>
 </html>

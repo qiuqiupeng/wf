@@ -5,6 +5,7 @@ package me.leep.wf.actions;
 
 import me.leep.wf.actions.base.EditAction;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -21,6 +22,7 @@ import org.apache.struts2.convention.annotation.Results;
  */
 @Results({ @Result(name = "INDEX", location = "/index", type = "redirect") })
 public class LoginAction extends EditAction {
+	private static Logger logger = Logger.getLogger(LoginAction.class);  
 	private String username;
 	private String password;
 	private boolean rememberMe;
@@ -85,6 +87,7 @@ public class LoginAction extends EditAction {
 		// TODO Auto-generated method stub
 //		System.out.println("--------" + username
 //				+ ">>>>>>>>>" + password + "<<<<<<<<<<<" + rememberMe);
+		logger.info(">>>>>>>>>>>>" + username + ">>>>>>>>>>>>登录成功");
 		
 		if (username == null)
 			return INPUT;
