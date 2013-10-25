@@ -7,7 +7,6 @@ import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -91,14 +90,12 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
+	@Transactional
 	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz) {
 		LogUtil.log(">>>>>>删除实体>>>>>>", Level.INFO, null);
 		try {
-			EntityTransaction et = getEntityManager().getTransaction();
-			et.begin();
 			entity = getEntityManager().getReference(clazz, entity.getId());
 			getEntityManager().remove(entity);
-			et.commit();
 			LogUtil.log(">>>>>>删除成功>>>>>>", Level.INFO, null);
 		} catch (RuntimeException re) {
 			LogUtil.log(">>>>>>删除失败>>>>>>", Level.SEVERE, re);
