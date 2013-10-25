@@ -4,6 +4,7 @@
 
 <html>
 <head>
+<sj:head jqueryui="true" locale="cn" />
 <%@ include file="/WEB-INF/jsp/commons/csslibs.jsp"%>
 
 <script type="text/javascript">
