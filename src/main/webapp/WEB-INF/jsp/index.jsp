@@ -226,7 +226,7 @@
 
 							<li class="divider"></li>
 
-							<li><s:a href="#">
+							<li><s:a href="login">
 									<i class="icon-off"></i> 注销
 							</s:a></li>
 						</ul></li>

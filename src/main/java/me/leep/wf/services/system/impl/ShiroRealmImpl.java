@@ -22,12 +22,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import me.leep.wf.dto.BaseDto;
-import me.leep.wf.dto.system.User;
-import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
 import me.leep.wf.util.CodeUtil;
 
-import org.apache.commons.lang.StringUtils;
+import org.activiti.engine.IdentityService;
+import org.activiti.engine.identity.User;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -41,7 +41,6 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * 几个概念： 翻译不好,从官方上找来的原文. 如果不懂请 使用 “有道词典”。来源于：
  * http://shiro.apache.org/java-authentication-guide.html
  * 
  * Subject Security specific user 'view' of an application user. It can be a
@@ -61,10 +60,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  * is that you would use a realm per back-end data source and Shiro would know
  * how to coordinate with these realms together to do what you have to do.
  * 
- * @author fq1798
+ * @author 李鹏
  * 
  */
 public class ShiroRealmImpl extends AuthorizingRealm {
+	@Autowired
+	private IdentityService identityService;
 
 	@Autowired
 	private IUserServices userServices;
@@ -141,30 +142,17 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 		 * given hashedCredentials realmName - the realm from where the
 		 * principal and credentials were acquired.
 		 */
-		String filterString = "and number = '"
-				+ username
-				+ "' and password = '"
-				+ CodeUtil.getStringMD5(String.valueOf(usernamePasswordToke
-						.getPassword())) + "'";
-		List<BaseDto> users = userServices.findAll(UserBean.class, User.class,
-				filterString, null);
-
-		if (users.size() != 0) {
-			User user = (User) users.get(0);
-			return new SimpleAuthenticationInfo(new ShiroUser(user.getNumber(),
-					user.getName()), String.valueOf(usernamePasswordToke
-					.getPassword()), ByteSource.Util.bytes(user.getNumber()),
-					getName());
+		boolean isAuth = identityService.checkPassword(username,
+				CodeUtil.getStringMD5(String.valueOf(usernamePasswordToke
+						.getPassword())));
+		if (isAuth) {
+			User user = identityService.createUserQuery().userId(username)
+					.singleResult();
+			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(),
+					user.getFirstName(), user.getLastName()),
+					String.valueOf(usernamePasswordToke.getPassword()),
+					ByteSource.Util.bytes(user.getId()), getName());
 		} else
-			// if (StringUtils.equals("admin", username)) {
-			// return new SimpleAuthenticationInfo(
-			// new ShiroUser("admin", "admin"), "admin",
-			// ByteSource.Util.bytes("admin"), getName());
-			// } else if (StringUtils.equals("test", username)) {
-			// return new SimpleAuthenticationInfo(new ShiroUser("test",
-			// "test"),
-			// "test", ByteSource.Util.bytes("test"), getName());
-			// }
 			return null;
 	}
 
@@ -175,6 +163,14 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 		private static final long serialVersionUID = -1373760761780840081L;
 		public String loginName;
 		public String name;
+		public String displayName;
+
+		public ShiroUser(String loginName, String firstName, String lastName) {
+			this.loginName = loginName;
+			this.name = firstName;
+			this.displayName = (StringUtils.isBlank(firstName) ? "" : firstName)
+					+ (StringUtils.isBlank(lastName) ? "" : lastName);
+		}
 
 		public ShiroUser(String loginName, String name) {
 			this.loginName = loginName;
@@ -191,6 +187,10 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 		@Override
 		public String toString() {
 			return loginName;
+		}
+
+		public String getDisplayName() {
+			return displayName;
 		}
 
 		// /**

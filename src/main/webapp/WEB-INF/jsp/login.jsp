@@ -4,49 +4,10 @@
 <!DOCTYPE html>
 <html lang="cn">
 <head>
-<meta charset="utf-8">
 <title>Dashboard - Ace Admin</title>
+
 <sj:head jqueryui="true" locale="cn" />
-
-<meta name="description" content="overview &amp; stats">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- basic styles -->
-<link rel="stylesheet" href="<s:url value="css/bootstrap.min.css" />"
-	type="text/css" />
-<link rel="stylesheet" href="<s:url value="css/font-awesome.min.css" />"
-	type="text/css" />
-<!--[if IE 7]>
-		  <link rel="stylesheet" href="css/font-awesome-ie7.min.css" />
-		<![endif]-->
-
-<!-- page specific plugin styles -->
-
-
-<!-- ace styles -->
-<link rel="stylesheet" href="<s:url value="css/ace.min.css" />"
-	type="text/css" />
-<link rel="stylesheet" href="<s:url value="css/ace-rtl.min.css" />"
-	type="text/css" />
-<link rel="stylesheet" href="<s:url value="css/ace-skins.min.css" />"
-	type="text/css" />
-
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="css/ace-ie.min.css" />
-		<![endif]-->
-
-<!-- inline styles related to this page -->
-
-<!-- ace settings handler -->
-
-<script src="js/ace-extra.min.js"></script>
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
+<%@ include file="/WEB-INF/jsp/commons/csslibs.jsp"%>
 
 <style type="text/css">
 @font-face {
@@ -113,7 +74,7 @@
 
 													<div class="clearfix">
 														<label class="inline"> <input type="checkbox" name="rememberMe"
-															class="ace"> <span class="lbl"> 记住我</span>
+															class="ace" value="true" checked="checked"> <span class="lbl"> 记住我</span>
 														</label>
 
 														<button type="submit"

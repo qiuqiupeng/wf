@@ -13,6 +13,7 @@ import org.apache.struts2.convention.annotation.Results;
 
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.bean.AcordionItemBean;
+import me.leep.wf.services.system.impl.ShiroRealmImpl.ShiroUser;
 import me.leep.wf.util.BeanUtil;
 import me.leep.wf.util.FileUtil;
 
@@ -90,7 +91,7 @@ public class IndexAction extends EditAction {
 		if (!currentUser.isAuthenticated()) {
 			return "login";
 		} else {
-			this.setUsername(currentUser.getPrincipal().toString());
+			this.setUsername(((ShiroUser)currentUser.getPrincipal()).displayName);
 			
 			return SUCCESS;
 		}
