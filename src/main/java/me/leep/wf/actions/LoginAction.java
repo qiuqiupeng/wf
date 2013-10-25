@@ -22,7 +22,7 @@ import org.apache.struts2.convention.annotation.Results;
  */
 @Results({ @Result(name = "INDEX", location = "/index", type = "redirect") })
 public class LoginAction extends EditAction {
-	private static Logger logger = Logger.getLogger(LoginAction.class);  
+	private static Logger logger = Logger.getLogger(LoginAction.class);
 	private String username;
 	private String password;
 	private boolean rememberMe;
@@ -77,46 +77,38 @@ public class LoginAction extends EditAction {
 	 */
 	private static final long serialVersionUID = 66427915185034101L;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.opensymphony.xwork2.ActionSupport#execute()
-	 */
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-//		System.out.println("--------" + username
-//				+ ">>>>>>>>>" + password + "<<<<<<<<<<<" + rememberMe);
-		logger.info(">>>>>>>>>>>>" + username + ">>>>>>>>>>>>登录成功");
-		
 		if (username == null)
 			return INPUT;
 		else {
-			//Example using most common scenario of username/password pair:
-			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+			// Example using most common scenario of username/password pair:
+			UsernamePasswordToken token = new UsernamePasswordToken(username,
+					password);
 
-			//”Remember Me” built-in:
+			// ”Remember Me” built-in:
 			token.setRememberMe(rememberMe);
-			
+
 			Subject currentUser = SecurityUtils.getSubject();
-			
+
 			try {
-			    currentUser.login( token );
-			    return "INDEX";
-			} catch ( UnknownAccountException uae ) {
-				//帐号不存在
+				currentUser.login(token);
+				logger.info("用户" + username + "成功登录系统");
+				return "INDEX";
+			} catch (UnknownAccountException uae) {
+				// 帐号不存在
 				return SUCCESS;
-			} catch ( IncorrectCredentialsException ice ) {
-				//认证失败
+			} catch (IncorrectCredentialsException ice) {
+				// 认证失败
 				return SUCCESS;
-			} catch ( LockedAccountException lae ) {
-				//用户被锁定
+			} catch (LockedAccountException lae) {
+				// 用户被锁定
 				return SUCCESS;
-			} catch ( AuthenticationException ae ) {
-				//认证错误
+			} catch (AuthenticationException ae) {
+				// 认证错误
 				return SUCCESS;
 			}
-			
+
 		}
 	}
 
