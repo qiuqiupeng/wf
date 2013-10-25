@@ -26,7 +26,7 @@
 	<div class="navbar navbar-default" id="navbar">
 		<script type="text/javascript">
 			try {
-				ace.settings.check('navbar', 'fixed')
+				ace.settings.check('navbar', 'fixed');
 			} catch (e) {
 			}
 		</script>
@@ -40,7 +40,7 @@
 			</div>
 			<!-- /.navbar-header -->
 
-			<div class="navbar-header pull-right" role="navigation">
+			<div class="navbar-header pull-right">
 				<ul class="nav ace-nav">
 					<li class="grey"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <i class="icon-tasks"></i> <span
@@ -52,7 +52,7 @@
 							<li class="dropdown-header"><i class="icon-ok"></i> 4 Tasks
 								to complete</li>
 
-							<li><a href="#">
+							<li><s:a href="#">
 									<div class="clearfix">
 										<span class="pull-left">Software Update</span> <span
 											class="pull-right">65%</span>
@@ -61,9 +61,9 @@
 									<div class="progress progress-mini ">
 										<div style="width: 65%" class="progress-bar "></div>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#">
+							<li><s:a href="#">
 									<div class="clearfix">
 										<span class="pull-left">Hardware Upgrade</span> <span
 											class="pull-right">35%</span>
@@ -73,9 +73,9 @@
 										<div style="width: 35%"
 											class="progress-bar progress-bar-danger"></div>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#">
+							<li><s:a href="#">
 									<div class="clearfix">
 										<span class="pull-left">Unit Testing</span> <span
 											class="pull-right">15%</span>
@@ -85,9 +85,9 @@
 										<div style="width: 15%"
 											class="progress-bar progress-bar-warning"></div>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#">
+							<li><s:a href="#">
 									<div class="clearfix">
 										<span class="pull-left">Bug Fixes</span> <span
 											class="pull-right">90%</span>
@@ -97,130 +97,138 @@
 										<div style="width: 90%"
 											class="progress-bar progress-bar-success"></div>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#"> See tasks with details <i
-									class="icon-arrow-right"></i>
-							</a></li>
+							<li><s:a href="#"> See tasks with details <i
+										class="icon-arrow-right"></i>
+								</s:a></li>
 						</ul></li>
 
-					<li class="purple"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"> <i
-							class="icon-bell-alt icon-animated-bell"></i> <span
-							class="badge badge-important">8</span>
-					</a>
+					<li class="purple"><s:a data-toggle="dropdown"
+							class="dropdown-toggle" href="#">
+							<i class="icon-bell-alt icon-animated-bell"></i>
+							<span class="badge badge-important">8</span>
+						</s:a>
 
 						<ul
 							class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 							<li class="dropdown-header"><i class="icon-warning-sign"></i>
 								8 Notifications</li>
 
-							<li><a href="#">
+							<li><s:a href="#">
 									<div class="clearfix">
 										<span class="pull-left"> <i
 											class="btn btn-xs no-hover btn-pink icon-comment"></i> New
 											Comments
 										</span> <span class="pull-right badge badge-info">+12</span>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#"> <i
-									class="btn btn-xs btn-primary icon-user"></i> Bob just signed
+							<li><s:a href="#">
+									<i class="btn btn-xs btn-primary icon-user"></i> Bob just signed
 									up as an editor ...
-							</a></li>
+							</s:a></li>
 
-							<li><a href="#">
+							<li><s:a href="#">
 									<div class="clearfix">
 										<span class="pull-left"> <i
 											class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
 											New Orders
 										</span> <span class="pull-right badge badge-success">+8</span>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#">
+							<li><s:a href="#">
 									<div class="clearfix">
 										<span class="pull-left"> <i
 											class="btn btn-xs no-hover btn-info icon-twitter"></i>
 											Followers
 										</span> <span class="pull-right badge badge-info">+11</span>
 									</div>
-							</a></li>
+								</s:a></li>
 
-							<li><a href="#"> See all notifications <i
-									class="icon-arrow-right"></i>
-							</a></li>
+							<li><s:a href="#"> See all notifications <i
+										class="icon-arrow-right"></i>
+								</s:a></li>
 						</ul></li>
 
-					<li class="green"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"> <i
-							class="icon-envelope icon-animated-vertical"></i> <span
-							class="badge badge-success">5</span>
-					</a>
+					<li class="green"><s:a data-toggle="dropdown"
+							class="dropdown-toggle" href="#">
+							<i class="icon-envelope icon-animated-vertical"></i>
+							<span class="badge badge-success">5</span>
+						</s:a>
 
 						<ul
 							class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 							<li class="dropdown-header"><i class="icon-envelope-alt"></i>
 								5 Messages</li>
 
-							<li><a href="#"> <img src="avatars/avatar.png"
-									class="msg-photo" alt="Alex's Avatar"> <span
-									class="msg-body"> <span class="msg-title"> <span
-											class="blue">Alex:</span> Ciao sociis natoque penatibus et
-											auctor ...
+							<li><s:a href="#">
+									<img src="avatars/avatar.png" class="msg-photo"
+										alt="Alex's Avatar">
+									<span class="msg-body"> <span class="msg-title">
+											<span class="blue">Alex:</span> Ciao sociis natoque penatibus
+											et auctor ...
 									</span> <span class="msg-time"> <i class="icon-time"></i> <span>a
 												moment ago</span>
 									</span>
-								</span>
-							</a></li>
+									</span>
+								</s:a></li>
 
-							<li><a href="#"> <img src="avatars/avatar3.png"
-									class="msg-photo" alt="Susan's Avatar"> <span
-									class="msg-body"> <span class="msg-title"> <span
-											class="blue">Susan:</span> Vestibulum id ligula porta felis
-											euismod ...
+							<li><s:a href="#">
+									<img src="avatars/avatar3.png" class="msg-photo"
+										alt="Susan's Avatar">
+									<span class="msg-body"> <span class="msg-title">
+											<span class="blue">Susan:</span> Vestibulum id ligula porta
+											felis euismod ...
 									</span> <span class="msg-time"> <i class="icon-time"></i> <span>20
 												minutes ago</span>
 									</span>
-								</span>
-							</a></li>
+									</span>
+								</s:a></li>
 
-							<li><a href="#"> <img src="avatars/avatar4.png"
-									class="msg-photo" alt="Bob's Avatar"> <span
-									class="msg-body"> <span class="msg-title"> <span
-											class="blue">Bob:</span> Nullam quis risus eget urna mollis
-											ornare ...
+							<li><s:a href="#">
+									<img src="avatars/avatar4.png" class="msg-photo"
+										alt="Bob's Avatar">
+									<span class="msg-body"> <span class="msg-title">
+											<span class="blue">Bob:</span> Nullam quis risus eget urna
+											mollis ornare ...
 									</span> <span class="msg-time"> <i class="icon-time"></i> <span>3:15
 												pm</span>
 									</span>
-								</span>
-							</a></li>
+									</span>
+								</s:a></li>
 
-							<li><a href="inbox"> See all messages <i
-									class="icon-arrow-right"></i>
-							</a></li>
+							<li><s:a href="inbox"> See all messages <i
+										class="icon-arrow-right"></i>
+								</s:a></li>
 						</ul></li>
 
-					<li class="light-blue"><a data-toggle="dropdown" href="#"
-						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="img/avatar-1.png" alt="Jason's Photo"> <span
-							class="user-info"> <small>欢迎,</small> <s:label
+					<li class="light-blue"><s:a data-toggle="dropdown" href="#"
+							class="dropdown-toggle">
+							<img class="nav-user-photo" src="img/avatar-1.png"
+								alt="Jason's Photo">
+							<span class="user-info"> <small>欢迎,</small> <s:label
 									name="username" />
-						</span> <i class="icon-caret-down"></i>
-					</a>
+							</span>
+							<i class="icon-caret-down"></i>
+						</s:a>
 
 						<ul
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="#"> <i class="icon-cog"></i> 设定
-							</a></li>
+							<li><s:a href="#">
+									<i class="icon-cog"></i> 设定
+							</s:a></li>
 
-							<li><a href="#"> <i class="icon-user"></i> 配置
-							</a></li>
+							<li><s:a href="#">
+									<i class="icon-user"></i> 配置
+							</s:a></li>
 
 							<li class="divider"></li>
 
-							<li><a href="#"> <i class="icon-off"></i> 注销
-							</a></li>
+							<li><s:a href="#">
+									<i class="icon-off"></i> 注销
+							</s:a></li>
 						</ul></li>
 				</ul>
 				<!-- /.ace-nav -->
@@ -233,7 +241,7 @@
 	<div class="main-container" id="main-container">
 		<script type="text/javascript">
 			try {
-				ace.settings.check('main-container', 'fixed')
+				ace.settings.check('main-container', 'fixed');
 			} catch (e) {
 			}
 		</script>
@@ -285,9 +293,10 @@
 				</div>
 
 				<ul class="nav nav-list">
-					<li class="active"><a href="index"> <i
-							class="icon-dashboard"></i> <span class="menu-text"> 我的驾驶舱 </span>
-					</a></li>
+					<li class="active"><s:a href="index"> <i
+								class="icon-dashboard"></i>
+							<span class="menu-text"> 我的驾驶舱 </span>
+						</s:a></li>
 
 					<s:iterator value="items">
 						<s:if test="isleaf">
@@ -323,8 +332,8 @@
 
 												<ul class="submenu">
 													<s:iterator value="subMenu">
-														<li><sj:a onClickTopics="openURL"
-																id="%{getText(id)}" href="#">
+														<li><sj:a onClickTopics="openURL" id="%{getText(id)}"
+																href="#">
 																<i class="<s:property value="icon" />"></i>
 																<s:property value="name" />
 															</sj:a></li>
@@ -359,7 +368,7 @@
 				<div class="breadcrumbs" id="breadcrumbs">
 					<script type="text/javascript">
 						try {
-							ace.settings.check('breadcrumbs', 'fixed')
+							ace.settings.check('breadcrumbs', 'fixed');
 						} catch (e) {
 						}
 					</script>
@@ -648,8 +657,7 @@
 														<tr>
 															<td>internet.com</td>
 
-															<td><small> <s class="red">$29.99</s>
-															</small> <b class="green">$19.99</b></td>
+															<td><small> </small> <b class="green">$19.99</b></td>
 
 															<td class="hidden-480"><span
 																class="label label-info arrowed-right arrowed-in">on
@@ -659,8 +667,7 @@
 														<tr>
 															<td>online.com</td>
 
-															<td><small> <s class="red"></s>
-															</small> <b class="green">$16.45</b></td>
+															<td><small> </small> <b class="green">$16.45</b></td>
 
 															<td class="hidden-480"><span
 																class="label label-success arrowed-in arrowed-in-right">approved</span>
@@ -670,8 +677,7 @@
 														<tr>
 															<td>newnet.com</td>
 
-															<td><small> <s class="red"></s>
-															</small> <b class="green">$15.00</b></td>
+															<td><small> </small> <b class="green">$15.00</b></td>
 
 															<td class="hidden-480"><span
 																class="label label-danger arrowed">pending</span></td>
@@ -680,19 +686,16 @@
 														<tr>
 															<td>web.com</td>
 
-															<td><small> <s class="red">$24.99</s>
-															</small> <b class="green">$19.95</b></td>
+															<td><small> </small> <b class="green">$19.95</b></td>
 
 															<td class="hidden-480"><span class="label arrowed">
-																	<s>out of stock</s>
-															</span></td>
+																	out of stock </span></td>
 														</tr>
 
 														<tr>
 															<td>domain.com</td>
 
-															<td><small> <s class="red"></s>
-															</small> <b class="green">$12.00</b></td>
+															<td><small> </small> <b class="green">$12.00</b></td>
 
 															<td class="hidden-480"><span
 																class="label label-warning arrowed arrowed-right">SOLD</span>
@@ -1567,7 +1570,7 @@
 															: 1000,
 													size : size
 												});
-							})
+							});
 
 			$('.sparkline').each(
 					function() {
@@ -1606,7 +1609,7 @@
 				label : "other",
 				data : 10,
 				color : "#FEE074"
-			} ]
+			} ];
 			function drawPieChart(placeholder, data, position) {
 				$.plot(placeholder, data, {
 					series : {
@@ -1633,7 +1636,7 @@
 						hoverable : true,
 						clickable : true
 					}
-				})
+				});
 			}
 			drawPieChart(placeholder, data);
 
@@ -1730,7 +1733,7 @@
 			});
 			function tooltip_placement(context, source) {
 				var $source = $(source);
-				var $parent = $source.closest('.tab-content')
+				var $parent = $source.closest('.tab-content');
 				var off1 = $parent.offset();
 				var w1 = $parent.width();
 
@@ -1781,7 +1784,7 @@
 							$(this).closest('li').removeClass('selected');
 					});
 
-		})
+		});
 	</script>
 </body>
 </html>
