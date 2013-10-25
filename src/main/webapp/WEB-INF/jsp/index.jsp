@@ -84,7 +84,7 @@
 									</div>
 								</s:a></li>
 
-							<li><s:a href="#"> See tasks with details <i
+							<li><s:a href="#"> 查看所有任务 <i
 										class="icon-arrow-right"></i>
 								</s:a></li>
 						</ul></li>
