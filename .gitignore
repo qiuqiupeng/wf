@@ -1,6 +1,6 @@
 /target
 /log.txt
-/.externalToolBuilders
 /.project
-/.settings
 /.springBeans
+/.settings
+/.externalToolBuilders
