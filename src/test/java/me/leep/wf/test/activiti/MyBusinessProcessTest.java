@@ -1,6 +1,5 @@
 package me.leep.wf.test.activiti;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,30 +36,15 @@ public class MyBusinessProcessTest {
 	@Test
 	public void simpleProcessTest() {
 
-		// String deploymentId = repositoryService
-		// .createDeployment()
-		// .addClasspathResource(
-		// "activiti/autodeployment/VacationRequest.bpmn20.xml")
-		// .deploy().getId();
-
-		// System.out.println(repositoryService.createDeploymentQuery().count());
-
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("employeeName", "Kermit");
 		variables.put("numberOfDays", new Integer(4));
 		variables.put("vacationMotivation", "I'm really tired!");
 
-//		ProcessInstance processInstance = runtimeService
-//				.startProcessInstanceByKey("vacationRequest", variables);
-
-		List<Task> tasks = taskService.createTaskQuery().list();// .singleResult();
-		// assertEquals("My Task", task.getName());
+		List<Task> tasks = taskService.createTaskQuery().list();
 
 		for (Task task : tasks)
-
-			//taskService.deleteTask(task.getId());
-		taskService.complete(task.getId());
-		// assertEquals(0, runtimeService.createProcessInstanceQuery().count());
+			taskService.complete(task.getId());
 
 	}
 

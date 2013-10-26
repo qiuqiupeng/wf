@@ -9,7 +9,7 @@ import me.leep.wf.util.ResourceLoaderUtil;
 import org.apache.struts2.StrutsSpringTestCase;
 import org.apache.struts2.dispatcher.Dispatcher;
 
-public class BaseActionTest extends StrutsSpringTestCase {
+public abstract class BaseActionTest extends StrutsSpringTestCase {
 	
 	@Override
 	public String[] getContextLocations() {

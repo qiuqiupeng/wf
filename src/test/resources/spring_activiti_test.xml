@@ -65,7 +65,6 @@
 		p:partitionCount="${bonecp.partitionCount}" p:acquireIncrement="${bonecp.acquireIncrement}"
 		p:statementsCacheSize="${bonecp.statementsCacheSize}"
 		p:disableConnectionTracking="${bonecp.disableConnectionTracking}"
-		p:releaseHelperThreads="${bonecp.releaseHelperThreads}"
-		destroy-method="close" />
+		p:releaseHelperThreads="${bonecp.releaseHelperThreads}" />
 
 </beans>

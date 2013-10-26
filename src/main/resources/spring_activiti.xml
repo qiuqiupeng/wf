@@ -25,8 +25,9 @@
 		<property name="jpaCloseEntityManager" value="true" />
 		<property name="jobExecutorActivate" value="false" />
 		<property name="history" value="full" />
-		<property name="deploymentResources" value="classpath*:/activiti/autodeployment/*.bpmn20.xml" />
-		
+		<property name="deploymentResources"
+			value="classpath*:/activiti/autodeployment/*.bpmn20.xml" />
+
 
 	</bean>
 
@@ -61,7 +62,6 @@
 		p:partitionCount="${bonecp.partitionCount}" p:acquireIncrement="${bonecp.acquireIncrement}"
 		p:statementsCacheSize="${bonecp.statementsCacheSize}"
 		p:disableConnectionTracking="${bonecp.disableConnectionTracking}"
-		p:releaseHelperThreads="${bonecp.releaseHelperThreads}"
-		destroy-method="close" />
+		p:releaseHelperThreads="${bonecp.releaseHelperThreads}" />
 
 </beans>
