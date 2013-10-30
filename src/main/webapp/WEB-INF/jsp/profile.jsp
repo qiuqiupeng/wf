@@ -42,8 +42,7 @@
 		<div class="page-content">
 			<div class="page-header">
 				<h1>
-					用户配置页面 <small> <i class="icon-double-angle-right"></i> 3
-						styles with inline editable feature
+					用户配置页面 <small> <i class="icon-double-angle-right"></i> 查看和配置你的个人信息
 					</small>
 				</h1>
 			</div>
@@ -62,7 +61,7 @@
 								<div>
 									<span class="profile-picture"> <img id="avatar"
 										class="editable img-responsive" alt="Alex's Avatar"
-										src="avatars/profile-pic.jpg">
+										src="ShowPic.slt">
 									</span>
 
 									<div class="space-4"></div>
