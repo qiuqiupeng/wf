@@ -206,7 +206,7 @@
 
 					<li class="light-blue"><s:a data-toggle="dropdown" href="#"
 							class="dropdown-toggle">
-							<img class="nav-user-photo" src="img/avatar-1.png"
+							<img class="nav-user-photo" src="ShowPic.slt"
 								alt="Jason's Photo">
 							<span class="user-info"> <small>欢迎,</small> <s:label
 									name="username" />
