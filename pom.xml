@@ -464,35 +464,20 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
-
 			<plugin>
-
 				<groupId>org.mortbay.jetty</groupId>
-
 				<artifactId>jetty-maven-plugin</artifactId>
-
 				<configuration>
-
 					<scanIntervalSeconds>10</scanIntervalSeconds>
-
 					<webApp>
-
-						<contextPath>/wf</contextPath><!--访问路径如 localhost:8888/student -->
-
+						<contextPath>/wf</contextPath><!--访问路径如 localhost:8888/wf -->
 					</webApp>
-
 					<connectors>
-
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-
 							<port>8888</port><!-- 端口 -->
-
 							<maxIdleTime>60000</maxIdleTime><!-- 连接超时 -->
-
 						</connector>
-
 					</connectors>
-
 				</configuration>
 
 			</plugin>
