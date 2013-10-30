@@ -1,110 +1,166 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/commons/taglibs.jsp"%>
 
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+<title>User Profile Page - Ace Admin</title>
+<sj:head jqueryui="true" locale="cn" />
+<%@ include file="/WEB-INF/jsp/commons/csslibs.jsp"%>
+</head>
 
-<s:form id="form" action="echo" theme="simple"
-	cssClass="form-horizontal no-margin">
-	<div class="page-header">
-		<div class="pull-left">
-			<h2>用户配置</h2>
-		</div>
+<body>
+	<div>
+		<div class="breadcrumbs" id="breadcrumbs">
+			<script type="text/javascript">
+				try {
+					ace.settings.check('breadcrumbs', 'fixed');
+				} catch (e) {
+				}
+			</script>
 
+			<ul class="breadcrumb">
+				<li><i class="icon-home home-icon"></i> <a href="#">Home</a></li>
 
-		<!-- 操作框 开始 -->
-		<div class="btn-group input-top-margin pull-right">
-			<button class="btn btn-info">操作</button>
-			<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">
-				<span class="caret"> </span>
-			</button>
-			<ul class="dropdown-menu pull-right">
-				<li><a href="#" data-original-title=""> <span class="fs1"
-						data-icon="&#xe024;"></span> 新增
-				</a></li>
-				<li><a href="#" data-original-title=""> <span class="fs1"
-						data-icon="&#xe060;"></span> 保存
-				</a></li>
-				<li><a href="#" data-original-title=""> <span class="fs1"
-						data-icon="&#xe0fa;"></span> 删除
-				</a></li>
-				<li><s:url id="profile" value="/profile!save.action" /> <sj:a
-						id="ajaxformlink" formIds="form" targets="content"
-						href="%{profile}">
-      测试
-    </sj:a></li>
+				<li><a href="#">More Pages</a></li>
+				<li class="active">User Profile</li>
 			</ul>
+			<!-- .breadcrumb -->
+
+			<div class="nav-search" id="nav-search">
+				<form class="form-search">
+					<span class="input-icon"> <input type="text"
+						placeholder="Search ..." class="nav-search-input"
+						id="nav-search-input" autocomplete="off"> <i
+						class="icon-search nav-search-icon"></i>
+					</span>
+				</form>
+			</div>
+			<!-- #nav-search -->
 		</div>
-		<!-- 操作框 结束-->
-		<div class="clearfix"></div>
-	</div>
 
-	<div class="row-fluid">
-		<div class="span12">
-			<div class="widget no-margin">
-				<s:if test="hasActionMessages()">
-					<div class="alert alert-block alert-success fade in">
-						<button data-dismiss="alert" class="close" type="button">
-							×</button>
-						<h4 class="alert-heading">成功!</h4>
-						<p>
-							<s:label name="messages" />
-						</p>
-					</div>
-				</s:if>
+		<div class="page-content">
+			<div class="page-header">
+				<h1>
+					用户配置页面 <small> <i class="icon-double-angle-right"></i> 3
+						styles with inline editable feature
+					</small>
+				</h1>
+			</div>
+			<!-- /.page-header -->
 
-				<div class="widget-header">
-					<div class="title">
-						<span class="fs1" data-icon="&#xe075;"></span> 编辑配置
-					</div>
-				</div>
-				<div class="widget-body">
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="span12">
-								<h5>登录 信息</h5>
-								<hr>
-								<div class="span6">
-									<div class="control-group">
-										<label class="control-label"> 用户名 </label>
-										<div class="controls controls-row">
-											<s:textfield name="userName" cssClass="span12" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label"> Email ID </label>
-										<div class="controls controls-row">
-											<s:textfield name="email" cssClass="span12" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label"> 密码 </label>
-										<div class="controls controls-row">
-											<s:password name="password" cssClass="span12" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label"> 确认密码 </label>
-										<div class="controls controls-row">
-											<s:password name="repassword" cssClass="span12" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label"> 姓名 </label>
-										<div class="controls controls-row">
-											<s:textfield name="name" cssClass="span12" />
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+
+				
+
+
+					<div>
+						<div id="user-profile-1" class="user-profile row">
+							<div class="col-xs-12 col-sm-3 center">
+								<div>
+									<span class="profile-picture"> <img id="avatar"
+										class="editable img-responsive" alt="Alex's Avatar"
+										src="avatars/profile-pic.jpg">
+									</span>
+
+									<div class="space-4"></div>
+
+									<div
+										class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+										<div class="inline position-relative">
+											<a href="#" class="user-title-label dropdown-toggle"
+												data-toggle="dropdown"> <i
+												class="icon-circle light-green middle"></i> &nbsp; <span
+												class="white">Alex M. Doe</span>
+											</a>
+
+											<ul
+												class="align-left dropdown-menu dropdown-caret dropdown-lighter">
+												<li class="dropdown-header">Change Status</li>
+
+												<li><a href="#"> <i class="icon-circle green"></i>
+														&nbsp; <span class="green">Available</span>
+												</a></li>
+
+												<li><a href="#"> <i class="icon-circle red"></i>
+														&nbsp; <span class="red">Busy</span>
+												</a></li>
+
+												<li><a href="#"> <i class="icon-circle grey"></i>
+														&nbsp; <span class="grey">Invisible</span>
+												</a></li>
+											</ul>
 										</div>
 									</div>
 								</div>
-								<div class="span2 offset3">
-									<div class="thumbnail">
-										<img alt="300x200" src="img/profile.png">
-										<div class="caption">
-											<p class="no-margin">
-												<a href="#" class="btn btn-info"> Edit </a> <a href="#"
-													class="btn"> Cancel </a>
-											</p>
+
+								<div class="space-6"></div>
+
+
+
+								<div class="hr hr16 dotted"></div>
+							</div>
+
+							<div class="col-xs-12 col-sm-9">
+
+
+								<div class="space-12"></div>
+
+								<div class="profile-user-info profile-user-info-striped">
+									<div class="profile-info-row">
+										<div class="profile-info-name">用户名</div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="username">alexdoe</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name">Location</div>
+
+										<div class="profile-info-value">
+											<i class="icon-map-marker light-orange bigger-110"></i> <span
+												class="editable" id="country">Netherlands</span> <span
+												class="editable" id="city">Amsterdam</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name">Age</div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="age">38</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name">Joined</div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="signup">20/06/2010</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name">Last Online</div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="login">3 hours ago</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name">About Me</div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="about">Editable as WYSIWYG</span>
 										</div>
 									</div>
 								</div>
+
+								<div class="space-20"></div>
 							</div>
 						</div>
 					</div>
@@ -112,4 +168,8 @@
 			</div>
 		</div>
 	</div>
-</s:form>
+
+	<!-- /.main-container -->
+
+</body>
+</html>

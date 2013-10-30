@@ -220,9 +220,9 @@
 									<i class="icon-cog"></i> 设定
 							</s:a></li>
 
-							<li><s:a href="#">
+							<li><s:url id="profileURL" action="profile"/><sj:a href="%{profileURL}" targets="content">
 									<i class="icon-user"></i> 配置
-							</s:a></li>
+							</sj:a></li>
 
 							<li class="divider"></li>
 
@@ -690,6 +690,41 @@
 
 
 
+<!-- basic scripts -->
+<script type="text/javascript">
+	if ("ontouchend" in document)
+		document.write("<script src='js/jquery.mobile.custom.min.js'>"
+				+ "<"+"/script>");
+</script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-wysiwyg.min.js"></script>
+<script src="js/typeahead-bs2.min.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
+<script src="js/jquery.easy-pie-chart.min.js"></script>
+<script src="js/jquery.sparkline.min.js"></script>
+<script src="js/flot/jquery.flot.min.js"></script>
+<script src="js/flot/jquery.flot.pie.min.js"></script>
+<script src="js/flot/jquery.flot.resize.min.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
+
+
+<script src="js/select2.min.js"></script>
+<script src="js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="js/fuelux/fuelux.spinner.min.js"></script>
+<script src="js/x-editable/bootstrap-editable.min.js"></script>
+<script src="js/x-editable/ace-editable.min.js"></script>
+
+<!-- ace scripts -->
+
+<script src="js/ace-elements.min.js"></script>
+<script src="js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
 
 	<!-- inline scripts related to this page -->
 
