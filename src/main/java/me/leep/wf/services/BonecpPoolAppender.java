@@ -55,28 +55,25 @@ public class BonecpPoolAppender extends JDBCAppender {
 		} else {
 			try {
 				if (dataSource == null) {
-
 					Properties p = PropertiesUtil.loadPropertiesFile(FileUtil
 							.getFile("hibernate.properties"));
 
-					 Class.forName(p.getProperty("hibernate.connection.driver"));
-					 String url = p.getProperty("hibernate.connection.url");
-					 String username = p
-					 .getProperty("hibernate.connection.username");
-					 String password = p
-					 .getProperty("hibernate.connection.password");
-					 connection = DriverManager.getConnection(url, username,
-					 password);
-
-
-				} else 
+					Class.forName(p.getProperty("hibernate.connection.driver"));
+					String url = p.getProperty("hibernate.connection.url");
+					String username = p
+							.getProperty("hibernate.connection.username");
+					String password = p
+							.getProperty("hibernate.connection.password");
+					connection = DriverManager.getConnection(url, username,
+							password);
+				} else
 					connection = dataSource.getConnection();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
 			return connection;
 		}
-		
+
 	}
 
 	/**
