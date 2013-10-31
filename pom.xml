@@ -8,6 +8,7 @@
 	<description />
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jetty.version>8.1.13.v20130916</jetty.version>
 		<struts.version>2.3.14</struts.version>
 		<spring.version>3.2.4.RELEASE</spring.version>
 		<hibernate.version>4.2.6.Final</hibernate.version>
@@ -16,7 +17,7 @@
 		<poi.version>3.9</poi.version>
 		<ehcache.version>2.5.2</ehcache.version>
 		<activiti.version>5.13</activiti.version>
-		<bootstrap.version>1.6.1</bootstrap.version>
+		<xstream.version>1.4.5</xstream.version>
 		<jquery.version>3.6.1</jquery.version>
 		<shiro.version>1.2.2</shiro.version>
 	</properties>
@@ -439,10 +440,11 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>xstream</groupId>
+			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
-			<version>1.2.2</version>
+			<version>${xstream.version}</version>
 		</dependency>
+
 
 	</dependencies>
 
@@ -467,6 +469,7 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>
