@@ -1,6 +1,5 @@
 package me.leep.wf.test.dao;
 
-import static org.junit.Assert.*;
 
 
 import me.leep.wf.dao.IBaseDAO;

@@ -199,15 +199,15 @@
 									</span>
 								</s:a></li>
 
-							<li><s:a href="inbox"> See all messages <i
+							<li><s:url id="inboxURL" action="inbox"></s:url>
+								<sj:a href="%{inboxURL}" targets="content"> See all messages <i
 										class="icon-arrow-right"></i>
-								</s:a></li>
+								</sj:a></li>
 						</ul></li>
 
 					<li class="light-blue"><s:a data-toggle="dropdown" href="#"
 							class="dropdown-toggle">
-							<img class="nav-user-photo" src="ShowPic.slt"
-								alt="Jason's Photo">
+							<img class="nav-user-photo" src="ShowPic.slt" alt="Jason's Photo">
 							<span class="user-info"> <small>欢迎,</small> <s:label
 									name="username" />
 							</span>
@@ -220,7 +220,8 @@
 									<i class="icon-cog"></i> 设定
 							</s:a></li>
 
-							<li><s:url id="profileURL" action="profile"/><sj:a href="%{profileURL}" targets="content">
+							<li><s:url id="profileURL" action="profile" />
+								<sj:a href="%{profileURL}" targets="content">
 									<i class="icon-user"></i> 配置
 							</sj:a></li>
 
@@ -293,8 +294,8 @@
 				</div>
 
 				<ul class="nav nav-list">
-					<li class="active"><s:a href="index"> <i
-								class="icon-dashboard"></i>
+					<li class="active"><s:a href="index">
+							<i class="icon-dashboard"></i>
 							<span class="menu-text"> 我的驾驶舱 </span>
 						</s:a></li>
 
@@ -690,41 +691,41 @@
 
 
 
-<!-- basic scripts -->
-<script type="text/javascript">
-	if ("ontouchend" in document)
-		document.write("<script src='js/jquery.mobile.custom.min.js'>"
-				+ "<"+"/script>");
-</script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-wysiwyg.min.js"></script>
-<script src="js/typeahead-bs2.min.js"></script>
+	<!-- basic scripts -->
+	<script type="text/javascript">
+		if ("ontouchend" in document)
+			document.write("<script src='js/jquery.mobile.custom.min.js'>"
+					+ "<"+"/script>");
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-wysiwyg.min.js"></script>
+	<script src="js/typeahead-bs2.min.js"></script>
 
-<!-- page specific plugin scripts -->
+	<!-- page specific plugin scripts -->
 
-<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="js/jquery.ui.touch-punch.min.js"></script>
-<script src="js/jquery.slimscroll.min.js"></script>
-<script src="js/jquery.easy-pie-chart.min.js"></script>
-<script src="js/jquery.sparkline.min.js"></script>
-<script src="js/flot/jquery.flot.min.js"></script>
-<script src="js/flot/jquery.flot.pie.min.js"></script>
-<script src="js/flot/jquery.flot.resize.min.js"></script>
-<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/jquery.ui.touch-punch.min.js"></script>
+	<script src="js/jquery.slimscroll.min.js"></script>
+	<script src="js/jquery.easy-pie-chart.min.js"></script>
+	<script src="js/jquery.sparkline.min.js"></script>
+	<script src="js/flot/jquery.flot.min.js"></script>
+	<script src="js/flot/jquery.flot.pie.min.js"></script>
+	<script src="js/flot/jquery.flot.resize.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
 
 
-<script src="js/select2.min.js"></script>
-<script src="js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="js/fuelux/fuelux.spinner.min.js"></script>
-<script src="js/x-editable/bootstrap-editable.min.js"></script>
-<script src="js/x-editable/ace-editable.min.js"></script>
+	<script src="js/select2.min.js"></script>
+	<script src="js/date-time/bootstrap-datepicker.min.js"></script>
+	<script src="js/fuelux/fuelux.spinner.min.js"></script>
+	<script src="js/x-editable/bootstrap-editable.min.js"></script>
+	<script src="js/x-editable/ace-editable.min.js"></script>
 
-<!-- ace scripts -->
+	<!-- ace scripts -->
 
-<script src="js/ace-elements.min.js"></script>
-<script src="js/ace.min.js"></script>
+	<script src="js/ace-elements.min.js"></script>
+	<script src="js/ace.min.js"></script>
 
-<!-- inline scripts related to this page -->
+	<!-- inline scripts related to this page -->
 
 	<!-- inline scripts related to this page -->
 
