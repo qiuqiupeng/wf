@@ -4,8 +4,6 @@
 <html>
 <head>
 
-<sb:head includeScripts="true" includeStyles="false"
-	includeStylesResponsive="true" />
 <sj:head jqueryui="true" locale="cn" />
 
 <style type="text/css">
