@@ -54,17 +54,6 @@
 	</bean>
 	<!-- Activiti end -->
 
-	<!-- BoneCP -->
-	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
-		p:driverClass="${hibernate.connection.driver}" p:jdbcUrl="${hibernate.connection.url}"
-		p:username="${hibernate.connection.username}" p:password="${hibernate.connection.password}"
-		p:idleConnectionTestPeriodInMinutes="${bonecp.idleConnectionTestPeriodInMinutes}"
-		p:idleMaxAgeInMinutes="${bonecp.idleMaxAgeInMinutes}"
-		p:maxConnectionsPerPartition="${bonecp.maxConnectionsPerPartition}"
-		p:minConnectionsPerPartition="${bonecp.minConnectionsPerPartition}"
-		p:partitionCount="${bonecp.partitionCount}" p:acquireIncrement="${bonecp.acquireIncrement}"
-		p:statementsCacheSize="${bonecp.statementsCacheSize}"
-		p:disableConnectionTracking="${bonecp.disableConnectionTracking}"
-		p:releaseHelperThreads="${bonecp.releaseHelperThreads}" />
+
 
 </beans>

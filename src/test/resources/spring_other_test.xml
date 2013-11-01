@@ -48,16 +48,17 @@
 	<!-- 定义entity管理工厂对象 -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
 		<property name="jpaProperties">
-            <props>
-                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
-                <prop key="net.sf.ehcache.configurationResourceName">ehcache-hibernate-local.xml</prop>
-                <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
-            </props>
-        </property>
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
+				</prop>
+				<prop key="net.sf.ehcache.configurationResourceName">ehcache-hibernate-local.xml</prop>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+			</props>
+		</property>
 	</bean>
 
 	<!-- 配置事务管理器 -->
@@ -65,4 +66,17 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
+	<!-- BoneCP -->
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		p:driverClass="${hibernate.connection.driver}" p:jdbcUrl="${hibernate.connection.url}"
+		p:username="${hibernate.connection.username}" p:password="${hibernate.connection.password}"
+		p:idleConnectionTestPeriodInMinutes="${bonecp.idleConnectionTestPeriodInMinutes}"
+		p:idleMaxAgeInMinutes="${bonecp.idleMaxAgeInMinutes}"
+		p:maxConnectionsPerPartition="${bonecp.maxConnectionsPerPartition}"
+		p:minConnectionsPerPartition="${bonecp.minConnectionsPerPartition}"
+		p:partitionCount="${bonecp.partitionCount}" p:acquireIncrement="${bonecp.acquireIncrement}"
+		p:statementsCacheSize="${bonecp.statementsCacheSize}"
+		p:disableConnectionTracking="${bonecp.disableConnectionTracking}"
+		p:releaseHelperThreads="${bonecp.releaseHelperThreads}" />
+		
 </beans>
