@@ -6,16 +6,18 @@ package me.leep.wf.actions;
 import java.io.Reader;
 import java.util.List;
 
+import me.leep.wf.actions.base.EditAction;
+import me.leep.wf.bean.AcordionItemBean;
+import me.leep.wf.services.system.aware.IMenuItemServices;
+import me.leep.wf.services.system.impl.ShiroRealmImpl.ShiroUser;
+import me.leep.wf.util.BeanUtil;
+import me.leep.wf.util.FileUtil;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-
-import me.leep.wf.actions.base.EditAction;
-import me.leep.wf.bean.AcordionItemBean;
-import me.leep.wf.services.system.impl.ShiroRealmImpl.ShiroUser;
-import me.leep.wf.util.BeanUtil;
-import me.leep.wf.util.FileUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author 李鹏
@@ -27,6 +29,9 @@ public class IndexAction extends EditAction {
 	
 
 	private List<AcordionItemBean> items;
+	
+	@Autowired
+	private IMenuItemServices services;
 
 	/**
 	 * @return username
@@ -53,9 +58,11 @@ public class IndexAction extends EditAction {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		Reader reader = FileUtil.getFile("resources/menuall.xml", "UTF-8");
-		items = (List<AcordionItemBean>) BeanUtil.xml2Bean(reader);
+//		Reader reader = FileUtil.getFile("resources/menuall.xml", "UTF-8");
+//		items = (List<AcordionItemBean>) BeanUtil.xml2Bean(reader);
+		
+		items = services.entity2vo();
+		
 		
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
@@ -80,6 +87,8 @@ public class IndexAction extends EditAction {
 	public void setItems(List<AcordionItemBean> items) {
 		this.items = items;
 	}
+	
+
 	
 
 }
