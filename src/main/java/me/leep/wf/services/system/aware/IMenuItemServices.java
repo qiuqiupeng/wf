@@ -6,7 +6,6 @@ package me.leep.wf.services.system.aware;
 import java.util.List;
 
 import me.leep.wf.bean.AcordionItemBean;
-import me.leep.wf.entity.system.ItemBean;
 import me.leep.wf.services.IBaseService;
 
 /**

@@ -3,15 +3,12 @@
  */
 package me.leep.wf.actions;
 
-import java.io.Reader;
 import java.util.List;
 
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.bean.AcordionItemBean;
 import me.leep.wf.services.system.aware.IMenuItemServices;
 import me.leep.wf.services.system.impl.ShiroRealmImpl.ShiroUser;
-import me.leep.wf.util.BeanUtil;
-import me.leep.wf.util.FileUtil;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -25,9 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Results({ @Result(name = "login", location = "/login", type = "redirect") })
 public class IndexAction extends EditAction {
-	private String username;
 	
-
+	private String username;
 	private List<AcordionItemBean> items;
 	
 	@Autowired
@@ -55,13 +51,11 @@ public class IndexAction extends EditAction {
 	/* (non-Javadoc)
 	 * @see com.opensymphony.xwork2.ActionSupport#execute()
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
 //		Reader reader = FileUtil.getFile("resources/menuall.xml", "UTF-8");
 //		items = (List<AcordionItemBean>) BeanUtil.xml2Bean(reader);
 		
-		items = services.entity2vo();
 		
 		
 		Subject currentUser = SecurityUtils.getSubject();
@@ -69,7 +63,7 @@ public class IndexAction extends EditAction {
 			return "login";
 		} else {
 			this.setUsername(((ShiroUser)currentUser.getPrincipal()).displayName);
-			
+			items = services.entity2vo();
 			return SUCCESS;
 		}
 	}

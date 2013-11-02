@@ -11,7 +11,6 @@ import me.leep.wf.entity.system.ItemBean;
 import me.leep.wf.repository.system.MenuItemRepository;
 import me.leep.wf.services.BaseServiceImpl;
 import me.leep.wf.services.system.aware.IMenuItemServices;
-import me.leep.wf.util.BeanUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,16 +60,6 @@ public class MenuItemServicesImpl extends BaseServiceImpl implements
 	public static List<AcordionItemBean> entity2vo(String parentId,
 			List<ItemBean> src) {
 		List<AcordionItemBean> target = getListByParentId(null, src);
-		// --------------打印---------------------------
-		String xml;
-		try {
-			xml = BeanUtil.bean2XML(target);
-			System.out.println(xml);
-		} catch (Exception e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		// ------------------------------------------
 		return target;
 	}
 
