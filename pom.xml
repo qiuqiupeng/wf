@@ -11,7 +11,7 @@
 		<jetty.version>8.1.13.v20130916</jetty.version>
 		<struts.version>2.3.14</struts.version>
 		<spring.version>3.2.4.RELEASE</spring.version>
-		<hibernate.version>4.2.6.Final</hibernate.version>
+		<hibernate.version>4.2.7.Final</hibernate.version>
 		<sl4j.version>1.7.5</sl4j.version>
 		<junit.version>4.11</junit.version>
 		<poi.version>3.9</poi.version>
