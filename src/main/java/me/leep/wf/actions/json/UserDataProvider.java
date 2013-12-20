@@ -4,7 +4,6 @@ import java.util.List;
 
 import me.leep.wf.actions.base.BaseDataProvider;
 import me.leep.wf.dto.BaseDto;
-import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
 
@@ -25,7 +24,10 @@ public class UserDataProvider extends BaseDataProvider {
 
 		initGridParam(UserBean.class);
 
-		List<BaseDto> result = userServices.findAll(UserBean.class, User.class, null,  getFrom(), getTo());
+		// List<BaseDto> result = userServices.findAll(UserBean.class,
+		// User.class, null, getFrom(), getTo());
+		List<BaseDto> result = userServices.findAll(getPage().intValue() - 1,
+				getTo() - getFrom());
 
 		this.setGridModel(result);
 

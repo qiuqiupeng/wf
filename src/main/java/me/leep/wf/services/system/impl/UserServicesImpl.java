@@ -3,11 +3,14 @@
  */
 package me.leep.wf.services.system.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.activiti.engine.IdentityService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import me.leep.wf.dto.BaseDto;
@@ -65,10 +68,11 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 		entity = new UserBean();
 		BeanUtil.copyBean(dto, entity);
 		EntityUtil.checkEntity(entity);
-		
+
 		userRepository.save(entity);
 
-		org.activiti.engine.identity.User user = identityService.newUser(entity.getId());
+		org.activiti.engine.identity.User user = identityService.newUser(entity
+				.getId());
 		user.setEmail(entity.getEmail());
 		user.setFirstName(entity.getName());
 		user.setPassword("");
@@ -77,7 +81,19 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 
 	}
 
+	public List<BaseDto> findAll(int page, int size) {
+		List<UserBean> beanList = userRepository.findAll(
+				new PageRequest(page, size)).getContent();
+		List<BaseDto> result = new ArrayList<BaseDto>();
+		for (int i = 0; i < beanList.size(); i++) {
+			BaseEntiy bean = (BaseEntiy) beanList.get(i);
+			BaseDto dto = new User();
+			BeanUtil.copyBean(bean, dto);
+			result.add(dto);
 
+		}
+		return result;
 
+	}
 
 }
