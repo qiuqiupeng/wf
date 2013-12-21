@@ -9,7 +9,7 @@ import me.leep.wf.entity.BaseEntiy;
  * 
  * @author 李鹏
  */
-
+@Deprecated
 public interface IBaseDAO {
 	/**
 	 * 新增保存

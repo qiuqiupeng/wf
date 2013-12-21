@@ -18,7 +18,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 数据访问对象的实现基类，实现了增删改查等基本功能。
@@ -26,8 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
  * @see me.leep.wf.entity.BaseDaoImpl
  * @author 李鹏
  */
-@SuppressWarnings("deprecation")
 @Repository("dao")
+@Deprecated
 public class BaseDaoImpl implements IBaseDAO {
 	// property constants
 	private EntityManagerFactory entityManagerFactory;
@@ -58,7 +57,6 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	@Transactional
 	public void save(BaseEntiy entity) {
 		LogUtil.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
 		try {
@@ -90,7 +88,6 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	@Transactional
 	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz) {
 		LogUtil.log(">>>>>>删除实体>>>>>>", Level.INFO, null);
 		try {
@@ -118,7 +115,6 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
-	@Transactional
 	public BaseEntiy update(BaseEntiy entity) {
 		LogUtil.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
 		try {
