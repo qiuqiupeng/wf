@@ -25,8 +25,8 @@ import org.springframework.stereotype.Repository;
  * @see me.leep.wf.entity.BaseDaoImpl
  * @author 李鹏
  */
+@SuppressWarnings("deprecation")
 @Repository("dao")
-@Deprecated
 public class BaseDaoImpl implements IBaseDAO {
 	// property constants
 	private EntityManagerFactory entityManagerFactory;
