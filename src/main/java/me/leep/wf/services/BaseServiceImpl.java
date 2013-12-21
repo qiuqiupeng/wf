@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author 李鹏
- * @param <T>
+ * @param <V>
+ * @param <P>
  * 
  */
-
 @Service("services")
-public class BaseServiceImpl implements IBaseService {
+public class BaseServiceImpl<V, P> implements IBaseService<V, P> {
 
 //	@Autowired
 //	IBaseDAO dao;

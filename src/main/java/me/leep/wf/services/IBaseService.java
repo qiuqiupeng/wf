@@ -7,7 +7,7 @@ package me.leep.wf.services;
  * 
  * @author 李鹏
  */
-public interface IBaseService {
+public interface IBaseService<V, P> {
 	/**
 	 * 保存实体
 	 * 

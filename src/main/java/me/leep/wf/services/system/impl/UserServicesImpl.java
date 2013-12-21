@@ -28,7 +28,7 @@ import me.leep.wf.util.EntityUtil;
  * 
  */
 @Service("userServices")
-public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
+public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy> implements IUserServices {
 	@Autowired
 	private IdentityService identityService;
 	@Autowired
