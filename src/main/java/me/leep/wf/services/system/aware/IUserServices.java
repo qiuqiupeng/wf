@@ -21,7 +21,6 @@ public interface IUserServices extends IBaseService {
 	User initUserDto(String id);
 
 	void save(BaseDto dto);
-	
 
 	void deleteList(String[] rowids);
 
