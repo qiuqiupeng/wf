@@ -114,6 +114,8 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 		}
 	}
 
-	
+	public Integer countAll() {
+		return Integer.valueOf((int) userRepository.count());
+	}
 	
 }

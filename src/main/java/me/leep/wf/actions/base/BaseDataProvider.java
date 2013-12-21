@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import me.leep.wf.dto.BaseDto;
-import me.leep.wf.services.IBaseService;
+//import me.leep.wf.services.IBaseService;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -19,7 +19,7 @@ public class BaseDataProvider extends BaseAction {
 	 */
 	private static final long serialVersionUID = -1576970319376091094L;
 
-	private IBaseService services;
+//	private IBaseService services;
 
 	// get how many rows we want to have into the grid - rowNum attribute in the
 	// grid
@@ -233,9 +233,9 @@ public class BaseDataProvider extends BaseAction {
 		return SUCCESS;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public void initGridParam(Class clazz) {
-		records = services.coutAll(clazz);
+	public void initGridParam(Integer beans) {
+//		records = services.coutAll(clazz);
+		records = beans;
 
 		if (totalrows != null) {
 			records = totalrows;
@@ -255,13 +255,13 @@ public class BaseDataProvider extends BaseAction {
 		total = (int) Math.ceil((double) records / (double) rows);
 	}
 
-	/**
-	 * @param services
-	 *            要设置的 services
-	 */
-	public void setServices(IBaseService services) {
-		this.services = services;
-	}
+//	/**
+//	 * @param services
+//	 *            要设置的 services
+//	 */
+//	public void setServices(IBaseService services) {
+//		this.services = services;
+//	}
 
 	/**
 	 * @return from

@@ -3,16 +3,8 @@
  */
 package me.leep.wf.services;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import me.leep.wf.dao.IBaseDAO;
-import me.leep.wf.dto.BaseDto;
-import me.leep.wf.entity.BaseEntiy;
-import me.leep.wf.util.BeanUtil;
 
 /**
  * @author 李鹏
@@ -20,12 +12,11 @@ import me.leep.wf.util.BeanUtil;
  * 
  */
 
-@SuppressWarnings({ "rawtypes", "unchecked" })
 @Service("services")
 public class BaseServiceImpl implements IBaseService {
 
-	@Autowired
-	IBaseDAO dao;
+//	@Autowired
+//	IBaseDAO dao;
 
 //	public void save(BaseDto dto, Class clazz) {
 //		BaseEntiy bean;
@@ -70,25 +61,25 @@ public class BaseServiceImpl implements IBaseService {
 //				rowStartIdxAndCount);
 //	}
 
-	public List<BaseDto> findAll(Class clazz, Class targetClass,String filterString,
-			int... rowStartIdxAndCount) {
-		List<BaseEntiy> beanList = dao.findAll(clazz, filterString, rowStartIdxAndCount);
-		List<BaseDto> result = new ArrayList<BaseDto>();
-		for (int i = 0; i < beanList.size(); i++) {
-			BaseEntiy bean = (BaseEntiy) beanList.get(i);
-			BaseDto dto;
-			try {
-				dto = (BaseDto) targetClass.newInstance();
-				BeanUtil.copyBean(bean, dto);
-				result.add(dto);
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	}
+//	public List<BaseDto> findAll(Class clazz, Class targetClass,String filterString,
+//			int... rowStartIdxAndCount) {
+//		List<BaseEntiy> beanList = dao.findAll(clazz, filterString, rowStartIdxAndCount);
+//		List<BaseDto> result = new ArrayList<BaseDto>();
+//		for (int i = 0; i < beanList.size(); i++) {
+//			BaseEntiy bean = (BaseEntiy) beanList.get(i);
+//			BaseDto dto;
+//			try {
+//				dto = (BaseDto) targetClass.newInstance();
+//				BeanUtil.copyBean(bean, dto);
+//				result.add(dto);
+//			} catch (InstantiationException e) {
+//				e.printStackTrace();
+//			} catch (IllegalAccessException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return result;
+//	}
 
 //	public void deleteList(String[] rowids, Class clazz) {
 //		for (int i = 0; i < rowids.length; i++) {
@@ -97,25 +88,25 @@ public class BaseServiceImpl implements IBaseService {
 //		}
 //	}
 
-	/**
-	 * @return dao
-	 */
-	public IBaseDAO getDao() {
-		return dao;
-	}
-
-	/**
-	 * @param dao
-	 *            要设置的 dao
-	 */
-	public void setDao(IBaseDAO dao) {
-		this.dao = dao;
-	}
+//	/**
+//	 * @return dao
+//	 */
+//	public IBaseDAO getDao() {
+//		return dao;
+//	}
+//
+//	/**
+//	 * @param dao
+//	 *            要设置的 dao
+//	 */
+//	public void setDao(IBaseDAO dao) {
+//		this.dao = dao;
+//	}
 
 	
-	public int coutAll(Class clazz) {
-		return dao.countAll(clazz);
-	}
+//	public int coutAll(Class clazz) {
+//		return dao.countAll(clazz);
+//	}
 
 
 	

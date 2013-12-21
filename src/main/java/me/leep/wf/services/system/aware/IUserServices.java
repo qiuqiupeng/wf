@@ -30,5 +30,5 @@ public interface IUserServices extends IBaseService {
 	
 	BaseEntiy findById(String id);
 	
-
+	Integer countAll();
 }

@@ -1,16 +1,12 @@
 package me.leep.wf.services;
 
-import java.util.List;
 
-import me.leep.wf.dto.BaseDto;
 
 /**
  * 所有services的基类，实现基本的增删改查功能
  * 
  * @author 李鹏
  */
-
-@SuppressWarnings("rawtypes")
 public interface IBaseService {
 	/**
 	 * 保存实体
@@ -76,11 +72,11 @@ public interface IBaseService {
 	 *            count of results to return.
 	 * @return List 返回全部结果集
 	 */
-	public List<BaseDto> findAll(Class clazz,Class targetClass,String filterString, int... rowStartIdxAndCount);
+//	public List<BaseDto> findAll(Class clazz,Class targetClass,String filterString, int... rowStartIdxAndCount);
 	
 //	public void deleteList(String[] rowids, Class clazz);
 	
 	
-	public int coutAll(Class clazz);
+//	public int coutAll(Class clazz);
 
 }

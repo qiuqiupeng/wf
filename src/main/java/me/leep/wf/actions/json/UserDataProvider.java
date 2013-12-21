@@ -4,7 +4,6 @@ import java.util.List;
 
 import me.leep.wf.actions.base.BaseDataProvider;
 import me.leep.wf.dto.BaseDto;
-import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
 
 /**
@@ -22,7 +21,8 @@ public class UserDataProvider extends BaseDataProvider {
 
 	public String execute() throws Exception {
 
-		initGridParam(UserBean.class);
+//		initGridParam(UserBean.class);
+		initGridParam(userServices.countAll());
 
 		// List<BaseDto> result = userServices.findAll(UserBean.class,
 		// User.class, null, getFrom(), getTo());
