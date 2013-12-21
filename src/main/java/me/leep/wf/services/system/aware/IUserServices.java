@@ -8,7 +8,6 @@ import java.util.List;
 
 import me.leep.wf.dto.BaseDto;
 import me.leep.wf.dto.system.User;
-import me.leep.wf.entity.BaseEntiy;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.IBaseService;
 
@@ -28,7 +27,7 @@ public interface IUserServices extends IBaseService {
 	
 	List<BaseDto> findAll(int page, int size);
 	
-	BaseEntiy findById(String id);
+	UserBean findById(String id);
 	
 	Integer countAll();
 }

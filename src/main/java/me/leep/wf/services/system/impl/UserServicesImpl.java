@@ -103,7 +103,7 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 	}
 
 	
-	public BaseEntiy findById(String id) {
+	public UserBean findById(String id) {
 		return userRepository.findById(id);
 	}
 
