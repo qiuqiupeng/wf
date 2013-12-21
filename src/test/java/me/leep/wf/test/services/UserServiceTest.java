@@ -24,7 +24,8 @@ public class UserServiceTest {
 	@Test
 	public void testFindbyEmplid() {
 		
-		UserBean user = (UserBean) userServices.findById("f6af2550-86f3-4b5f-acac-5fcbbc980fa6", UserBean.class);
+//		UserBean user = (UserBean) userServices.findById("f6af2550-86f3-4b5f-acac-5fcbbc980fa6", UserBean.class);
+		UserBean user = (UserBean) userServices.findById("f6af2550-86f3-4b5f-acac-5fcbbc980fa6");
 		
 		assertNotNull("Person object is null but should not be.", user);
 		

@@ -39,7 +39,8 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 		User user = new User();
 		user.setId(UUID.randomUUID().toString());
 		if (StringUtils.isNotEmpty(rowid)) {
-			UserBean userBean = (UserBean) findById(rowid, UserBean.class);
+//			UserBean userBean = (UserBean) findById(rowid, UserBean.class);
+			UserBean userBean = (UserBean) findById(rowid);
 			if (userBean != null)
 				BeanUtil.copyBean(userBean, user);
 		}
@@ -96,4 +97,23 @@ public class UserServicesImpl extends BaseServiceImpl implements IUserServices {
 
 	}
 
+	
+	public void delete(UserBean entity) {
+		userRepository.delete(entity);
+	}
+
+	
+	public BaseEntiy findById(String id) {
+		return userRepository.findById(id);
+	}
+
+	
+	public void deleteList(String[] rowids) {
+		for (int i = 0 ; i < rowids.length; i++) {
+			userRepository.delete(rowids[i]);
+		}
+	}
+
+	
+	
 }

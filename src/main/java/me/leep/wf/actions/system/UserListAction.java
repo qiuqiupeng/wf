@@ -3,7 +3,6 @@ package me.leep.wf.actions.system;
 import org.apache.commons.lang3.StringUtils;
 
 import me.leep.wf.actions.base.ListAction;
-import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
 
 /**
@@ -26,7 +25,8 @@ public class UserListAction extends ListAction {
 
 	public String delete() throws Exception {
 		if (StringUtils.isNotBlank(rowid) && rowid.length() != 0) {
-			userServices.deleteList(rowid.split(","), UserBean.class);
+//			userServices.deleteList(rowid.split(","), UserBean.class);
+			userServices.deleteList(rowid.split(","));
 		}
 		return SUCCESS;
 	}

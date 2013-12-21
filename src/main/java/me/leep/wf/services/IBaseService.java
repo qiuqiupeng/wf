@@ -3,7 +3,6 @@ package me.leep.wf.services;
 import java.util.List;
 
 import me.leep.wf.dto.BaseDto;
-import me.leep.wf.entity.BaseEntiy;
 
 /**
  * 所有services的基类，实现基本的增删改查功能
@@ -21,7 +20,7 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void save(BaseDto dto, Class clazz);
+//	public void save(BaseDto dto, Class clazz);
 
 	/**
 	 * 删除实体
@@ -31,7 +30,7 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void delete(BaseEntiy entity, Class clazz);
+//	public void delete(BaseEntiy entity, Class clazz);
 
 	/**
 	 * 修改实体
@@ -43,9 +42,9 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
-	public BaseEntiy update(BaseEntiy entity);
+//	public BaseEntiy update(BaseEntiy entity);
 
-	public BaseEntiy findById(String id, Class clazz);
+//	public BaseEntiy findById(String id, Class clazz);
 
 	/**
 	 * 按照某个属性查找全部
@@ -61,8 +60,8 @@ public interface IBaseService {
 	 *            count of results to return.
 	 * @return List<BaseEntiy> found by query
 	 */
-	public List<BaseEntiy> findByProperty(Class clazz, String propertyName, Object value,
-			int... rowStartIdxAndCount);
+//	public List<BaseEntiy> findByProperty(Class clazz, String propertyName, Object value,
+//			int... rowStartIdxAndCount);
 
 	/**
 	 * 查找全部实体
@@ -79,7 +78,7 @@ public interface IBaseService {
 	 */
 	public List<BaseDto> findAll(Class clazz,Class targetClass,String filterString, int... rowStartIdxAndCount);
 	
-	public void deleteList(String[] rowids, Class clazz);
+//	public void deleteList(String[] rowids, Class clazz);
 	
 	public int coutAll(Class clazz);
 

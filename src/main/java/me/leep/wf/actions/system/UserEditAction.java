@@ -45,8 +45,9 @@ public class UserEditAction extends EditAction {
 				Level.INFO, null);
 		UserBean bean;
 		if (user.getId() != null)
-			bean = (UserBean) userServices.findById(user.getId(),
-					UserBean.class);
+//			bean = (UserBean) userServices.findById(user.getId(),
+//					UserBean.class);
+		bean = (UserBean) userServices.findById(user.getId());
 		else
 			bean = null;
 		List<String> errors = new ArrayList<String>();
@@ -84,9 +85,11 @@ public class UserEditAction extends EditAction {
 	@Override
 	public String delete() throws Exception {
 		System.out.println("----------------delete--------------");
-		UserBean entity = (UserBean) userServices.findById(user.getId(),
-				UserBean.class);
-		userServices.delete(entity, UserBean.class);
+//		UserBean entity = (UserBean) userServices.findById(user.getId(),
+//				UserBean.class);
+		UserBean entity = (UserBean) userServices.findById(user.getId());
+//		userServices.delete(entity, UserBean.class);
+		userServices.delete(entity);
 		user = new User();
 		return SUCCESS;
 	}
