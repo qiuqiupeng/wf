@@ -80,6 +80,7 @@ public interface IBaseService {
 	
 //	public void deleteList(String[] rowids, Class clazz);
 	
+	
 	public int coutAll(Class clazz);
 
 }
