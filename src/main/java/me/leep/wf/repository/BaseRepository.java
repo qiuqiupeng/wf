@@ -1,6 +1,7 @@
 package me.leep.wf.repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -23,6 +24,7 @@ public interface BaseRepository<T, ID extends Serializable> extends
 	 */
 	T findById(String id);
 
-
+	List<T> findAllByFiltrString(String fStr, Class<T> tclass, int page,
+			int pageSize);
 
 }
