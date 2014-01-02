@@ -4,6 +4,7 @@
 package me.leep.wf.actions;
 
 import java.util.List;
+import java.util.Map;
 
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.bean.AcordionItemBean;
@@ -16,6 +17,8 @@ import org.apache.shiro.subject.Subject;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.opensymphony.xwork2.ActionContext;
 
 /**
  * @author 李鹏
@@ -56,6 +59,11 @@ public class IndexAction extends EditAction {
 	 */
 	@Override
 	public String execute() throws Exception {
+		
+		ActionContext context = ActionContext.getContext();   
+	    Map<String, Object> session = context.getSession();  
+	    System.out.println("@@@@@@@" + session);
+	    
 //		Reader reader = FileUtil.getFile("resources/menuall.xml", "UTF-8");
 //		items = (List<AcordionItemBean>) BeanUtil.xml2Bean(reader);
 		
