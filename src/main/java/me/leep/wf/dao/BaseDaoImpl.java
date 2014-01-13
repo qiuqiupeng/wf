@@ -16,7 +16,7 @@ import me.leep.wf.util.LogUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.springframework.orm.jpa.JpaTemplate;
+//import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -33,9 +33,9 @@ public class BaseDaoImpl implements IBaseDAO {
 	@PersistenceContext(unitName="wf")
 	private EntityManager entityManager;
 	
-	public JpaTemplate getJpaTemplate() {
-		return new JpaTemplate(getEntityManager());
-	}
+//	public JpaTemplate getJpaTemplate() {
+//		return new JpaTemplate(getEntityManager());
+//	}
 
 	/**
 	 * Perform an initial save of a previously unsaved Account entity. All
@@ -254,15 +254,16 @@ public class BaseDaoImpl implements IBaseDAO {
 	@Override
 	public void addNew(BaseEntiy entity) {
 		// TODO 自动生成的方法存根
-		getJpaTemplate().persist(entity);
+//		getJpaTemplate().persist(entity);
 	}
 
 	@SuppressWarnings({ "rawtypes" })
 	public int countAll(Class clazz) {
 		LogUtil.log("获取总记录条数", Level.INFO, null);
 		String COUNT_ALL_JPAQL = "select count(*) from " + clazz.getName();
-		Number count = (Number) getJpaTemplate()
-				.find(COUNT_ALL_JPAQL).get(0);
+		Number count = (Number) 0;
+//		Number count = (Number) getJpaTemplate()
+//				.find(COUNT_ALL_JPAQL).get(0);
 		return count.intValue();
 	}
 
