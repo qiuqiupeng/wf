@@ -260,7 +260,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	@SuppressWarnings({ "rawtypes" })
 	public int countAll(Class clazz) {
 		LogUtil.log("获取总记录条数", Level.INFO, null);
-		String COUNT_ALL_JPAQL = "select count(*) from " + clazz.getName();
+//		String COUNT_ALL_JPAQL = "select count(*) from " + clazz.getName();
 		Number count = (Number) 0;
 //		Number count = (Number) getJpaTemplate()
 //				.find(COUNT_ALL_JPAQL).get(0);
