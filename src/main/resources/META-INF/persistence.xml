@@ -5,8 +5,6 @@
 
 	<persistence-unit name="wf" transaction-type="RESOURCE_LOCAL">
 
-		<!-- 指定javax.persistence.spi.PersistenceProvider实现类 -->
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>me.leep.wf.entity.BaseEntiy</class>
 		<class>me.leep.wf.entity.LogBean</class>
 		<class>me.leep.wf.entity.system.FuncMenuBean</class>
