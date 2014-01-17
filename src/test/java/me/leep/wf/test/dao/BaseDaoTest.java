@@ -28,7 +28,8 @@ public class BaseDaoTest {
 
 	@Test
 	public void testCountAllUser() {
-		long count = dao.countAll(UserBean.class);
+		
+		long count = dao.count(UserBean.class);
 		
 //		assertEquals(34, count);
 		

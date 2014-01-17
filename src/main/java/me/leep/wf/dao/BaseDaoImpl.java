@@ -29,11 +29,14 @@ import org.springframework.util.Assert;
 public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	// property constants
 	private EntityManagerFactory entityManagerFactory;
+
 	@PersistenceContext(unitName = "PU")
 	private EntityManager entityManager;
+	
 
-	public long countAll(Class<T> domainClass) {
-		LogUtil.log("获取总记录条数", Level.INFO, null);
+
+	public long count(Class<T> domainClass) {
+		LogUtil.log("获取总记录条数", Level.INFO, null);		
 		String replacement = domainClass.getName();
 		String COUNT_ALL_JPAQL = String.format(QueryUtils.COUNT_QUERY_STRING,
 				"x", replacement);
@@ -116,7 +119,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
-	public BaseEntiy update(BaseEntiy entity) {
+	public T update(T entity) {
 		LogUtil.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
 		try {
 			String user = SecurityUtils.getSubject().getPrincipal().toString();
@@ -129,7 +132,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 			entity.setLastUpdateTime(new Date());
 			if (StringUtils.isEmpty(entity.getId()))
 				entity.setId(UUID.randomUUID().toString());
-			BaseEntiy result = getEntityManager().merge(entity);
+			T result = getEntityManager().merge(entity);
 			LogUtil.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
 			return result;
 		} catch (RuntimeException re) {
@@ -148,7 +151,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	 * 
 	 * @return 实体类
 	 */
-	public BaseEntiy findById(String id, Class<T> clazz) {
+	public T findById(String id, Class<T> clazz) {
 		LogUtil.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
 		try {
 			return getEntityManager().find(clazz, id);
@@ -173,7 +176,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	 * @return List<Account> found by query
 	 */
 	@SuppressWarnings("unchecked")
-	public List<BaseEntiy> findByProperty(Class<T> clazz, String propertyName,
+	public List<T> findByProperty(Class<T> clazz, String propertyName,
 			final Object value, final int... rowStartIdxAndCount) {
 		LogUtil.log("finding instance with property: " + propertyName
 				+ ", value: " + value, Level.INFO, null);
@@ -251,7 +254,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	 */
 	@Override
 	public void addNew(T entity) {
-		// getJpaTemplate().persist(entity);
+		entityManager.persist(entity);
 	}
 
 	/**

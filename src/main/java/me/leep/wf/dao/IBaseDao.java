@@ -19,12 +19,7 @@ public interface IBaseDao<T extends BaseEntiy> {
 	 * @param domainClass
 	 * @return
 	 */
-	long countAll(Class<T> domainClass);
-	
-	/**
-	 * 新增保存
-	 */
-	void save(T entity);
+	long count(Class<T> domainClass);
 
 	/**
 	 * 新增保存
@@ -35,11 +30,17 @@ public interface IBaseDao<T extends BaseEntiy> {
 	 * 物理删除实体数据
 	 */
 	void delete(T entity);
+	
+	/**
+	 * 新增保存
+	 */
+	void save(T entity);
+
 
 	/**
 	 * 修改保存实体数据
 	 */
-	BaseEntiy update(T entity);
+	T update(T entity);
 
 	/**
 	 * 通过ID查找数据
@@ -47,12 +48,12 @@ public interface IBaseDao<T extends BaseEntiy> {
 	 * @param id
 	 * @return
 	 */
-	BaseEntiy findById(String id, Class<T> clazz);
+	T findById(String id, Class<T> clazz);
 
 	/**
 	 * 通过属性查找数据
 	 */
-	List<BaseEntiy> findByProperty(Class<T> clazz,
+	List<T> findByProperty(Class<T> clazz,
 			String propertyName, Object value, int... rowStartIdxAndCount);
 
 	/**
