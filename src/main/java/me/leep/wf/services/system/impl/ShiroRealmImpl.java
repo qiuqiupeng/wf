@@ -21,7 +21,6 @@ package me.leep.wf.services.system.impl;
 import java.io.Serializable;
 
 import me.leep.wf.services.system.aware.IUserServices;
-import me.leep.wf.util.CodeUtil;
 
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.User;
@@ -33,6 +32,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -140,9 +140,10 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 		 * given hashedCredentials realmName - the realm from where the
 		 * principal and credentials were acquired.
 		 */
-		boolean isAuth = identityService.checkPassword(username,
-				CodeUtil.getStringMD5(String.valueOf(usernamePasswordToke
-						.getPassword())));
+        String encodedPassword = new Sha256Hash(usernamePasswordToke
+				.getPassword()).toBase64();
+        boolean isAuth = identityService.checkPassword(username,
+        		encodedPassword);
 		if (isAuth) {
 			User user = identityService.createUserQuery().userId(username)
 					.singleResult();
@@ -191,21 +192,6 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 			return displayName;
 		}
 
-		// /**
-		// * 重载equals,只计算loginName;
-		// */
-		// @Override
-		// public int hashCode() {
-		// return HashCodeBuilder.reflectionHashCode(this, "loginName");
-		// }
-		//
-		// /**
-		// * 重载equals,只比较loginName
-		// */
-		// @Override
-		// public boolean equals(Object obj) {
-		// return EqualsBuilder.reflectionEquals(this, obj, "loginName");
-		// }
 	}
 
 	/**
