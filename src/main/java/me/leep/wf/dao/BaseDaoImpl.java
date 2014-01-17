@@ -7,15 +7,16 @@ import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import me.leep.wf.entity.BaseEntiy;
-import me.leep.wf.util.EntityUtil;
 import me.leep.wf.util.LogUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.query.QueryUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
@@ -28,12 +29,16 @@ import org.springframework.util.Assert;
 @Repository("dao")
 public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	// property constants
+	@Autowired
 	private EntityManagerFactory entityManagerFactory;
-	@PersistenceContext(unitName = "PU")
-	private EntityManager entityManager;
 
-	public long countAll(Class<T> domainClass) {
-		LogUtil.log("获取总记录条数", Level.INFO, null);
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+
+
+	public long count(Class<T> domainClass) {
+		LogUtil.log("获取总记录条数", Level.INFO, null);		
 		String replacement = domainClass.getName();
 		String COUNT_ALL_JPAQL = String.format(QueryUtils.COUNT_QUERY_STRING,
 				"x", replacement);
@@ -65,8 +70,12 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	public void save(T entity) {
 		LogUtil.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
 		try {
-			EntityUtil.checkEntity(entity);
-			getEntityManager().persist(entity);
+//			entityManager.persist(entity);
+			EntityManager em = entityManagerFactory.createEntityManager();
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
+			em.persist(entity);
+			tx.commit();
 			LogUtil.log(">>>>>>保存成功>>>>>>", Level.INFO, null);
 		} catch (RuntimeException re) {
 			LogUtil.log(">>>>>>保存失败>>>>>>", Level.SEVERE, re);
@@ -116,7 +125,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
-	public BaseEntiy update(BaseEntiy entity) {
+	public T update(T entity) {
 		LogUtil.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
 		try {
 			String user = SecurityUtils.getSubject().getPrincipal().toString();
@@ -129,7 +138,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 			entity.setLastUpdateTime(new Date());
 			if (StringUtils.isEmpty(entity.getId()))
 				entity.setId(UUID.randomUUID().toString());
-			BaseEntiy result = getEntityManager().merge(entity);
+			T result = getEntityManager().merge(entity);
 			LogUtil.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
 			return result;
 		} catch (RuntimeException re) {
@@ -148,7 +157,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	 * 
 	 * @return 实体类
 	 */
-	public BaseEntiy findById(String id, Class<T> clazz) {
+	public T findById(String id, Class<T> clazz) {
 		LogUtil.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
 		try {
 			return getEntityManager().find(clazz, id);
@@ -173,7 +182,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	 * @return List<Account> found by query
 	 */
 	@SuppressWarnings("unchecked")
-	public List<BaseEntiy> findByProperty(Class<T> clazz, String propertyName,
+	public List<T> findByProperty(Class<T> clazz, String propertyName,
 			final Object value, final int... rowStartIdxAndCount) {
 		LogUtil.log("finding instance with property: " + propertyName
 				+ ", value: " + value, Level.INFO, null);
@@ -251,7 +260,7 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	 */
 	@Override
 	public void addNew(T entity) {
-		// getJpaTemplate().persist(entity);
+		entityManager.persist(entity);
 	}
 
 	/**

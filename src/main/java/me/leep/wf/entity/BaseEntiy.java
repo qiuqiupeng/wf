@@ -1,11 +1,17 @@
 package me.leep.wf.entity;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 /**
  * 所有entity类的超类. @author 李鹏
@@ -32,9 +38,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	 * 静态变量块
 	 */
 	static {
-		
-	}
 
+	}
 
 	/**
 	 * @return id
@@ -46,7 +51,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param id 要设置的 id
+	 * @param id
+	 *            要设置的 id
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -61,7 +67,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param creater 要设置的 creater
+	 * @param creater
+	 *            要设置的 creater
 	 */
 	public void setCreater(String creater) {
 		this.creater = creater;
@@ -76,7 +83,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param lastUpdater 要设置的 lastUpdater
+	 * @param lastUpdater
+	 *            要设置的 lastUpdater
 	 */
 	public void setLastUpdater(String lastUpdater) {
 		this.lastUpdater = lastUpdater;
@@ -91,7 +99,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param creteTime 要设置的 creteTime
+	 * @param creteTime
+	 *            要设置的 creteTime
 	 */
 	public void setCreteTime(Date creteTime) {
 		this.creteTime = creteTime;
@@ -106,7 +115,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param lastUpdateTime 要设置的 lastUpdateTime
+	 * @param lastUpdateTime
+	 *            要设置的 lastUpdateTime
 	 */
 	public void setLastUpdateTime(Date lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
@@ -121,7 +131,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param number 要设置的 number
+	 * @param number
+	 *            要设置的 number
 	 */
 	public void setNumber(String number) {
 		this.number = number;
@@ -136,7 +147,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param name 要设置的 name
+	 * @param name
+	 *            要设置的 name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -151,7 +163,8 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param description 要设置的 description
+	 * @param description
+	 *            要设置的 description
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -166,10 +179,39 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	}
 
 	/**
-	 * @param removeFlag 要设置的 removeFlag
+	 * @param removeFlag
+	 *            要设置的 removeFlag
 	 */
 	public void setRemoveFlag(String removeFlag) {
 		this.removeFlag = removeFlag;
 	}
 
+	@PrePersist
+	public void prePersist() {
+		if (StringUtils.isEmpty(getId()))
+			setId(UUID.randomUUID().toString());
+		
+		
+		if (StringUtils.isEmpty(getCreater())) {
+			Subject subject = SecurityUtils.getSubject();
+			String user = subject.getPrincipal().toString();
+			if (StringUtils.isEmpty(getCreater()))
+				setCreater(user);
+			setLastUpdater(user);
+		}
+		
+
+		if (getCreteTime() == null)
+			setCreteTime(new Date());
+		setLastUpdateTime(getCreteTime());
+		
+		if (StringUtils.isBlank(getRemoveFlag()))
+			setRemoveFlag("0");// 有效
+	}
+
+	@PreUpdate
+	public void preUpdate() {
+		// this.updateBy = UserUtils.getUser();
+		this.lastUpdateTime = new Date();
+	}
 }

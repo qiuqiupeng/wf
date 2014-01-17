@@ -25,10 +25,19 @@ public class BaseDaoTest {
 	IBaseDao<UserBean> dao;
 	
 	private static final Logger logger = Logger.getLogger( BaseDaoTest.class.getName() );
-
+	
+	@Test
+	public void testlastUpdateTimefiled() {
+		UserBean user = new UserBean();
+		user.setCreater("test");
+		user.setLastUpdater("test");
+		dao.save(user);
+	}
+	
 	@Test
 	public void testCountAllUser() {
-		long count = dao.countAll(UserBean.class);
+		
+		long count = dao.count(UserBean.class);
 		
 //		assertEquals(34, count);
 		
@@ -36,7 +45,6 @@ public class BaseDaoTest {
 		
 		
 	}
-	
-	
+
 
 }
