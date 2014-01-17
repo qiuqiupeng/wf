@@ -1,9 +1,6 @@
-package me.leep.wf.test.dao;
+package me.leep.wf.test.repo;
 
-
-
-import me.leep.wf.dao.IBaseDao;
-import me.leep.wf.entity.system.UserBean;
+import me.leep.wf.repository.system.UserRepository;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -19,16 +16,15 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
-public class BaseDaoTest {
-	
+public class RepositoryTest {
 	@Autowired
-	IBaseDao<UserBean> dao;
+	private UserRepository userRepository;// 注入UserRepository
 	
-	private static final Logger logger = Logger.getLogger( BaseDaoTest.class.getName() );
+	private static final Logger logger = Logger.getLogger( RepositoryTest.class.getName() );
 
 	@Test
 	public void testCountAllUser() {
-		long count = dao.countAll(UserBean.class);
+		long count = userRepository.count();
 		
 //		assertEquals(34, count);
 		

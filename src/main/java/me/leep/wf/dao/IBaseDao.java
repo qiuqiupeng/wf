@@ -5,31 +5,41 @@ import java.util.List;
 import me.leep.wf.entity.BaseEntiy;
 
 /**
- * 所有dao的基类接口
+ * 全部dao的父类，数据访问对象的接口类，定义了增删改查等基本功能。
  * 
- * @author 李鹏
+ * @author lipeng
+ * 
+ * @param <T>
+ *            任意实体entity对象
  */
-@Deprecated
-public interface IBaseDAO {
+public interface IBaseDao<T extends BaseEntiy> {
+
 	/**
-	 * 新增保存
+	 * 获取全部记录条数。
+	 * @param domainClass
+	 * @return
 	 */
-	public void save(BaseEntiy entity);
+	long countAll(Class<T> domainClass);
 	
 	/**
 	 * 新增保存
 	 */
-	public void addNew(BaseEntiy entity);
+	void save(T entity);
+
+	/**
+	 * 新增保存
+	 */
+	void addNew(T entity);
 
 	/**
 	 * 物理删除实体数据
 	 */
-	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz);
+	void delete(T entity);
 
 	/**
 	 * 修改保存实体数据
 	 */
-	public BaseEntiy update(BaseEntiy entity);
+	BaseEntiy update(T entity);
 
 	/**
 	 * 通过ID查找数据
@@ -37,15 +47,14 @@ public interface IBaseDAO {
 	 * @param id
 	 * @return
 	 */
-	public BaseEntiy findById(String id, Class<BaseEntiy> clazz);
+	BaseEntiy findById(String id, Class<T> clazz);
 
 	/**
 	 * 通过属性查找数据
 	 */
-	public List<BaseEntiy> findByProperty(Class<BaseEntiy> clazz, String propertyName, Object value,
-			int... rowStartIdxAndCount);
+	List<BaseEntiy> findByProperty(Class<T> clazz,
+			String propertyName, Object value, int... rowStartIdxAndCount);
 
-	
 	/**
 	 * 查找全部数据
 	 * 
@@ -56,8 +65,7 @@ public interface IBaseDAO {
 	 *            count of results to return.
 	 * @return List<Account> all Account entities
 	 */
-	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz, String filterString, int... rowStartIdxAndCount);
-	
-	@SuppressWarnings("rawtypes")
-	public int countAll(Class clazz);
+	List<T> findAll(Class<T> clazz, String filterString,
+			int... rowStartIdxAndCount);
+
 }

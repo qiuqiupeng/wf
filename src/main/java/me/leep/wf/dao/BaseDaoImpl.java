@@ -16,26 +16,31 @@ import me.leep.wf.util.LogUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-//import org.springframework.orm.jpa.JpaTemplate;
+import org.springframework.data.jpa.repository.query.QueryUtils;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 /**
  * 数据访问对象的实现基类，实现了增删改查等基本功能。
  * 
- * @see me.leep.wf.entity.BaseDaoImpl
  * @author 李鹏
  */
-@SuppressWarnings("deprecation")
 @Repository("dao")
-public class BaseDaoImpl implements IBaseDAO {
+public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	// property constants
 	private EntityManagerFactory entityManagerFactory;
-	@PersistenceContext(unitName="wf")
+	@PersistenceContext(unitName = "PU")
 	private EntityManager entityManager;
-	
-//	public JpaTemplate getJpaTemplate() {
-//		return new JpaTemplate(getEntityManager());
-//	}
+
+	public long countAll(Class<T> domainClass) {
+		LogUtil.log("获取总记录条数", Level.INFO, null);
+		String replacement = domainClass.getName();
+		String COUNT_ALL_JPAQL = String.format(QueryUtils.COUNT_QUERY_STRING,
+				"x", replacement);
+		long count = entityManager.createQuery(COUNT_ALL_JPAQL, Long.class)
+				.getSingleResult();
+		return count;
+	}
 
 	/**
 	 * Perform an initial save of a previously unsaved Account entity. All
@@ -57,7 +62,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void save(BaseEntiy entity) {
+	public void save(T entity) {
 		LogUtil.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
 		try {
 			EntityUtil.checkEntity(entity);
@@ -88,16 +93,12 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void delete(BaseEntiy entity, Class<BaseEntiy> clazz) {
+	public void delete(T entity) {
 		LogUtil.log(">>>>>>删除实体>>>>>>", Level.INFO, null);
-		try {
-			entity = getEntityManager().getReference(clazz, entity.getId());
-			getEntityManager().remove(entity);
-			LogUtil.log(">>>>>>删除成功>>>>>>", Level.INFO, null);
-		} catch (RuntimeException re) {
-			LogUtil.log(">>>>>>删除失败>>>>>>", Level.SEVERE, re);
-			throw re;
-		}
+		Assert.notNull(entity, "实体不能是空的");
+		entityManager.remove(entityManager.contains(entity) ? entity
+				: entityManager.merge(entity));
+
 	}
 
 	/**
@@ -147,7 +148,7 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * 
 	 * @return 实体类
 	 */
-	public BaseEntiy findById(String id, Class<BaseEntiy> clazz) {
+	public BaseEntiy findById(String id, Class<T> clazz) {
 		LogUtil.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
 		try {
 			return getEntityManager().find(clazz, id);
@@ -172,11 +173,10 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @return List<Account> found by query
 	 */
 	@SuppressWarnings("unchecked")
-	public List<BaseEntiy> findByProperty(Class<BaseEntiy> clazz,
-			String propertyName, final Object value,
-			final int... rowStartIdxAndCount) {
-		LogUtil.log("finding instance with property: "
-				+ propertyName + ", value: " + value, Level.INFO, null);
+	public List<BaseEntiy> findByProperty(Class<T> clazz, String propertyName,
+			final Object value, final int... rowStartIdxAndCount) {
+		LogUtil.log("finding instance with property: " + propertyName
+				+ ", value: " + value, Level.INFO, null);
 		try {
 			final String queryString = "select model from " + clazz.getName()
 					+ " model where model." + propertyName + "= :propertyValue";
@@ -197,8 +197,7 @@ public class BaseDaoImpl implements IBaseDAO {
 			}
 			return query.getResultList();
 		} catch (RuntimeException re) {
-			LogUtil.log("find by property name failed",
-					Level.SEVERE, re);
+			LogUtil.log("find by property name failed", Level.SEVERE, re);
 			throw re;
 		}
 	}
@@ -214,19 +213,18 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @return List<Account> all Account entities
 	 */
 	@SuppressWarnings("unchecked")
-	public List<BaseEntiy> findAll(Class<BaseEntiy> clazz, String filterString,
+	public List<T> findAll(Class<T> clazz, String filterString,
 			final int... rowStartIdxAndCount) {
 		LogUtil.log("查找全部实体", Level.INFO, null);
 		try {
 			String queryString = "";
 			if (StringUtils.isBlank(filterString)) {
-				queryString = "select model from " + clazz.getName()
-						+ " model";
+				queryString = "select model from " + clazz.getName() + " model";
 			} else {
 				queryString = "select model from " + clazz.getName()
 						+ " model where 1=1 " + filterString;
 			}
-			
+
 			Query query = getEntityManager().createQuery(queryString);
 			if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
 				int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
@@ -252,18 +250,8 @@ public class BaseDaoImpl implements IBaseDAO {
 	 * @see me.leep.wf.dao.IBaseDAO#addNew(me.leep.wf.entity.BaseEntiy)
 	 */
 	@Override
-	public void addNew(BaseEntiy entity) {
-//		getJpaTemplate().persist(entity);
-	}
-
-	@SuppressWarnings({ "rawtypes" })
-	public int countAll(Class clazz) {
-		LogUtil.log("获取总记录条数", Level.INFO, null);
-//		String COUNT_ALL_JPAQL = "select count(*) from " + clazz.getName();
-		Number count = (Number) 0;
-//		Number count = (Number) getJpaTemplate()
-//				.find(COUNT_ALL_JPAQL).get(0);
-		return count.intValue();
+	public void addNew(T entity) {
+		// getJpaTemplate().persist(entity);
 	}
 
 	/**
@@ -274,9 +262,11 @@ public class BaseDaoImpl implements IBaseDAO {
 	}
 
 	/**
-	 * @param entityManagerFactory 要设置的 entityManagerFactory
+	 * @param entityManagerFactory
+	 *            要设置的 entityManagerFactory
 	 */
-	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+	public void setEntityManagerFactory(
+			EntityManagerFactory entityManagerFactory) {
 		this.entityManagerFactory = entityManagerFactory;
 	}
 
@@ -288,7 +278,8 @@ public class BaseDaoImpl implements IBaseDAO {
 	}
 
 	/**
-	 * @param entityManager 要设置的 entityManager
+	 * @param entityManager
+	 *            要设置的 entityManager
 	 */
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
