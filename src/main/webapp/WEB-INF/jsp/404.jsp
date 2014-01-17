@@ -55,7 +55,7 @@
 	<div class="navbar navbar-default" id="navbar">
 		<script type="text/javascript">
 			try {
-				ace.settings.check('navbar', 'fixed')
+				ace.settings.check('navbar', 'fixed');
 			} catch (e) {
 			}
 		</script>
@@ -70,7 +70,7 @@
 			</div>
 			<!-- /.navbar-header -->
 
-			<div class="navbar-header pull-right" role="navigation">
+			<s:div cssClass="navbar-header pull-right" role="navigation">
 				<ul class="nav ace-nav">
 					<li class="grey"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <i class="icon-tasks"></i> <span
@@ -83,50 +83,50 @@
 								to complete</li>
 
 							<li><a href="#">
-									<div class="clearfix">
+									<s:div cssClass="clearfix">
 										<span class="pull-left">Software Update</span> <span
 											class="pull-right">65%</span>
-									</div>
+									</s:div>
 
-									<div class="progress progress-mini ">
+									<s:div cssClass="progress progress-mini ">
 										<div style="width: 65%" class="progress-bar "></div>
-									</div>
+									</s:div>
 							</a></li>
 
 							<li><a href="#">
-									<div class="clearfix">
+									<s:div cssClass="clearfix">
 										<span class="pull-left">Hardware Upgrade</span> <span
 											class="pull-right">35%</span>
-									</div>
+									</s:div>
 
-									<div class="progress progress-mini ">
+									<s:div cssClass="progress progress-mini ">
 										<div style="width: 35%"
 											class="progress-bar progress-bar-danger"></div>
-									</div>
+									</s:div>
 							</a></li>
 
 							<li><a href="#">
-									<div class="clearfix">
+									<s:div cssClass="clearfix">
 										<span class="pull-left">Unit Testing</span> <span
 											class="pull-right">15%</span>
-									</div>
+									</s:div>
 
-									<div class="progress progress-mini ">
+									<s:div cssClass="progress progress-mini ">
 										<div style="width: 15%"
 											class="progress-bar progress-bar-warning"></div>
-									</div>
+									</s:div>
 							</a></li>
 
 							<li><a href="#">
-									<div class="clearfix">
+									<s:div cssClass="clearfix">
 										<span class="pull-left">Bug Fixes</span> <span
 											class="pull-right">90%</span>
-									</div>
+									</s:div>
 
-									<div class="progress progress-mini progress-striped active">
+									<s:div cssClass="progress progress-mini progress-striped active">
 										<div style="width: 90%"
 											class="progress-bar progress-bar-success"></div>
-									</div>
+									</s:div>
 							</a></li>
 
 							<li><a href="#"> See tasks with details <i
@@ -146,12 +146,12 @@
 								8 Notifications</li>
 
 							<li><a href="#">
-									<div class="clearfix">
+									<s:div cssClass="clearfix">
 										<span class="pull-left"> <i
 											class="btn btn-xs no-hover btn-pink icon-comment"></i> New
 											Comments
 										</span> <span class="pull-right badge badge-info">+12</span>
-									</div>
+									</s:div>
 							</a></li>
 
 							<li><a href="#"> <i
@@ -160,21 +160,21 @@
 							</a></li>
 
 							<li><a href="#">
-									<div class="clearfix">
+									<s:div cssClass="clearfix">
 										<span class="pull-left"> <i
 											class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
 											New Orders
 										</span> <span class="pull-right badge badge-success">+8</span>
-									</div>
+									</s:div>
 							</a></li>
 
 							<li><a href="#">
-									<div class="clearfix">
+									<s:div cssClass="clearfix">
 										<span class="pull-left"> <i
 											class="btn btn-xs no-hover btn-info icon-twitter"></i>
 											Followers
 										</span> <span class="pull-right badge badge-info">+11</span>
-									</div>
+									</s:div>
 							</a></li>
 
 							<li><a href="#"> See all notifications <i
@@ -253,7 +253,7 @@
 						</ul></li>
 				</ul>
 				<!-- /.ace-nav -->
-			</div>
+			</s:div>
 			<!-- /.navbar-header -->
 		</div>
 		<!-- /.container -->
@@ -262,7 +262,7 @@
 	<div class="main-container" id="main-container">
 		<script type="text/javascript">
 			try {
-				ace.settings.check('main-container', 'fixed')
+				ace.settings.check('main-container', 'fixed');
 			} catch (e) {
 			}
 		</script>
@@ -275,7 +275,7 @@
 			<div class="sidebar" id="sidebar">
 				<script type="text/javascript">
 					try {
-						ace.settings.check('sidebar', 'fixed')
+						ace.settings.check('sidebar', 'fixed');
 					} catch (e) {
 					}
 				</script>
@@ -493,7 +493,7 @@
 
 				<script type="text/javascript">
 					try {
-						ace.settings.check('sidebar', 'collapsed')
+						ace.settings.check('sidebar', 'collapsed');
 					} catch (e) {
 					}
 				</script>
@@ -503,7 +503,7 @@
 				<div class="breadcrumbs" id="breadcrumbs">
 					<script type="text/javascript">
 						try {
-							ace.settings.check('breadcrumbs', 'fixed')
+							ace.settings.check('breadcrumbs', 'fixed');
 						} catch (e) {
 						}
 					</script>
