@@ -26,7 +26,6 @@ public class ResourceLoaderUtil extends DefaultResourceLoader {
 						+ "/src/main/webapp" + location);
 				return new UrlResource(url);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

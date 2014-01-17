@@ -9,7 +9,6 @@ import me.leep.wf.entity.system.ItemBean;
 public class MenuItemUtil {
 
 	private MenuItemUtil() {
-		// TODO 自动生成的构造函数存根
 	}
 
 	/**

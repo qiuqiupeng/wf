@@ -30,7 +30,6 @@ public class BonecpPoolAppender extends JDBCAppender {
 	 * 
 	 */
 	public BonecpPoolAppender() {
-		// TODO 自动生成的构造函数存根
 	}
 
 	@Override

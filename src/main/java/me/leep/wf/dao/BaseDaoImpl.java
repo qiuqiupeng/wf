@@ -253,7 +253,6 @@ public class BaseDaoImpl implements IBaseDAO {
 	 */
 	@Override
 	public void addNew(BaseEntiy entity) {
-		// TODO 自动生成的方法存根
 //		getJpaTemplate().persist(entity);
 	}
 

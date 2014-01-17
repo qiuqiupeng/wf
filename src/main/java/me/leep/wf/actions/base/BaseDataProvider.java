@@ -229,7 +229,6 @@ public class BaseDataProvider extends BaseAction {
 
 	@Action(results = { @Result(type = "json", name = "success") })
 	public String execute() throws Exception {
-		// TODO 自动生成的方法存根
 		return SUCCESS;
 	}
 
