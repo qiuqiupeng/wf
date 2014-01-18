@@ -69,7 +69,6 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	public void save(T entity) {
 		LogUtil.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
 		try {
-//			entityManager.persist(entity);
 			EntityManager em = entityManagerFactory.createEntityManager();
 			EntityTransaction tx = em.getTransaction();
 			tx.begin();
