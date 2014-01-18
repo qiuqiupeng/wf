@@ -2,7 +2,7 @@ package me.leep.wf.dao;
 
 import java.util.List;
 
-import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.entity.BaseEntity;
 
 /**
  * 全部dao的父类，数据访问对象的接口类，定义了增删改查等基本功能。
@@ -12,7 +12,7 @@ import me.leep.wf.entity.BaseEntiy;
  * @param <T>
  *            任意实体entity对象
  */
-public interface IBaseDao<T extends BaseEntiy> {
+public interface IBaseDao<T extends BaseEntity> {
 
 	/**
 	 * 获取全部记录条数。

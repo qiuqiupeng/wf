@@ -1,10 +1,10 @@
 package me.leep.wf.entity.system;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntiy;
-import javax.persistence.Column;
+import me.leep.wf.entity.BaseEntity;
 
 /**
  * @author 李鹏
@@ -13,7 +13,7 @@ import javax.persistence.Column;
  */
 @Entity
 @Table(name = "SYS_T_MENUITEM")
-public class ItemBean extends BaseEntiy {
+public class ItemBean extends BaseEntity {
 
 	/**
 	 * 

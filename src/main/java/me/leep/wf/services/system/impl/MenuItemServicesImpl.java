@@ -8,7 +8,7 @@ import java.util.List;
 
 import me.leep.wf.bean.AcordionItemBean;
 import me.leep.wf.dto.BaseDto;
-import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.entity.system.ItemBean;
 import me.leep.wf.repository.system.MenuItemRepository;
 import me.leep.wf.services.BaseServiceImpl;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("menuItemServices")
-public class MenuItemServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy> implements
+public class MenuItemServicesImpl extends BaseServiceImpl<BaseDto, BaseEntity> implements
 		IMenuItemServices {
 	@Autowired
 	private MenuItemRepository menuItemRepository;// 注入menuItemRepository

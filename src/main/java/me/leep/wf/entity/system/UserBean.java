@@ -11,11 +11,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.entity.BaseEntity;
 
 @Entity
 @Table(name = "sys_t_user")
-public class UserBean extends BaseEntiy {
+public class UserBean extends BaseEntity {
 
 	/**
 	 * serialVersionUID

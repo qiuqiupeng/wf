@@ -7,11 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.entity.BaseEntity;
 
 @Entity
 @Table(name = "sys_t_role")
-public class RoleBean extends BaseEntiy {
+public class RoleBean extends BaseEntity {
 
 	/**
 	 * serialVersionUID

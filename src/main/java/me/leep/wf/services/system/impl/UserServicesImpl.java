@@ -4,12 +4,12 @@
 package me.leep.wf.services.system.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import me.leep.wf.dto.BaseDto;
 import me.leep.wf.dto.system.User;
-import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.repository.system.UserRepository;
 import me.leep.wf.services.BaseServiceImpl;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("userServices")
-public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy>
+public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntity>
 		implements IUserServices {
 	@Autowired
 	private IdentityService identityService;
@@ -37,7 +37,7 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy>
 	@Override
 	public User initUserDto(String rowid) {
 		User user = new User();
-		user.setId(UUID.randomUUID().toString());
+		// user.setId(UUID.randomUUID().toString());
 		if (StringUtils.isNotEmpty(rowid)) {
 			UserBean userBean = (UserBean) findById(rowid);
 			if (userBean != null)
@@ -53,12 +53,11 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy>
 	 * java.lang.Class)
 	 */
 	@Override
-	public void save(BaseDto dto) {
-
+	public String save(BaseDto dto) {
 		UserBean entity = new UserBean();
 		BeanUtil.copyBean(dto, entity);
 
-		userRepository.save(entity);
+		entity = userRepository.save(entity);
 
 		org.activiti.engine.identity.User user = identityService
 				.createUserQuery().userId(entity.getId()).singleResult();
@@ -71,6 +70,7 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy>
 		identityService.saveUser(user);
 		BeanUtil.copyBean(entity, dto);
 
+		return entity.getId();
 	}
 
 	public List<BaseDto> findAll(int page, int size) {
@@ -78,7 +78,7 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy>
 				new PageRequest(page, size)).getContent();
 		List<BaseDto> result = new ArrayList<BaseDto>();
 		for (int i = 0; i < beanList.size(); i++) {
-			BaseEntiy bean = (BaseEntiy) beanList.get(i);
+			BaseEntity bean = (BaseEntity) beanList.get(i);
 			BaseDto dto = new User();
 			BeanUtil.copyBean(bean, dto);
 			result.add(dto);
@@ -101,9 +101,7 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy>
 	}
 
 	public void deleteList(String[] rowids) {
-		for (int i = 0; i < rowids.length; i++) {
-			userRepository.delete(rowids[i]);
-		}
+		userRepository.delete(userRepository.findAll(Arrays.asList(rowids)));
 	}
 
 	public Integer countAll() {

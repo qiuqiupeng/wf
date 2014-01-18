@@ -46,14 +46,11 @@ public class UserEditAction extends EditAction {
 		UserBean bean = null;
 		if (userServices.exists(user.getId())) {
 			bean = (UserBean) userServices.findById(user.getId());
+			user.setCreater(bean.getCreater());
+			user.setCreteTime(bean.getCreteTime());
+			user.setRemoveFlag(bean.getRemoveFlag());
 		}
 
-//		if (user.getId() != null)
-//			// bean = (UserBean) userServices.findById(user.getId(),
-//			// UserBean.class);
-//			bean = (UserBean) userServices.findById(user.getId());
-//		else
-//			bean = null;
 		List<String> errors = new ArrayList<String>();
 		List<String> messages = new ArrayList<String>();
 
@@ -71,7 +68,7 @@ public class UserEditAction extends EditAction {
 				user.setPassword(bean.getPassword());
 			else
 				user.setPassword(CodeUtil.getStringMD5(user.getPassword()));
-			userServices.save(user);
+			user.setId(userServices.save(user));
 			messages.add("保存成功");
 			setActionMessages(messages);
 		}

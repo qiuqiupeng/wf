@@ -11,7 +11,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.util.LogUtil;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
  * @author 李鹏
  */
 @Repository("dao")
-public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
+public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 	// property constants
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;

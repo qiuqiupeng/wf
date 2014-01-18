@@ -7,14 +7,14 @@ import java.util.List;
 
 import me.leep.wf.bean.AcordionItemBean;
 import me.leep.wf.dto.BaseDto;
-import me.leep.wf.entity.BaseEntiy;
+import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.services.IBaseService;
 
 /**
  * @author 李鹏
  *
  */
-public interface IMenuItemServices extends IBaseService<BaseDto, BaseEntiy> {
+public interface IMenuItemServices extends IBaseService<BaseDto, BaseEntity> {
 	
 	public void vo2entity(List<AcordionItemBean> items);
 	

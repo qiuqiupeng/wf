@@ -18,11 +18,13 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
- * 所有entity类的超类. @author 李鹏
+ * 所有entity类的超类. 
+ * 
+ * @author 李鹏
  */
 @MappedSuperclass
 @EntityListeners({AuditingEntityListener.class})
-public abstract class BaseEntiy implements java.io.Serializable {
+public abstract class BaseEntity implements java.io.Serializable {
 
 	/**
 	 * 
@@ -200,16 +202,7 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	public void prePersist() {
 		if (StringUtils.isEmpty(getId()))
 			setId(UUID.randomUUID().toString());
-		
-		
-//		if (StringUtils.isEmpty(getCreater())) {
-//			Subject subject = SecurityUtils.getSubject();
-//			String user = subject.getPrincipal().toString();
-//			if (StringUtils.isEmpty(getCreater()))
-//				setCreater(user);
-//			setLastUpdater(user);
-//		}
-		
+				
 		
 		if (StringUtils.isBlank(getRemoveFlag()))
 			setRemoveFlag("0");// 有效
@@ -217,7 +210,5 @@ public abstract class BaseEntiy implements java.io.Serializable {
 
 	@PreUpdate
 	public void preUpdate() {
-		// this.updateBy = UserUtils.getUser();
-//		this.lastUpdateTime = new Date();
 	}
 }

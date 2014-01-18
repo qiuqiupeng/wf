@@ -10,6 +10,8 @@ import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import me.leep.wf.entity.BaseEntity;
+
 import com.alibaba.tamper.BeanCopy;
 import com.thoughtworks.xstream.XStream;
 
@@ -25,6 +27,10 @@ public class BeanUtil {
 		copy = BeanCopy.create(source.getClass(), targer.getClass());
 		copy.copy(source, targer);
 		copy = null;
+	}
+	
+	public static void backupField(BaseEntity source, Object targer) {
+		
 	}
 
 	/**
