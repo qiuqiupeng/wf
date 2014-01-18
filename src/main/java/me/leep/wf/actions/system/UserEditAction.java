@@ -1,18 +1,12 @@
 package me.leep.wf.actions.system;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.dto.system.User;
-import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.system.aware.IUserServices;
-import me.leep.wf.util.CodeUtil;
 import me.leep.wf.util.LogUtil;
-
-import org.apache.commons.lang3.StringUtils;
 
 public class UserEditAction extends EditAction {
 
@@ -41,37 +35,9 @@ public class UserEditAction extends EditAction {
 
 	@Override
 	public String save() throws Exception {
-		LogUtil.log(">>>>>>>>" + User.class.getName() + "save2>>>>",
-				Level.INFO, null);
-		UserBean bean = null;
-		if (userServices.exists(user.getId())) {
-			bean = (UserBean) userServices.findById(user.getId());
-			user.setCreater(bean.getCreater());
-			user.setCreteTime(bean.getCreteTime());
-			user.setRemoveFlag(bean.getRemoveFlag());
-		}
+		LogUtil.log(">>>>>用户保存>>>>", Level.INFO, null);
 
-		List<String> errors = new ArrayList<String>();
-		List<String> messages = new ArrayList<String>();
-
-		if (StringUtils.isEmpty(user.getNumber())) {
-			errors.add("用户名为空");
-			setActionErrors(errors);
-		} else if (StringUtils.isEmpty(user.getEmail())) {
-			errors.add("Email为空");
-			setActionErrors(errors);
-		} else if (StringUtils.isEmpty(user.getName())) {
-			errors.add("姓名为空");
-			setActionErrors(errors);
-		} else {
-			if (bean != null)
-				user.setPassword(bean.getPassword());
-			else
-				user.setPassword(CodeUtil.getStringMD5(user.getPassword()));
-			user.setId(userServices.save(user));
-			messages.add("保存成功");
-			setActionMessages(messages);
-		}
+		user.setId(userServices.save(user));
 
 		return SUCCESS;
 	}
@@ -86,13 +52,8 @@ public class UserEditAction extends EditAction {
 	@Override
 	public String delete() throws Exception {
 		System.out.println("----------------delete--------------");
-		// UserBean entity = (UserBean) userServices.findById(user.getId(),
-		// UserBean.class);
-		UserBean entity = (UserBean) userServices.findById(user.getId());
-		// userServices.delete(entity, UserBean.class);
-		userServices.delete(entity);
-		user = new User();
-		return SUCCESS;
+		userServices.delete(userServices.findById(user.getId()));
+		return addNew();
 	}
 
 	/**

@@ -20,7 +20,7 @@ public interface IUserServices extends IBaseService<BaseDto, BaseEntity> {
 	
 	User initUserDto(String id);
 
-	String save(BaseDto dto);
+	String save(User dto);
 
 	void deleteList(String[] rowids);
 

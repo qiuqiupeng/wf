@@ -18,6 +18,7 @@ import me.leep.wf.util.BeanUtil;
 
 import org.activiti.engine.IdentityService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -53,22 +54,34 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntity>
 	 * java.lang.Class)
 	 */
 	@Override
-	public String save(BaseDto dto) {
+	public String save(User user) {
+		if (exists(user.getId())) {// 更新
+			UserBean bean = (UserBean) findById(user.getId());
+			BeanUtil.backupField(bean, user);
+			if (user.getPassword() == null) {
+				user.setPassword(bean.getPassword());
+			} else {
+				user.setPassword(new Sha256Hash(user.getPassword()).toBase64());
+			}
+
+		} else
+			user.setPassword(new Sha256Hash(user.getPassword()).toBase64());
+
 		UserBean entity = new UserBean();
-		BeanUtil.copyBean(dto, entity);
+		BeanUtil.copyBean(user, entity);
 
 		entity = userRepository.save(entity);
 
-		org.activiti.engine.identity.User user = identityService
+		org.activiti.engine.identity.User user1 = identityService
 				.createUserQuery().userId(entity.getId()).singleResult();
-		if (user == null)
-			user = identityService.newUser(entity.getId());
+		if (user1 == null)
+			user1 = identityService.newUser(entity.getId());
 
-		user.setEmail(entity.getEmail());
-		user.setFirstName(entity.getName());
-		user.setPassword("");
-		identityService.saveUser(user);
-		BeanUtil.copyBean(entity, dto);
+		user1.setEmail(entity.getEmail());
+		user1.setFirstName(entity.getName());
+		user1.setPassword("");
+		identityService.saveUser(user1);
+		BeanUtil.copyBean(entity, user);
 
 		return entity.getId();
 	}

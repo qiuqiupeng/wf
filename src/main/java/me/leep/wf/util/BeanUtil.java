@@ -10,6 +10,7 @@ import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import me.leep.wf.dto.BaseDto;
 import me.leep.wf.entity.BaseEntity;
 
 import com.alibaba.tamper.BeanCopy;
@@ -29,8 +30,10 @@ public class BeanUtil {
 		copy = null;
 	}
 	
-	public static void backupField(BaseEntity source, Object targer) {
-		
+	public static void backupField(BaseEntity source, BaseDto targer) {
+		targer.setCreater(source.getCreater());
+		targer.setCreteTime(source.getCreteTime());
+		targer.setRemoveFlag(source.getRemoveFlag());
 	}
 
 	/**

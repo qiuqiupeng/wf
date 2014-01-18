@@ -19,6 +19,15 @@ public abstract class BaseDto implements java.io.Serializable {
 	private String number;
 	private String name;
 	private String description;
+	private String removeFlag;
+
+	public String getRemoveFlag() {
+		return removeFlag;
+	}
+
+	public void setRemoveFlag(String removeFlag) {
+		this.removeFlag = removeFlag;
+	}
 
 	/**
 	 * 静态变量块
