@@ -36,7 +36,6 @@ public class BaseDaoImpl<T extends BaseEntiy> implements IBaseDao<T> {
 	private EntityManager entityManager;
 	
 
-
 	public long count(Class<T> domainClass) {
 		LogUtil.log("获取总记录条数", Level.INFO, null);		
 		String replacement = domainClass.getName();
