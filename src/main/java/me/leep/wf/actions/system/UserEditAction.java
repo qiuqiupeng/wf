@@ -41,15 +41,19 @@ public class UserEditAction extends EditAction {
 
 	@Override
 	public String save() throws Exception {
-		LogUtil.log(">>>>>>>>" + User.class.getName() + "save2>>>>>>>>>>>>>",
+		LogUtil.log(">>>>>>>>" + User.class.getName() + "save2>>>>",
 				Level.INFO, null);
-		UserBean bean;
-		if (user.getId() != null)
-//			bean = (UserBean) userServices.findById(user.getId(),
-//					UserBean.class);
-		bean = (UserBean) userServices.findById(user.getId());
-		else
-			bean = null;
+		UserBean bean = null;
+		if (userServices.exists(user.getId())) {
+			bean = (UserBean) userServices.findById(user.getId());
+		}
+
+//		if (user.getId() != null)
+//			// bean = (UserBean) userServices.findById(user.getId(),
+//			// UserBean.class);
+//			bean = (UserBean) userServices.findById(user.getId());
+//		else
+//			bean = null;
 		List<String> errors = new ArrayList<String>();
 		List<String> messages = new ArrayList<String>();
 
@@ -85,10 +89,10 @@ public class UserEditAction extends EditAction {
 	@Override
 	public String delete() throws Exception {
 		System.out.println("----------------delete--------------");
-//		UserBean entity = (UserBean) userServices.findById(user.getId(),
-//				UserBean.class);
+		// UserBean entity = (UserBean) userServices.findById(user.getId(),
+		// UserBean.class);
 		UserBean entity = (UserBean) userServices.findById(user.getId());
-//		userServices.delete(entity, UserBean.class);
+		// userServices.delete(entity, UserBean.class);
 		userServices.delete(entity);
 		user = new User();
 		return SUCCESS;

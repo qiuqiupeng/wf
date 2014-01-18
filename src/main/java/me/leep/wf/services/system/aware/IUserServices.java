@@ -31,4 +31,6 @@ public interface IUserServices extends IBaseService<BaseDto, BaseEntiy> {
 	UserBean findById(String id);
 	
 	Integer countAll();
+	
+	boolean exists(String id);
 }

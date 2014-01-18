@@ -7,12 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.activiti.engine.IdentityService;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
-
 import me.leep.wf.dto.BaseDto;
 import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.BaseEntiy;
@@ -21,14 +15,20 @@ import me.leep.wf.repository.system.UserRepository;
 import me.leep.wf.services.BaseServiceImpl;
 import me.leep.wf.services.system.aware.IUserServices;
 import me.leep.wf.util.BeanUtil;
-import me.leep.wf.util.EntityUtil;
+
+import org.activiti.engine.IdentityService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 /**
  * @author 李鹏
  * 
  */
 @Service("userServices")
-public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy> implements IUserServices {
+public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy>
+		implements IUserServices {
 	@Autowired
 	private IdentityService identityService;
 	@Autowired
@@ -39,7 +39,6 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy> implem
 		User user = new User();
 		user.setId(UUID.randomUUID().toString());
 		if (StringUtils.isNotEmpty(rowid)) {
-//			UserBean userBean = (UserBean) findById(rowid, UserBean.class);
 			UserBean userBean = (UserBean) findById(rowid);
 			if (userBean != null)
 				BeanUtil.copyBean(userBean, user);
@@ -56,24 +55,16 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy> implem
 	@Override
 	public void save(BaseDto dto) {
 
-		BaseEntiy bean;
-		if (dto.getId() != null)
-			bean = userRepository.findById(dto.getId());
-		else
-			bean = null;
-		if (bean != null) {
-			dto.setCreater(bean.getCreater());
-			dto.setCreteTime(bean.getCreteTime());
-		}
 		UserBean entity = new UserBean();
-		entity = new UserBean();
 		BeanUtil.copyBean(dto, entity);
-		EntityUtil.checkEntity(entity);
 
 		userRepository.save(entity);
 
-		org.activiti.engine.identity.User user = identityService.newUser(entity
-				.getId());
+		org.activiti.engine.identity.User user = identityService
+				.createUserQuery().userId(entity.getId()).singleResult();
+		if (user == null)
+			user = identityService.newUser(entity.getId());
+
 		user.setEmail(entity.getEmail());
 		user.setFirstName(entity.getName());
 		user.setPassword("");
@@ -97,19 +88,20 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy> implem
 
 	}
 
-	
 	public void delete(UserBean entity) {
 		userRepository.delete(entity);
 	}
 
-	
 	public UserBean findById(String id) {
 		return userRepository.findById(id);
 	}
 
-	
+	public boolean exists(String id) {
+		return userRepository.exists(id);
+	}
+
 	public void deleteList(String[] rowids) {
-		for (int i = 0 ; i < rowids.length; i++) {
+		for (int i = 0; i < rowids.length; i++) {
 			userRepository.delete(rowids[i]);
 		}
 	}
@@ -117,5 +109,5 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntiy> implem
 	public Integer countAll() {
 		return Integer.valueOf((int) userRepository.count());
 	}
-	
+
 }

@@ -4,29 +4,39 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * 所有entity类的超类. @author 李鹏
  */
 @MappedSuperclass
+@EntityListeners({AuditingEntityListener.class})
 public abstract class BaseEntiy implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4562370210152651953L;
+	
 	private String id;
+	@CreatedBy
 	private String creater;
+	@LastModifiedBy
 	private String lastUpdater;
+	@CreatedDate
 	private Date creteTime;
+	@LastModifiedDate
 	private Date lastUpdateTime;
 	private String number;
 	private String name;
@@ -192,18 +202,14 @@ public abstract class BaseEntiy implements java.io.Serializable {
 			setId(UUID.randomUUID().toString());
 		
 		
-		if (StringUtils.isEmpty(getCreater())) {
-			Subject subject = SecurityUtils.getSubject();
-			String user = subject.getPrincipal().toString();
-			if (StringUtils.isEmpty(getCreater()))
-				setCreater(user);
-			setLastUpdater(user);
-		}
+//		if (StringUtils.isEmpty(getCreater())) {
+//			Subject subject = SecurityUtils.getSubject();
+//			String user = subject.getPrincipal().toString();
+//			if (StringUtils.isEmpty(getCreater()))
+//				setCreater(user);
+//			setLastUpdater(user);
+//		}
 		
-
-		if (getCreteTime() == null)
-			setCreteTime(new Date());
-		setLastUpdateTime(getCreteTime());
 		
 		if (StringUtils.isBlank(getRemoveFlag()))
 			setRemoveFlag("0");// 有效
@@ -212,6 +218,6 @@ public abstract class BaseEntiy implements java.io.Serializable {
 	@PreUpdate
 	public void preUpdate() {
 		// this.updateBy = UserUtils.getUser();
-		this.lastUpdateTime = new Date();
+//		this.lastUpdateTime = new Date();
 	}
 }

@@ -1,18 +1,18 @@
 package me.leep.wf.util;
 
-import me.leep.wf.entity.system.UserBean;
 
-import org.apache.shiro.SecurityUtils;  
-import org.apache.shiro.subject.Subject;  
-import org.springframework.data.domain.AuditorAware;  
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.springframework.data.domain.AuditorAware;
   
-public class UserAuditorAware implements AuditorAware<UserBean> {  
+public class UserAuditorAware implements AuditorAware<String> {
   
     @Override  
-    public UserBean getCurrentAuditor() {  
-        Subject subject = SecurityUtils.getSubject();  
-        Object object = subject.getPrincipal();  
-        return (UserBean) object;  
+    public String getCurrentAuditor() {  
+
+		Subject subject = SecurityUtils.getSubject();
+		String user = subject.getPrincipal().toString();
+        return user;
     }  
   
 } 

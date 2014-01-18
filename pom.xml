@@ -21,7 +21,7 @@
 		<xstream.version>1.4.5</xstream.version>
 		<jquery.version>3.6.1</jquery.version>
 		<shiro.version>1.2.2</shiro.version>
-		
+
 	</properties>
 	<repositories>
 		<repository>
@@ -238,6 +238,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
