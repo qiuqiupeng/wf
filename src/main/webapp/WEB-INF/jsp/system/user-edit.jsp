@@ -87,7 +87,8 @@
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1"> 密码 </label>
 									<div class="col-sm-9">
-										<s:password name="user.password" cssClass="col-xs-12 col-sm-12" />
+										<s:password name="user.password"
+											cssClass="col-xs-12 col-sm-12" />
 									</div>
 								</div>
 								<div class="form-group">
@@ -103,7 +104,7 @@
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1"> 描述 </label>
 									<div class="col-sm-9">
-										<s:textfield name="user.description" cssClass="col-xs-12 col-sm-12" />
+										<sj:datepicker value="%{user.creteTime}"  name="user.creteTime" id="user.creteTime" />
 									</div>
 								</div>
 
@@ -111,21 +112,24 @@
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1"> 代理用户 </label>
 									<div class="col-sm-9">
-										<s:textfield name="user.agentUser" cssClass="col-xs-12 col-sm-12" />
+										<s:textfield name="user.agentUser"
+											cssClass="col-xs-12 col-sm-12" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1"> 手机 </label>
 									<div class="col-sm-9">
-										<s:textfield name="user.cellPhone" cssClass="col-xs-12 col-sm-12" />
+										<s:textfield name="user.cellPhone"
+											cssClass="col-xs-12 col-sm-12" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1"> 家庭电话 </label>
 									<div class="col-sm-9">
-										<s:textfield name="user.homePhone" cssClass="col-xs-12 col-sm-12" />
+										<s:textfield name="user.homePhone"
+											cssClass="col-xs-12 col-sm-12" />
 									</div>
 								</div>
 							</div>
