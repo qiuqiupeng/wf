@@ -104,7 +104,7 @@
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1"> 描述 </label>
 									<div class="col-sm-9">
-										<sj:datepicker value="%{user.creteTime}"  name="user.creteTime" id="user.creteTime" />
+										
 									</div>
 								</div>
 

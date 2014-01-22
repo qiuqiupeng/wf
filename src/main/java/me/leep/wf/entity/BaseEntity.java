@@ -73,7 +73,7 @@ public abstract class BaseEntity implements java.io.Serializable {
 	/**
 	 * @return creater
 	 */
-	@Column(name = "fcreater", length = 50)
+	@Column(name = "fcreater", length = 50, updatable = false)
 	public String getCreater() {
 		return creater;
 	}
@@ -105,7 +105,7 @@ public abstract class BaseEntity implements java.io.Serializable {
 	/**
 	 * @return creteTime
 	 */
-	@Column(name = "fcretetime", length = 10)
+	@Column(name = "fcretetime", length = 10, updatable = false)
 	public Date getCreteTime() {
 		return creteTime;
 	}
@@ -185,7 +185,7 @@ public abstract class BaseEntity implements java.io.Serializable {
 	/**
 	 * @return removeFlag
 	 */
-	@Column(name = "fremoveflag")
+	@Column(name = "fremoveflag", updatable = false)
 	public String getRemoveFlag() {
 		return removeFlag;
 	}

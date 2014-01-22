@@ -57,7 +57,6 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntity>
 	public String save(User user) {
 		if (exists(user.getId())) {// 更新
 			UserBean bean = (UserBean) findById(user.getId());
-			BeanUtil.backupField(bean, user);
 			if (user.getPassword() == null) {
 				user.setPassword(bean.getPassword());
 			} else {
