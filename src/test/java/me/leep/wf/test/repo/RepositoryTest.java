@@ -1,5 +1,6 @@
 package me.leep.wf.test.repo;
 
+import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.repository.system.UserRepository;
 
 import org.apache.log4j.Logger;
@@ -24,12 +25,12 @@ public class RepositoryTest extends AbstractRepoTest {
 		
 	}
 	
-//	@Test
-//	public void testSaveUser() {
-//		UserBean entity = new UserBean();
-//		entity.setNumber("testtttt");
-//		userRepository.save(entity);
-//	}
-//	
+	@Test
+	public void testSaveUser() {
+		UserBean entity = new UserBean();
+		entity.setNumber("testtttt");
+		userRepository.save(entity);
+	}
+	
 
 }
