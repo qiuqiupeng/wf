@@ -4,21 +4,12 @@ import me.leep.wf.repository.system.UserRepository;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 
-@ContextConfiguration(locations={"classpath:spring_*_test.xml"})
-@RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-@Transactional
-public class RepositoryTest {
+public class RepositoryTest extends AbstractRepoTest {
 	@Autowired
-	private UserRepository userRepository;// 注入UserRepository
+	private UserRepository userRepository;// 需要测试的repo
 	
 	private static final Logger logger = Logger.getLogger( RepositoryTest.class.getName() );
 
@@ -33,6 +24,12 @@ public class RepositoryTest {
 		
 	}
 	
-	
+//	@Test
+//	public void testSaveUser() {
+//		UserBean entity = new UserBean();
+//		entity.setNumber("testtttt");
+//		userRepository.save(entity);
+//	}
+//	
 
 }
