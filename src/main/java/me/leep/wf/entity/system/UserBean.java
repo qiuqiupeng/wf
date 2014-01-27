@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import me.leep.wf.entity.BaseEntity;
@@ -34,7 +35,7 @@ public class UserBean extends BaseEntity {
 	private String cellPhone;
 	
 	private List<RoleBean> roles = new ArrayList<RoleBean>();
-
+	private OrgUnit orgUnit;
 	/**
 	 * @return password
 	 */
@@ -216,6 +217,15 @@ public class UserBean extends BaseEntity {
 	 */
 	public void setRoles(List<RoleBean> roles) {
 		this.roles = roles;
+	}
+
+	@ManyToOne
+	public OrgUnit getOrgUnit() {
+	    return orgUnit;
+	}
+
+	public void setOrgUnit(OrgUnit param) {
+	    this.orgUnit = param;
 	}
 
 }

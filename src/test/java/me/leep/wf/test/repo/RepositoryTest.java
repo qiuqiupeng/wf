@@ -1,6 +1,8 @@
 package me.leep.wf.test.repo;
 
+import me.leep.wf.entity.system.OrgUnit;
 import me.leep.wf.entity.system.UserBean;
+import me.leep.wf.repository.system.OrgUnitRepository;
 import me.leep.wf.repository.system.UserRepository;
 
 import org.apache.log4j.Logger;
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RepositoryTest extends AbstractRepoTest {
 	@Autowired
 	private UserRepository userRepository;// 需要测试的repo
+	@Autowired
+	private OrgUnitRepository orgUnitRepository;// 需要测试的repo
 	
 	private static final Logger logger = Logger.getLogger( RepositoryTest.class.getName() );
 
@@ -27,9 +31,11 @@ public class RepositoryTest extends AbstractRepoTest {
 	
 	@Test
 	public void testSaveUser() {
-		UserBean entity = new UserBean();
-		entity.setNumber("testtttt");
-		userRepository.save(entity);
+		UserBean user = new UserBean();
+		user.setNumber("testtttt");
+		OrgUnit org = orgUnitRepository.findOne("16656472-679d-4a68-94b2-3361fb152be0");
+		user.setOrgUnit(org);
+		userRepository.save(user);
 	}
 	
 
