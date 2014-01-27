@@ -33,7 +33,7 @@ public class UserBean extends BaseEntity {
 	private String homePhone;
 	private String officePhone;
 	private String cellPhone;
-	
+
 	private List<RoleBean> roles = new ArrayList<RoleBean>();
 	private OrgUnit orgUnit;
 	/**
@@ -45,13 +45,12 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param password 要设置的 password
+	 * @param password
+	 *            要设置的 password
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 
 	/**
 	 * @return islocked
@@ -62,7 +61,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param islocked 要设置的 islocked
+	 * @param islocked
+	 *            要设置的 islocked
 	 */
 	public void setIslocked(Boolean islocked) {
 		this.islocked = islocked;
@@ -77,7 +77,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param type 要设置的 type
+	 * @param type
+	 *            要设置的 type
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -92,7 +93,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param isRegister 要设置的 isRegister
+	 * @param isRegister
+	 *            要设置的 isRegister
 	 */
 	public void setIsRegister(Boolean isRegister) {
 		this.isRegister = isRegister;
@@ -107,7 +109,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param groupID 要设置的 groupID
+	 * @param groupID
+	 *            要设置的 groupID
 	 */
 	public void setGroupID(String groupID) {
 		this.groupID = groupID;
@@ -122,7 +125,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param mainRoleID 要设置的 mainRoleID
+	 * @param mainRoleID
+	 *            要设置的 mainRoleID
 	 */
 	public void setMainRoleID(String mainRoleID) {
 		this.mainRoleID = mainRoleID;
@@ -137,7 +141,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param agentUser 要设置的 agentUser
+	 * @param agentUser
+	 *            要设置的 agentUser
 	 */
 	public void setAgentUser(String agentUser) {
 		this.agentUser = agentUser;
@@ -152,7 +157,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param email 要设置的 email
+	 * @param email
+	 *            要设置的 email
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -167,7 +173,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param homePhone 要设置的 homePhone
+	 * @param homePhone
+	 *            要设置的 homePhone
 	 */
 	public void setHomePhone(String homePhone) {
 		this.homePhone = homePhone;
@@ -182,7 +189,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param officePhone 要设置的 officePhone
+	 * @param officePhone
+	 *            要设置的 officePhone
 	 */
 	public void setOfficePhone(String officePhone) {
 		this.officePhone = officePhone;
@@ -197,7 +205,8 @@ public class UserBean extends BaseEntity {
 	}
 
 	/**
-	 * @param cellPhone 要设置的 cellPhone
+	 * @param cellPhone
+	 *            要设置的 cellPhone
 	 */
 	public void setCellPhone(String cellPhone) {
 		this.cellPhone = cellPhone;
@@ -206,14 +215,15 @@ public class UserBean extends BaseEntity {
 	/**
 	 * @return roles
 	 */
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="sys_mm_user_role",joinColumns={@JoinColumn(name="fuserid")},inverseJoinColumns={@JoinColumn(name="froleid")})
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "sys_mm_user_role", joinColumns = { @JoinColumn(name = "fuserid") }, inverseJoinColumns = { @JoinColumn(name = "froleid") })
 	public List<RoleBean> getRoles() {
 		return roles;
 	}
 
 	/**
-	 * @param roles 要设置的 roles
+	 * @param roles
+	 *            要设置的 roles
 	 */
 	public void setRoles(List<RoleBean> roles) {
 		this.roles = roles;
@@ -221,11 +231,11 @@ public class UserBean extends BaseEntity {
 
 	@ManyToOne
 	public OrgUnit getOrgUnit() {
-	    return orgUnit;
+		return orgUnit;
 	}
 
 	public void setOrgUnit(OrgUnit param) {
-	    this.orgUnit = param;
+		this.orgUnit = param;
 	}
 
 }
