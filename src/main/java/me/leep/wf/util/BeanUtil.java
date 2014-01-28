@@ -3,6 +3,9 @@
  */
 package me.leep.wf.util;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringWriter;
@@ -29,7 +32,7 @@ public class BeanUtil {
 		copy.copy(source, targer);
 		copy = null;
 	}
-	
+
 	public static void backupField(BaseEntity source, BaseDto targer) {
 		targer.setCreater(source.getCreater());
 		targer.setCreteTime(source.getCreteTime());
@@ -46,7 +49,7 @@ public class BeanUtil {
 		m.marshal(o, sw);
 		return sw.toString();
 	}
-	
+
 	/**
 	 * 通过xtream将对象转化成xml
 	 */
@@ -54,7 +57,7 @@ public class BeanUtil {
 		XStream xstream = new XStream();
 		return xstream.toXML(o);
 	}
-	
+
 	/**
 	 * 功过xtream将xml转换成bean
 	 */
@@ -62,7 +65,7 @@ public class BeanUtil {
 		XStream xstream = new XStream();
 		return xstream.fromXML(xml);
 	}
-	
+
 	/**
 	 * 功过xtream将xml转换成bean
 	 */
@@ -70,13 +73,28 @@ public class BeanUtil {
 		XStream xstream = new XStream();
 		return xstream.fromXML(xml);
 	}
-	
+
 	/**
 	 * 功过xtream将xml转换成bean
 	 */
 	public static Object xml2Bean(Reader xml) throws Exception {
 		XStream xstream = new XStream();
 		return xstream.fromXML(xml);
+	}
+
+	/**
+	 * 通过内省机制获取pojo对象的
+	 * 
+	 * @param clazz
+	 *            需要内省的类。
+	 * @return 类的属性结果集数组
+	 * @throws Exception
+	 *             错误信息
+	 */
+	public static PropertyDescriptor[] getProperty(Class<? extends Object> clazz)
+			throws Exception {
+		BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
+		return beanInfo.getPropertyDescriptors();
 	}
 
 }
