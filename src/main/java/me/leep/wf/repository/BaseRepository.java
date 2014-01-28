@@ -14,14 +14,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface BaseRepository<T, ID extends Serializable> extends
 		JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
-	/**
-	 * 通过id直接查找实体
-	 * 
-	 * @param id
-	 *            主键ID
-	 * @return 实体
-	 */
-	T findById(String id);
-
 
 }

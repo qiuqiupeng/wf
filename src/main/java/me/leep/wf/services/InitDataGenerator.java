@@ -48,7 +48,7 @@ public class InitDataGenerator implements ApplicationListener {
 	@SuppressWarnings("unused")
 	private void createAdminUser() {
 		String adminid = "01b1c2ea-dc0d-478b-8526-6724ecb40e35";
-		UserBean user = userRepository.findById(adminid);
+		UserBean user = userRepository.findOne(adminid);
 		if (user == null) {
 
 			System.out.println("****************************************");

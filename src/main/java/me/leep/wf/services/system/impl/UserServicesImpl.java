@@ -105,7 +105,7 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntity>
 	}
 
 	public UserBean findById(String id) {
-		return userRepository.findById(id);
+		return userRepository.findOne(id);
 	}
 
 	public boolean exists(String id) {
