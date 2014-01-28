@@ -25,7 +25,6 @@ public class UserListAction extends ListAction {
 
 	public String delete() throws Exception {
 		if (StringUtils.isNotBlank(rowid) && rowid.length() != 0) {
-//			userServices.deleteList(rowid.split(","), UserBean.class);
 			userServices.deleteList(rowid.split(","));
 		}
 		return SUCCESS;
