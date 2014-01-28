@@ -230,6 +230,7 @@ public class UserBean extends BaseEntity {
 	}
 
 	@ManyToOne
+	@JoinColumn(name = "forgunitid", referencedColumnName = "fid")
 	public OrgUnit getOrgUnit() {
 		return orgUnit;
 	}
