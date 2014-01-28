@@ -87,10 +87,18 @@
 							autowidth="true" loadingText="数据载入中">
 							<sjg:gridColumn name="id" index="id" title="ID" sortable="false"
 								hidden="true" />
-							<sjg:gridColumn name="name" index="name" title="Name"
-								sortable="true" />
-							<sjg:gridColumn name="number" index="number" title="number"
+							<sjg:gridColumn name="number" index="number" title="编码"
 								sortable="false" />
+							<sjg:gridColumn name="name" index="name" title="名称"
+								sortable="true" />
+							<sjg:gridColumn name="creater" index="creater" title="创建者"
+								sortable="true" />
+							<sjg:gridColumn name="creteTime" index="creteTime" title="创建时间"
+								sortable="true" />
+							<sjg:gridColumn name="lastUpdater" index="lastUpdater" title="最终修改者"
+								sortable="true" />
+							<sjg:gridColumn name="lastUpdateTime" index="lastUpdateTime" title="最终修改时间"
+								sortable="true" />
 							<sjg:gridColumn name="email" index="email" title="email"
 								sortable="false" />
 						</sjg:grid>
