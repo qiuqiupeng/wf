@@ -16,6 +16,13 @@
 		<property name="deploymentResources"
 			value="classpath*:/activiti/autodeployment/*.bpmn20.xml" />
 
+		<property name="customSessionFactories">
+			<list>
+				<bean class="me.leep.wf.services.activiti.ext.CustomGroupManagerFactory"></bean>
+				<bean class="me.leep.wf.services.activiti.ext.CustomUserManagerFactory"></bean>
+			</list>
+		</property>
+
 
 	</bean>
 
@@ -39,6 +46,6 @@
 		factory-method="getManagementService" />
 	<!-- Activiti end -->
 
-	
+
 
 </beans>
