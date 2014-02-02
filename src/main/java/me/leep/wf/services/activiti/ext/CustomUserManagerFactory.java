@@ -2,7 +2,8 @@ package me.leep.wf.services.activiti.ext;
 
 import org.activiti.engine.impl.interceptor.Session;
 import org.activiti.engine.impl.interceptor.SessionFactory;
-import org.activiti.engine.impl.persistence.entity.UserEntityManager;
+import org.activiti.engine.impl.persistence.entity.UserIdentityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,14 +23,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomUserManagerFactory implements SessionFactory {
+	@Autowired
+	private CustomUserManager customUserManager;
 
     public Class<?> getSessionType() {
         // original UserManager
-        return UserEntityManager.class;
+        return UserIdentityManager.class;
     }
 
     public Session openSession() {
         // Customized UserManger extended from org.activiti.engine.impl.persistence.entity.UserManager
-        return new CustomUserManager();
+        return customUserManager;
     }
 }

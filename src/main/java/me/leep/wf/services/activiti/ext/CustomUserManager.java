@@ -3,6 +3,10 @@ package me.leep.wf.services.activiti.ext;
 
 import java.util.List;
 
+import me.leep.wf.entity.system.UserBean;
+import me.leep.wf.repository.system.UserRepository;
+import me.leep.wf.util.ActivitiUtils;
+
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.identity.UserQuery;
@@ -12,19 +16,35 @@ import org.activiti.engine.impl.persistence.entity.UserEntity;
 import org.activiti.engine.impl.persistence.entity.UserEntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Component
+
+/** 
+ * 自定义的Activiti用户管理器 
+ *  
+ * @author dragon 
+ *  
+ */  
+@Service
 public class CustomUserManager extends UserEntityManager {
     
     private static Logger log = LoggerFactory.getLogger(CustomUserManager.class.getName());
-    
-    /* (non-Javadoc)
+
+	@Autowired
+	private UserRepository userRepository;// 注入UserRepository
+
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	/* (non-Javadoc)
      * @see org.activiti.engine.impl.persistence.entity.UserEntityManager#findUserById(java.lang.String)
      */
+	@Override
     public UserEntity findUserById(String userId) {
         log.debug("findUserById called with userId: " + userId);
-        UserEntity foundUser = super.findUserById(userId);
+        UserEntity foundUser = ActivitiUtils.toActivitiUser(userRepository.findOne(userId));
         log.debug("Found user - id:" + foundUser.getId() + " fullname:" + foundUser.getFirstName() + " " + foundUser.getLastName());
         return foundUser;
     }
@@ -32,9 +52,11 @@ public class CustomUserManager extends UserEntityManager {
     /* (non-Javadoc)
      * @see org.activiti.engine.impl.persistence.entity.UserEntityManager#checkPassword(java.lang.String, java.lang.String)
      */
+	@Override
     public Boolean checkPassword(String userId, String password) {
-    	System.out.println("------------------------");
-        boolean result = super.checkPassword(userId, password);
+    	log.debug("checkPassword called with userId: " + userId + " passwd: " + password );
+    	List<UserBean> users = userRepository.findByNumberAndPassword(userId, password);
+    	boolean result = users.size() == 0 ? false : true;
         log.debug("checkPassword called with userId: " + userId + " passwd: " + password + " result: " + result);
         return result;
     }
@@ -42,6 +64,7 @@ public class CustomUserManager extends UserEntityManager {
     /* (non-Javadoc)
      * @see org.activiti.engine.impl.persistence.entity.UserEntityManager#findGroupsByUser(java.lang.String)
      */
+	@Override
     public List<Group> findGroupsByUser(String userId) {
         log.debug("findGroupsByUser called with userId: " + userId);
         List<Group> userGroups = super.findGroupsByUser(userId);

@@ -8,9 +8,9 @@ import org.activiti.engine.impl.persistence.entity.GroupEntity;
 import org.activiti.engine.impl.persistence.entity.GroupEntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class CustomGroupManager extends GroupEntityManager {
 
     private static Logger log = LoggerFactory.getLogger(CustomGroupManager.class.getName());
