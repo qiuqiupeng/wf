@@ -34,9 +34,6 @@ public class CustomUserManager extends UserEntityManager {
 	@Autowired
 	private UserRepository userRepository;// 注入UserRepository
 
-	public void setUserRepository(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
 
 	/* (non-Javadoc)
      * @see org.activiti.engine.impl.persistence.entity.UserEntityManager#findUserById(java.lang.String)
@@ -44,7 +41,7 @@ public class CustomUserManager extends UserEntityManager {
 	@Override
     public UserEntity findUserById(String userId) {
         log.debug("findUserById called with userId: " + userId);
-        UserEntity foundUser = ActivitiUtils.toActivitiUser(userRepository.findOne(userId));
+        UserEntity foundUser = ActivitiUtils.toActivitiUser(userRepository.findByNumber(userId).get(0));
         log.debug("Found user - id:" + foundUser.getId() + " fullname:" + foundUser.getFirstName() + " " + foundUser.getLastName());
         return foundUser;
     }

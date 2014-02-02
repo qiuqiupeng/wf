@@ -33,6 +33,19 @@ public class UserBean extends BaseEntity {
 	private String homePhone;
 	private String officePhone;
 	private String cellPhone;
+	
+	private byte[] picture;
+	/**
+	 * @return password
+	 */
+	@Column(name = "fpicture")
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
 
 	private List<RoleBean> roles = new ArrayList<RoleBean>();
 	private OrgUnit orgUnit;
