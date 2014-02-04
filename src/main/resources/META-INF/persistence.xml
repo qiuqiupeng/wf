@@ -10,7 +10,7 @@
 		<class>me.leep.wf.entity.system.FuncMenuBean</class>
 		<class>me.leep.wf.entity.system.ItemBean</class>
 		<class>me.leep.wf.entity.system.MessageBean</class>
-		<class>me.leep.wf.entity.system.OrgUnit</class>
+		<class>me.leep.wf.entity.system.OrgUnitBean</class>
 		<class>me.leep.wf.entity.system.RoleBean</class>
 		<class>me.leep.wf.entity.system.UserBean</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>

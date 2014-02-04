@@ -24,7 +24,7 @@ public class OrgUnitBean extends BaseEntity {
 	private List<UserBean> userBean;
 	public OrgUnitBean() {
 	}
-	@OneToMany(mappedBy = "orgUnit")
+	@OneToMany(mappedBy = "orgUnitBean")
 	public List<UserBean> getUserBean() {
 	    return userBean;
 	}
