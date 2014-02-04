@@ -8,6 +8,8 @@
  ********************************************************************/
 package me.leep.wf.dao;
 
+import java.util.List;
+import java.util.Map;
 
 /**
  * 全部dao的父类，数据访问对象的接口类，定义了增删改查等基本功能。
@@ -17,61 +19,128 @@ package me.leep.wf.dao;
  * @param <T>
  *            任意实体entity对象
  */
-public interface IBaseDao<T> {
+public interface IBaseDao {
 
 	/**
-	 * 获取全部记录条数。
-	 * @param domainClass
-	 * @return 返回记录条数
+	 * 新增保存对象
+	 * 
+	 * @param obj
 	 */
-//	long count(Class<T> domainClass);
+	void save(Object obj);
 
 	/**
-	 * 新增保存
+	 * 批量删除实体
+	 * 
+	 * @param clazz 实体类名称
+	 * @param ids 实体id数组
 	 */
-//	void addNew(T entity);
+	<T> void delete(Class<T> clazz, Object[] ids);
 
 	/**
-	 * 物理删除实体数据
+	 * 修改保存实体对象
+	 * 
+	 * @param obj 对象参数
 	 */
-//	void delete(T entity);
+	void update(Object obj);
+
+	/**
+	 * 查找全部对象 
+	 * 
+	 * @param clazz 实体类名称
+	 * @return 实体对象数组。
+	 */
+	<T> List<T> findAll(Class<T> clazz);
+
+	/**
+	 * 通过id查找对象
+	 * 
+	 * @param clazz 对象类名称
+	 * @param id 对象id
+	 * @return 实体对象
+	 */
+	<T> T findOneById(Class<T> clazz, Object id);
+
+	/**
+	 * 获取全部实体记录行数
+	 * 
+	 * @param clazz 实体类名称
+	 * @return 行数
+	 */
+	<T> long countAll(Class<T> clazz);
+
+	/**
+	 * 根据条件获取记录行数
+	 * 
+	 * @param clazz 实体类名称
+	 * @param map 条件行数
+	 * @return 实体数
+	 */
+	<T> long countAllByEqual(Class<T> clazz, Map<String, Object> map);
 	
 	/**
-	 * 新增保存
-	 */
-//	void save(T entity);
-
-
-	/**
-	 * 修改保存实体数据
-	 */
-//	T update(T entity);
-
-	/**
-	 * 通过ID查找数据
+	 * 根据条件模糊查询记录行数
 	 * 
-	 * @param id
-	 * @return 返回查找的实体
+	 * @param clazz 实体类名称
+	 * @param map 条件行数
+	 * @return 实体数
 	 */
-	T findById(String id, Class<T> clazz);
+	<T> long countAllByLike(Class<T> clazz, Map<String, String> map);
 
 	/**
-	 * 通过属性查找数据
-	 */
-//	List<T> findByProperty(Class<T> clazz,
-//			String propertyName, Object value, int... rowStartIdxAndCount);
-
-	/**
-	 * 查找全部数据
+	 * 根据sql文进行原始查询
 	 * 
-	 * @param rowStartIdxAndCount
-	 *            Optional int varargs. rowStartIdxAndCount[0] specifies the the
-	 *            row index in the query result-set to begin collecting the
-	 *            results. rowStartIdxAndCount[1] specifies the the maximum
-	 *            count of results to return.
-	 * @return List<Account> all Account entities
+	 * @param sql sql文
+	 * @return 实体集
 	 */
-//	List<T> findAll(Class<T> clazz, String filterString,
-//			int... rowStartIdxAndCount);
+	<T> List<T> query(String sql);
+	
+	/**
+	 * 按字段条件来进行查询
+	 * @param clazz 实体类名称。
+	 * @param paramsMap 条件集
+	 * @return 结果集
+	 */
+	<T> List<T> findByEqual(Class<T> clazz, Map<String, Object> paramsMap);
+	
+	/**
+	 * 按字段模糊匹配查询
+	 * 
+	 * @param clazz 实体类名称。
+	 * @param map 条件集
+	 * @return 查询结果集
+	 */
+	<T> List<T> findByLike(Class<T> clazz, Map<String, String> map);
+	
+	/**
+	 * 分页查询
+	 * 
+	 * @param clazz 实体类名称。
+	 * @param from 分页开始
+	 * @param size 分页尺寸
+	 * @return 分页查询结果集
+	 */
+	<T> List<T> findSub(Class<T> clazz, int from, int size);
+	
+	/**
+	 * 按字段是否相等来查询获得分页数据
+	 * 
+	 * @param clazz 实体类名称。
+	 * @param paramsMap 条件集
+	 * @param from 分页条件开始
+	 * @param size 分页尺寸
+	 * @return 查询结果集
+	 */
+	<T> List<T> findSubByEqual(Class<T> clazz, Map<String, Object> paramsMap, int from, int size);
+
+	/**
+	 * 按字段模糊匹配来查询获得分页数据
+	 * 
+	 * @param clazz 实体类名称。
+	 * @param map 条件集
+	 * @param from 分页条件开始
+	 * @param size 分页尺寸
+	 * @return 查询结果集
+	 */
+	<T> List<T> findSubByLike(Class<T> clazz, Map<String, String> map, int from, int size);
 
 }

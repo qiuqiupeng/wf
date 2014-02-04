@@ -8,286 +8,192 @@
  ********************************************************************/
 package me.leep.wf.dao;
 
-import java.util.logging.Level;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-import me.leep.wf.entity.BaseEntity;
-import me.leep.wf.util.LogUtil;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.Assert;
 
 /**
- * 数据访问对象的实现基类，实现了增删改查等基本功能。
+ * 全部dao的父类，数据访问对象的接口类，定义了增删改查等基本功能。
  * 
  * @author 李鹏
+ * 
+ * @param <T>
+ *            任意实体entity对象
  */
 @Repository("dao")
-public class BaseDaoImpl<T> implements IBaseDao<BaseEntity> {
-	// property constants
-	@Autowired
-	private EntityManagerFactory entityManagerFactory;
+public class BaseDaoImpl implements IBaseDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 
-	// public long count(Class domainClass) {
-	// LogUtil.log("获取总记录条数", Level.INFO, null);
-	// String replacement = domainClass.getName();
-	// String COUNT_ALL_JPAQL = String.format(QueryUtils.COUNT_QUERY_STRING,
-	// "x", replacement);
-	// long count = entityManager.createQuery(COUNT_ALL_JPAQL, Long.class)
-	// .getSingleResult();
-	// return count;
-	// }
+	public void save(Object obj) {
+		entityManager.persist(obj);
+	}
 
-	/**
-	 * Perform an initial save of a previously unsaved Account entity. All
-	 * subsequent persist actions of this entity should use the #update()
-	 * method. This operation must be performed within the a database
-	 * transaction context for the entity's data to be permanently saved to the
-	 * persistence store, i.e., database. This method uses the
-	 * {@link javax.persistence.EntityManager#persist(Object)
-	 * EntityManager#persist} operation.
-	 * 
-	 * <pre>
-	 * LogUtil.beginTransaction();
-	 * AccountDAO.save(entity);
-	 * LogUtil.commit();
-	 * </pre>
-	 * 
-	 * @param entity
-	 *            Account entity to persist
-	 * @throws RuntimeException
-	 *             when the operation fails
-	 */
-	public void save(T entity) {
-		LogUtil.log(">>>>>>保存实体>>>>>>", Level.INFO, null);
-		try {
-			EntityManager em = entityManagerFactory.createEntityManager();
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
-			em.persist(entity);
-			tx.commit();
-			LogUtil.log(">>>>>>保存成功>>>>>>", Level.INFO, null);
-		} catch (RuntimeException re) {
-			LogUtil.log(">>>>>>保存失败>>>>>>", Level.SEVERE, re);
-			throw re;
+	public void update(Object obj) {
+		entityManager.merge(obj);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> List<T> query(String sql) {
+		return entityManager.createQuery(sql).getResultList();
+	}
+
+	public <T> void delete(Class<T> clazz, Object[] ids) {
+		T obj = null;
+		for (Object id : ids) {
+			obj = entityManager.find(clazz, id);
+			entityManager.remove(obj);
 		}
 	}
 
-	/**
-	 * Delete a persistent Account entity. This operation must be performed
-	 * within the a database transaction context for the entity's data to be
-	 * permanently deleted from the persistence store, i.e., database. This
-	 * method uses the {@link javax.persistence.EntityManager#remove(Object)
-	 * EntityManager#delete} operation.
-	 * 
-	 * <pre>
-	 * LogUtil.beginTransaction();
-	 * AccountDAO.delete(entity);
-	 * LogUtil.commit();
-	 * entity = null;
-	 * </pre>
-	 * 
-	 * @param entity
-	 *            Account entity to delete
-	 * @throws RuntimeException
-	 *             when the operation fails
-	 */
-	public void delete(T entity) {
-		LogUtil.log(">>>>>>删除实体>>>>>>", Level.INFO, null);
-		Assert.notNull(entity, "实体不能是空的");
-		entityManager.remove(entityManager.contains(entity) ? entity
-				: entityManager.merge(entity));
+	public <T> T findOneById(Class<T> clazz, Object id) {
+		return entityManager.find(clazz, id);
+	}
 
+	public <T> List<T> findAll(Class<T> clazz) {
+		return findBy(false, false, clazz, null, 0, 0);
+	}
+
+	@Override
+	public <T> long countAll(Class<T> clazz) {
+		return new Long(findBy(true, true, clazz, null, 0, 0).get(0).toString());
+	}
+
+	@Override
+	public <T> long countAllByEqual(Class<T> clazz, Map<String, Object> paramsMap) {
+		return new Long(findBy(true, false, clazz, paramsMap, 0, 0).get(0).toString());
+	}
+
+	@Override
+	public <T> long countAllByLike(Class<T> clazz, Map<String, String> paramsMap) {
+		Map<String, Object> map = toStringObjectMap(paramsMap);
+		return new Long(findBy(true, true, clazz, map, 0, 0).get(0).toString());
+	}
+
+	@Override
+	public <T> List<T> findByEqual(Class<T> clazz, Map<String, Object> paramsMap) {
+		return findBy(false, false, clazz, paramsMap, 0, 0);
+	}
+
+	@Override
+	public <T> List<T> findByLike(Class<T> clazz, Map<String, String> paramsMap) {
+		Map<String, Object> map = toStringObjectMap(paramsMap);
+		return findBy(false, true, clazz, map, 0, 0);
+	}
+	
+	@Override
+	public <T> List<T> findSub(Class<T> clazz, int from, int size) {
+		return findBy(false, false, clazz, null, from, size);
+	}
+
+	@Override
+	public <T> List<T> findSubByEqual(Class<T> clazz, Map<String, Object> paramsMap, int from, int size) {
+		return findBy(false, false, clazz, paramsMap, from, size);
+	}
+
+
+
+	@Override
+	public <T> List<T> findSubByLike(Class<T> clazz, Map<String, String> paramsMap, int from, int size) {
+		Map<String, Object> map = toStringObjectMap(paramsMap);
+		return findBy(false, true, clazz, map, from, size);
 	}
 
 	/**
-	 * 保存或修改实体类
+	 * 可构造性的原始查询
 	 * 
-	 * <pre>
-	 * LogUtil.beginTransaction();
-	 * entity = AccountDAO.update(entity);
-	 * LogUtil.commit();
-	 * </pre>
-	 * 
-	 * @param entity
-	 *            entity to update
-	 * @return Account the persisted entity instance, may not be the same
-	 * @throws RuntimeException
-	 *             if the operation fails
-	 */
-	// public T update(T entity) {
-	// LogUtil.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
-	// try {
-	// String user = SecurityUtils.getSubject().getPrincipal().toString();
-	// if (StringUtils.isEmpty(entity.getCreater()))
-	// entity.setCreater(user);
-	// entity.setLastUpdater(user);
-	// if (entity.getCreteTime() == null) {
-	// entity.setCreteTime(new Date());
-	// }
-	// entity.setLastUpdateTime(new Date());
-	// if (StringUtils.isEmpty(entity.getId()))
-	// entity.setId(UUID.randomUUID().toString());
-	// T result = getEntityManager().merge(entity);
-	// LogUtil.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
-	// return result;
-	// } catch (RuntimeException re) {
-	// LogUtil.log(">>>>>>修改失败>>>>>>", Level.SEVERE, re);
-	// throw re;
-	// }
-	// }
-
-	/**
-	 * 通过id查找实体对象。
-	 * 
-	 * @param id
-	 *            id
+	 * @param <T>
+	 * @param getRowCount
+	 *            是否计算记录条数的查询（即，select count(*)）
+	 * @param isVagou
+	 *            是否模糊查询like（相对于精确查询equal）
 	 * @param clazz
-	 *            实体类
-	 * 
-	 * @return 实体类
+	 *            对应的实体类名
+	 * @param paramsMap
+	 *            查询字段映射数据
+	 * @param from
+	 *            起始记录序号
+	 * @param size
+	 *            本次查询的记录数
+	 * @return
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public BaseEntity findById(String id, Class clazz) {
-		LogUtil.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
-		try {
-			return (BaseEntity) getEntityManager().find(clazz, id);
-		} catch (RuntimeException re) {
-			LogUtil.log(">>>>>>查找失败>>>>>>", Level.SEVERE, re);
-			throw re;
+
+	@SuppressWarnings("unchecked")
+	private <T> List<T> findBy(boolean getRowCount, boolean isVagou, Class<T> clazz, Map<String, Object> paramsMap, int from, int size) {
+		String paramTag = null;		// sql语句中的占位参数标记名
+		String paramValue = null;	// sql语句中的参数值
+		String entityValue = null;	// sql语句中的实体参数名
+		String className = clazz.getSimpleName(); // 对应的类名
+		String preSql = getRowCount ? "select count(e) from " : "select e from ";
+		StringBuffer sql = new StringBuffer(preSql);
+		sql.append(className).append(" e where e.id!=0 and 1=1 ");
+		Query query = null;
+
+		if (null != paramsMap) {
+			// 构型
+			for (String key : paramsMap.keySet()) {
+				paramTag = ":".concat(key.replace(".", "_"));
+				entityValue = "lower(e.".concat(key).concat(")");
+				if (!isVagou) {
+					sql.append(" and ").append(entityValue).append("=").append(paramTag).append(" ");
+				} else if(paramTag.endsWith("_id")){
+					// 如果对应的是主键，则将like改为equal
+					sql.append(" and ").append(entityValue).append("=").append(paramTag).append(" ");
+				} else {
+					sql.append(" and ").append(entityValue).append(" like ").append(paramTag).append(" ");
+				}
+				System.out.println("sql== "+sql.toString()+"---"+paramsMap.get(key));
+			}
 		}
+		query = entityManager.createQuery(sql.toString());
+
+		if (null != paramsMap) {
+			// 填值
+			for (String key : paramsMap.keySet()) {
+				paramTag = key.replace(".", "_");
+				paramValue = paramsMap.get(key).toString().toLowerCase();
+				if (!isVagou) {
+					try {
+						query.setParameter(paramTag, new Long(paramValue));
+					} catch (Exception ex) {
+						query.setParameter(paramTag, paramValue);
+					}
+				} else {
+					// 如果对应的是主键，则将like改为equal
+					if(paramTag.endsWith("_id")){
+						query.setParameter(paramTag, new Long(paramValue));
+					} else{
+						query.setParameter(paramTag, "%" + paramValue + "%");
+					}
+				}
+			}
+		}
+		if (from == 0 && size == 0) {
+			return query.getResultList();
+		}
+		return query.setFirstResult(from).setMaxResults(size).getResultList();
 	}
 
 	/**
-	 * Find all Account entities with a specific property value.
+	 * 将<String, String>类型的映射转换为<String, Object>类型
 	 * 
-	 * @param propertyName
-	 *            the name of the Account property to query
-	 * @param value
-	 *            the property value to match
-	 * @param rowStartIdxAndCount
-	 *            Optional int varargs. rowStartIdxAndCount[0] specifies the the
-	 *            row index in the query result-set to begin collecting the
-	 *            results. rowStartIdxAndCount[1] specifies the the maximum
-	 *            number of results to return.
-	 * @return List<Account> found by query
+	 * @param paramsMap
+	 * @return
 	 */
-	// @SuppressWarnings("unchecked")
-	// public List<T> findByProperty(Class clazz, String propertyName,
-	// final Object value, final int... rowStartIdxAndCount) {
-	// LogUtil.log("finding instance with property: " + propertyName
-	// + ", value: " + value, Level.INFO, null);
-	// try {
-	// final String queryString = "select model from " + clazz.getName()
-	// + " model where model." + propertyName + "= :propertyValue";
-	// Query query = getEntityManager().createQuery(queryString);
-	// query.setParameter("propertyValue", value);
-	// if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
-	// int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
-	// if (rowStartIdx > 0) {
-	// query.setFirstResult(rowStartIdx);
-	// }
-	//
-	// if (rowStartIdxAndCount.length > 1) {
-	// int rowCount = Math.max(0, rowStartIdxAndCount[1]);
-	// if (rowCount > 0) {
-	// query.setMaxResults(rowCount);
-	// }
-	// }
-	// }
-	// return query.getResultList();
-	// } catch (RuntimeException re) {
-	// LogUtil.log("find by property name failed", Level.SEVERE, re);
-	// throw re;
-	// }
-	// }
-
-	/**
-	 * Find all entities.
-	 * 
-	 * @param rowStartIdxAndCount
-	 *            Optional int varargs. rowStartIdxAndCount[0] specifies the the
-	 *            row index in the query result-set to begin collecting the
-	 *            results. rowStartIdxAndCount[1] specifies the the maximum
-	 *            count of results to return.
-	 * @return List<Account> all Account entities
-	 */
-	// @SuppressWarnings("unchecked")
-	// public List<T> findAll(Class clazz, String filterString,
-	// final int... rowStartIdxAndCount) {
-	// LogUtil.log("查找全部实体", Level.INFO, null);
-	// try {
-	// String queryString = "";
-	// if (StringUtils.isBlank(filterString)) {
-	// queryString = "select model from " + clazz.getName() + " model";
-	// } else {
-	// queryString = "select model from " + clazz.getName()
-	// + " model where 1=1 " + filterString;
-	// }
-	//
-	// Query query = getEntityManager().createQuery(queryString);
-	// if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
-	// int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
-	// if (rowStartIdx > 0) {
-	// query.setFirstResult(rowStartIdx);
-	// }
-	//
-	// if (rowStartIdxAndCount.length > 1) {
-	// int rowCount = Math.max(0, rowStartIdxAndCount[1]);
-	// if (rowCount > 0) {
-	// query.setMaxResults(rowCount);
-	// }
-	// }
-	// }
-	// return query.getResultList();
-	// } catch (RuntimeException re) {
-	// LogUtil.log("查找全部实体失败", Level.SEVERE, re);
-	// throw re;
-	// }
-	// }
-
-	public void addNew(T entity) {
-		entityManager.persist(entity);
-	}
-
-	/**
-	 * @return entityManagerFactory
-	 */
-	public EntityManagerFactory getEntityManagerFactory() {
-		return entityManagerFactory;
-	}
-
-	/**
-	 * @param entityManagerFactory
-	 *            要设置的 entityManagerFactory
-	 */
-	public void setEntityManagerFactory(
-			EntityManagerFactory entityManagerFactory) {
-		this.entityManagerFactory = entityManagerFactory;
-	}
-
-	/**
-	 * @return entityManager
-	 */
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	/**
-	 * @param entityManager
-	 *            要设置的 entityManager
-	 */
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	private Map<String, Object> toStringObjectMap(Map<String, String> paramsMap) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		for (String key : paramsMap.keySet()) {
+			map.put(key, paramsMap.get(key));
+		}
+		return map;
 	}
 
 }

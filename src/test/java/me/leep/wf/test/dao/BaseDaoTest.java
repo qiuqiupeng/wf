@@ -2,8 +2,9 @@ package me.leep.wf.test.dao;
 
 
 
+import java.util.List;
+
 import me.leep.wf.dao.IBaseDao;
-import me.leep.wf.entity.system.UserBean;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -22,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BaseDaoTest {
 	
 	@Autowired
-	IBaseDao<UserBean> dao;
+	IBaseDao dao;
 	
 	private static final Logger logger = Logger.getLogger( BaseDaoTest.class.getName() );
 
@@ -31,23 +32,30 @@ public class BaseDaoTest {
 //		
 //		long count = dao.count(UserBean.class);
 //		
-////		assertEquals(34, count);
+//		assertEquals(34, count);
 //		
 //		logger.info("人数 " + count);
 //		
 //		
 //	}
+//	
+//	@Test
+//	public void testfindUserById() {
+//		
+//		UserBean user = dao.findOneById(UserBean.class, "034a28d1-7f21-4925-9160-cf16303943ce");
+//		
+//		assertEquals(34, count);
+//		
+//		logger.info("人数 " + user);
+//		
+//		
+//	}
 	
 	@Test
-	public void testfindUserById() {
-		
-		UserBean user = dao.findById("", UserBean.class);
-		
-//		assertEquals(34, count);
-		
-		logger.info("人数 " + user);
-		
-		
+	public void testQuery() {
+		String sql = "select o from UserBean o where o.number = 'admin'";
+		List<?> list = dao.query(sql);
+		logger.info("人数 " + list.size());
 	}
 	
 	
