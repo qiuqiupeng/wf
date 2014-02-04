@@ -23,8 +23,6 @@ import org.springframework.stereotype.Repository;
  * 
  * @author 李鹏
  * 
- * @param <T>
- *            任意实体entity对象
  */
 @Repository("dao")
 public class BaseDaoImpl implements IBaseDao {
@@ -122,7 +120,7 @@ public class BaseDaoImpl implements IBaseDao {
 	 *            起始记录序号
 	 * @param size
 	 *            本次查询的记录数
-	 * @return
+	 * @return 查询结果集
 	 */
 	@SuppressWarnings("unchecked")
 	private <T> List<T> findBy(boolean getRowCount, boolean isVagou, Class<T> clazz, Map<String, Object> paramsMap, int from, int size) {
@@ -184,7 +182,7 @@ public class BaseDaoImpl implements IBaseDao {
 	 * 将<String, String>类型的映射转换为<String, Object>类型
 	 * 
 	 * @param paramsMap
-	 * @return
+	 * @return 转换后的Map集
 	 */
 	private Map<String, Object> toStringObjectMap(Map<String, String> paramsMap) {
 		Map<String, Object> map = new HashMap<String, Object>();

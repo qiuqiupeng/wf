@@ -16,8 +16,6 @@ import java.util.Map;
  * 
  * @author 李鹏
  * 
- * @param <T>
- *            任意实体entity对象
  */
 public interface IBaseDao {
 
