@@ -16,26 +16,35 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import me.leep.wf.entity.BaseEntity;
+
 import org.springframework.stereotype.Repository;
 
 /**
  * 全部dao的父类，数据访问对象的接口类，定义了增删改查等基本功能。
  * 
  * @author 李鹏
- * 
+ * @version v 1.0
  */
 @Repository("dao")
-public class BaseDaoImpl implements IBaseDao {
+public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-
-	public void save(Object obj) {
+	public void save(T obj) {
 		entityManager.persist(obj);
 	}
 
-	public void update(Object obj) {
+	public void delete(Class<T> clazz, String[] ids) {
+		T obj = null;
+		for (String id : ids) {
+			obj = entityManager.find(clazz, id);
+			entityManager.remove(obj);
+		}
+	}
+
+	public void update(T obj) {
 		entityManager.merge(obj);
 	}
 
@@ -43,63 +52,55 @@ public class BaseDaoImpl implements IBaseDao {
 		return entityManager.createQuery(sql).getResultList();
 	}
 
-	public <T> void delete(Class<T> clazz, Object[] ids) {
-		T obj = null;
-		for (Object id : ids) {
-			obj = entityManager.find(clazz, id);
-			entityManager.remove(obj);
-		}
-	}
-
-	public <T> T findOneById(Class<T> clazz, Object id) {
-		return entityManager.find(clazz, id);
-	}
-
-	public <T> List<T> findAll(Class<T> clazz) {
+	public List<T> findAll(Class<T> clazz) {
 		return findBy(false, false, clazz, null, 0, 0);
 	}
 
+	public T findOneById(Class<T> clazz, Object id) {
+		return entityManager.find(clazz, id);
+	}
+
 	@Override
-	public <T> long countAll(Class<T> clazz) {
+	public long countAll(Class<T> clazz) {
 		return new Long(findBy(true, true, clazz, null, 0, 0).get(0).toString());
 	}
 
 	@Override
-	public <T> long countAllByEqual(Class<T> clazz, Map<String, Object> paramsMap) {
+	public long countAllByEqual(Class<T> clazz, Map<String, Object> paramsMap) {
 		return new Long(findBy(true, false, clazz, paramsMap, 0, 0).get(0).toString());
 	}
 
 	@Override
-	public <T> long countAllByLike(Class<T> clazz, Map<String, String> paramsMap) {
+	public long countAllByLike(Class<T> clazz, Map<String, String> paramsMap) {
 		Map<String, Object> map = toStringObjectMap(paramsMap);
 		return new Long(findBy(true, true, clazz, map, 0, 0).get(0).toString());
 	}
 
 	@Override
-	public <T> List<T> findByEqual(Class<T> clazz, Map<String, Object> paramsMap) {
+	public List<T> findByEqual(Class<T> clazz, Map<String, Object> paramsMap) {
 		return findBy(false, false, clazz, paramsMap, 0, 0);
 	}
 
 	@Override
-	public <T> List<T> findByLike(Class<T> clazz, Map<String, String> paramsMap) {
+	public List<T> findByLike(Class<T> clazz, Map<String, String> paramsMap) {
 		Map<String, Object> map = toStringObjectMap(paramsMap);
 		return findBy(false, true, clazz, map, 0, 0);
 	}
 	
 	@Override
-	public <T> List<T> findSub(Class<T> clazz, int from, int size) {
+	public List<T> findPager(Class<T> clazz, int from, int size) {
 		return findBy(false, false, clazz, null, from, size);
 	}
 
 	@Override
-	public <T> List<T> findSubByEqual(Class<T> clazz, Map<String, Object> paramsMap, int from, int size) {
+	public List<T> findPagerByEqual(Class<T> clazz, Map<String, Object> paramsMap, int from, int size) {
 		return findBy(false, false, clazz, paramsMap, from, size);
 	}
 
 
 
 	@Override
-	public <T> List<T> findSubByLike(Class<T> clazz, Map<String, String> paramsMap, int from, int size) {
+	public List<T> findPagerByLike(Class<T> clazz, Map<String, String> paramsMap, int from, int size) {
 		Map<String, Object> map = toStringObjectMap(paramsMap);
 		return findBy(false, true, clazz, map, from, size);
 	}
@@ -123,7 +124,7 @@ public class BaseDaoImpl implements IBaseDao {
 	 * @return 查询结果集
 	 */
 	@SuppressWarnings("unchecked")
-	private <T> List<T> findBy(boolean getRowCount, boolean isVagou, Class<T> clazz, Map<String, Object> paramsMap, int from, int size) {
+	private List<T> findBy(boolean getRowCount, boolean isVagou, Class<T> clazz, Map<String, Object> paramsMap, int from, int size) {
 		String paramTag = null;		// sql语句中的占位参数标记名
 		String paramValue = null;	// sql语句中的参数值
 		String entityValue = null;	// sql语句中的实体参数名

@@ -8,25 +8,17 @@ import java.util.List;
 
 import me.leep.wf.dao.IBaseDao;
 import me.leep.wf.entity.system.UserBean;
+import me.leep.wf.test.repo.AbstractRepoTest;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 
-@ContextConfiguration(locations={"classpath:spring_*_test.xml"})
-@RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-@Transactional
-public class BaseDaoTest {
+public class BaseDaoTest extends AbstractRepoTest {
 	
 	@Autowired
-	IBaseDao dao;
+	IBaseDao<UserBean> dao;
 	
 	private static final Logger logger = Logger.getLogger( BaseDaoTest.class.getName() );
 
@@ -56,12 +48,17 @@ public class BaseDaoTest {
 	
 	@Test
 	public void testQuery() {
-		String sql = "select o from UserBean o where o.number = 'admin'";
+		String sql = "from UserBean model where model.number = 'admin'";
 		List<?> list = dao.query(sql);
 		assertEquals(1, list.size());
 		logger.info("用户名称" + ((UserBean)list.get(0)).getName());
 	}
 	
-	
+	@Test
+	public void testSave() {
+		UserBean bean = new UserBean();
+		bean.setNumber("ttttttttttt");
+		dao.save(bean);
+	}
 
 }
