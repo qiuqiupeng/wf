@@ -9,6 +9,9 @@
 package me.leep.wf.services;
 
 
+import me.leep.wf.dto.BaseDto;
+import me.leep.wf.entity.BaseEntity;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,7 +21,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("services")
-public class BaseServiceImpl<V, P> implements IBaseService<V, P> {
+public class BaseServiceImpl<V extends BaseDto, P extends BaseEntity> implements IBaseService<BaseDto, BaseEntity> {
 
 //	@Autowired
 //	IBaseDAO dao;

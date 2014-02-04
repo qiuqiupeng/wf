@@ -90,13 +90,13 @@ public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntity>
 		return entity.getId();
 	}
 
-	public List<BaseDto> findAll(int page, int size) {
+	public List<User> findAll(int page, int size) {
 		List<UserBean> beanList = userRepository.findAll(
 				new PageRequest(page, size)).getContent();
-		List<BaseDto> result = new ArrayList<BaseDto>();
+		List<User> result = new ArrayList<User>();
 		for (int i = 0; i < beanList.size(); i++) {
 			BaseEntity bean = (BaseEntity) beanList.get(i);
-			BaseDto dto = new User();
+			User dto = new User();
 			BeanUtil.copyBean(bean, dto);
 			result.add(dto);
 

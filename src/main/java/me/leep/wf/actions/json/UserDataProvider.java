@@ -10,17 +10,17 @@ package me.leep.wf.actions.json;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import me.leep.wf.actions.base.BaseDataProvider;
-import me.leep.wf.dto.BaseDto;
+import me.leep.wf.dto.system.User;
 import me.leep.wf.services.system.aware.IUserServices;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author 李鹏
  * 
  */
-public class UserDataProvider extends BaseDataProvider {
+public class UserDataProvider extends BaseDataProvider<User> {
 
 	/**
 	 * 
@@ -34,7 +34,7 @@ public class UserDataProvider extends BaseDataProvider {
 
 		initGridParam(userServices.countAll());
 
-		List<BaseDto> result = userServices.findAll(getPage().intValue() - 1,
+		List<User> result = userServices.findAll(getPage().intValue() - 1,
 				getTo() - getFrom());
 
 		this.setGridModel(result);

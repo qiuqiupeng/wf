@@ -31,7 +31,7 @@ public interface IUserServices extends IBaseService<BaseDto, BaseEntity> {
 
 	void delete(UserBean entity);
 	
-	List<BaseDto> findAll(int page, int size);
+	List<User> findAll(int page, int size);
 	
 	UserBean findById(String id);
 	

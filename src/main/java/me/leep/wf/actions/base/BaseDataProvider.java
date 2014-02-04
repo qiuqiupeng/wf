@@ -12,7 +12,7 @@ import org.apache.struts2.convention.annotation.Result;
 
 @ParentPackage("json-default")
 @Result(name = "success", type = "json", params = { "ignoreHierarchy", "false" })
-public class BaseDataProvider extends BaseAction {
+public class BaseDataProvider<T extends BaseDto> extends BaseAction {
 
 	/**
 	 * 
@@ -59,7 +59,7 @@ public class BaseDataProvider extends BaseAction {
 	private int from;
 	private int to;
 	
-	private List<BaseDto> gridModel;
+	 private List<T> gridModel;
 
 	/**
 	 * @return how many rows we want to have into the grid
@@ -295,14 +295,14 @@ public class BaseDataProvider extends BaseAction {
 	/**
 	 * @return gridModel
 	 */
-	public List<BaseDto> getGridModel() {
+	public List<T> getGridModel() {
 		return gridModel;
 	}
 
 	/**
 	 * @param gridModel 要设置的 gridModel
 	 */
-	public void setGridModel(List<BaseDto> gridModel) {
+	public void setGridModel(List<T> gridModel) {
 		this.gridModel = gridModel;
 	}
 
