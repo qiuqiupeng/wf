@@ -17,7 +17,7 @@ public interface IBaseDao<T extends BaseEntity> {
 	/**
 	 * 获取全部记录条数。
 	 * @param domainClass
-	 * @return
+	 * @return 返回记录条数
 	 */
 	long count(Class<T> domainClass);
 
@@ -46,7 +46,7 @@ public interface IBaseDao<T extends BaseEntity> {
 	 * 通过ID查找数据
 	 * 
 	 * @param id
-	 * @return
+	 * @return 返回查找的实体
 	 */
 	T findById(String id, Class<T> clazz);
 

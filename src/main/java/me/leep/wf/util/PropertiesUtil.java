@@ -84,7 +84,6 @@ public final class PropertiesUtil {
 	 * 根据多个资源文件的路径值，加载多个资源文件。
 	 * @param filePaths 多个资源文件的路径值
 	 * @return 存放Properties类型引用的散列表，该散列表以资源文件的路径值为键。
-	 * @see PropertiesHelper#loadPropertiesFile(String)
 	 */
 	public static Map<String, Properties> loadPropertiesFiles(List<String> filePaths) {
 		Map<String, Properties> propertiesMap = new HashMap<String, Properties>();
@@ -101,7 +100,6 @@ public final class PropertiesUtil {
 	 * @param filePath 目标资源文件的路径值
 	 * @param properties Properties类型的引用
 	 * @return 操作成功，返回true；否则，返回false。
-	 * @see PropertiesHelper#storePropertiesFile(String, Map)
 	 */
 	public static boolean storePropertiesFile(String filePath, Properties properties) {
 		return storePropertiesFile(filePath, getProperty(properties));
@@ -144,7 +142,6 @@ public final class PropertiesUtil {
 	 * @param filePaths 多个资源文件的路径值集合
 	 * @param propertyMaps 多个资源文件中的键值对集合
 	 * @return 操作成功，返回true；否则，返回false。
-	 * @see PropertiesHelper#storePropertiesFile(String, Map)
 	 */
 	public static boolean storePropertiesFiles(List<String> filePaths, List<Map<String, String>> propertyMaps) {
 		int filePathSize = filePaths.size();
@@ -279,7 +276,6 @@ public final class PropertiesUtil {
 	 * @param keys 若干个键
 	 * @param filePath 资源文件的路径值
 	 * @return 若干个指定的键值对
-	 * @see PropertiesHelper#getProperty(List, Properties)
 	 */
 	public static Map<String, String> getProperty(List<String> keys, String filePath) {
 		return getProperty(keys, loadPropertiesFile(filePath));
@@ -305,7 +301,6 @@ public final class PropertiesUtil {
 	 * 根据给定的资源文件的路径，获得资源文件中的所有键值对。该方法会调用getProperty(Properties)方法。
 	 * @param filePath 资源文件的路径值
 	 * @return 资源文件中的所有键值对
-	 * @see PropertiesHelper#getProperty(Properties)
 	 */
 	public static Map<String, String> getProperty(String filePath) {
 		return getProperty(loadPropertiesFile(filePath));

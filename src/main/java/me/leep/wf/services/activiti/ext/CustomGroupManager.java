@@ -60,7 +60,7 @@ public class CustomGroupManager extends GroupEntityManager {
 
     /** 
      * 必须覆盖实现
-     * @see org.activiti.engine.impl.persistence.entity.GroupEntityManager#findGroupById(java.lang.String)
+     * @see org.activiti.engine.impl.persistence.entity.GroupEntityManager#findGroupsByUser(java.lang.String)
      */
     public GroupEntity findGroupById(String groupId) {
         log.debug("findGroupById called with groupId: " + groupId);

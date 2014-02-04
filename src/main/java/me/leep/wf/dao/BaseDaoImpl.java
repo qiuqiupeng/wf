@@ -253,9 +253,6 @@ public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 		}
 	}
 
-	/**
-	 * @see me.leep.wf.dao.IBaseDAO#addNew(me.leep.wf.entity.BaseEntiy)
-	 */
 	@Override
 	public void addNew(T entity) {
 		entityManager.persist(entity);

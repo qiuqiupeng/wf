@@ -7,10 +7,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 
 /**
- * @作者 王建明
- * @创建日期 2013-06-26
- * @创建时间 09:22:03
- * @版本号 V 1.0
+ * @author 王建明
+ * @since 2013-06-26 09:22:03
+ * @version V 1.0
  */
 public class ResourceLoaderUtil extends DefaultResourceLoader {
 	@Override

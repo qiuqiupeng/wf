@@ -23,7 +23,6 @@ public class OtherServiceTest {
 				System.out.println(">>>" + pd.getDisplayName() + ">>" + pd.getPropertyType().getSimpleName());
 			}
 		} catch (Exception e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		

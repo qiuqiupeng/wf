@@ -115,7 +115,7 @@ public class BaseDataProvider extends BaseAction {
 	}
 
 	/**
-	 * @param record
+	 * @param records
 	 *            total number of records for the query. e.g. select count(*)
 	 *            from table 查询的总记录数
 	 */
