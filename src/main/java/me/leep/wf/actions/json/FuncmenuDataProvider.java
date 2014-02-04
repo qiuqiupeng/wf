@@ -11,6 +11,7 @@ package me.leep.wf.actions.json;
 //import java.util.List;
 
 import me.leep.wf.actions.base.BaseDataProvider;
+import me.leep.wf.dto.system.FuncMenu;
 //import me.leep.wf.dto.BaseDto;
 //import me.leep.wf.dto.system.FuncMenu;
 //import me.leep.wf.entity.system.FuncMenuBean;
@@ -20,7 +21,7 @@ import me.leep.wf.actions.base.BaseDataProvider;
  * @author 李鹏
  * 
  */
-public class FuncmenuDataProvider extends BaseDataProvider {
+public class FuncmenuDataProvider extends BaseDataProvider<FuncMenu> {
 
 	/**
 	 * 
