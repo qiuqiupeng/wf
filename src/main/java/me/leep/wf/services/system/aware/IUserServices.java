@@ -11,9 +11,7 @@ package me.leep.wf.services.system.aware;
 
 import java.util.List;
 
-import me.leep.wf.dto.BaseDto;
 import me.leep.wf.dto.system.User;
-import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.IBaseService;
 
@@ -21,7 +19,7 @@ import me.leep.wf.services.IBaseService;
  * @author 李鹏
  *
  */
-public interface IUserServices extends IBaseService<BaseDto, BaseEntity> {
+public interface IUserServices extends IBaseService<User, UserBean> {
 	
 	User initUserDto(String id);
 

@@ -8,8 +8,6 @@
  ********************************************************************/
 package me.leep.wf.services;
 
-import me.leep.wf.dto.BaseDto;
-import me.leep.wf.entity.BaseEntity;
 
 
 
@@ -18,7 +16,7 @@ import me.leep.wf.entity.BaseEntity;
  * 
  * @author 李鹏
  */
-public interface IBaseService<V extends BaseDto, P extends BaseEntity> {
+public interface IBaseService<V, P> {
 	/**
 	 * 保存实体
 	 * 

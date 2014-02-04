@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import me.leep.wf.dto.BaseDto;
 import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.entity.system.UserBean;
@@ -33,7 +32,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("userServices")
-public class UserServicesImpl extends BaseServiceImpl<BaseDto, BaseEntity>
+public class UserServicesImpl extends BaseServiceImpl<User, UserBean>
 		implements IUserServices {
 	@Autowired
 	private IdentityService identityService;

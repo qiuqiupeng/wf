@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("services")
-public class BaseServiceImpl<V extends BaseDto, P extends BaseEntity> implements IBaseService<BaseDto, BaseEntity> {
+public class BaseServiceImpl<V extends BaseDto, P extends BaseEntity> implements IBaseService<V, P> {
 
 //	@Autowired
 //	IBaseDAO dao;
