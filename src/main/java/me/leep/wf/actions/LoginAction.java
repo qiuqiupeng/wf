@@ -22,7 +22,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
 /**
- * @author lipeng
+ * @author 李鹏
  * 
  */
 @Results({ @Result(name = "INDEX", location = "/index", type = "redirect") })

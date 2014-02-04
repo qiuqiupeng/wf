@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * @author lipeng
+ * @author 李鹏
  *
  */
 public class BaseAction extends ActionSupport {

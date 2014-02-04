@@ -18,7 +18,7 @@ import org.apache.struts2.convention.annotation.Results;
 
 
 /**
- * @author lipeng
+ * @author 李鹏
  * 
  */
 @Results({ @Result(name = "result", location = "/${nextAction}", type = "redirect") })

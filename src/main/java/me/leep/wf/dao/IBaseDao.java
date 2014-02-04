@@ -15,7 +15,7 @@ import me.leep.wf.entity.BaseEntity;
 /**
  * 全部dao的父类，数据访问对象的接口类，定义了增删改查等基本功能。
  * 
- * @author lipeng
+ * @author 李鹏
  * 
  * @param <T>
  *            任意实体entity对象
