@@ -1,6 +1,6 @@
 package me.leep.wf.test.repo;
 
-import me.leep.wf.entity.system.OrgUnit;
+import me.leep.wf.entity.system.OrgUnitBean;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.repository.system.OrgUnitRepository;
 import me.leep.wf.repository.system.UserRepository;
@@ -33,8 +33,8 @@ public class RepositoryTest extends AbstractRepoTest {
 	public void testSaveUser() {
 		UserBean user = new UserBean();
 		user.setNumber("testtttt");
-		OrgUnit org = orgUnitRepository.findOne("16656472-679d-4a68-94b2-3361fb152be0");
-		user.setOrgUnit(org);
+		OrgUnitBean org = orgUnitRepository.findOne("16656472-679d-4a68-94b2-3361fb152be0");
+		user.setOrgUnitBean(org);
 		userRepository.save(user);
 	}
 	

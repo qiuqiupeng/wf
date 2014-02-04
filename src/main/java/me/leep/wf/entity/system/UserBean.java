@@ -1,3 +1,11 @@
+/*********************************************************************
+ * 源代码版权归作者（们）所有
+ *
+ * 以 Apache License, Version 2.0 方式授权使用，具体参见：
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ ********************************************************************/
 package me.leep.wf.entity.system;
 
 import java.util.ArrayList;
@@ -50,7 +58,7 @@ public class UserBean extends BaseEntity {
 	}
 
 	private List<RoleBean> roles = new ArrayList<RoleBean>();
-	private OrgUnit orgUnit;
+	private OrgUnitBean orgUnitBean;
 	/**
 	 * @return password
 	 */
@@ -246,12 +254,12 @@ public class UserBean extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "forgunitid", referencedColumnName = "fid")
-	public OrgUnit getOrgUnit() {
-		return orgUnit;
+	public OrgUnitBean getOrgUnitBean() {
+		return orgUnitBean;
 	}
 
-	public void setOrgUnit(OrgUnit param) {
-		this.orgUnit = param;
+	public void setOrgUnitBean(OrgUnitBean param) {
+		this.orgUnitBean = param;
 	}
 
 }
