@@ -41,8 +41,7 @@ public class BaseDaoImpl implements IBaseDao {
 		entityManager.merge(obj);
 	}
 
-	@SuppressWarnings("unchecked")
-	public <T> List<T> query(String sql) {
+	public List<?> query(String sql) {
 		return entityManager.createQuery(sql).getResultList();
 	}
 
@@ -125,7 +124,6 @@ public class BaseDaoImpl implements IBaseDao {
 	 *            本次查询的记录数
 	 * @return
 	 */
-
 	@SuppressWarnings("unchecked")
 	private <T> List<T> findBy(boolean getRowCount, boolean isVagou, Class<T> clazz, Map<String, Object> paramsMap, int from, int size) {
 		String paramTag = null;		// sql语句中的占位参数标记名

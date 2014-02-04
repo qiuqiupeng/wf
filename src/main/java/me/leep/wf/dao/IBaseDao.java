@@ -92,7 +92,7 @@ public interface IBaseDao {
 	 * @param sql sql文
 	 * @return 实体集
 	 */
-	<T> List<T> query(String sql);
+	List<?> query(String sql);
 	
 	/**
 	 * 按字段条件来进行查询

@@ -2,9 +2,12 @@ package me.leep.wf.test.dao;
 
 
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import me.leep.wf.dao.IBaseDao;
+import me.leep.wf.entity.system.UserBean;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -55,7 +58,8 @@ public class BaseDaoTest {
 	public void testQuery() {
 		String sql = "select o from UserBean o where o.number = 'admin'";
 		List<?> list = dao.query(sql);
-		logger.info("人数 " + list.size());
+		assertEquals(1, list.size());
+		logger.info("用户名称" + ((UserBean)list.get(0)).getName());
 	}
 	
 	
