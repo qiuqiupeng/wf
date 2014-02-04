@@ -26,14 +26,26 @@ public class BaseDaoTest {
 	
 	private static final Logger logger = Logger.getLogger( BaseDaoTest.class.getName() );
 
+//	@Test
+//	public void testCountAllUser() {
+//		
+//		long count = dao.count(UserBean.class);
+//		
+////		assertEquals(34, count);
+//		
+//		logger.info("人数 " + count);
+//		
+//		
+//	}
+	
 	@Test
-	public void testCountAllUser() {
+	public void testfindUserById() {
 		
-		long count = dao.count(UserBean.class);
+		UserBean user = dao.findById("", UserBean.class);
 		
 //		assertEquals(34, count);
 		
-		logger.info("人数 " + count);
+		logger.info("人数 " + user);
 		
 		
 	}

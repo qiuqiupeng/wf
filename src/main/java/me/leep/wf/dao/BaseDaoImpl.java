@@ -8,24 +8,17 @@
  ********************************************************************/
 package me.leep.wf.dao;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.util.LogUtil;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.query.QueryUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
@@ -35,24 +28,24 @@ import org.springframework.util.Assert;
  * @author 李鹏
  */
 @Repository("dao")
-public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
+public class BaseDaoImpl<T> implements IBaseDao<BaseEntity> {
 	// property constants
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
 
-	public long count(Class<T> domainClass) {
-		LogUtil.log("获取总记录条数", Level.INFO, null);		
-		String replacement = domainClass.getName();
-		String COUNT_ALL_JPAQL = String.format(QueryUtils.COUNT_QUERY_STRING,
-				"x", replacement);
-		long count = entityManager.createQuery(COUNT_ALL_JPAQL, Long.class)
-				.getSingleResult();
-		return count;
-	}
+
+	// public long count(Class domainClass) {
+	// LogUtil.log("获取总记录条数", Level.INFO, null);
+	// String replacement = domainClass.getName();
+	// String COUNT_ALL_JPAQL = String.format(QueryUtils.COUNT_QUERY_STRING,
+	// "x", replacement);
+	// long count = entityManager.createQuery(COUNT_ALL_JPAQL, Long.class)
+	// .getSingleResult();
+	// return count;
+	// }
 
 	/**
 	 * Perform an initial save of a previously unsaved Account entity. All
@@ -131,27 +124,27 @@ public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
-	public T update(T entity) {
-		LogUtil.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
-		try {
-			String user = SecurityUtils.getSubject().getPrincipal().toString();
-			if (StringUtils.isEmpty(entity.getCreater()))
-				entity.setCreater(user);
-			entity.setLastUpdater(user);
-			if (entity.getCreteTime() == null) {
-				entity.setCreteTime(new Date());
-			}
-			entity.setLastUpdateTime(new Date());
-			if (StringUtils.isEmpty(entity.getId()))
-				entity.setId(UUID.randomUUID().toString());
-			T result = getEntityManager().merge(entity);
-			LogUtil.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
-			return result;
-		} catch (RuntimeException re) {
-			LogUtil.log(">>>>>>修改失败>>>>>>", Level.SEVERE, re);
-			throw re;
-		}
-	}
+	// public T update(T entity) {
+	// LogUtil.log(">>>>>>>修改实体>>>>>>", Level.INFO, null);
+	// try {
+	// String user = SecurityUtils.getSubject().getPrincipal().toString();
+	// if (StringUtils.isEmpty(entity.getCreater()))
+	// entity.setCreater(user);
+	// entity.setLastUpdater(user);
+	// if (entity.getCreteTime() == null) {
+	// entity.setCreteTime(new Date());
+	// }
+	// entity.setLastUpdateTime(new Date());
+	// if (StringUtils.isEmpty(entity.getId()))
+	// entity.setId(UUID.randomUUID().toString());
+	// T result = getEntityManager().merge(entity);
+	// LogUtil.log(">>>>>>修改成功>>>>>>", Level.INFO, null);
+	// return result;
+	// } catch (RuntimeException re) {
+	// LogUtil.log(">>>>>>修改失败>>>>>>", Level.SEVERE, re);
+	// throw re;
+	// }
+	// }
 
 	/**
 	 * 通过id查找实体对象。
@@ -163,10 +156,11 @@ public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 	 * 
 	 * @return 实体类
 	 */
-	public T findById(String id, Class<T> clazz) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public BaseEntity findById(String id, Class clazz) {
 		LogUtil.log(">>>>>>通过ID：" + id + "查找实体", Level.INFO, null);
 		try {
-			return getEntityManager().find(clazz, id);
+			return (BaseEntity) getEntityManager().find(clazz, id);
 		} catch (RuntimeException re) {
 			LogUtil.log(">>>>>>查找失败>>>>>>", Level.SEVERE, re);
 			throw re;
@@ -187,35 +181,35 @@ public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 	 *            number of results to return.
 	 * @return List<Account> found by query
 	 */
-	@SuppressWarnings("unchecked")
-	public List<T> findByProperty(Class<T> clazz, String propertyName,
-			final Object value, final int... rowStartIdxAndCount) {
-		LogUtil.log("finding instance with property: " + propertyName
-				+ ", value: " + value, Level.INFO, null);
-		try {
-			final String queryString = "select model from " + clazz.getName()
-					+ " model where model." + propertyName + "= :propertyValue";
-			Query query = getEntityManager().createQuery(queryString);
-			query.setParameter("propertyValue", value);
-			if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
-				int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
-				if (rowStartIdx > 0) {
-					query.setFirstResult(rowStartIdx);
-				}
-
-				if (rowStartIdxAndCount.length > 1) {
-					int rowCount = Math.max(0, rowStartIdxAndCount[1]);
-					if (rowCount > 0) {
-						query.setMaxResults(rowCount);
-					}
-				}
-			}
-			return query.getResultList();
-		} catch (RuntimeException re) {
-			LogUtil.log("find by property name failed", Level.SEVERE, re);
-			throw re;
-		}
-	}
+	// @SuppressWarnings("unchecked")
+	// public List<T> findByProperty(Class clazz, String propertyName,
+	// final Object value, final int... rowStartIdxAndCount) {
+	// LogUtil.log("finding instance with property: " + propertyName
+	// + ", value: " + value, Level.INFO, null);
+	// try {
+	// final String queryString = "select model from " + clazz.getName()
+	// + " model where model." + propertyName + "= :propertyValue";
+	// Query query = getEntityManager().createQuery(queryString);
+	// query.setParameter("propertyValue", value);
+	// if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
+	// int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
+	// if (rowStartIdx > 0) {
+	// query.setFirstResult(rowStartIdx);
+	// }
+	//
+	// if (rowStartIdxAndCount.length > 1) {
+	// int rowCount = Math.max(0, rowStartIdxAndCount[1]);
+	// if (rowCount > 0) {
+	// query.setMaxResults(rowCount);
+	// }
+	// }
+	// }
+	// return query.getResultList();
+	// } catch (RuntimeException re) {
+	// LogUtil.log("find by property name failed", Level.SEVERE, re);
+	// throw re;
+	// }
+	// }
 
 	/**
 	 * Find all entities.
@@ -227,41 +221,40 @@ public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 	 *            count of results to return.
 	 * @return List<Account> all Account entities
 	 */
-	@SuppressWarnings("unchecked")
-	public List<T> findAll(Class<T> clazz, String filterString,
-			final int... rowStartIdxAndCount) {
-		LogUtil.log("查找全部实体", Level.INFO, null);
-		try {
-			String queryString = "";
-			if (StringUtils.isBlank(filterString)) {
-				queryString = "select model from " + clazz.getName() + " model";
-			} else {
-				queryString = "select model from " + clazz.getName()
-						+ " model where 1=1 " + filterString;
-			}
+	// @SuppressWarnings("unchecked")
+	// public List<T> findAll(Class clazz, String filterString,
+	// final int... rowStartIdxAndCount) {
+	// LogUtil.log("查找全部实体", Level.INFO, null);
+	// try {
+	// String queryString = "";
+	// if (StringUtils.isBlank(filterString)) {
+	// queryString = "select model from " + clazz.getName() + " model";
+	// } else {
+	// queryString = "select model from " + clazz.getName()
+	// + " model where 1=1 " + filterString;
+	// }
+	//
+	// Query query = getEntityManager().createQuery(queryString);
+	// if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
+	// int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
+	// if (rowStartIdx > 0) {
+	// query.setFirstResult(rowStartIdx);
+	// }
+	//
+	// if (rowStartIdxAndCount.length > 1) {
+	// int rowCount = Math.max(0, rowStartIdxAndCount[1]);
+	// if (rowCount > 0) {
+	// query.setMaxResults(rowCount);
+	// }
+	// }
+	// }
+	// return query.getResultList();
+	// } catch (RuntimeException re) {
+	// LogUtil.log("查找全部实体失败", Level.SEVERE, re);
+	// throw re;
+	// }
+	// }
 
-			Query query = getEntityManager().createQuery(queryString);
-			if (rowStartIdxAndCount != null && rowStartIdxAndCount.length > 0) {
-				int rowStartIdx = Math.max(0, rowStartIdxAndCount[0]);
-				if (rowStartIdx > 0) {
-					query.setFirstResult(rowStartIdx);
-				}
-
-				if (rowStartIdxAndCount.length > 1) {
-					int rowCount = Math.max(0, rowStartIdxAndCount[1]);
-					if (rowCount > 0) {
-						query.setMaxResults(rowCount);
-					}
-				}
-			}
-			return query.getResultList();
-		} catch (RuntimeException re) {
-			LogUtil.log("查找全部实体失败", Level.SEVERE, re);
-			throw re;
-		}
-	}
-
-	@Override
 	public void addNew(T entity) {
 		entityManager.persist(entity);
 	}
