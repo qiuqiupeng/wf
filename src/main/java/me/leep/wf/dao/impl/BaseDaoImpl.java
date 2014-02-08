@@ -6,7 +6,7 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  ********************************************************************/
-package me.leep.wf.dao;
+package me.leep.wf.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import me.leep.wf.dao.aware.IBaseDao;
 import me.leep.wf.entity.BaseEntity;
 
 import org.springframework.stereotype.Repository;
@@ -50,6 +51,14 @@ public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 
 	public List<?> query(String sql) {
 		return entityManager.createQuery(sql).getResultList();
+	}
+
+	public List<?> nativeQuery(String sql) {
+		return entityManager.createNativeQuery(sql).getResultList();
+	}
+
+	public int nativeExecUpdate(String sql) {
+		return entityManager.createNativeQuery(sql).executeUpdate();
 	}
 
 	public List<T> findAll(Class<T> clazz) {

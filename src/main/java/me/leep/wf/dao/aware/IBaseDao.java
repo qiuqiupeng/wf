@@ -6,18 +6,21 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  ********************************************************************/
-package me.leep.wf.dao;
+package me.leep.wf.dao.aware;
 
 import java.util.List;
 import java.util.Map;
 
+import me.leep.wf.dao.Dao;
+
 /**
- * 全部dao的父类，数据访问对象的接口类，定义了增删改查等基本功能。
+ * 基本dao的父类，数据访问对象的接口类，定义了增删改查等基本功能。
+ * 使用时直接指定实体类型，
  * 
  * @author 李鹏
  * @version v 1.0
  */
-public interface IBaseDao<T> {
+public interface IBaseDao<T> extends Dao {
 
 	/**
 	 * 新增保存对象
@@ -92,6 +95,22 @@ public interface IBaseDao<T> {
 	 */
 	List<?> query(String sql);
 	
+	/**
+	 * 根据原生sql文进行原始查询
+	 * 
+	 * @param sql jpql文
+	 * @return 实体集
+	 */
+	List<?> nativeQuery(String sql);
+	
+	/**
+	 * 根据原生sql文进行原始查询
+	 * 
+	 * @param sql jpql文
+	 * @return 实体集
+	 */
+	int nativeExecUpdate(String sql);
+
 	/**
 	 * 按字段条件来进行查询
 	 * @param clazz 实体类名称。
