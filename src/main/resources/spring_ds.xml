@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:property-placeholder
-		ignore-unresolvable="true" location="classpath*:/hibernate.properties" />
+		ignore-unresolvable="true" location="classpath*:/db.properties" />
 
 	<!-- BoneCP -->
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
