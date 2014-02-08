@@ -11,8 +11,6 @@ package me.leep.wf.services.system.impl;
 import java.util.List;
 import java.util.Map;
 
-import me.leep.wf.dto.BaseDto;
-import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.services.BaseServiceImpl;
 import me.leep.wf.services.system.aware.ITaskServices;
 
@@ -26,7 +24,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("taskServices")
-public class TaskServicesImpl extends BaseServiceImpl<BaseDto, BaseEntity> implements ITaskServices {
+public class TaskServicesImpl extends BaseServiceImpl implements ITaskServices {
 
 	@Autowired
 	private TaskService taskService;

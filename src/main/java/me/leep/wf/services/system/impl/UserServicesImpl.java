@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("userServices")
-public class UserServicesImpl extends BaseServiceImpl<User, UserBean>
+public class UserServicesImpl extends BaseServiceImpl
 		implements IUserServices {
 	@Autowired
 	private IdentityService identityService;
