@@ -52,4 +52,14 @@ public abstract class BaseEntity implements java.io.Serializable {
 		this.id = id;
 	}
 
+	/**
+	 * 根据ID来虚拟一个对象，相当于load方法，用于弱关联的外键对象关系
+	 * @param entity 虚拟构造的实体对象
+	 * @param param 传入的参数ID
+	 * @return 实体对象
+	 */
+	public void read(String param) {
+		this.setId(param);
+	}
+
 }
