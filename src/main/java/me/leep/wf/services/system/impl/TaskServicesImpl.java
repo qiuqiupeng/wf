@@ -11,7 +11,6 @@ package me.leep.wf.services.system.impl;
 import java.util.List;
 import java.util.Map;
 
-import me.leep.wf.services.BaseServiceImpl;
 import me.leep.wf.services.system.aware.ITaskServices;
 
 import org.activiti.engine.TaskService;
@@ -24,7 +23,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("taskServices")
-public class TaskServicesImpl extends BaseServiceImpl implements ITaskServices {
+public class TaskServicesImpl implements ITaskServices {
 
 	@Autowired
 	private TaskService taskService;

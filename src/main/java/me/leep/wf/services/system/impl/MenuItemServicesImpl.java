@@ -14,7 +14,6 @@ import java.util.List;
 import me.leep.wf.bean.AcordionItemBean;
 import me.leep.wf.entity.system.ItemBean;
 import me.leep.wf.repository.system.MenuItemRepository;
-import me.leep.wf.services.BaseServiceImpl;
 import me.leep.wf.services.system.aware.IMenuItemServices;
 import me.leep.wf.util.MenuItemUtil;
 
@@ -26,8 +25,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("menuItemServices")
-public class MenuItemServicesImpl extends BaseServiceImpl implements
-		IMenuItemServices {
+public class MenuItemServicesImpl implements IMenuItemServices {
 	@Autowired
 	private MenuItemRepository menuItemRepository;// 注入menuItemRepository
 
@@ -44,5 +42,4 @@ public class MenuItemServicesImpl extends BaseServiceImpl implements
 		return result;
 	}
 
-	
 }

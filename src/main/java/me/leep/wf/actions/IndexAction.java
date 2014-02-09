@@ -14,7 +14,6 @@ import java.util.Map;
 import me.leep.wf.actions.base.EditAction;
 import me.leep.wf.bean.AcordionItemBean;
 import me.leep.wf.services.system.aware.IMenuItemServices;
-import me.leep.wf.services.system.aware.ITaskServices;
 import me.leep.wf.services.system.impl.ShiroRealmImpl.ShiroUser;
 
 import org.apache.shiro.SecurityUtils;
@@ -37,8 +36,6 @@ public class IndexAction extends EditAction {
 	
 	@Autowired
 	private IMenuItemServices services;
-	@Autowired
-	private ITaskServices taskServices;
 
 	/**
 	 * @return username
@@ -79,7 +76,6 @@ public class IndexAction extends EditAction {
 			return "login";
 		} else {
 			this.setUsername(((ShiroUser)currentUser.getPrincipal()).loginName);
-			taskServices.getAllTasks(currentUser.getPrincipal().toString(), null);
 			items = services.entity2vo();
 			return SUCCESS;
 		}

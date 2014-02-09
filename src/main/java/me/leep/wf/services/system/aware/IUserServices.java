@@ -19,7 +19,7 @@ import me.leep.wf.services.IBaseService;
  * @author 李鹏
  *
  */
-public interface IUserServices extends IBaseService {
+public interface IUserServices extends IBaseService<User, UserBean> {
 	
 	User initUserDto(String id);
 

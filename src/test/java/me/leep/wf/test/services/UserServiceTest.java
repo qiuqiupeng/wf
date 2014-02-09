@@ -1,7 +1,7 @@
 package me.leep.wf.test.services;
 
-import static org.junit.Assert.*;
-import me.leep.wf.entity.system.UserBean;
+import static org.junit.Assert.assertNotNull;
+import me.leep.wf.dto.system.User;
 import me.leep.wf.services.system.aware.IUserServices;
 
 import org.apache.log4j.Logger;
@@ -25,11 +25,14 @@ public class UserServiceTest {
 	public void testFindbyEmplid() {
 		
 //		UserBean user = (UserBean) userServices.findById("f6af2550-86f3-4b5f-acac-5fcbbc980fa6", UserBean.class);
-		UserBean user = (UserBean) userServices.findById("f6af2550-86f3-4b5f-acac-5fcbbc980fa6");
+//		UserBean user = (UserBean) userServices.findById("01b1c2ea-dc0d-478b-8526-6724ecb40e35");
 		
-		assertNotNull("Person object is null but should not be.", user);
+		User vuser = new User();
+		userServices.findById("01b1c2ea-dc0d-478b-8526-6724ecb40e35", vuser);
 		
-		logger.info("Person state is " + user);
+		assertNotNull("Person object is null but should not be.", vuser);
+		
+		logger.info("Person state is " + vuser.getName());
 		
 		
 	}

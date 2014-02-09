@@ -9,7 +9,12 @@
 package me.leep.wf.services;
 
 
-import org.springframework.stereotype.Service;
+import me.leep.wf.dto.BaseDto;
+import me.leep.wf.entity.BaseEntity;
+import me.leep.wf.repository.BaseRepository;
+import me.leep.wf.util.BeanUtil;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author 李鹏
@@ -17,48 +22,37 @@ import org.springframework.stereotype.Service;
  * @param <P>
  * 
  */
-@Service("services")
-public class BaseServiceImpl implements IBaseService {
+public class BaseServiceImpl<V extends BaseDto, P extends BaseEntity> implements IBaseService<V, P> {
 
-//	@Autowired
-//	IBaseDAO dao;
+	@Autowired
+	BaseRepository<P, String> baseRepository;
 
-//	public void save(BaseDto dto, Class clazz) {
-//		BaseEntiy bean;
-//		if (dto.getId() != null)
-//			bean = findById(dto.getId(), clazz);
-//		else
-//			bean = null;
-//		if (bean != null) {
-//			dto.setCreater(bean.getCreater());
-//			dto.setCreteTime(bean.getCreteTime());
-//		}
-//		BaseEntiy entity;
-//		try {
-//			entity = (BaseEntiy) Class.forName(clazz.getName()).newInstance();
-//			BeanUtil.copyBean(dto, entity);
-//			dao.update(entity);
-//		} catch (InstantiationException e) {
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			e.printStackTrace();
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void save(V vo, P entity) {
+		BeanUtil.copyBean(vo, entity);
+		baseRepository.save(entity);
+	}
 
-//	public void delete(BaseEntiy entity, Class clazz) {
-//		dao.delete(entity, clazz);
-//
-//	}
-//
-//	public BaseEntiy update(BaseEntiy entity) {
-//		return dao.update(entity);
-//	}
+	public void delete(V vo, P entity) {
+		BeanUtil.copyBean(vo, entity);
+		baseRepository.delete(entity);
 
-//	public BaseEntiy findById(String id, Class clazz) {
-//		return dao.findById(id, clazz);
-//	}
+	}
+
+	public void update(V vo, P entity) {
+		BeanUtil.copyBean(vo, entity);
+		baseRepository.delete(entity);
+	}
+
+	public V findById(String id, V vo){
+		P entity = baseRepository.findOne(id);
+		if (entity != null) {
+			BeanUtil.copyBean(entity, vo);
+			return vo;
+		} else {
+			return null;
+		}
+		
+	}
 
 //	public List<BaseEntiy> findByProperty(Class clazz, String propertyName,
 //			Object value, int... rowStartIdxAndCount) {

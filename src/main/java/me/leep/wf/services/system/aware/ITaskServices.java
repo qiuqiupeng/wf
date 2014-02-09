@@ -12,15 +12,12 @@ package me.leep.wf.services.system.aware;
 import java.util.List;
 import java.util.Map;
 
-import me.leep.wf.services.IBaseService;
-
 import org.activiti.engine.task.Task;
 
 /**
  * @author 李鹏
  *
  */
-public interface ITaskServices extends IBaseService {
+public interface ITaskServices {
 	public List<Task> getAllTasks(String user, Map<String, Object> var);
-
 }

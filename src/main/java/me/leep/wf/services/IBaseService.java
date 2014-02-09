@@ -16,7 +16,7 @@ package me.leep.wf.services;
  * 
  * @author 李鹏
  */
-public interface IBaseService {
+public interface IBaseService<V, P> {
 	/**
 	 * 保存实体
 	 * 
@@ -25,7 +25,7 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-//	public void save(BaseDto dto, Class clazz);
+	public void save(V vo, P entity);
 
 	/**
 	 * 删除实体
@@ -35,7 +35,7 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-//	public void delete(BaseEntiy entity, Class clazz);
+	public void delete(V vo, P entity);
 
 	/**
 	 * 修改实体
@@ -47,9 +47,16 @@ public interface IBaseService {
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
-//	public BaseEntiy update(BaseEntiy entity);
+	public void update(V vo, P entity);
 
-//	public BaseEntiy findById(String id, Class clazz);
+	/**
+	 * 通过id查找view对象
+	 * 
+	 * @param id 对象的id
+	 * @param vo 用于装结果的VO。
+	 * @return 抄造到的实体结果
+	 */
+	public V findById(String id, V vo);
 
 	/**
 	 * 按照某个属性查找全部
