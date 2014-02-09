@@ -6,7 +6,7 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  ********************************************************************/
-package me.leep.wf.bean;
+package me.leep.wf.dto.system;
 
 import java.util.List;
 

@@ -6,20 +6,11 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  ********************************************************************/
-package me.leep.wf.services.system.aware;
-
-import java.util.List;
-
-import me.leep.wf.dto.system.AcordionItemBean;
-
 /**
- * @author 李鹏
+ * @ClassName: package-info
+ * @Description: TODO
+ * @author lipeng 2014年2月10日 上午2:06:48 
+ * @date 2014年2月10日 上午2:06:48
  *
  */
-public interface IMenuItemServices  {
-	
-	public void vo2entity(List<AcordionItemBean> items);
-	
-	public List<AcordionItemBean> entity2vo();
-	
-}
+package me.leep.wf.vo;

@@ -11,7 +11,7 @@ package me.leep.wf.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.leep.wf.bean.AcordionItemBean;
+import me.leep.wf.dto.system.AcordionItemBean;
 import me.leep.wf.entity.system.ItemBean;
 
 public class MenuItemUtil {

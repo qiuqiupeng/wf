@@ -9,10 +9,10 @@
 package me.leep.wf.services;
 
 
-import me.leep.wf.dto.BaseDto;
 import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.repository.BaseRepository;
 import me.leep.wf.util.BeanUtil;
+import me.leep.wf.vo.BaseVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @param <P>
  * 
  */
-public class BaseServiceImpl<V extends BaseDto, P extends BaseEntity> implements IBaseService<V, P> {
+public class BaseServiceImpl<V extends BaseVO, P extends BaseEntity> implements IBaseService<V, P> {
 
 	@Autowired
 	BaseRepository<P, String> baseRepository;

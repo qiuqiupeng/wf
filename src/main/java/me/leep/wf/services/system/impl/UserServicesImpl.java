@@ -12,15 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.BaseEntity;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.repository.system.UserRepository;
 import me.leep.wf.services.BaseServiceImpl;
 import me.leep.wf.services.system.aware.IUserServices;
 import me.leep.wf.util.BeanUtil;
+import me.leep.wf.vo.system.User;
 
-import org.activiti.engine.IdentityService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +31,14 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service("userServices")
-public class UserServicesImpl extends BaseServiceImpl<User, UserBean>
-		implements IUserServices {
-	@Autowired
-	private IdentityService identityService;
+public class UserServicesImpl extends BaseServiceImpl<User, UserBean> implements
+		IUserServices {
 	@Autowired
 	private UserRepository userRepository;// 注入UserRepository
 
 	@Override
 	public User initUserDto(String rowid) {
 		User user = new User();
-		// user.setId(UUID.randomUUID().toString());
 		if (StringUtils.isNotEmpty(rowid)) {
 			UserBean userBean = (UserBean) findById(rowid);
 			if (userBean != null)
@@ -74,17 +70,7 @@ public class UserServicesImpl extends BaseServiceImpl<User, UserBean>
 		BeanUtil.copyBean(user, entity);
 
 		entity = userRepository.save(entity);
-
-		org.activiti.engine.identity.User user1 = identityService
-				.createUserQuery().userId(entity.getId()).singleResult();
-		if (user1 == null)
-			user1 = identityService.newUser(entity.getId());
-
-		user1.setEmail(entity.getEmail());
-		user1.setFirstName(entity.getName());
-		user1.setPassword("");
-		identityService.saveUser(user1);
-		BeanUtil.copyBean(entity, user);
+		user.setId(entity.getId());
 
 		return entity.getId();
 	}

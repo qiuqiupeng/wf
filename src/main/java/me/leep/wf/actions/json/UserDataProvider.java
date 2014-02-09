@@ -11,8 +11,8 @@ package me.leep.wf.actions.json;
 import java.util.List;
 
 import me.leep.wf.actions.base.BaseDataProvider;
-import me.leep.wf.dto.system.User;
 import me.leep.wf.services.system.aware.IUserServices;
+import me.leep.wf.vo.system.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -1,8 +1,8 @@
 package me.leep.wf.test.services;
 
 import static org.junit.Assert.assertNotNull;
-import me.leep.wf.dto.system.User;
 import me.leep.wf.services.system.aware.IUserServices;
+import me.leep.wf.vo.system.User;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;

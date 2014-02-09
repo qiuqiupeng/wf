@@ -11,9 +11,9 @@ package me.leep.wf.services.system.aware;
 
 import java.util.List;
 
-import me.leep.wf.dto.system.User;
 import me.leep.wf.entity.system.UserBean;
 import me.leep.wf.services.IBaseService;
+import me.leep.wf.vo.system.User;
 
 /**
  * @author 李鹏

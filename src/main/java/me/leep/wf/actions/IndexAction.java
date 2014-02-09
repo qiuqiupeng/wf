@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import me.leep.wf.actions.base.EditAction;
-import me.leep.wf.bean.AcordionItemBean;
+import me.leep.wf.dto.system.AcordionItemBean;
 import me.leep.wf.services.system.aware.IMenuItemServices;
 import me.leep.wf.services.system.impl.ShiroRealmImpl.ShiroUser;
 

@@ -12,9 +12,9 @@ import java.io.File;
 import java.util.logging.Level;
 
 import me.leep.wf.actions.base.EditAction;
-import me.leep.wf.dto.system.User;
 import me.leep.wf.services.system.aware.IUserServices;
 import me.leep.wf.util.LogUtil;
+import me.leep.wf.vo.system.User;
 
 public class UserEditAction extends EditAction {
 

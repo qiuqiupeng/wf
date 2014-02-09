@@ -9,17 +9,17 @@
 /**
  * 
  */
-package me.leep.wf.dto.system;
+package me.leep.wf.vo.system;
 
 
-import me.leep.wf.dto.BaseDto;
+import me.leep.wf.vo.BaseVO;
 
 /**
  * @author 李鹏
  * 
  *
  */
-public class FuncMenu extends BaseDto {
+public class FuncMenu extends BaseVO {
 
 	/**
 	 * 

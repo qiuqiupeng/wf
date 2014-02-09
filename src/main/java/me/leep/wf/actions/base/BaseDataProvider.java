@@ -3,16 +3,16 @@ package me.leep.wf.actions.base;
 import java.util.List;
 import java.util.Map;
 
-import me.leep.wf.dto.BaseDto;
-//import me.leep.wf.services.IBaseService;
+import me.leep.wf.vo.BaseVO;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
+//import me.leep.wf.services.IBaseService;
 
 @ParentPackage("json-default")
 @Result(name = "success", type = "json", params = { "ignoreHierarchy", "false" })
-public class BaseDataProvider<T extends BaseDto> extends BaseAction {
+public class BaseDataProvider<T extends BaseVO> extends BaseAction {
 
 	/**
 	 * 

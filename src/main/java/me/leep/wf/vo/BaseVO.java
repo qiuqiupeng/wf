@@ -6,14 +6,14 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  ********************************************************************/
-package me.leep.wf.dto;
+package me.leep.wf.vo;
 
 import java.util.Date;
 
 /**
  * 所有entity类的超类. @author 李鹏
  */
-public abstract class BaseDto implements java.io.Serializable {
+public abstract class BaseVO implements java.io.Serializable {
 
 	/**
 	 * 

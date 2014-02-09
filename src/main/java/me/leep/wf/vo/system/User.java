@@ -6,11 +6,11 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  ********************************************************************/
-package me.leep.wf.dto.system;
+package me.leep.wf.vo.system;
 
-import me.leep.wf.dto.BaseDto;
+import me.leep.wf.vo.BaseVO;
 
-public class User extends BaseDto {
+public class User extends BaseVO {
 	/**
 	 * serialVersionUID
 	 */

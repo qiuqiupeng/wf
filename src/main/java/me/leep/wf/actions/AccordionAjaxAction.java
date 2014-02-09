@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.leep.wf.actions.base.EditAction;
-import me.leep.wf.bean.AcordionItemBean;
+import me.leep.wf.dto.system.AcordionItemBean;
 import me.leep.wf.util.BeanUtil;
 import me.leep.wf.util.FileUtil;
 

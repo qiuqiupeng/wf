@@ -11,7 +11,7 @@ package me.leep.wf.services.system.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.leep.wf.bean.AcordionItemBean;
+import me.leep.wf.dto.system.AcordionItemBean;
 import me.leep.wf.entity.system.ItemBean;
 import me.leep.wf.repository.system.MenuItemRepository;
 import me.leep.wf.services.system.aware.IMenuItemServices;
