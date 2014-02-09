@@ -15,11 +15,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntity;
+import me.leep.wf.entity.BaseBill;
 
 @Entity
 @Table(name = "sys_t_role")
-public class RoleBean extends BaseEntity {
+public class RoleBean extends BaseBill {
 
 	/**
 	 * serialVersionUID

@@ -12,7 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntity;
+import me.leep.wf.entity.BaseBill;
 
 /**
  * @author 李鹏
@@ -21,7 +21,7 @@ import me.leep.wf.entity.BaseEntity;
  */
 @Entity
 @Table(name = "SYS_T_MENUITEM")
-public class ItemBean extends BaseEntity {
+public class ItemBean extends BaseBill {
 
 	/**
 	 * 

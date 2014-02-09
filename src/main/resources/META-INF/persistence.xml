@@ -5,6 +5,7 @@
 
 	<persistence-unit name="PU" transaction-type="RESOURCE_LOCAL">
 
+		<class>me.leep.wf.entity.BaseBill</class>
 		<class>me.leep.wf.entity.BaseEntity</class>
 		<class>me.leep.wf.entity.LogBean</class>
 		<class>me.leep.wf.entity.system.FuncMenuBean</class>

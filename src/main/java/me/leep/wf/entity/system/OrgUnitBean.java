@@ -8,17 +8,17 @@
  ********************************************************************/
 package me.leep.wf.entity.system;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntity;
-import me.leep.wf.entity.system.UserBean;
-import java.util.List;
-import javax.persistence.OneToMany;
+import me.leep.wf.entity.BaseBill;
 
 @Entity
 @Table(name = "SYS_T_ORGUNIT")
-public class OrgUnitBean extends BaseEntity {
+public class OrgUnitBean extends BaseBill {
 
 	private static final long serialVersionUID = 1L;
 	private List<UserBean> userBean;

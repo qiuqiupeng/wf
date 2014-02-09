@@ -15,7 +15,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntity;
+import me.leep.wf.entity.BaseBill;
 
 /**
  * @author 李鹏
@@ -24,7 +24,7 @@ import me.leep.wf.entity.BaseEntity;
  */
 @Entity
 @Table(name = "sys_t_funcmenuitem")
-public class FuncMenuBean extends BaseEntity {
+public class FuncMenuBean extends BaseBill {
 
 	/**
 	 * 

@@ -21,11 +21,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import me.leep.wf.entity.BaseEntity;
+import me.leep.wf.entity.BaseBill;
 
 @Entity
 @Table(name = "sys_t_user")
-public class UserBean extends BaseEntity {
+public class UserBean extends BaseBill {
 
 	/**
 	 * serialVersionUID

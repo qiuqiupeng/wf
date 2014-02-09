@@ -73,7 +73,7 @@ public class InitDataGenerator implements ApplicationListener {
 			user.setLastUpdater("系统自动修改");
 			user.setLastUpdateTime(new Date());
 			user.setCreteTime(new Date());
-			user.setRemoveFlag("0");
+//			user.setRemoveFlag("0");
 
 			userRepository.save(user);
 			
