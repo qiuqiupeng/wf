@@ -13,10 +13,8 @@ import me.leep.wf.entity.system.UserBean;
 import org.springframework.stereotype.Repository;
 
 /**
- * @ClassName: CrudDaoImpl
- * @Description: TODO
+ * 
  * @author lipeng 2014年2月8日 下午7:20:35 
- * @date 2014年2月8日 下午7:20:35
  *
  */
 @Repository("crudDao")

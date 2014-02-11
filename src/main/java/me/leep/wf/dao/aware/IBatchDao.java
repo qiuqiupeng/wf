@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 
  * @author Wang Yuxing
  * @version 1.0
- * @see JdbcDaoImpl
+ * 
  */
 @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
 public interface IBatchDao extends Dao{
@@ -23,7 +23,7 @@ public interface IBatchDao extends Dao{
 	 * 批量执行插入或者更新操作。
 	 * @param sql 批量更新语句，变量值用”?“表示，如”UPDATE SET NAME=? WHERE ID = ?“。
 	 * @param parameters
-	 * @return
+	 * @return 查询结果集
 	 * @throws DataAccessException
 	 */
 	int[] batchUpdate(String sql, List<List<Object>> parameters) throws Exception;

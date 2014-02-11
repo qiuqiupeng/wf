@@ -39,7 +39,7 @@ public interface IProcedureDao extends Dao {
 	 * @param parameters
 	 * @param outParams
 	 * @param cursorName
-	 * @return
+	 * @return 查询结果集
 	 * @throws Exception
 	 */
 	Map<String, Object> executeWithResult(String spName, Map<String, Object> parameters,
@@ -52,7 +52,7 @@ public interface IProcedureDao extends Dao {
 	 * @param parameters
 	 * @param outParams
 	 * @param cursorName
-	 * @return
+	 * @return 查询结果集
 	 * @throws Exception
 	 */
 	Map<String, Object> executeWithResult(Connection conn, String spName, Map<String, Object> parameters,
@@ -62,7 +62,7 @@ public interface IProcedureDao extends Dao {
 	 * 执行存储过程并返回多条记录。
 	 * 
 	 * @param spName
-	 * @return
+	 * @return 查询结果集
 	 * @throws Exception
 	 */
 	List<?> executeWithResultset(String spName) throws Exception;
@@ -72,7 +72,7 @@ public interface IProcedureDao extends Dao {
 	 * 
 	 * @param spName
 	 * @param parameters
-	 * @return
+	 * @return 查询结果集
 	 * @throws Exception
 	 */
 	List<?> executeWithResultset(String spName, Map<String, Object> parameters) throws Exception;

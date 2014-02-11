@@ -7,10 +7,7 @@
  *
  ********************************************************************/
 /**
- * @ClassName: package-info
- * @Description: TODO
  * @author lipeng 2014年2月8日 下午6:29:15 
- * @date 2014年2月8日 下午6:29:15
  *
  */
 package me.leep.wf.dao.impl;

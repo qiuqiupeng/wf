@@ -117,7 +117,6 @@ public class BaseDaoImpl<T extends BaseEntity> implements IBaseDao<T> {
 	/**
 	 * 可构造性的原始查询
 	 * 
-	 * @param <T>
 	 * @param getRowCount
 	 *            是否计算记录条数的查询（即，select count(*)）
 	 * @param isVagou

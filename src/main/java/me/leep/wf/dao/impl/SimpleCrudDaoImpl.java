@@ -225,7 +225,6 @@ public abstract class SimpleCrudDaoImpl<E extends BaseEntity> implements
 	/**
 	 * 可构造性的原始查询
 	 * 
-	 * @param <E>
 	 * @param getRowCount
 	 *            是否计算记录条数的查询（即，select count(*)）
 	 * @param isVagou

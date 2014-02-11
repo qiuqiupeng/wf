@@ -8,9 +8,6 @@
  ********************************************************************/
 package me.leep.wf.services;
 
-
-
-
 /**
  * 所有services的基类，实现基本的增删改查功能
  * 
@@ -21,7 +18,7 @@ public interface IBaseService<V, P> {
 	 * 保存实体
 	 * 
 	 * @param entity
-	 *             entity to persist
+	 *            entity to persist
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
@@ -41,9 +38,9 @@ public interface IBaseService<V, P> {
 	 * 修改实体
 	 * 
 	 * @param entity
-	 *             entity to update
-	 * @return the persisted entity instance, may not be the
-	 *         same
+	 *            entity to update
+	 * @param vo
+	 *            vo
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
@@ -52,8 +49,10 @@ public interface IBaseService<V, P> {
 	/**
 	 * 通过id查找view对象
 	 * 
-	 * @param id 对象的id
-	 * @param vo 用于装结果的VO。
+	 * @param id
+	 *            对象的id
+	 * @param vo
+	 *            用于装结果的VO。
 	 * @return 抄造到的实体结果
 	 */
 	public V findById(String id, V vo);
@@ -62,7 +61,7 @@ public interface IBaseService<V, P> {
 	 * 按照某个属性查找全部
 	 * 
 	 * @param propertyName
-	 *            the name of the  property to query
+	 *            the name of the property to query
 	 * @param value
 	 *            the property value to match
 	 * @param rowStartIdxAndCount
@@ -72,14 +71,17 @@ public interface IBaseService<V, P> {
 	 *            count of results to return.
 	 * @return List<BaseEntiy> found by query
 	 */
-//	public List<BaseEntiy> findByProperty(Class clazz, String propertyName, Object value,
-//			int... rowStartIdxAndCount);
+	// public List<BaseEntiy> findByProperty(Class clazz, String propertyName,
+	// Object value,
+	// int... rowStartIdxAndCount);
 
 	/**
 	 * 查找全部实体
 	 * 
-	 * @param clazz 数据来源from实体对象类
-	 * @param targetClass 结果类
+	 * @param clazz
+	 *            数据来源from实体对象类
+	 * @param targetClass
+	 *            结果类
 	 * 
 	 * @param rowStartIdxAndCount
 	 *            Optional int varargs. rowStartIdxAndCount[0] specifies the the
@@ -88,11 +90,11 @@ public interface IBaseService<V, P> {
 	 *            count of results to return.
 	 * @return List 返回全部结果集
 	 */
-//	public List<BaseDto> findAll(Class clazz,Class targetClass,String filterString, int... rowStartIdxAndCount);
-	
-//	public void deleteList(String[] rowids, Class clazz);
-	
-	
-//	public int coutAll(Class clazz);
+	// public List<BaseDto> findAll(Class clazz,Class targetClass,String
+	// filterString, int... rowStartIdxAndCount);
+
+	// public void deleteList(String[] rowids, Class clazz);
+
+	// public int coutAll(Class clazz);
 
 }

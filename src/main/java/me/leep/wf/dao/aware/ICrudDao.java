@@ -117,8 +117,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 获取全部实体记录行数
 	 * 
-	 * @param clazz
-	 *            实体类名称
 	 * @return 行数
 	 */
 	long countAll();
@@ -126,8 +124,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 根据条件获取记录行数
 	 * 
-	 * @param clazz
-	 *            实体类名称
 	 * @param map
 	 *            条件行数
 	 * @return 实体数
@@ -137,8 +133,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 根据条件模糊查询记录行数
 	 * 
-	 * @param clazz
-	 *            实体类名称
 	 * @param map
 	 *            条件行数
 	 * @return 实体数
@@ -148,7 +142,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 查找全部对象 
 	 * 
-	 * @param clazz 实体类名称
 	 * @return 实体对象数组。
 	 */
 	List<E> findAll();
@@ -157,8 +150,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 按字段条件来进行查询
 	 * 
-	 * @param clazz
-	 *            实体类名称。
 	 * @param paramsMap
 	 *            条件集
 	 * @return 结果集
@@ -168,7 +159,7 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 根据jpql文进行原始查询
 	 * 
-	 * @param sql jpql文
+	 * @param jpql jpql文
 	 * @return 实体集
 	 */
 	List<?> query(String jpql);
@@ -192,8 +183,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 按字段模糊匹配查询
 	 * 
-	 * @param clazz
-	 *            实体类名称。
 	 * @param map
 	 *            条件集
 	 * @return 查询结果集
@@ -203,8 +192,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 分页查询
 	 * 
-	 * @param clazz
-	 *            实体类名称。
 	 * @param from
 	 *            分页开始
 	 * @param size
@@ -216,8 +203,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 按字段是否相等来查询获得分页数据
 	 * 
-	 * @param clazz
-	 *            实体类名称。
 	 * @param paramsMap
 	 *            条件集
 	 * @param from
@@ -231,8 +216,6 @@ public interface ICrudDao<E extends BaseEntity> extends Dao {
 	/**
 	 * 按字段模糊匹配来查询获得分页数据
 	 * 
-	 * @param clazz
-	 *            实体类名称。
 	 * @param map
 	 *            条件集
 	 * @param from

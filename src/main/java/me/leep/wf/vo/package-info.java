@@ -7,10 +7,7 @@
  *
  ********************************************************************/
 /**
- * @ClassName: package-info
- * @Description: TODO
  * @author lipeng 2014年2月10日 上午2:06:48 
- * @date 2014年2月10日 上午2:06:48
  *
  */
 package me.leep.wf.vo;
