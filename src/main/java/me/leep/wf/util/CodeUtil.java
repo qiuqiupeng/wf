@@ -11,28 +11,86 @@ package me.leep.wf.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.UUID;
 
 public class CodeUtil {
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// 长连接： http://tech.sina.com.cn/i/2011-03-23/11285321288.shtml
 
-		// 新浪解析后的短链接为： http://t.cn/h1jGSC
-		String sLongUrl = "http://tech.sina.com.cn/i/2011-03-23/11285321288.shtml";
-		// 3BD768E58042156E54626860E241E999
-		String[] aResult = shortCode(sLongUrl);
-		// 打印出结果
-		for (int i = 0; i < aResult.length; i++) {
-			System.out.println("[" + i + "]:::" + aResult[i]);
-		}
+		String passwd = null;
+		String loginpasswd = null;
+		passwd = "123qaz"; // 密码明文
+		loginpasswd = Md5(passwd);
+		System.out.println("MD5 16Bit : " + loginpasswd);
+
+//		// 长连接： http://tech.sina.com.cn/i/2011-03-23/11285321288.shtml
+//
+//		// 新浪解析后的短链接为： http://t.cn/h1jGSC
+//		String sLongUrl = "http://tech.sina.com.cn/i/2011-03-23/11285321288.shtml";
+//		// 3BD768E58042156E54626860E241E999
+//		String[] aResult = shortCode(sLongUrl);
+//		// 打印出结果
+//		for (int i = 0; i < aResult.length; i++) {
+//			System.out.println("[" + i + "]:::" + aResult[i]);
+//		}
 	}
-	
+
+	/*
+	 * md5加密算法，有16位、32位加密，分别生成32位、64位密文
+	 */
+	public static String Md5(String plainText) {
+		String result = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(plainText.getBytes());
+			byte b[] = md.digest();
+			int i;
+			StringBuffer buf = new StringBuffer("");
+			for (int offset = 0; offset < b.length; offset++) {
+				i = b[offset];
+				if (i < 0)
+					i += 256;
+				if (i < 16)
+					buf.append("0");
+				buf.append(Integer.toHexString(i));
+			}
+			// result = buf.toString(); //md5 32bit
+			// result = buf.toString().substring(8, 24))); //md5 16bit
+			result = buf.toString().substring(8, 24);
+			System.out.println("mdt 16bit: " + buf.toString().substring(8, 24));
+			System.out.println("md5 32bit: " + buf.toString());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public final static String[] chars = new String[] { "a", "b", "c", "d",
+			"e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
+			"r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3",
+			"4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G",
+			"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+			"U", "V", "W", "X", "Y", "Z" };
+
+	public static String generateShortUuid() {
+		StringBuffer shortBuffer = new StringBuffer();
+		String uuid = UUID.randomUUID().toString().replace("-", "");
+		for (int i = 0; i < 8; i++) {
+			String str = uuid.substring(i * 4, i * 4 + 4);
+			int x = Integer.parseInt(str, 16);
+			shortBuffer.append(chars[x % 0x3E]);
+		}
+		return shortBuffer.toString();
+
+	}
+
 	/**
 	 * 产生短编码，利用时间空间来产生短编码。
 	 * 
-	 * @param text 输入字符串
+	 * @param text
+	 *            输入字符串
 	 * @return 输出字符串数组。
 	 */
 	public static final String getShortCode(String text) {
@@ -43,7 +101,8 @@ public class CodeUtil {
 	/**
 	 * 产生短编码，利用时间空间来产生短编码。
 	 * 
-	 * @param text 输入字符串
+	 * @param text
+	 *            输入字符串
 	 * @return 输出字符串数组。
 	 */
 	private static final String[] shortCode(String text) {
@@ -82,7 +141,8 @@ public class CodeUtil {
 	/**
 	 * 产生MD5码
 	 * 
-	 * @param text 输入字符串
+	 * @param text
+	 *            输入字符串
 	 * @return 输出字符串
 	 */
 	public static final String getStringMD5(String text) {
