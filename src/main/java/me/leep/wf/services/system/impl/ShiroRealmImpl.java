@@ -10,10 +10,10 @@ package me.leep.wf.services.system.impl;
 
 import java.io.Serializable;
 
-import me.leep.wf.services.system.aware.IUserServices;
+import me.leep.wf.entity.system.UserBean;
+import me.leep.wf.repository.system.UserRepository;
 
 import org.activiti.engine.IdentityService;
-import org.activiti.engine.identity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -56,7 +56,7 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 	private IdentityService identityService;
 
 	@Autowired
-	private IUserServices userServices;
+	private UserRepository userRepository;
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
@@ -135,10 +135,9 @@ public class ShiroRealmImpl extends AuthorizingRealm {
         boolean isAuth = identityService.checkPassword(username,
         		encodedPassword);
 		if (isAuth) {
-			User user = identityService.createUserQuery().userId(username)
-					.singleResult();
+			UserBean user = userRepository.findByNumber(username).get(0);
 			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(),
-					user.getFirstName(), user.getLastName()),
+					user.getNumber(), user.getName()),
 					String.valueOf(usernamePasswordToke.getPassword()),
 					ByteSource.Util.bytes(user.getId()), getName());
 		} else
@@ -150,19 +149,18 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 	 */
 	public static class ShiroUser implements Serializable {
 		private static final long serialVersionUID = -1373760761780840081L;
-		public String loginName;
+		public String id;
+		public String number;
 		public String name;
-		public String displayName;
 
-		public ShiroUser(String loginName, String firstName, String lastName) {
-			this.loginName = loginName;
-			this.name = firstName;
-			this.displayName = (StringUtils.isBlank(firstName) ? "" : firstName)
-					+ (StringUtils.isBlank(lastName) ? "" : lastName);
+		public ShiroUser(String userid, String number, String name) {
+			this.id = userid;
+			this.number = number;
+			this.name = name;
 		}
 
-		public ShiroUser(String loginName, String name) {
-			this.loginName = loginName;
+		public ShiroUser(String number, String name) {
+			this.number = number;
 			this.name = name;
 		}
 
@@ -175,28 +173,13 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 		 */
 		@Override
 		public String toString() {
-			return loginName;
+			return number;
 		}
 
 		public String getDisplayName() {
-			return displayName;
+			return name;
 		}
 
-	}
-
-	/**
-	 * @return userServices
-	 */
-	public IUserServices getUserServices() {
-		return userServices;
-	}
-
-	/**
-	 * @param userServices
-	 *            要设置的 userServices
-	 */
-	public void setUserServices(IUserServices userServices) {
-		this.userServices = userServices;
 	}
 
 }

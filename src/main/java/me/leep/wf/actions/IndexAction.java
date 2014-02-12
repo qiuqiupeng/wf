@@ -75,7 +75,7 @@ public class IndexAction extends EditAction {
 		if (!currentUser.isAuthenticated()) {
 			return "login";
 		} else {
-			this.setUsername(((ShiroUser)currentUser.getPrincipal()).loginName);
+			this.setUsername(((ShiroUser)currentUser.getPrincipal()).number);
 			items = services.entity2vo();
 			return SUCCESS;
 		}

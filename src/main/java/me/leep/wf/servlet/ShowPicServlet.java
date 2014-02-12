@@ -21,7 +21,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
-
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.Picture;
 import org.apache.shiro.SecurityUtils;
@@ -38,7 +37,7 @@ public class ShowPicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private IdentityService identityService;
-
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -56,13 +55,14 @@ public class ShowPicServlet extends HttpServlet {
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
+
+		Subject currentUser = SecurityUtils.getSubject();
 		
 		//通过spring配置初始化服务对象
 		ServletContext application = getServletContext();  
 		WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(application);// 获取spring的context  
 		identityService = (IdentityService)wac.getBean("identityService");
 		
-		Subject currentUser = SecurityUtils.getSubject();
 		Picture userPicture = identityService.getUserPicture(currentUser.getPrincipal().toString());
 		
 
