@@ -8,9 +8,7 @@
  ********************************************************************/
 package me.leep.wf.services.system.impl;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import me.leep.wf.dto.system.AcordionItemBean;
@@ -73,9 +71,6 @@ public class DataGenerator {
 					.xml2Bean(is);
 			// List<ItemBean> entities = new ArrayList<ItemBean>();
 			services.vo2entity(items);
-		} catch (FileNotFoundException | URISyntaxException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
