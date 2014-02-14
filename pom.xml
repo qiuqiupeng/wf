@@ -5,7 +5,7 @@
 	<artifactId>wf</artifactId>
 	<packaging>war</packaging>
 	<name>wf</name>
-	<description />
+	<description /> 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jetty.version>8.1.14.v20131031</jetty.version>
